@@ -63,7 +63,20 @@
     /* ── Profile Info ── */
     .profile-name { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
     .profile-location { font-size: 14px; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-    .profile-bio { font-size: 15px; line-height: 1.65; color: var(--dim); margin-bottom: 28px; }
+    .profile-bio { font-size: 15px; line-height: 1.65; color: var(--dim); margin-bottom: 16px; }
+
+    .permit-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
+      background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.2); color: #fb923c;
+      margin-bottom: 12px;
+    }
+    .home-kitchen-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 600; color: #6b6b8a; margin-bottom: 16px;
+    }
+    .allergen-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .allergen-tag { padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; background: rgba(239,68,68,0.1); color: #f87171; }
 
     .profile-actions { display: flex; gap: 10px; margin-bottom: 32px; }
     .action-btn {
@@ -189,8 +202,10 @@
       <!-- View Mode -->
       <div id="view-mode">
         <h1 class="profile-name" id="profile-name"></h1>
+        <div id="permit-badge-area"></div>
         <div class="profile-location" id="profile-location"></div>
         <p class="profile-bio" id="profile-bio"></p>
+        <div class="home-kitchen-badge">🏠 Made in a Home Kitchen &middot; CA Cottage Food</div>
         <div class="profile-actions" id="profile-actions"></div>
       </div>
 
@@ -335,6 +350,10 @@ function render() {
 
   // View mode
   document.getElementById('profile-name').textContent = profileUser.displayName || profileUser.name;
+  const permitArea = document.getElementById('permit-badge-area');
+  if (profileUser.permitType || profileUser.permitNumber) {
+    permitArea.innerHTML = `<div class="permit-badge">✓ ${esc(profileUser.permitType || 'Cottage Food')} Permit${profileUser.permitNumber ? ' #' + esc(profileUser.permitNumber) : ''}</div>`;
+  } else { permitArea.innerHTML = ''; }
   const locEl = document.getElementById('profile-location');
   if (profileUser.location && profileUser.location.address) {
     locEl.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg> ${esc(profileUser.location.address)}`;
@@ -427,7 +446,8 @@ function renderProducts() {
         <div class="product-name">${esc(p.name)}</div>
         <div class="product-price">$${(p.price / 100).toFixed(2)}</div>
         <div class="product-desc">${esc(p.description)}</div>
-        <div class="product-actions">
+        ${p.allergens && p.allergens.length ? `<div class="allergen-tags">${p.allergens.map(a => `<span class="allergen-tag">${esc(a)}</span>`).join('')}</div>` : ''}
+        <div class="product-actions" style="margin-top:12px">
           ${!isOwnProfile ? `<button class="product-btn buy" onclick="openOrder('${p.id}','${esc(p.name)}',${p.price})">Order</button>` : ''}
           ${isOwnProfile ? `<button class="product-btn edit" onclick="deleteProduct('${p.id}')">Remove</button>` : ''}
         </div>

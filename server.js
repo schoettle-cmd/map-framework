@@ -364,6 +364,8 @@ app.get('/api/profiles/:userId', (req, res) => {
       bio: (user.profile && user.profile.bio) || '',
       photos: (user.profile && user.profile.photos) || [],
       location: (user.profile && user.profile.location) || null,
+      permitType: (user.profile && user.profile.permitType) || null,
+      permitNumber: (user.profile && user.profile.permitNumber) || null,
       products: userProducts,
       createdAt: user.createdAt
     }
@@ -464,7 +466,7 @@ app.post('/api/products', (req, res) => {
   const user = getSession(req);
   if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
 
-  const { name, description, price } = req.body;
+  const { name, description, price, category, allergens } = req.body;
   if (!name || price == null) return res.status(400).json({ ok: false, error: 'Name and price required.' });
 
   const product = {
@@ -474,6 +476,9 @@ app.post('/api/products', (req, res) => {
     name: String(name).slice(0, 200),
     description: String(description || '').slice(0, 2000),
     price: Math.round(Math.abs(parseFloat(price)) * 100), // cents
+    category: category || 'other',
+    allergens: Array.isArray(allergens) ? allergens : [],
+    madeInHomeKitchen: true,
     photos: [],
     available: true,
     createdAt: new Date().toISOString()
@@ -798,22 +803,145 @@ app.get('/api/messages/:peerId', (req, res) => {
 // ═════════════════════════════════════════════════════════════════════════════
 function seedDefaults() {
   if (elements.elements.length > 0) return;
-  const lat = config.defaultLat || 40.758, lng = config.defaultLng || -73.9855;
-  const names = ['Alex M.','Jordan K.','Sam R.','Taylor B.','Casey L.','Morgan P.','Riley D.','Avery C.','Quinn S.','Drew N.','Blake H.','Charlie F.','Dana W.','Emery T.','Finley G.','Hayden J.','Jamie V.','Kai Z.','Logan A.','Micah E.'];
-  const bios = ['Coffee lover. Dog person. Always exploring.','New to the area — show me around!','Weekend hiker, weekday coder.','Looking for good food recommendations.','Music and art enthusiast.','Just moved here from the west coast.','Photographer capturing city life.','Fitness junkie, early riser.','Bookworm seeking conversation partners.','Foodie on a mission to try every restaurant.','Into live music and rooftop bars.','Designer by day, gamer by night.','Plant parent. Yoga practitioner.','Love cooking and hosting dinner parties.','Travel addict. 30 countries and counting.','Film buff. Ask me for recommendations.','Runner training for a marathon.','Craft beer enthusiast.','Night owl. Love late-night walks.','Tech nerd. Board game collector.'];
-  for (let i = 0; i < 20; i++) {
-    const a = Math.random() * Math.PI * 2, r = Math.random() * 0.015 + 0.002;
-    elements.elements.push({
-      id: 'el_seed_' + String(i+1).padStart(3,'0'), type: 'person', title: names[i],
-      subtitle: `${(Math.random()*2.5+0.1).toFixed(1)} mi away`, description: bios[i],
-      imageUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(names[i])}&backgroundColor=1a1a2e`,
-      icon: '👤', lat: lat + Math.sin(a)*r, lng: lng + Math.cos(a)*r,
-      ownerId: 'system', metadata: {}, online: Math.random()>0.4, active: true,
-      createdAt: new Date(Date.now()-Math.random()*7*86400000).toISOString()
+
+  const sellers = [
+    {
+      name: "Maria's Cocina", bio: "Third-generation recipes from Oaxaca. Conchas, empanadas, and tamales baked fresh. Class A Cottage Food Permit.",
+      lat: 34.0869, lng: -118.2627, address: "Silver Lake, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-1847",
+      products: [
+        { name: "Conchas (6-pack)", price: 900, category: "bread", description: "Traditional Mexican sweet bread with colorful sugar shell topping. Vanilla and chocolate flavors.", allergens: ["wheat", "eggs", "milk"] },
+        { name: "Empanadas (4-pack)", price: 1400, category: "pastry", description: "Flaky hand pies filled with sweet pumpkin or apple. Family recipe.", allergens: ["wheat", "milk"] },
+        { name: "Tamales (6-pack)", price: 1800, category: "pastry", description: "Sweet tamales with raisins and cinnamon, wrapped in corn husks.", allergens: ["wheat"] }
+      ]
+    },
+    {
+      name: "Golden Crust Bread Co.", bio: "Artisan sourdough baked fresh daily. Organic flour, wild-caught yeast, 48-hour ferment. Pickup in Los Feliz.",
+      lat: 34.1065, lng: -118.2810, address: "Los Feliz, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-2103",
+      products: [
+        { name: "Sourdough Loaf", price: 900, category: "bread", description: "Classic tangy sourdough with crispy crust. 48-hour cold ferment with organic flour.", allergens: ["wheat"] },
+        { name: "Focaccia Slab", price: 800, category: "bread", description: "Olive oil focaccia with rosemary and sea salt. Perfect for sandwiches.", allergens: ["wheat"] },
+        { name: "Cinnamon Rolls (4-pack)", price: 1200, category: "pastry", description: "Soft, gooey cinnamon rolls with cream cheese frosting.", allergens: ["wheat", "eggs", "milk"] }
+      ]
+    },
+    {
+      name: "Sweet Spot LA", bio: "Cookies, brownies, and sweet treats made with love in Echo Park. All butter, real vanilla, no shortcuts.",
+      lat: 34.0781, lng: -118.2606, address: "Echo Park, LA", permitType: "Class A", permitNumber: "CFO-LA-2025-0312",
+      products: [
+        { name: "Cookie Box (12)", price: 1500, category: "cookie", description: "Assorted cookies: chocolate chip, snickerdoodle, oatmeal raisin, double chocolate.", allergens: ["wheat", "eggs", "milk", "soy"] },
+        { name: "Fudge Brownies (6)", price: 1200, category: "cookie", description: "Dense, fudgy brownies with a crackly top. Made with Belgian chocolate.", allergens: ["wheat", "eggs", "milk", "soy"] },
+        { name: "Cake Pops (6)", price: 1000, category: "candy", description: "Moist cake pops dipped in chocolate. Assorted flavors.", allergens: ["wheat", "eggs", "milk", "soy"] }
+      ]
+    },
+    {
+      name: "Jam Session", bio: "Small-batch jams & preserves from California-grown fruit. No pectin, just fruit, sugar, and time. Highland Park.",
+      lat: 34.1097, lng: -118.1920, address: "Highland Park, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-0987",
+      products: [
+        { name: "Strawberry Jam (8oz)", price: 800, category: "jam", description: "Made with Oxnard strawberries at peak ripeness. Classic and bright.", allergens: [] },
+        { name: "Meyer Lemon Marmalade (8oz)", price: 900, category: "jam", description: "Bittersweet citrus marmalade from backyard Meyer lemons.", allergens: [] },
+        { name: "Fig Preserves (8oz)", price: 1000, category: "jam", description: "Mission figs slow-cooked with vanilla bean and a splash of port.", allergens: [] }
+      ]
+    },
+    {
+      name: "The Honey Jar", bio: "Local LA honey from our own hives + handmade granola. Sustainable beekeeping in Atwater Village since 2020.",
+      lat: 34.1172, lng: -118.2587, address: "Atwater Village, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-1502",
+      products: [
+        { name: "Raw Wildflower Honey (12oz)", price: 1400, category: "honey", description: "Unfiltered, raw honey from our LA hives. Floral and complex.", allergens: [] },
+        { name: "Honey Granola (12oz)", price: 800, category: "snack", description: "Oats, almonds, and local honey, slow-baked until crunchy.", allergens: ["wheat", "tree nuts", "milk"] },
+        { name: "Honeycomb (6oz)", price: 1800, category: "honey", description: "Cut-comb honey straight from the hive. Drizzle on toast or cheese.", allergens: [] }
+      ]
+    },
+    {
+      name: "Churro Queen", bio: "Fresh churros and dulces from my Boyle Heights kitchen. Weekend pop-ups and pre-orders. East LA pride.",
+      lat: 34.0340, lng: -118.2116, address: "Boyle Heights, LA", permitType: "Class A", permitNumber: "CFO-LA-2025-0088",
+      products: [
+        { name: "Churros (6-pack)", price: 800, category: "pastry", description: "Crispy, cinnamon-sugar churros. Plain or filled with cajeta.", allergens: ["wheat", "eggs", "milk"] },
+        { name: "Cajeta Fudge (8oz)", price: 600, category: "candy", description: "Creamy goat milk caramel fudge. Cuts into 12 pieces.", allergens: ["milk"] },
+        { name: "Mexican Hot Cocoa Mix (8oz)", price: 1000, category: "snack", description: "Spiced chocolate mix with cinnamon and chili. Just add hot milk.", allergens: ["milk", "soy"] }
+      ]
+    },
+    {
+      name: "Cake Pop Studio", bio: "Custom cake pops, cupcakes & decorated sugar cookies for every occasion. Pasadena pickup or local delivery.",
+      lat: 34.1478, lng: -118.1445, address: "Pasadena, LA", permitType: "Class B", permitNumber: "CFO-LA-2024-3201",
+      products: [
+        { name: "Custom Cake Pops (12)", price: 2400, category: "candy", description: "Beautifully decorated cake pops in your choice of flavors and colors.", allergens: ["wheat", "eggs", "milk", "soy"] },
+        { name: "Cupcakes (6-pack)", price: 1800, category: "pastry", description: "Moist cupcakes with buttercream frosting. Flavors rotate weekly.", allergens: ["wheat", "eggs", "milk"] },
+        { name: "Decorated Sugar Cookies (12)", price: 2000, category: "cookie", description: "Royal icing decorated sugar cookies. Custom shapes available.", allergens: ["wheat", "eggs", "milk"] }
+      ]
+    },
+    {
+      name: "LA Crumbs", bio: "Korean-inspired baked goods in Koreatown. Matcha, red bean, black sesame — East meets West in every bite.",
+      lat: 34.0579, lng: -118.3004, address: "Koreatown, LA", permitType: "Class A", permitNumber: "CFO-LA-2025-0445",
+      products: [
+        { name: "Matcha Cookies (8)", price: 1200, category: "cookie", description: "Chewy white chocolate matcha cookies with ceremonial-grade matcha.", allergens: ["wheat", "eggs", "milk", "soy"] },
+        { name: "Red Bean Mochi Cake", price: 1500, category: "pastry", description: "Glutinous rice cake with sweet red bean filling. Chewy and not too sweet.", allergens: ["eggs", "milk"] },
+        { name: "Black Sesame Brittle (6oz)", price: 700, category: "candy", description: "Crunchy caramelized brittle loaded with toasted black sesame.", allergens: ["soy"] }
+      ]
+    },
+    {
+      name: "Pasta Fresca LA", bio: "Handmade fresh pasta from my Little Tokyo kitchen. Semolina and egg doughs, cut to order. Weekend pickups.",
+      lat: 34.0500, lng: -118.2400, address: "Little Tokyo, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-2788",
+      products: [
+        { name: "Fresh Fettuccine (1lb)", price: 800, category: "pasta", description: "Classic egg fettuccine, hand-rolled and cut. Cooks in 3 minutes.", allergens: ["wheat", "eggs"] },
+        { name: "Pappardelle (1lb)", price: 900, category: "pasta", description: "Wide ribbon pasta, perfect for ragù or brown butter sage.", allergens: ["wheat", "eggs"] },
+        { name: "Pasta Sampler Box", price: 2200, category: "pasta", description: "1/2 lb each of fettuccine, pappardelle, tagliatelle, and orecchiette.", allergens: ["wheat", "eggs"] }
+      ]
+    },
+    {
+      name: "Nutty Professor", bio: "Small-batch nut butters and roasted nuts. No sugar, no palm oil, no junk. Just nuts. Mid-City LA.",
+      lat: 34.0481, lng: -118.3417, address: "Mid-City, LA", permitType: "Class A", permitNumber: "CFO-LA-2025-0199",
+      products: [
+        { name: "Almond Butter (10oz)", price: 1200, category: "snack", description: "Stone-ground roasted almond butter. Creamy, unsweetened, single-ingredient.", allergens: ["tree nuts"] },
+        { name: "Cashew Butter (10oz)", price: 1400, category: "snack", description: "Velvety cashew butter with a hint of sea salt.", allergens: ["tree nuts"] },
+        { name: "Spiced Mixed Nuts (8oz)", price: 1000, category: "snack", description: "Almonds, cashews, and pecans with smoked paprika and rosemary.", allergens: ["tree nuts"] }
+      ]
+    }
+  ];
+
+  sellers.forEach((s, i) => {
+    const userId = `user_seed_${String(i+1).padStart(3,'0')}`;
+    const elId = `el_seed_${String(i+1).padStart(3,'0')}`;
+
+    // Create user
+    users.users.push({
+      id: userId, name: s.name, email: null, phone: null, googleId: null, phoneVerified: false,
+      profile: {
+        displayName: s.name, bio: s.bio,
+        photos: [`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(s.name)}&backgroundColor=7c2d12&textColor=fff`],
+        location: { lat: s.lat, lng: s.lng, address: s.address },
+        permitType: s.permitType, permitNumber: s.permitNumber
+      },
+      sessions: [], createdAt: new Date(Date.now() - Math.random() * 90 * 86400000).toISOString()
     });
-  }
+
+    // Create map element
+    elements.elements.push({
+      id: elId, type: 'seller', title: s.name,
+      subtitle: s.address,
+      description: s.bio,
+      imageUrl: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(s.name)}&backgroundColor=7c2d12&textColor=fff`,
+      icon: '🍞', lat: s.lat, lng: s.lng,
+      ownerId: userId, metadata: { userId },
+      online: Math.random() > 0.3, active: true,
+      createdAt: new Date(Date.now() - Math.random() * 90 * 86400000).toISOString()
+    });
+
+    // Create products
+    s.products.forEach((p, j) => {
+      products.products.push({
+        id: `prod_seed_${String(i+1).padStart(3,'0')}_${j+1}`,
+        sellerId: userId, sellerName: s.name,
+        name: p.name, description: p.description, price: p.price,
+        category: p.category, allergens: p.allergens, madeInHomeKitchen: true,
+        photos: [], available: true,
+        createdAt: new Date(Date.now() - Math.random() * 30 * 86400000).toISOString()
+      });
+    });
+  });
+
+  saveData('users', users);
   saveData('elements', elements);
-  console.log(`✓ Seeded ${elements.elements.length} demo elements`);
+  saveData('products', products);
+  console.log(`✓ Seeded ${sellers.length} cottage food kitchens with ${products.products.length} products`);
 }
 
 seedDefaults();

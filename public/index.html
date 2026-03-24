@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MapApp</title>
+  <title>Cottage — Homemade Goods Near You</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
-    :root { --accent: #7c3aed; --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; }
+    :root { --accent: #ea580c; --accent-light: #fb923c; --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; --warm: #fef3c7; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
@@ -21,63 +21,79 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 600px 400px at 30% 40%, rgba(124,58,237,0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 500px 500px at 70% 60%, rgba(59,130,246,0.06) 0%, transparent 70%),
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px);
+        radial-gradient(ellipse 600px 400px at 30% 30%, rgba(234,88,12,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 70% 60%, rgba(251,146,60,0.06) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px);
       pointer-events: none;
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 480px; width: 100%; }
-    .logo { font-size: 48px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 12px; line-height: 1.1; }
+    .hero-content { position: relative; z-index: 1; max-width: 520px; width: 100%; }
+    .hero-icon { font-size: 56px; margin-bottom: 16px; display: block; }
+    .logo { font-size: 52px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 12px; line-height: 1.1; }
     .logo span { color: var(--accent); }
-    .tagline { font-size: 18px; color: var(--muted); margin-bottom: 48px; line-height: 1.5; }
+    .tagline { font-size: 20px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+    .sub-tagline { font-size: 14px; color: #4a4a6a; margin-bottom: 44px; line-height: 1.5; }
 
-    .cta-stack { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 360px; margin: 0 auto; }
-
+    .cta-stack { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
     .cta-btn {
       display: flex; align-items: center; justify-content: center; gap: 10px;
       width: 100%; padding: 16px 24px; border-radius: 14px;
       font-size: 15px; font-weight: 700; cursor: pointer;
-      border: none; font-family: inherit; transition: all 0.2s;
-      text-decoration: none;
+      border: none; font-family: inherit; transition: all 0.2s; text-decoration: none;
     }
     .cta-browse { background: var(--accent); color: #fff; }
     .cta-browse:hover { filter: brightness(1.15); }
-    .cta-google {
-      background: #fff; color: #333;
-    }
+    .cta-google { background: #fff; color: #333; }
     .cta-google:hover { background: #f0f0f0; }
     .cta-google svg { width: 20px; height: 20px; }
     .cta-phone { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border); }
     .cta-phone:hover { background: rgba(255,255,255,0.1); }
+    .cta-seller { background: transparent; color: var(--accent-light); border: 1px solid rgba(234,88,12,0.3); margin-top: 4px; font-size: 14px; }
+    .cta-seller:hover { background: rgba(234,88,12,0.08); }
 
-    .legal-note {
-      font-size: 12px; color: #4a4a6a; margin-top: 24px; line-height: 1.6;
-    }
+    .legal-note { font-size: 12px; color: #4a4a6a; margin-top: 24px; line-height: 1.6; }
     .legal-note a { color: var(--muted); text-decoration: none; }
     .legal-note a:hover { text-decoration: underline; }
-
-    /* Google btn container (hidden, rendered by Google) */
     #google-btn-hidden { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; overflow: hidden; }
 
+    /* ── Categories ── */
+    .categories { padding: 64px 24px 0; max-width: 720px; margin: 0 auto; }
+    .categories h2 { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 28px; letter-spacing: -0.02em; }
+    .cat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .cat-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 10px 18px; border-radius: 20px;
+      background: var(--card); border: 1px solid var(--border);
+      font-size: 14px; font-weight: 600; color: var(--text);
+      text-decoration: none; transition: all 0.15s;
+    }
+    .cat-pill:hover { border-color: var(--accent); background: rgba(234,88,12,0.06); }
+
     /* ── How It Works ── */
-    .features {
-      padding: 80px 24px; max-width: 960px; margin: 0 auto;
-    }
-    .features h2 {
-      font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.02em;
-    }
-    .features-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;
-    }
+    .features { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+    .features h2 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .features-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
     .feature-card {
       background: var(--card); border: 1px solid var(--border); border-radius: 18px;
-      padding: 32px 24px; text-align: center;
+      padding: 28px 24px; text-align: center;
     }
-    .feature-icon { font-size: 36px; margin-bottom: 16px; display: block; }
-    .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .feature-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
     .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── Cottage Food Info ── */
+    .info-section { padding: 0 24px 80px; max-width: 720px; margin: 0 auto; }
+    .info-card {
+      background: linear-gradient(135deg, rgba(234,88,12,0.06) 0%, rgba(234,88,12,0.02) 100%);
+      border: 1px solid rgba(234,88,12,0.15); border-radius: 18px;
+      padding: 32px 28px; text-align: center;
+    }
+    .info-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--accent-light); }
+    .info-card p { font-size: 14px; color: var(--dim, #a0a0c0); line-height: 1.7; margin-bottom: 12px; }
+    .info-card a { color: var(--accent-light); text-decoration: none; font-weight: 600; font-size: 14px; }
+    .info-card a:hover { text-decoration: underline; }
 
     /* ── Footer ── */
     footer {
@@ -87,7 +103,7 @@
     footer a { color: var(--muted); text-decoration: none; margin: 0 12px; }
     footer a:hover { color: var(--text); }
 
-    /* ── Phone Auth Modal (same as map page) ── */
+    /* ── Auth Modal ── */
     .auth-backdrop {
       position: fixed; inset: 0; z-index: 30;
       background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -135,94 +151,101 @@
       background: none; border: none; font-family: inherit;
     }
     .auth-link:hover { color: var(--accent); }
-    .auth-error {
-      background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25);
-      border-radius: 10px; padding: 11px 14px; color: #f87171; font-size: 13px;
-      margin-bottom: 14px; display: none;
-    }
-    .auth-success {
-      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25);
-      border-radius: 10px; padding: 11px 14px; color: #10b981; font-size: 13px;
-      margin-bottom: 14px; display: none;
-    }
+    .auth-error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 11px 14px; color: #f87171; font-size: 13px; margin-bottom: 14px; display: none; }
+    .auth-success { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 11px 14px; color: #10b981; font-size: 13px; margin-bottom: 14px; display: none; }
   </style>
 </head>
 <body>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="logo" id="hero-logo">Map<span>App</span></h1>
-      <p class="tagline" id="hero-tagline">Discover what's around you</p>
+      <span class="hero-icon">🍞</span>
+      <h1 class="logo" id="hero-logo">Cot<span>tage</span></h1>
+      <p class="tagline">Homemade goods from kitchens near you</p>
+      <p class="sub-tagline">Discover local home bakers, order fresh bread, cookies, jams & more — direct from permitted cottage food kitchens in Los Angeles.</p>
 
       <div class="cta-stack">
         <a href="/map" class="cta-btn cta-browse">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
           Browse the map
         </a>
-
         <button class="cta-btn cta-google" id="google-btn" style="display:none" onclick="triggerGoogleSignIn()">
-          <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
           Continue with Google
         </button>
-
         <button class="cta-btn cta-phone" onclick="openPhoneAuth()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           Sign in with phone
         </button>
+        <a href="/map?auth=1" class="cta-btn cta-seller">
+          I'm a home baker — start selling
+        </a>
       </div>
 
       <p class="legal-note">
-        By continuing, you agree to our<br>
-        <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>
+        By continuing, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
       </p>
     </div>
-
-    <!-- Hidden Google button for programmatic trigger -->
     <div id="google-btn-hidden"></div>
   </section>
 
-  <!-- How It Works -->
+  <section class="categories">
+    <h2>What's cooking nearby</h2>
+    <div class="cat-grid">
+      <a href="/map" class="cat-pill">🍞 Breads</a>
+      <a href="/map" class="cat-pill">🥐 Pastries</a>
+      <a href="/map" class="cat-pill">🍪 Cookies</a>
+      <a href="/map" class="cat-pill">🍰 Cakes</a>
+      <a href="/map" class="cat-pill">🫙 Jams</a>
+      <a href="/map" class="cat-pill">🍯 Honey</a>
+      <a href="/map" class="cat-pill">🍝 Pasta</a>
+      <a href="/map" class="cat-pill">🥜 Nuts</a>
+      <a href="/map" class="cat-pill">🍫 Candy</a>
+      <a href="/map" class="cat-pill">🧁 Treats</a>
+    </div>
+  </section>
+
   <section class="features">
     <h2>How it works</h2>
+    <p class="features-sub">Whether you're buying fresh-baked bread or selling your famous cookies.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <span class="feature-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
-        </span>
+        <span class="feature-icon">🗺️</span>
         <h3>Explore the map</h3>
-        <p>Browse anonymously. See what's happening around you in real time.</p>
+        <p>Browse home kitchens near you. See what's baking, read reviews, and find your new favorite baker.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </span>
-        <h3>Create a profile</h3>
-        <p>Sign up to list your products, services, or just connect with people nearby.</p>
+        <span class="feature-icon">🛒</span>
+        <h3>Order directly</h3>
+        <p>Place orders right from the app. Message sellers, arrange pickup, and pay securely.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </span>
-        <h3>Connect & transact</h3>
-        <p>Message, request, or purchase directly. Everything happens on the map.</p>
+        <span class="feature-icon">👩‍🍳</span>
+        <h3>Start selling</h3>
+        <p>List your homemade goods, set your prices, and reach customers in your neighborhood. All under California's Cottage Food law.</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <section class="info-section">
+    <div class="info-card">
+      <h3>Protected by California Cottage Food Law</h3>
+      <p>All sellers on Cottage operate under California's AB 1616 Cottage Food law. This means every kitchen is registered with their local county, follows food safety guidelines, and is legally permitted to sell homemade goods directly to you.</p>
+      <p>Class A permits allow direct-to-consumer sales up to $75,000/year. Class B permits allow indirect sales through stores and restaurants up to $150,000/year.</p>
+      <a href="http://publichealth.lacounty.gov/Eh/business/home-based-cottage-food.htm" target="_blank" rel="noopener">Learn more about LA County cottage food permits →</a>
+    </div>
+  </section>
+
   <footer>
     <a href="/terms">Terms of Service</a>
     <a href="/privacy">Privacy Policy</a>
-    <span style="display:inline-block;margin-top:12px;width:100%">&copy; 2026 MapApp. All rights reserved.</span>
+    <span style="display:inline-block;margin-top:12px;width:100%">&copy; 2026 Cottage. All rights reserved.</span>
   </footer>
 
   <!-- Phone Auth Modal -->
   <div class="auth-backdrop" id="auth-backdrop">
     <div class="auth-card">
-      <button class="auth-close" onclick="closeAuth()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
+      <button class="auth-close" onclick="closeAuth()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       <div id="auth-step-phone">
         <h2 class="auth-title">Sign in with phone</h2>
         <p class="auth-sub">We'll text you a code to verify your number.</p>
@@ -250,148 +273,49 @@
   </div>
 
 <script>
-let CFG = {};
-let sentPhone = '';
-
+let CFG = {}; let sentPhone = '';
 async function init() {
-  try {
-    const r = await fetch('/api/config');
-    CFG = await r.json();
-  } catch (e) { CFG = {}; }
-
-  document.title = CFG.name || 'MapApp';
-  document.getElementById('hero-logo').innerHTML = CFG.brandHtml || 'Map<span>App</span>';
-  if (CFG.tagline) document.getElementById('hero-tagline').textContent = CFG.tagline;
-  document.documentElement.style.setProperty('--accent', CFG.accent || '#7c3aed');
-
-  // Google Sign-In
+  try { CFG = await (await fetch('/api/config')).json(); } catch(e) { CFG = {}; }
+  document.documentElement.style.setProperty('--accent', CFG.accent || '#ea580c');
   if (CFG.googleClientId) {
     document.getElementById('google-btn').style.display = 'flex';
     try {
-      google.accounts.id.initialize({
-        client_id: CFG.googleClientId,
-        callback: handleGoogleCredential,
-        auto_select: false
-      });
+      google.accounts.id.initialize({ client_id: CFG.googleClientId, callback: handleGoogleCredential, auto_select: false });
       google.accounts.id.renderButton(document.getElementById('google-btn-hidden'), { type: 'standard', theme: 'filled_black', size: 'large' });
-    } catch (e) { console.log('Google Sign-In not available'); }
+    } catch(e) {}
   }
-
-  // Check if already logged in
-  const me = await fetch('/api/auth/me').then(r => r.json()).catch(() => ({}));
-  if (me.ok && me.user) {
-    window.location.href = '/map';
-  }
+  const me = await fetch('/api/auth/me').then(r=>r.json()).catch(()=>({}));
+  if (me.ok && me.user) window.location.href = '/map';
 }
-
-function triggerGoogleSignIn() {
-  const hidden = document.querySelector('#google-btn-hidden div[role="button"]');
-  if (hidden) hidden.click();
-  else google.accounts.id.prompt();
+function triggerGoogleSignIn() { const h = document.querySelector('#google-btn-hidden div[role="button"]'); if(h) h.click(); else google.accounts.id.prompt(); }
+async function handleGoogleCredential(r) {
+  try { const d = await(await fetch('/api/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({credential:r.credential})})).json(); if(d.ok) window.location.href='/map'; else alert(d.error); } catch(e) { alert('Network error.'); }
 }
-
-async function handleGoogleCredential(response) {
-  try {
-    const r = await fetch('/api/auth/google', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ credential: response.credential })
-    });
-    const d = await r.json();
-    if (d.ok) window.location.href = '/map';
-    else alert(d.error || 'Google sign-in failed.');
-  } catch (e) {
-    alert('Network error.');
-  }
-}
-
-function openPhoneAuth() {
-  document.getElementById('auth-backdrop').classList.add('open');
-  setTimeout(() => document.getElementById('auth-phone').focus(), 100);
-}
-
-function closeAuth() {
-  document.getElementById('auth-backdrop').classList.remove('open');
-  authReset();
-}
-
-function authReset() {
-  ['auth-step-phone','auth-step-otp','auth-step-name'].forEach((id, i) => {
-    document.getElementById(id).style.display = i === 0 ? 'block' : 'none';
-  });
-  ['auth-error','auth-error-otp','auth-error-name','auth-success-otp'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
-  document.getElementById('auth-send-btn').disabled = false;
-  document.getElementById('auth-send-btn').textContent = 'Send code';
-  document.getElementById('auth-verify-btn').disabled = false;
-  document.getElementById('auth-verify-btn').textContent = 'Verify';
-}
-
-function showErr(id, msg) {
-  const el = document.getElementById(id); el.textContent = msg; el.style.display = 'block';
-}
-
+function openPhoneAuth() { document.getElementById('auth-backdrop').classList.add('open'); setTimeout(()=>document.getElementById('auth-phone').focus(),100); }
+function closeAuth() { document.getElementById('auth-backdrop').classList.remove('open'); authReset(); }
+function authReset() { ['auth-step-phone','auth-step-otp','auth-step-name'].forEach((id,i)=>{document.getElementById(id).style.display=i===0?'block':'none';}); ['auth-error','auth-error-otp','auth-error-name','auth-success-otp'].forEach(id=>{document.getElementById(id).style.display='none';}); document.getElementById('auth-send-btn').disabled=false; document.getElementById('auth-send-btn').textContent='Send code'; document.getElementById('auth-verify-btn').disabled=false; document.getElementById('auth-verify-btn').textContent='Verify'; }
+function showErr(id,msg) { const el=document.getElementById(id); el.textContent=msg; el.style.display='block'; }
 async function authSendOtp() {
-  const phone = document.getElementById('auth-phone').value.trim();
-  if (!phone) return showErr('auth-error', 'Phone number is required.');
-  const btn = document.getElementById('auth-send-btn');
-  btn.disabled = true; btn.textContent = 'Sending...';
-  document.getElementById('auth-error').style.display = 'none';
-  try {
-    const r = await fetch('/api/auth/start', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone }) });
-    const d = await r.json();
-    if (d.ok) {
-      sentPhone = phone;
-      document.getElementById('auth-sent-phone').textContent = phone;
-      document.getElementById('auth-step-phone').style.display = 'none';
-      document.getElementById('auth-step-otp').style.display = 'block';
-      const s = document.getElementById('auth-success-otp');
-      s.textContent = d.devCode ? `Code sent! (Dev: ${d.devCode})` : 'Code sent! Check your messages.';
-      s.style.display = 'block';
-      setTimeout(() => document.getElementById('auth-otp').focus(), 100);
-    } else { showErr('auth-error', d.error); btn.disabled = false; btn.textContent = 'Send code'; }
-  } catch (e) { showErr('auth-error', 'Network error.'); btn.disabled = false; btn.textContent = 'Send code'; }
+  const phone=document.getElementById('auth-phone').value.trim(); if(!phone) return showErr('auth-error','Phone number is required.');
+  const btn=document.getElementById('auth-send-btn'); btn.disabled=true; btn.textContent='Sending...'; document.getElementById('auth-error').style.display='none';
+  try { const d=await(await fetch('/api/auth/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone})})).json();
+    if(d.ok) { sentPhone=phone; document.getElementById('auth-sent-phone').textContent=phone; document.getElementById('auth-step-phone').style.display='none'; document.getElementById('auth-step-otp').style.display='block'; const s=document.getElementById('auth-success-otp'); s.textContent=d.devCode?`Code sent! (Dev: ${d.devCode})`:'Code sent!'; s.style.display='block'; setTimeout(()=>document.getElementById('auth-otp').focus(),100); }
+    else { showErr('auth-error',d.error); btn.disabled=false; btn.textContent='Send code'; }
+  } catch(e) { showErr('auth-error','Network error.'); btn.disabled=false; btn.textContent='Send code'; }
 }
-
 async function authVerify() {
-  const code = document.getElementById('auth-otp').value.trim();
-  if (!code || code.length !== 6) return showErr('auth-error-otp', 'Enter the 6-digit code.');
-  const btn = document.getElementById('auth-verify-btn');
-  btn.disabled = true; btn.textContent = 'Verifying...';
-  document.getElementById('auth-error-otp').style.display = 'none';
-  try {
-    const r = await fetch('/api/auth/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: sentPhone, code }) });
-    const d = await r.json();
-    if (d.ok) {
-      if (d.needsName) {
-        document.getElementById('auth-step-otp').style.display = 'none';
-        document.getElementById('auth-step-name').style.display = 'block';
-        setTimeout(() => document.getElementById('auth-name').focus(), 100);
-      } else { window.location.href = '/map'; }
-    } else { showErr('auth-error-otp', d.error); btn.disabled = false; btn.textContent = 'Verify'; }
-  } catch (e) { showErr('auth-error-otp', 'Network error.'); btn.disabled = false; btn.textContent = 'Verify'; }
+  const code=document.getElementById('auth-otp').value.trim(); if(!code||code.length!==6) return showErr('auth-error-otp','Enter the 6-digit code.');
+  const btn=document.getElementById('auth-verify-btn'); btn.disabled=true; btn.textContent='Verifying...'; document.getElementById('auth-error-otp').style.display='none';
+  try { const d=await(await fetch('/api/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,code})})).json();
+    if(d.ok) { if(d.needsName) { document.getElementById('auth-step-otp').style.display='none'; document.getElementById('auth-step-name').style.display='block'; setTimeout(()=>document.getElementById('auth-name').focus(),100); } else window.location.href='/map'; }
+    else { showErr('auth-error-otp',d.error); btn.disabled=false; btn.textContent='Verify'; }
+  } catch(e) { showErr('auth-error-otp','Network error.'); btn.disabled=false; btn.textContent='Verify'; }
 }
-
 async function authComplete() {
-  const name = document.getElementById('auth-name').value.trim();
-  if (!name) return showErr('auth-error-name', 'Name is required.');
-  try {
-    const r = await fetch('/api/auth/complete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: sentPhone, name }) });
-    const d = await r.json();
-    if (d.ok) window.location.href = '/map';
-    else showErr('auth-error-name', d.error);
-  } catch (e) { showErr('auth-error-name', 'Network error.'); }
+  const name=document.getElementById('auth-name').value.trim(); if(!name) return showErr('auth-error-name','Name is required.');
+  try { const d=await(await fetch('/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name})})).json(); if(d.ok) window.location.href='/map'; else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
 }
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeAuth();
-  if (e.key === 'Enter') {
-    if (document.getElementById('auth-step-name').style.display !== 'none') authComplete();
-    else if (document.getElementById('auth-step-otp').style.display !== 'none') authVerify();
-    else if (document.getElementById('auth-backdrop').classList.contains('open')) authSendOtp();
-  }
-});
-
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAuth(); if(e.key==='Enter') { if(document.getElementById('auth-step-name').style.display!=='none') authComplete(); else if(document.getElementById('auth-step-otp').style.display!=='none') authVerify(); else if(document.getElementById('auth-backdrop').classList.contains('open')) authSendOtp(); }});
 init();
 </script>
 </body>

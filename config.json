@@ -8,9 +8,10 @@
   "freeViews": 5,
   "elementLabel": "profile",
   "elementLabelPlural": "profiles",
+  "googleClientId": "",
   "features": {
     "messaging": true,
     "requests": true,
-    "purchases": false
+    "purchases": true
   }
 }

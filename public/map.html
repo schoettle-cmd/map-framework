@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MapApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
+  <style>
+    :root { --accent: #7c3aed; --accent-glow: rgba(124,58,237,0.4); --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; --dim: #a0a0c0; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; width: 100%; overflow: hidden; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    /* ── Map ── */
+    #map { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .maplibregl-ctrl-attrib { font-size: 10px !important; opacity: 0.4; }
+
+    /* ── Top Bar ── */
+    .top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.92) 0%, rgba(10,10,15,0.6) 60%, transparent 100%);
+    }
+    .top-bar > * { pointer-events: auto; }
+    .brand { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; }
+    .brand span { color: var(--accent); }
+    .top-actions { display: flex; gap: 8px; align-items: center; }
+
+    .btn-pill {
+      display: flex; align-items: center; gap: 6px;
+      padding: 9px 18px; border-radius: 22px;
+      background: rgba(255,255,255,0.07); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.08); color: var(--text);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; font-family: inherit;
+    }
+    .btn-pill:hover { background: rgba(255,255,255,0.12); }
+    .btn-pill.accent { background: var(--accent); border-color: transparent; }
+    .btn-pill.accent:hover { filter: brightness(1.15); }
+
+    /* ── Map Controls ── */
+    .map-controls {
+      position: fixed; right: 16px; bottom: 32px; z-index: 10;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .map-btn {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(18,18,26,0.88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .map-btn:hover { background: rgba(30,30,46,0.95); border-color: rgba(255,255,255,0.15); }
+    .map-btn.locating { animation: pulse-ring 1.5s infinite; }
+
+    /* ── Markers ── */
+    .map-marker {
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      animation: marker-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+    .map-marker:hover { transform: scale(1.2); z-index: 100 !important; }
+    .marker-avatar {
+      width: 50px; height: 50px; border-radius: 50%;
+      border: 3px solid var(--accent);
+      overflow: hidden; background: #1a1a2e;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .marker-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .marker-online .marker-avatar {
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px var(--bg), 0 0 14px rgba(16,185,129,0.35);
+    }
+    .marker-pointer {
+      width: 0; height: 0;
+      border-left: 7px solid transparent; border-right: 7px solid transparent;
+      border-top: 9px solid var(--accent);
+      margin: -2px auto 0;
+    }
+    .marker-online .marker-pointer { border-top-color: #10b981; }
+
+    /* ── Bottom Sheet ── */
+    .sheet-backdrop {
+      position: fixed; inset: 0; z-index: 20;
+      background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .detail-sheet {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 21;
+      background: var(--card); border-radius: 24px 24px 0 0;
+      transform: translateY(100%);
+      transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+      max-height: 82vh; overflow-y: auto;
+      border-top: 1px solid var(--border);
+    }
+    .detail-sheet.open { transform: translateY(0); }
+
+    .sheet-handle { width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.15); margin: 12px auto 0; }
+    .sheet-content { padding: 20px 24px 36px; }
+    .sheet-hero { width: 100%; height: 260px; border-radius: 16px; overflow: hidden; margin-bottom: 18px; background: #1a1a2e; }
+    .sheet-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .sheet-title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .sheet-subtitle { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
+    .sheet-desc { font-size: 14px; line-height: 1.65; color: var(--dim); margin-bottom: 16px; }
+
+    .sheet-product { display: flex; align-items: center; gap: 12px; padding: 10px 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
+    .sheet-product-info { flex: 1; }
+    .sheet-product-name { font-size: 13px; font-weight: 600; }
+    .sheet-product-price { font-size: 13px; font-weight: 800; color: var(--accent); }
+    #sheet-products:not(:empty) { margin-bottom: 16px; }
+
+    .sheet-actions { display: flex; gap: 10px; }
+    .sheet-btn {
+      flex: 1; padding: 14px; border-radius: 12px;
+      font-size: 14px; font-weight: 700; cursor: pointer;
+      border: none; font-family: inherit; transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .sheet-btn.primary { background: var(--accent); color: #fff; }
+    .sheet-btn.primary:hover { filter: brightness(1.15); }
+    .sheet-btn.secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
+    .sheet-btn.secondary:hover { background: rgba(255,255,255,0.08); }
+
+    /* Blurred state for view limit */
+    .detail-sheet.sheet-blurred .sheet-content { filter: blur(10px); pointer-events: none; user-select: none; }
+    .sheet-upgrade {
+      position: absolute; top: 60px; left: 0; right: 0; bottom: 0;
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px; text-align: center; z-index: 2;
+    }
+    .detail-sheet.sheet-blurred .sheet-upgrade { display: flex; }
+
+    /* ── Auth Modal ── */
+    .auth-backdrop {
+      position: fixed; inset: 0; z-index: 30;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px;
+    }
+    .auth-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .auth-card {
+      width: 100%; max-width: 400px; position: relative;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px 32px;
+      transform: scale(0.93) translateY(12px);
+      transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+    .auth-backdrop.open .auth-card { transform: scale(1) translateY(0); }
+
+    .auth-close {
+      position: absolute; top: 18px; right: 18px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--muted); font-size: 16px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+    }
+    .auth-close:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+
+    .auth-title { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .auth-sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+
+    .auth-input {
+      width: 100%; background: #07070e;
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 18px; color: var(--text); font-size: 15px;
+      outline: none; font-family: inherit; margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .auth-input:focus { border-color: var(--accent); }
+    .auth-input::placeholder { color: #3a3a58; }
+    .auth-input.otp { text-align: center; font-size: 26px; font-weight: 700; font-family: 'SF Mono', 'Fira Code', monospace; letter-spacing: 0.35em; }
+
+    .auth-btn {
+      width: 100%; padding: 15px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      border: none; font-family: inherit;
+      background: var(--accent); color: #fff;
+      transition: all 0.15s; margin-top: 4px;
+    }
+    .auth-btn:hover { filter: brightness(1.15); }
+    .auth-btn:disabled { opacity: 0.4; cursor: default; filter: none; }
+
+    .auth-link {
+      display: block; text-align: center; margin-top: 18px;
+      font-size: 13px; color: var(--muted); cursor: pointer;
+      background: none; border: none; font-family: inherit; transition: color 0.15s;
+    }
+    .auth-link:hover { color: var(--accent); }
+
+    .auth-error {
+      background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 10px; padding: 11px 14px; color: #f87171; font-size: 13px;
+      margin-bottom: 14px; display: none;
+    }
+    .auth-success {
+      background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 10px; padding: 11px 14px; color: #10b981; font-size: 13px;
+      margin-bottom: 14px; display: none;
+    }
+
+    /* ── View Limit Toast ── */
+    .view-toast {
+      position: fixed; bottom: 28px; left: 50%; z-index: 15;
+      transform: translateX(-50%) translateY(120px);
+      background: rgba(18,18,26,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 16px;
+      padding: 14px 20px; display: flex; align-items: center; gap: 14px;
+      transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+      max-width: 440px; width: calc(100% - 32px);
+    }
+    .view-toast.show { transform: translateX(-50%) translateY(0); }
+    .view-toast-text { font-size: 13px; color: var(--dim); flex: 1; line-height: 1.4; }
+    .view-toast-text strong { color: var(--text); }
+    .view-toast-btn {
+      padding: 9px 18px; border-radius: 10px;
+      background: var(--accent); color: #fff;
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      border: none; font-family: inherit; white-space: nowrap; transition: filter 0.15s;
+    }
+    .view-toast-btn:hover { filter: brightness(1.15); }
+
+    /* ── Message Panel ── */
+    .msg-panel {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+      background: var(--card); border-radius: 24px 24px 0 0;
+      max-height: 70vh; transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+      display: flex; flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+    .msg-panel.open { transform: translateY(0); }
+
+    .msg-header {
+      padding: 18px 24px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .msg-header h3 { font-size: 16px; font-weight: 700; }
+    .msg-close { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; padding: 4px; }
+    .msg-close:hover { color: var(--text); }
+
+    .msg-list { flex: 1; overflow-y: auto; padding: 20px 24px; min-height: 200px; }
+    .msg-empty { text-align: center; color: var(--muted); font-size: 14px; padding: 40px 0; }
+
+    .msg-bubble {
+      max-width: 75%; padding: 11px 16px; border-radius: 16px;
+      font-size: 14px; line-height: 1.45; margin-bottom: 8px; width: fit-content;
+    }
+    .msg-bubble.sent { background: var(--accent); color: #fff; margin-left: auto; border-bottom-right-radius: 4px; }
+    .msg-bubble.received { background: var(--border); color: var(--text); border-bottom-left-radius: 4px; }
+
+    .msg-input-bar { padding: 14px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+    .msg-input {
+      flex: 1; background: #07070e; border: 1px solid var(--border);
+      border-radius: 22px; padding: 11px 18px; color: var(--text);
+      font-size: 14px; outline: none; font-family: inherit; transition: border-color 0.15s;
+    }
+    .msg-input:focus { border-color: var(--accent); }
+    .msg-input::placeholder { color: #3a3a58; }
+    .msg-send {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--accent); border: none; color: #fff; font-size: 17px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: filter 0.15s;
+    }
+    .msg-send:hover { filter: brightness(1.15); }
+
+    /* ── User Menu ── */
+    .user-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: #fff; cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.1); transition: border-color 0.15s;
+    }
+    .user-avatar:hover { border-color: rgba(255,255,255,0.3); }
+
+    .user-menu {
+      position: absolute; top: 56px; right: 20px; z-index: 12;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 8px; min-width: 180px; display: none;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .user-menu.open { display: block; }
+    .user-menu-item {
+      display: block; width: 100%; padding: 10px 14px; border-radius: 8px;
+      background: none; border: none; color: var(--text); font-size: 13px;
+      font-weight: 500; cursor: pointer; text-align: left; font-family: inherit;
+      transition: background 0.15s;
+    }
+    .user-menu-item:hover { background: rgba(255,255,255,0.05); }
+    .user-menu-item.danger { color: #f87171; }
+
+    /* ── Animations ── */
+    @keyframes pulse-ring { 0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); } 50% { box-shadow: 0 0 0 10px transparent; } }
+    @keyframes marker-pop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    /* ── Desktop Detail Sheet ── */
+    @media (min-width: 768px) {
+      .detail-sheet {
+        left: auto; right: 24px; bottom: 24px; width: 400px;
+        border-radius: 24px; max-height: calc(100vh - 120px);
+        border: 1px solid var(--border);
+      }
+      .msg-panel { left: auto; right: 24px; bottom: 24px; width: 400px; border-radius: 24px; border: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Map -->
+  <div id="map"></div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="brand" id="brand-name">Map<span>App</span></div>
+    <div class="top-actions" id="top-actions">
+      <button class="btn-pill accent" id="login-btn" onclick="openAuth()">Sign in</button>
+    </div>
+  </div>
+
+  <!-- User Menu -->
+  <div class="user-menu" id="user-menu">
+    <button class="user-menu-item" onclick="closeUserMenu()">My Profile</button>
+    <button class="user-menu-item" onclick="closeUserMenu()">Messages</button>
+    <button class="user-menu-item danger" onclick="doLogout()">Sign out</button>
+  </div>
+
+  <!-- Map Controls -->
+  <div class="map-controls">
+    <button class="map-btn" id="locate-btn" onclick="locateUser()" title="My location">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+    </button>
+    <button class="map-btn" onclick="map.zoomIn()" title="Zoom in">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <button class="map-btn" onclick="map.zoomOut()" title="Zoom out">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>
+    </button>
+  </div>
+
+  <!-- Detail Sheet -->
+  <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeSheet()"></div>
+  <div class="detail-sheet" id="detail-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-content" id="sheet-content">
+      <div class="sheet-hero" id="sheet-hero"><img id="sheet-img" src="" alt=""></div>
+      <h2 class="sheet-title" id="sheet-title"></h2>
+      <p class="sheet-subtitle" id="sheet-subtitle"></p>
+      <p class="sheet-desc" id="sheet-desc"></p>
+      <div id="sheet-products"></div>
+      <div class="sheet-actions" id="sheet-actions"></div>
+    </div>
+    <div class="sheet-upgrade" id="sheet-upgrade">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" style="margin-bottom:16px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em">Sign up to see more</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:24px;line-height:1.5">Create a free account to view unlimited profiles and connect with people nearby.</p>
+      <button class="auth-btn" style="max-width:260px" onclick="closeSheet();openAuth()">Create free account</button>
+    </div>
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="auth-backdrop" id="auth-backdrop">
+    <div class="auth-card">
+      <button class="auth-close" onclick="closeAuth()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div id="auth-step-phone">
+        <h2 class="auth-title">Welcome</h2>
+        <p class="auth-sub">Enter your phone number to sign in or create an account.</p>
+        <div id="auth-error" class="auth-error"></div>
+        <input type="tel" class="auth-input" id="auth-phone" placeholder="+1 (555) 123-4567" autocomplete="tel">
+        <button class="auth-btn" id="auth-send-btn" onclick="authSendOtp()">Continue</button>
+      </div>
+
+      <div id="auth-step-otp" style="display:none">
+        <h2 class="auth-title">Enter code</h2>
+        <p class="auth-sub">We sent a 6-digit code to <strong id="auth-sent-phone"></strong></p>
+        <div id="auth-error-otp" class="auth-error"></div>
+        <div id="auth-success-otp" class="auth-success"></div>
+        <input type="text" class="auth-input otp" id="auth-otp" placeholder="000000" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+        <button class="auth-btn" id="auth-verify-btn" onclick="authVerify()">Verify</button>
+        <button class="auth-link" onclick="authReset()">Use a different number</button>
+      </div>
+
+      <div id="auth-step-name" style="display:none">
+        <h2 class="auth-title">Almost there</h2>
+        <p class="auth-sub">What should we call you?</p>
+        <div id="auth-error-name" class="auth-error"></div>
+        <input type="text" class="auth-input" id="auth-name" placeholder="Your name" autocomplete="name">
+        <button class="auth-btn" onclick="authComplete()">Get started</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Limit Toast -->
+  <div class="view-toast" id="view-toast">
+    <div class="view-toast-text" id="view-toast-text"></div>
+    <button class="view-toast-btn" onclick="openAuth()">Sign up free</button>
+  </div>
+
+  <!-- Message Panel -->
+  <div class="msg-panel" id="msg-panel">
+    <div class="msg-header">
+      <h3 id="msg-peer-name">Chat</h3>
+      <button class="msg-close" onclick="closeMessages()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="msg-list" id="msg-list">
+      <p class="msg-empty">Start a conversation</p>
+    </div>
+    <div class="msg-input-bar">
+      <input type="text" class="msg-input" id="msg-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()">
+      <button class="msg-send" onclick="sendMessage()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>
+      </button>
+    </div>
+  </div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+//  Map Framework — Frontend
+// ═══════════════════════════════════════════════════════════════════════════
+
+let CFG = {};
+let currentUser = null;
+let map = null;
+let mapMarkers = [];
+let mapElements = [];
+let activeElement = null;
+let viewedIds = JSON.parse(localStorage.getItem('mapfw_viewed') || '[]');
+let sentPhone = '';
+let loadDebounce = null;
+
+// ── Init ────────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const r = await fetch('/api/config');
+    CFG = await r.json();
+  } catch (e) {
+    CFG = { name: 'MapApp', accent: '#7c3aed', defaultLat: 40.758, defaultLng: -73.9855, freeViews: 5 };
+  }
+
+  document.title = CFG.name || 'MapApp';
+  document.getElementById('brand-name').innerHTML = CFG.brandHtml || 'Map<span>App</span>';
+  document.documentElement.style.setProperty('--accent', CFG.accent || '#7c3aed');
+
+  await checkAuth();
+  initMap();
+}
+
+// ── Map ─────────────────────────────────────────────────────────────────────
+function initMap() {
+  map = new maplibregl.Map({
+    container: 'map',
+    style: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+    center: [CFG.defaultLng || -73.9855, CFG.defaultLat || 40.758],
+    zoom: 14, maxZoom: 20, minZoom: 3,
+    attributionControl: false
+  });
+
+  map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
+
+  map.on('load', () => {
+    loadElements();
+    locateUser();
+  });
+
+  map.on('moveend', () => {
+    clearTimeout(loadDebounce);
+    loadDebounce = setTimeout(loadElements, 300);
+  });
+
+  // Close sheet on map click (but not on marker click)
+  map.on('click', () => {
+    if (document.getElementById('detail-sheet').classList.contains('open')) {
+      closeSheet();
+    }
+  });
+}
+
+// ── Geolocation ─────────────────────────────────────────────────────────────
+function locateUser() {
+  if (!navigator.geolocation) return;
+  const btn = document.getElementById('locate-btn');
+  btn.classList.add('locating');
+
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      btn.classList.remove('locating');
+      const { latitude: lat, longitude: lng } = pos.coords;
+      map.flyTo({ center: [lng, lat], zoom: 15 });
+
+      // Seed demo elements near user if needed
+      try {
+        const r = await fetch('/api/elements/seed-nearby', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ lat, lng })
+        });
+        const d = await r.json();
+        if (d.seeded > 0) setTimeout(loadElements, 500);
+      } catch (e) {}
+    },
+    () => { btn.classList.remove('locating'); },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+// ── Elements ────────────────────────────────────────────────────────────────
+async function loadElements() {
+  if (!map) return;
+  const bounds = map.getBounds();
+  const url = `/api/elements?sw_lat=${bounds.getSouth()}&sw_lng=${bounds.getWest()}&ne_lat=${bounds.getNorth()}&ne_lng=${bounds.getEast()}`;
+
+  try {
+    const r = await fetch(url);
+    const d = await r.json();
+    if (d.ok) {
+      mapElements = d.elements;
+      renderMarkers();
+    }
+  } catch (e) {
+    console.error('Load elements failed:', e);
+  }
+}
+
+function renderMarkers() {
+  // Remove existing
+  mapMarkers.forEach(m => m.remove());
+  mapMarkers = [];
+
+  mapElements.forEach((el, i) => {
+    const div = document.createElement('div');
+    div.className = 'map-marker' + (el.online ? ' marker-online' : '');
+    div.style.animationDelay = `${i * 30}ms`;
+    div.innerHTML = `
+      <div class="marker-avatar">
+        ${el.imageUrl ? `<img src="${escAttr(el.imageUrl)}" alt="" loading="lazy">` : `<span>${el.icon || '📍'}</span>`}
+      </div>
+      <div class="marker-pointer"></div>
+    `;
+
+    div.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openElement(el);
+    });
+
+    const marker = new maplibregl.Marker({ element: div, anchor: 'bottom' })
+      .setLngLat([el.lng, el.lat])
+      .addTo(map);
+
+    mapMarkers.push(marker);
+  });
+}
+
+// ── Detail Sheet ────────────────────────────────────────────────────────────
+function openElement(el) {
+  activeElement = el;
+
+  // Track unique views
+  if (!viewedIds.includes(el.id)) {
+    viewedIds.push(el.id);
+    localStorage.setItem('mapfw_viewed', JSON.stringify(viewedIds));
+  }
+
+  const freeViews = CFG.freeViews || 5;
+  const viewCount = viewedIds.length;
+  const isLimited = !currentUser && viewCount > freeViews;
+
+  // Populate
+  const heroEl = document.getElementById('sheet-hero');
+  const imgEl = document.getElementById('sheet-img');
+  if (el.imageUrl) {
+    imgEl.src = el.imageUrl;
+    heroEl.style.display = 'block';
+  } else {
+    heroEl.style.display = 'none';
+  }
+
+  document.getElementById('sheet-title').textContent = el.title;
+  document.getElementById('sheet-subtitle').textContent = el.subtitle || '';
+  document.getElementById('sheet-desc').textContent = el.description || '';
+
+  // Products preview
+  const prodsEl = document.getElementById('sheet-products');
+  prodsEl.innerHTML = '';
+
+  // Action buttons
+  const actionsEl = document.getElementById('sheet-actions');
+  const hasProfile = el.metadata && el.metadata.userId;
+  let btns = '';
+
+  if (hasProfile) {
+    btns += `<a href="/profile/${el.metadata.userId}" class="sheet-btn primary" style="text-decoration:none">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      View Profile</a>`;
+    // Load product previews
+    fetch(`/api/elements/${el.id}`).then(r => r.json()).then(d => {
+      if (d.ok && d.products && d.products.length) {
+        prodsEl.innerHTML = d.products.slice(0, 3).map(p =>
+          `<div class="sheet-product"><div class="sheet-product-info"><div class="sheet-product-name">${escHtml(p.name)}</div></div><div class="sheet-product-price">$${(p.price/100).toFixed(2)}</div></div>`
+        ).join('') + (d.products.length > 3 ? `<div style="font-size:12px;color:var(--muted);text-align:center;padding:4px">+${d.products.length - 3} more</div>` : '');
+      }
+    }).catch(() => {});
+  }
+
+  btns += `<button class="sheet-btn ${hasProfile ? 'secondary' : 'primary'}" onclick="messageElement()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Message</button>`;
+  actionsEl.innerHTML = btns;
+
+  const sheet = document.getElementById('detail-sheet');
+  sheet.classList.toggle('sheet-blurred', isLimited);
+  sheet.classList.add('open');
+  document.getElementById('sheet-backdrop').classList.add('open');
+
+  if (!currentUser && viewCount >= freeViews - 1) {
+    showViewToast(viewCount, freeViews);
+  }
+
+  map.easeTo({ center: [el.lng, el.lat], duration: 400 });
+}
+
+function closeSheet() {
+  document.getElementById('detail-sheet').classList.remove('open');
+  document.getElementById('sheet-backdrop').classList.remove('open');
+  activeElement = null;
+}
+
+function showViewToast(count, max) {
+  const toast = document.getElementById('view-toast');
+  const text = document.getElementById('view-toast-text');
+  if (count >= max) {
+    text.innerHTML = `You've used all <strong>${max} free views</strong>. Sign up to continue exploring.`;
+  } else {
+    text.innerHTML = `<strong>${count} of ${max}</strong> free views used.`;
+  }
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => toast.classList.remove('show'), 6000);
+}
+
+// ── Auth ────────────────────────────────────────────────────────────────────
+async function checkAuth() {
+  try {
+    const r = await fetch('/api/auth/me');
+    const d = await r.json();
+    if (d.ok && d.user) {
+      currentUser = d.user;
+      updateAuthUI();
+    }
+  } catch (e) {}
+}
+
+function updateAuthUI() {
+  const actions = document.getElementById('top-actions');
+  if (currentUser) {
+    const initials = (currentUser.name || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    actions.innerHTML = `<div class="user-avatar" onclick="toggleUserMenu()" title="${escAttr(currentUser.name)}">${initials}</div>`;
+    document.getElementById('view-toast').classList.remove('show');
+  } else {
+    actions.innerHTML = `<button class="btn-pill accent" onclick="openAuth()">Sign in</button>`;
+  }
+}
+
+function openAuth() {
+  document.getElementById('auth-backdrop').classList.add('open');
+  setTimeout(() => document.getElementById('auth-phone').focus(), 100);
+}
+
+function closeAuth() {
+  document.getElementById('auth-backdrop').classList.remove('open');
+  authReset();
+}
+
+function authReset() {
+  ['auth-step-phone', 'auth-step-otp', 'auth-step-name'].forEach((id, i) => {
+    document.getElementById(id).style.display = i === 0 ? 'block' : 'none';
+  });
+  ['auth-error', 'auth-error-otp', 'auth-error-name', 'auth-success-otp'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  document.getElementById('auth-phone').value = '';
+  document.getElementById('auth-otp').value = '';
+  document.getElementById('auth-name').value = '';
+  document.getElementById('auth-send-btn').disabled = false;
+  document.getElementById('auth-send-btn').textContent = 'Continue';
+  document.getElementById('auth-verify-btn').disabled = false;
+  document.getElementById('auth-verify-btn').textContent = 'Verify';
+}
+
+function showAuthError(id, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function authSendOtp() {
+  const phone = document.getElementById('auth-phone').value.trim();
+  if (!phone) return showAuthError('auth-error', 'Phone number is required.');
+
+  const btn = document.getElementById('auth-send-btn');
+  btn.disabled = true; btn.textContent = 'Sending...';
+  document.getElementById('auth-error').style.display = 'none';
+
+  try {
+    const r = await fetch('/api/auth/start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      sentPhone = phone;
+      document.getElementById('auth-sent-phone').textContent = phone;
+      document.getElementById('auth-step-phone').style.display = 'none';
+      document.getElementById('auth-step-otp').style.display = 'block';
+      const success = document.getElementById('auth-success-otp');
+      let msg = 'Code sent! Check your messages.';
+      if (d.devCode) msg += ` (Dev code: ${d.devCode})`;
+      success.textContent = msg;
+      success.style.display = 'block';
+      setTimeout(() => document.getElementById('auth-otp').focus(), 100);
+    } else {
+      showAuthError('auth-error', d.error || 'Failed to send code.');
+      btn.disabled = false; btn.textContent = 'Continue';
+    }
+  } catch (e) {
+    showAuthError('auth-error', 'Network error. Try again.');
+    btn.disabled = false; btn.textContent = 'Continue';
+  }
+}
+
+async function authVerify() {
+  const code = document.getElementById('auth-otp').value.trim();
+  if (!code || code.length !== 6) return showAuthError('auth-error-otp', 'Enter the 6-digit code.');
+
+  const btn = document.getElementById('auth-verify-btn');
+  btn.disabled = true; btn.textContent = 'Verifying...';
+  document.getElementById('auth-error-otp').style.display = 'none';
+
+  try {
+    const r = await fetch('/api/auth/verify', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: sentPhone, code })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      if (d.needsName) {
+        document.getElementById('auth-step-otp').style.display = 'none';
+        document.getElementById('auth-step-name').style.display = 'block';
+        setTimeout(() => document.getElementById('auth-name').focus(), 100);
+      } else {
+        currentUser = d.user;
+        updateAuthUI();
+        closeAuth();
+      }
+    } else {
+      showAuthError('auth-error-otp', d.error || 'Invalid code.');
+      btn.disabled = false; btn.textContent = 'Verify';
+    }
+  } catch (e) {
+    showAuthError('auth-error-otp', 'Network error.');
+    btn.disabled = false; btn.textContent = 'Verify';
+  }
+}
+
+async function authComplete() {
+  const name = document.getElementById('auth-name').value.trim();
+  if (!name) return showAuthError('auth-error-name', 'Name is required.');
+
+  try {
+    const r = await fetch('/api/auth/complete', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ phone: sentPhone, name })
+    });
+    const d = await r.json();
+    if (d.ok) {
+      currentUser = d.user;
+      updateAuthUI();
+      closeAuth();
+    } else {
+      showAuthError('auth-error-name', d.error || 'Failed.');
+    }
+  } catch (e) {
+    showAuthError('auth-error-name', 'Network error.');
+  }
+}
+
+// ── User Menu ───────────────────────────────────────────────────────────────
+function toggleUserMenu() {
+  document.getElementById('user-menu').classList.toggle('open');
+}
+
+function closeUserMenu() {
+  document.getElementById('user-menu').classList.remove('open');
+}
+
+async function doLogout() {
+  closeUserMenu();
+  await fetch('/api/auth/logout', { method: 'POST' });
+  currentUser = null;
+  updateAuthUI();
+}
+
+// Close user menu on outside click
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('user-menu');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !e.target.classList.contains('user-avatar')) {
+    menu.classList.remove('open');
+  }
+});
+
+// ── Messaging ───────────────────────────────────────────────────────────────
+let msgPeerId = null;
+
+function messageElement() {
+  if (!currentUser) return openAuth();
+  if (!activeElement) return;
+
+  msgPeerId = activeElement.id;
+  document.getElementById('msg-peer-name').textContent = activeElement.title;
+  document.getElementById('msg-list').innerHTML = '<p class="msg-empty">Start a conversation</p>';
+  document.getElementById('msg-panel').classList.add('open');
+  closeSheet();
+  loadMessages(msgPeerId);
+}
+
+function closeMessages() {
+  document.getElementById('msg-panel').classList.remove('open');
+  msgPeerId = null;
+}
+
+async function loadMessages(peerId) {
+  try {
+    const r = await fetch(`/api/messages/${peerId}`);
+    const d = await r.json();
+    if (d.ok) {
+      const list = document.getElementById('msg-list');
+      if (d.messages.length === 0) {
+        list.innerHTML = '<p class="msg-empty">Start a conversation</p>';
+      } else {
+        list.innerHTML = d.messages.map(m =>
+          `<div class="msg-bubble ${m.fromId === currentUser.id ? 'sent' : 'received'}">${escHtml(m.text)}</div>`
+        ).join('');
+        list.scrollTop = list.scrollHeight;
+      }
+    }
+  } catch (e) {}
+}
+
+async function sendMessage() {
+  const input = document.getElementById('msg-input');
+  const text = input.value.trim();
+  if (!text || !msgPeerId) return;
+
+  input.value = '';
+
+  // Optimistic UI
+  const list = document.getElementById('msg-list');
+  const empty = list.querySelector('.msg-empty');
+  if (empty) empty.remove();
+  list.insertAdjacentHTML('beforeend', `<div class="msg-bubble sent">${escHtml(text)}</div>`);
+  list.scrollTop = list.scrollHeight;
+
+  try {
+    await fetch('/api/messages', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ to: msgPeerId, text })
+    });
+  } catch (e) {
+    console.error('Send failed:', e);
+  }
+}
+
+function requestElement() {
+  if (!currentUser) return openAuth();
+  // Future: request/purchase flow
+}
+
+// ── Utils ───────────────────────────────────────────────────────────────────
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function escAttr(s) { return s.replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+// ── Keyboard shortcuts ──────────────────────────────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('msg-panel').classList.contains('open')) closeMessages();
+    else if (document.getElementById('auth-backdrop').classList.contains('open')) closeAuth();
+    else if (document.getElementById('detail-sheet').classList.contains('open')) closeSheet();
+  }
+});
+
+// ── Start ───────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>

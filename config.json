@@ -1,0 +1,16 @@
+{
+  "name": "MapApp",
+  "brandHtml": "Map<span>App</span>",
+  "tagline": "Discover what's around you",
+  "accent": "#7c3aed",
+  "defaultLat": 40.7580,
+  "defaultLng": -73.9855,
+  "freeViews": 5,
+  "elementLabel": "profile",
+  "elementLabelPlural": "profiles",
+  "features": {
+    "messaging": true,
+    "requests": true,
+    "purchases": false
+  }
+}

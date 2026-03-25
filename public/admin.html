@@ -178,6 +178,18 @@
     .badge-paid { background: rgba(96,165,250,0.12); color: #60a5fa; }
     .badge-confirmed { background: rgba(168,85,247,0.12); color: #c084fc; }
     .badge-processed { background: rgba(34,197,94,0.12); color: #4ade80; }
+    .badge-prospect { background: rgba(107,107,138,0.15); color: #8b8ba8; }
+    .badge-approved { background: rgba(34,197,94,0.12); color: #4ade80; }
+    .badge-contacted { background: rgba(96,165,250,0.12); color: #60a5fa; }
+    .badge-rejected { background: rgba(239,68,68,0.12); color: #f87171; }
+    .badge-converted { background: rgba(16,185,129,0.15); color: #34d399; }
+    .prospect-product-tag {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      font-size: 11px; font-weight: 600; color: var(--dim);
+      margin: 1px 2px;
+    }
+    .prospect-filter-btn.active-filter { background: var(--accent); color: #fff; border-color: var(--accent); }
 
     /* ── Buttons ── */
     .btn {
@@ -406,6 +418,9 @@
       <button class="nav-item" data-section="sellers" onclick="showSection('sellers')">
         <span class="nav-icon">&#127978;</span> Sellers
       </button>
+      <button class="nav-item" data-section="prospects" onclick="showSection('prospects')">
+        <span class="nav-icon">&#127793;</span> Prospects
+      </button>
       <button class="nav-item" data-section="buyers" onclick="showSection('buyers')">
         <span class="nav-icon">&#128101;</span> Buyers
       </button>
@@ -487,6 +502,201 @@
               <thead><tr><th>Name</th><th>Email / Phone</th><th>Products</th><th>Orders</th><th>Revenue</th><th>Rating</th><th>Status</th><th>Actions</th></tr></thead>
               <tbody id="sellersBody"></tbody>
             </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ PROSPECTS ═══════ -->
+      <div class="section" id="sec-prospects">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+          <div>
+            <div style="font-size:16px;font-weight:700;">Prospect Pipeline</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Scraped and imported seller leads</div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-accent" onclick="openProspectModal()">Add Prospect</button>
+            <button class="btn btn-outline" onclick="openImportModal()">Import CSV</button>
+            <button class="btn btn-outline" onclick="openScrapeModal()">Scrape Now</button>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="prospectFilterTabs">
+          <button class="btn btn-accent prospect-filter-btn" data-filter="all" onclick="filterProspects('all')">All <span id="prospect-count-all" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline prospect-filter-btn" data-filter="prospect" onclick="filterProspects('prospect')">Prospects <span id="prospect-count-prospect" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline prospect-filter-btn" data-filter="approved" onclick="filterProspects('approved')">Approved <span id="prospect-count-approved" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline prospect-filter-btn" data-filter="contacted" onclick="filterProspects('contacted')">Contacted <span id="prospect-count-contacted" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline prospect-filter-btn" data-filter="rejected" onclick="filterProspects('rejected')">Rejected <span id="prospect-count-rejected" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline prospect-filter-btn" data-filter="converted" onclick="filterProspects('converted')">Converted <span id="prospect-count-converted" style="margin-left:4px;opacity:0.7;">0</span></button>
+        </div>
+
+        <!-- Prospects Table -->
+        <div class="table-wrapper">
+          <div class="table-header">
+            <div class="table-title">Seller Leads</div>
+            <input type="text" class="search-input" id="prospectSearch" placeholder="Search prospects..." oninput="searchProspects()">
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Name</th><th>Business</th><th>Location</th><th>Products</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="prospectsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Prospect Add/Edit Modal ── -->
+      <div id="prospectModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:20px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;padding:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <div style="font-size:18px;font-weight:800;" id="prospectModalTitle">Add Prospect</div>
+            <button onclick="closeProspectModal()" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;">&#10005;</button>
+          </div>
+          <input type="hidden" id="prospectEditId">
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Name</label>
+                <input type="text" class="setting-input" id="prosp-name" placeholder="Baker name" style="width:100%;">
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Business Name</label>
+                <input type="text" class="setting-input" id="prosp-businessName" placeholder="Business name" style="width:100%;">
+              </div>
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Address</label>
+              <input type="text" class="setting-input" id="prosp-address" placeholder="123 Main St, Los Angeles, CA" style="width:100%;">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Neighborhood</label>
+                <input type="text" class="setting-input" id="prosp-neighborhood" placeholder="Silver Lake" style="width:100%;">
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Phone</label>
+                <input type="text" class="setting-input" id="prosp-phone" placeholder="+1234567890" style="width:100%;">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Email</label>
+                <input type="text" class="setting-input" id="prosp-email" placeholder="baker@email.com" style="width:100%;">
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Instagram</label>
+                <input type="text" class="setting-input" id="prosp-instagram" placeholder="@bakername" style="width:100%;">
+              </div>
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Website</label>
+              <input type="text" class="setting-input" id="prosp-website" placeholder="https://their-order-site.com" style="width:100%;">
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Products (comma-separated)</label>
+              <textarea class="setting-input" id="prosp-products" placeholder="Sourdough bread, Cookies, Banana bread" rows="2" style="width:100%;resize:vertical;font-family:inherit;"></textarea>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Permit Type</label>
+                <input type="text" class="setting-input" id="prosp-permitType" placeholder="Class A" style="width:100%;">
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Permit Number</label>
+                <input type="text" class="setting-input" id="prosp-permitNumber" placeholder="CFO-LA-2024-XXXX" style="width:100%;">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Source</label>
+                <input type="text" class="setting-input" id="prosp-source" placeholder="la-county-permits" style="width:100%;">
+              </div>
+              <div></div>
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Notes</label>
+              <textarea class="setting-input" id="prosp-notes" placeholder="Additional notes..." rows="2" style="width:100%;resize:vertical;font-family:inherit;"></textarea>
+            </div>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+            <button class="btn btn-outline" onclick="closeProspectModal()">Cancel</button>
+            <button class="btn btn-accent" id="prospectSaveBtn" onclick="saveProspect()">Save Prospect</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Import Modal ── -->
+      <div id="importModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:20px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;padding:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <div style="font-size:18px;font-weight:800;">Import Prospects</div>
+            <button onclick="closeImportModal()" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;">&#10005;</button>
+          </div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Paste a JSON array of prospect objects, or CSV lines (name, address, phone, email, website, products).</p>
+          <textarea class="setting-input" id="importData" rows="10" placeholder='[{"name":"Baker","businessName":"Kitchen","address":"123 Main St","phone":"555-1234","email":"b@e.com","website":"https://...","products":["Bread","Cookies"]}]' style="width:100%;resize:vertical;font-family:'Courier New',monospace;font-size:12px;"></textarea>
+          <div style="margin-top:16px;display:flex;gap:10px;justify-content:flex-end;">
+            <button class="btn btn-outline" onclick="closeImportModal()">Cancel</button>
+            <button class="btn btn-accent" id="importBtn" onclick="doImport()">Import</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Scrape Modal ── -->
+      <div id="scrapeModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:20px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:420px;padding:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <div style="font-size:18px;font-weight:800;">Run Scraper</div>
+            <button onclick="closeScrapeModal()" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;">&#10005;</button>
+          </div>
+          <div style="margin-bottom:14px;">
+            <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Source</label>
+            <select class="filter-select" id="scrapeSource" style="width:100%;">
+              <option value="la-county">LA County Permits</option>
+              <option value="manual">Manual URL</option>
+            </select>
+          </div>
+          <div style="margin-bottom:14px;" id="scrapeUrlWrap">
+            <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">URL (optional)</label>
+            <input type="text" class="setting-input" id="scrapeUrl" placeholder="https://..." style="width:100%;">
+          </div>
+          <div id="scrapeStatus" style="font-size:13px;color:var(--muted);margin-bottom:14px;display:none;"></div>
+          <div style="display:flex;gap:10px;justify-content:flex-end;">
+            <button class="btn btn-outline" onclick="closeScrapeModal()">Cancel</button>
+            <button class="btn btn-accent" id="scrapeBtn" onclick="doScrape()">Run Scraper</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Make Live Modal ── -->
+      <div id="makeLiveModal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;padding:20px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:28px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <div style="font-size:18px;font-weight:800;">Make Live on Map</div>
+            <button onclick="closeMakeLiveModal()" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;">&#10005;</button>
+          </div>
+          <input type="hidden" id="makeLiveId">
+          <div id="makeLiveDetails" style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px;font-size:13px;color:var(--dim);"></div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Latitude</label>
+                <input type="number" class="setting-input" id="makeLiveLat" placeholder="34.0522" step="any" style="width:100%;">
+              </div>
+              <div>
+                <label style="font-size:12px;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Longitude</label>
+                <input type="number" class="setting-input" id="makeLiveLng" placeholder="-118.2437" step="any" style="width:100%;">
+              </div>
+            </div>
+            <p style="font-size:11px;color:var(--muted);">Geocode the address to get coordinates. You can use Google Maps or a geocoding API.</p>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;">
+              <input type="checkbox" id="makeLiveExtUrl" checked style="accent-color:var(--accent);">
+              Link to external order website
+            </label>
+            <div id="makeLiveExtUrlPreview" style="font-size:12px;color:var(--muted);padding-left:24px;"></div>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+            <button class="btn btn-outline" onclick="closeMakeLiveModal()">Cancel</button>
+            <button class="btn btn-success" id="makeLiveBtn" onclick="confirmMakeLive()">Confirm &amp; Go Live</button>
           </div>
         </div>
       </div>
@@ -751,7 +961,10 @@ function statusBadge(status) {
     active: 'badge-active', completed: 'badge-completed',
     suspended: 'badge-suspended', cancelled: 'badge-cancelled',
     pending: 'badge-pending', paid: 'badge-paid',
-    confirmed: 'badge-confirmed', processed: 'badge-processed'
+    confirmed: 'badge-confirmed', processed: 'badge-processed',
+    prospect: 'badge-prospect', approved: 'badge-approved',
+    contacted: 'badge-contacted', rejected: 'badge-rejected',
+    converted: 'badge-converted'
   }[s] || 'badge-pending';
   return '<span class="badge ' + cls + '">' + esc(s) + '</span>';
 }
@@ -812,6 +1025,7 @@ async function checkAuth() {
       const data = await res.json();
       renderDashboard(data);
       loadSellers();
+      loadProspects();
       loadBuyers();
       loadOrders();
       loadSettings();
@@ -870,6 +1084,7 @@ async function doLogout() {
 const sectionTitles = {
   dashboard: ['Platform Command Center', 'Overview of your marketplace'],
   sellers:   ['Sellers', 'Manage your seller community'],
+  prospects: ['Prospect Pipeline', 'Scraped and imported seller leads'],
   buyers:    ['Buyers', 'Browse and search buyer accounts'],
   orders:    ['Orders', 'Track every transaction'],
   settings:  ['Settings', 'Core Configuration'],
@@ -1012,6 +1227,325 @@ function filterSellers() {
   const q = document.getElementById('sellerSearch').value.toLowerCase().trim();
   if (!q) { renderSellers(sellersData); return; }
   renderSellers(sellersData.filter(s => (s.name || '').toLowerCase().includes(q)));
+}
+
+// ── Prospects ──
+
+let prospectsData = [];
+let prospectFilter = 'all';
+
+async function loadProspects() {
+  try {
+    const res = await apiFetch('/api/admin/prospects');
+    if (res.ok) {
+      const data = await res.json();
+      prospectsData = data.prospects || [];
+      updateProspectCounts();
+      filterProspects(prospectFilter);
+    }
+  } catch(e) {}
+}
+
+function updateProspectCounts() {
+  const counts = { all: prospectsData.length, prospect: 0, approved: 0, contacted: 0, rejected: 0, converted: 0 };
+  prospectsData.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
+  Object.keys(counts).forEach(k => {
+    const el = document.getElementById('prospect-count-' + k);
+    if (el) el.textContent = counts[k];
+  });
+}
+
+function filterProspects(status) {
+  prospectFilter = status;
+  // Update filter button styles
+  document.querySelectorAll('.prospect-filter-btn').forEach(btn => {
+    if (btn.dataset.filter === status) {
+      btn.className = 'btn btn-accent prospect-filter-btn active-filter';
+    } else {
+      btn.className = 'btn btn-outline prospect-filter-btn';
+    }
+  });
+  const filtered = status === 'all' ? prospectsData : prospectsData.filter(p => p.status === status);
+  renderProspects(filtered);
+}
+
+function searchProspects() {
+  const q = document.getElementById('prospectSearch').value.toLowerCase().trim();
+  let list = prospectFilter === 'all' ? prospectsData : prospectsData.filter(p => p.status === prospectFilter);
+  if (q) {
+    list = list.filter(p =>
+      (p.name || '').toLowerCase().includes(q) ||
+      (p.businessName || '').toLowerCase().includes(q) ||
+      (p.address || '').toLowerCase().includes(q) ||
+      (p.neighborhood || '').toLowerCase().includes(q)
+    );
+  }
+  renderProspects(list);
+}
+
+function prospectStatusBadge(status) {
+  const s = (status || 'prospect').toLowerCase();
+  const cls = {
+    prospect: 'badge-prospect', approved: 'badge-approved',
+    contacted: 'badge-contacted', rejected: 'badge-rejected',
+    converted: 'badge-converted'
+  }[s] || 'badge-prospect';
+  const label = s === 'converted' ? '&#10003; ' + s : s;
+  return '<span class="badge ' + cls + '">' + label + '</span>';
+}
+
+function renderProspects(list) {
+  const body = document.getElementById('prospectsBody');
+  if (!list || !list.length) {
+    body.innerHTML = '<tr><td colspan="7" class="empty-state"><span class="empty-state-icon">&#127793;</span><div class="empty-state-text">No prospects found</div></td></tr>';
+    return;
+  }
+  body.innerHTML = list.map(p => {
+    const prodTags = (p.products || []).slice(0, 3).map(pr => '<span class="prospect-product-tag">' + esc(pr) + '</span>').join('');
+    const moreTag = (p.products || []).length > 3 ? '<span class="prospect-product-tag">+' + ((p.products || []).length - 3) + ' more</span>' : '';
+    const canMakeLive = ['prospect', 'approved', 'contacted'].includes(p.status);
+    const websiteIcon = p.website ? '<a href="' + esc(p.website) + '" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none;font-size:14px;" title="Visit website">&#128279;</a>' : '';
+
+    return '<tr>' +
+      '<td style="font-weight:600;color:var(--text)">' + esc(p.name || '--') + '</td>' +
+      '<td>' + esc(p.businessName || '--') + '</td>' +
+      '<td>' + esc(p.neighborhood || p.address || '--') + '</td>' +
+      '<td>' + prodTags + moreTag + '</td>' +
+      '<td>' + esc(p.source || '--') + '</td>' +
+      '<td>' + prospectStatusBadge(p.status) + '</td>' +
+      '<td style="white-space:nowrap">' +
+        (canMakeLive ? '<button class="btn btn-success" onclick="openMakeLiveModal(\'' + p.id + '\')" style="margin-right:4px;">Make Live</button>' : '') +
+        '<button class="btn btn-outline" onclick="editProspect(\'' + p.id + '\')" style="margin-right:4px;">Edit</button>' +
+        (p.status !== 'approved' && p.status !== 'converted' ? '<button class="btn btn-success" onclick="setProspectStatus(\'' + p.id + '\',\'approved\')" style="margin-right:4px;padding:8px 10px;" title="Approve">&#10003;</button>' : '') +
+        (p.status !== 'rejected' && p.status !== 'converted' ? '<button class="btn btn-danger" onclick="setProspectStatus(\'' + p.id + '\',\'rejected\')" style="margin-right:4px;padding:8px 10px;" title="Reject">&#10007;</button>' : '') +
+        websiteIcon +
+      '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+function openProspectModal(prospect) {
+  document.getElementById('prospectEditId').value = '';
+  document.getElementById('prospectModalTitle').textContent = 'Add Prospect';
+  ['name','businessName','address','neighborhood','phone','email','website','instagram','permitType','permitNumber','source','notes'].forEach(f => {
+    document.getElementById('prosp-' + f).value = '';
+  });
+  document.getElementById('prosp-products').value = '';
+  if (prospect) {
+    document.getElementById('prospectEditId').value = prospect.id;
+    document.getElementById('prospectModalTitle').textContent = 'Edit Prospect';
+    ['name','businessName','address','neighborhood','phone','email','website','instagram','permitType','permitNumber','source','notes'].forEach(f => {
+      document.getElementById('prosp-' + f).value = prospect[f] || '';
+    });
+    document.getElementById('prosp-products').value = (prospect.products || []).join(', ');
+  }
+  document.getElementById('prospectModal').style.display = 'flex';
+}
+
+function closeProspectModal() {
+  document.getElementById('prospectModal').style.display = 'none';
+}
+
+function editProspect(id) {
+  const prospect = prospectsData.find(p => p.id === id);
+  if (prospect) openProspectModal(prospect);
+}
+
+async function saveProspect() {
+  const editId = document.getElementById('prospectEditId').value;
+  const data = {};
+  ['name','businessName','address','neighborhood','phone','email','website','instagram','permitType','permitNumber','source','notes'].forEach(f => {
+    data[f] = document.getElementById('prosp-' + f).value;
+  });
+  data.products = document.getElementById('prosp-products').value.split(',').map(s => s.trim()).filter(Boolean);
+
+  const btn = document.getElementById('prospectSaveBtn');
+  btn.disabled = true;
+  btn.textContent = 'Saving...';
+
+  try {
+    const url = editId ? '/api/admin/prospects/' + editId : '/api/admin/prospects';
+    const method = editId ? 'PUT' : 'POST';
+    const res = await apiFetch(url, { method, body: data });
+    if (res.ok) {
+      showToast(editId ? 'Prospect updated' : 'Prospect added', 'success');
+      closeProspectModal();
+      loadProspects();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to save prospect', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Save Prospect';
+}
+
+async function setProspectStatus(id, status) {
+  try {
+    const res = await apiFetch('/api/admin/prospects/' + id + '/status', { method: 'PUT', body: { status } });
+    if (res.ok) {
+      showToast('Status changed to ' + status, 'success');
+      loadProspects();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to change status', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+function openMakeLiveModal(id) {
+  const prospect = prospectsData.find(p => p.id === id);
+  if (!prospect) return;
+  document.getElementById('makeLiveId').value = id;
+  document.getElementById('makeLiveLat').value = '';
+  document.getElementById('makeLiveLng').value = '';
+  document.getElementById('makeLiveExtUrl').checked = !!prospect.website;
+  document.getElementById('makeLiveExtUrlPreview').textContent = prospect.website ? prospect.website : 'No website on file';
+  document.getElementById('makeLiveDetails').innerHTML =
+    '<div style="margin-bottom:6px;font-weight:700;color:var(--text);">' + esc(prospect.businessName || prospect.name) + '</div>' +
+    '<div>' + esc(prospect.address || 'No address') + '</div>' +
+    (prospect.products && prospect.products.length ? '<div style="margin-top:6px;">Products: ' + prospect.products.map(p => '<span class="prospect-product-tag">' + esc(p) + '</span>').join(' ') + '</div>' : '') +
+    (prospect.permitType ? '<div style="margin-top:4px;">Permit: ' + esc(prospect.permitType) + (prospect.permitNumber ? ' #' + esc(prospect.permitNumber) : '') + '</div>' : '');
+  document.getElementById('makeLiveModal').style.display = 'flex';
+}
+
+function closeMakeLiveModal() {
+  document.getElementById('makeLiveModal').style.display = 'none';
+}
+
+async function confirmMakeLive() {
+  const id = document.getElementById('makeLiveId').value;
+  const lat = parseFloat(document.getElementById('makeLiveLat').value);
+  const lng = parseFloat(document.getElementById('makeLiveLng').value);
+  const useExternalUrl = document.getElementById('makeLiveExtUrl').checked;
+
+  if (isNaN(lat) || isNaN(lng)) {
+    showToast('Please enter valid latitude and longitude', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('makeLiveBtn');
+  btn.disabled = true;
+  btn.textContent = 'Going Live...';
+
+  try {
+    const res = await apiFetch('/api/admin/prospects/' + id + '/make-live', {
+      method: 'POST',
+      body: { lat, lng, useExternalUrl }
+    });
+    if (res.ok) {
+      showToast('Prospect is now live on the map!', 'success');
+      closeMakeLiveModal();
+      loadProspects();
+      loadSellers();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to make live', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Confirm & Go Live';
+}
+
+function openImportModal() {
+  document.getElementById('importData').value = '';
+  document.getElementById('importModal').style.display = 'flex';
+}
+
+function closeImportModal() {
+  document.getElementById('importModal').style.display = 'none';
+}
+
+async function doImport() {
+  const raw = document.getElementById('importData').value.trim();
+  if (!raw) { showToast('Paste data to import', 'error'); return; }
+
+  let items;
+  try {
+    items = JSON.parse(raw);
+    if (!Array.isArray(items)) items = [items];
+  } catch(e) {
+    // Try CSV parse: name, address, phone, email, website, products
+    try {
+      items = raw.split('\n').filter(l => l.trim()).map(line => {
+        const parts = line.split(',').map(s => s.trim());
+        return {
+          name: parts[0] || '',
+          address: parts[1] || '',
+          phone: parts[2] || '',
+          email: parts[3] || '',
+          website: parts[4] || '',
+          products: parts.slice(5).filter(Boolean)
+        };
+      });
+    } catch(e2) {
+      showToast('Invalid data format. Use JSON array or CSV.', 'error');
+      return;
+    }
+  }
+
+  const btn = document.getElementById('importBtn');
+  btn.disabled = true;
+  btn.textContent = 'Importing...';
+
+  try {
+    const res = await apiFetch('/api/admin/prospects/import', { method: 'POST', body: { items } });
+    if (res.ok) {
+      const data = await res.json();
+      showToast('Imported ' + data.imported + ' prospects', 'success');
+      closeImportModal();
+      loadProspects();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Import failed', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Import';
+}
+
+function openScrapeModal() {
+  document.getElementById('scrapeStatus').style.display = 'none';
+  document.getElementById('scrapeUrl').value = '';
+  document.getElementById('scrapeModal').style.display = 'flex';
+}
+
+function closeScrapeModal() {
+  document.getElementById('scrapeModal').style.display = 'none';
+}
+
+async function doScrape() {
+  const source = document.getElementById('scrapeSource').value;
+  const url = document.getElementById('scrapeUrl').value.trim();
+
+  const btn = document.getElementById('scrapeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Starting...';
+
+  try {
+    const res = await apiFetch('/api/admin/prospects/scrape', { method: 'POST', body: { source, url: url || undefined } });
+    if (res.ok) {
+      const data = await res.json();
+      document.getElementById('scrapeStatus').style.display = 'block';
+      document.getElementById('scrapeStatus').innerHTML = '<span style="color:#4ade80;">&#10003;</span> ' + esc(data.message);
+      showToast('Scraper started', 'success');
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Scrape failed', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Run Scraper';
 }
 
 // ── Buyers ──

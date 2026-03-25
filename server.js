@@ -89,11 +89,13 @@ let products = loadData('products', { products: [] });
 let orders = loadData('orders', { orders: [] });
 let ratings = loadData('ratings', { ratings: [] });
 let payouts = loadData('payouts', { payouts: [] });
+let prospects = loadData('prospects', { prospects: [] });
+let campaigns = loadData('campaigns', { campaigns: [] });
 let platformSettings = loadData('platform_settings', {
   platformName: 'Cottage',
   tagline: 'Homemade goods from kitchens near you',
   accentColor: '#ea580c',
-  commissionRate: 10,
+  commissionRate: 20,
   minPayoutAmount: 2500,
   payoutSchedule: 'weekly',
   taxRate: 9.5,
@@ -229,6 +231,9 @@ function makeUser(fields) {
     googleId: fields.googleId || null,
     phoneVerified: fields.phoneVerified || false,
     status: 'active',
+    commissionOverride: null,
+    emailOptIn: true,
+    neighborhood: '',
     profile: { displayName: '', bio: '', photos: [], location: null },
     sessions: [],
     createdAt: new Date().toISOString(),
@@ -883,6 +888,11 @@ app.get('/api/elements/:id', (req, res) => {
     result.products = products.products.filter(p => p.sellerId === el.metadata.userId && p.available !== false);
   }
 
+  // Include external order URL if present
+  if (el.externalOrderUrl) {
+    result.externalOrderUrl = el.externalOrderUrl;
+  }
+
   res.json({ ok: true, element: result });
 });
 
@@ -1090,6 +1100,8 @@ app.get('/api/seller/dashboard', (req, res) => {
 
   const sellerProducts = products.products.filter(p => p.sellerId === user.id);
 
+  const effectiveCommission = user.commissionOverride !== null && user.commissionOverride !== undefined ? user.commissionOverride : platformSettings.commissionRate;
+
   res.json({
     ok: true,
     totalRevenue,
@@ -1098,7 +1110,8 @@ app.get('/api/seller/dashboard', (req, res) => {
     completedOrders: completedOrders.length,
     averageRating: avgRating,
     totalRatings: sellerRatings.length,
-    products: sellerProducts
+    products: sellerProducts,
+    commissionRate: effectiveCommission
   });
 });
 
@@ -1236,6 +1249,7 @@ app.get('/api/admin/sellers', (req, res) => {
         email: u.email,
         phone: u.phone,
         status: u.status || 'active',
+        commissionOverride: u.commissionOverride != null ? u.commissionOverride : null,
         productsCount: userProducts.length,
         ordersCount: userOrders.length,
         revenue,
@@ -1308,6 +1322,28 @@ app.put('/api/admin/sellers/:id/status', (req, res) => {
   res.json({ ok: true, id: user.id, status: user.status });
 });
 
+// PUT /api/admin/sellers/:id/commission — set per-seller commission override
+app.put('/api/admin/sellers/:id/commission', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const user = users.users.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ ok: false, error: 'User not found.' });
+
+  const { rate } = req.body;
+  if (rate === null || rate === undefined) {
+    user.commissionOverride = null;
+  } else {
+    const parsed = parseFloat(rate);
+    if (isNaN(parsed) || parsed < 0 || parsed > 100) {
+      return res.status(400).json({ ok: false, error: 'Rate must be between 0 and 100.' });
+    }
+    user.commissionOverride = parsed;
+  }
+
+  saveData('users', users);
+  res.json({ ok: true, id: user.id, commissionOverride: user.commissionOverride });
+});
+
 // GET /api/admin/settings
 app.get('/api/admin/settings', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
@@ -1352,7 +1388,8 @@ app.post('/api/admin/payouts/:sellerId/process', (req, res) => {
   }
 
   const totalAmount = eligibleOrders.reduce((sum, o) => sum + o.amount, 0);
-  const commissionRate = platformSettings.commissionRate || 10;
+  const rate = seller.commissionOverride !== null && seller.commissionOverride !== undefined ? seller.commissionOverride : platformSettings.commissionRate;
+  const commissionRate = rate || 20;
   const commission = Math.round(totalAmount * (commissionRate / 100));
   const netAmount = totalAmount - commission;
 
@@ -1408,6 +1445,258 @@ app.delete('/api/admin/ratings/:id', (req, res) => {
 app.get('/api/admin/elements', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
   res.json({ ok: true, elements: elements.elements });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  ADMIN PROSPECTS
+// ═════════════════════════════════════════════════════════════════════════════
+
+// GET /api/admin/prospects — list all prospects, with ?status= filter
+app.get('/api/admin/prospects', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  let filtered = [...prospects.prospects];
+  if (req.query.status) {
+    filtered = filtered.filter(p => p.status === req.query.status);
+  }
+  filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  res.json({ ok: true, prospects: filtered });
+});
+
+// POST /api/admin/prospects — manually add a prospect
+app.post('/api/admin/prospects', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const { name, businessName, address, neighborhood, phone, email, website, instagram, products: prodList, permitType, permitNumber, source, sourceUrl, notes } = req.body;
+  if (!name && !businessName) return res.status(400).json({ ok: false, error: 'Name or business name required.' });
+
+  const prospect = {
+    id: 'pros_' + crypto.randomBytes(8).toString('hex'),
+    name: String(name || '').slice(0, 200),
+    businessName: String(businessName || '').slice(0, 200),
+    address: String(address || '').slice(0, 500),
+    neighborhood: String(neighborhood || '').slice(0, 100),
+    phone: String(phone || '').slice(0, 30),
+    email: String(email || '').slice(0, 200),
+    website: String(website || '').slice(0, 500),
+    instagram: String(instagram || '').slice(0, 100),
+    products: Array.isArray(prodList) ? prodList.map(p => String(p).slice(0, 200)) : [],
+    permitType: String(permitType || '').slice(0, 50),
+    permitNumber: String(permitNumber || '').slice(0, 100),
+    source: String(source || 'manual').slice(0, 100),
+    sourceUrl: String(sourceUrl || '').slice(0, 500),
+    notes: String(notes || '').slice(0, 2000),
+    status: 'prospect',
+    featured: false,
+    scrapedAt: null,
+    createdAt: new Date().toISOString(),
+    convertedAt: null,
+    convertedUserId: null
+  };
+
+  prospects.prospects.push(prospect);
+  saveData('prospects', prospects);
+  res.json({ ok: true, prospect });
+});
+
+// PUT /api/admin/prospects/:id — update prospect details
+app.put('/api/admin/prospects/:id', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const prospect = prospects.prospects.find(p => p.id === req.params.id);
+  if (!prospect) return res.status(404).json({ ok: false, error: 'Prospect not found.' });
+
+  const fields = ['name', 'businessName', 'address', 'neighborhood', 'phone', 'email', 'website', 'instagram', 'permitType', 'permitNumber', 'source', 'sourceUrl', 'notes'];
+  fields.forEach(f => {
+    if (req.body[f] !== undefined) prospect[f] = String(req.body[f]);
+  });
+  if (req.body.products !== undefined) {
+    prospect.products = Array.isArray(req.body.products) ? req.body.products.map(p => String(p).slice(0, 200)) : [];
+  }
+  if (req.body.featured !== undefined) prospect.featured = !!req.body.featured;
+
+  saveData('prospects', prospects);
+  res.json({ ok: true, prospect });
+});
+
+// DELETE /api/admin/prospects/:id — delete prospect
+app.delete('/api/admin/prospects/:id', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const idx = prospects.prospects.findIndex(p => p.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ ok: false, error: 'Prospect not found.' });
+
+  prospects.prospects.splice(idx, 1);
+  saveData('prospects', prospects);
+  res.json({ ok: true });
+});
+
+// PUT /api/admin/prospects/:id/status — change status
+app.put('/api/admin/prospects/:id/status', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const prospect = prospects.prospects.find(p => p.id === req.params.id);
+  if (!prospect) return res.status(404).json({ ok: false, error: 'Prospect not found.' });
+
+  const { status } = req.body;
+  const validStatuses = ['prospect', 'approved', 'contacted', 'rejected', 'converted'];
+  if (!validStatuses.includes(status)) {
+    return res.status(400).json({ ok: false, error: 'Invalid status. Must be one of: ' + validStatuses.join(', ') });
+  }
+
+  prospect.status = status;
+  saveData('prospects', prospects);
+  res.json({ ok: true, prospect });
+});
+
+// POST /api/admin/prospects/:id/make-live — convert prospect to live listing
+app.post('/api/admin/prospects/:id/make-live', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const prospect = prospects.prospects.find(p => p.id === req.params.id);
+  if (!prospect) return res.status(404).json({ ok: false, error: 'Prospect not found.' });
+
+  if (prospect.status === 'rejected') {
+    return res.status(400).json({ ok: false, error: 'Cannot make a rejected prospect live. Change status first.' });
+  }
+
+  const { lat, lng, useExternalUrl } = req.body;
+  if (lat == null || lng == null) {
+    return res.status(400).json({ ok: false, error: 'Latitude and longitude required to place on map.' });
+  }
+
+  // Create a user entry for the prospect
+  const userId = 'user_' + crypto.randomBytes(8).toString('hex');
+  const user = makeUser({
+    id: userId,
+    name: prospect.businessName || prospect.name,
+    email: prospect.email || null,
+    phone: prospect.phone || null,
+    phoneVerified: false,
+    profile: {
+      displayName: prospect.businessName || prospect.name,
+      bio: prospect.notes || '',
+      photos: [],
+      location: { lat: parseFloat(lat), lng: parseFloat(lng), address: prospect.address },
+      permitType: prospect.permitType || null,
+      permitNumber: prospect.permitNumber || null
+    }
+  });
+  users.users.push(user);
+  saveData('users', users);
+
+  // Create a map element at their location
+  const el = {
+    id: 'el_' + crypto.randomBytes(8).toString('hex'),
+    type: 'seller',
+    title: prospect.businessName || prospect.name,
+    subtitle: prospect.neighborhood || '',
+    description: prospect.notes || '',
+    imageUrl: '',
+    icon: '🏪',
+    lat: parseFloat(lat),
+    lng: parseFloat(lng),
+    ownerId: userId,
+    metadata: { userId, prospectId: prospect.id },
+    online: true,
+    active: true,
+    createdAt: new Date().toISOString()
+  };
+
+  // Set external order URL if they have a website and useExternalUrl is true
+  if (useExternalUrl !== false && prospect.website) {
+    el.externalOrderUrl = prospect.website;
+  }
+
+  elements.elements.push(el);
+  saveData('elements', elements);
+
+  // Create product entries from their product list
+  if (prospect.products && prospect.products.length > 0) {
+    prospect.products.forEach(prodName => {
+      products.products.push({
+        id: 'prod_' + crypto.randomBytes(8).toString('hex'),
+        sellerId: userId,
+        sellerName: prospect.businessName || prospect.name,
+        name: String(prodName),
+        description: '',
+        price: 0, // Price unknown for scraped products
+        category: 'other',
+        allergens: [],
+        madeInHomeKitchen: true,
+        photos: [],
+        available: true,
+        createdAt: new Date().toISOString()
+      });
+    });
+    saveData('products', products);
+  }
+
+  // Update prospect status
+  prospect.status = 'approved';
+  prospect.convertedAt = new Date().toISOString();
+  prospect.convertedUserId = userId;
+  saveData('prospects', prospects);
+
+  res.json({ ok: true, prospect, userId, elementId: el.id });
+});
+
+// POST /api/admin/prospects/import — bulk import array of prospects
+app.post('/api/admin/prospects/import', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const { items } = req.body;
+  if (!Array.isArray(items) || items.length === 0) {
+    return res.status(400).json({ ok: false, error: 'items array required.' });
+  }
+
+  const imported = [];
+  items.forEach(item => {
+    const prospect = {
+      id: 'pros_' + crypto.randomBytes(8).toString('hex'),
+      name: String(item.name || '').slice(0, 200),
+      businessName: String(item.businessName || item.name || '').slice(0, 200),
+      address: String(item.address || '').slice(0, 500),
+      neighborhood: String(item.neighborhood || '').slice(0, 100),
+      phone: String(item.phone || '').slice(0, 30),
+      email: String(item.email || '').slice(0, 200),
+      website: String(item.website || '').slice(0, 500),
+      instagram: String(item.instagram || '').slice(0, 100),
+      products: Array.isArray(item.products) ? item.products.map(p => String(p).slice(0, 200)) : (typeof item.products === 'string' ? item.products.split(',').map(p => p.trim()).filter(Boolean) : []),
+      permitType: String(item.permitType || '').slice(0, 50),
+      permitNumber: String(item.permitNumber || '').slice(0, 100),
+      source: String(item.source || 'import').slice(0, 100),
+      sourceUrl: String(item.sourceUrl || '').slice(0, 500),
+      notes: String(item.notes || '').slice(0, 2000),
+      status: 'prospect',
+      featured: false,
+      scrapedAt: item.scrapedAt || null,
+      createdAt: new Date().toISOString(),
+      convertedAt: null,
+      convertedUserId: null
+    };
+    prospects.prospects.push(prospect);
+    imported.push(prospect);
+  });
+
+  saveData('prospects', prospects);
+  res.json({ ok: true, imported: imported.length, prospects: imported });
+});
+
+// POST /api/admin/prospects/scrape — trigger scraping (stub)
+app.post('/api/admin/prospects/scrape', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const { source, url } = req.body;
+  // Stub — actual scraping logic to be added separately
+  res.json({
+    ok: true,
+    message: `Scraping in progress for source: ${source || 'la-county'}. Results will appear in the prospects list when complete.`,
+    source: source || 'la-county',
+    url: url || null,
+    status: 'in_progress'
+  });
 });
 
 // ═════════════════════════════════════════════════════════════════════════════

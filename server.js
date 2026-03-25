@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const multer = require('multer');
+const nodemailer = require('nodemailer');
 
 const app = express();
 
@@ -60,6 +61,8 @@ app.get('/map', (req, res) => res.sendFile(path.join(__dirname, 'public/map.html
 app.get('/profile/:id?', (req, res) => res.sendFile(path.join(__dirname, 'public/profile.html')));
 app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public/terms.html')));
 app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public/privacy.html')));
+app.get('/seller', (req, res) => res.sendFile(path.join(__dirname, 'public/seller.html')));
+app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public/admin.html')));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -84,6 +87,31 @@ let elements = loadData('elements', { elements: [] });
 let messages = loadData('messages', { messages: [] });
 let products = loadData('products', { products: [] });
 let orders = loadData('orders', { orders: [] });
+let ratings = loadData('ratings', { ratings: [] });
+let payouts = loadData('payouts', { payouts: [] });
+let platformSettings = loadData('platform_settings', {
+  platformName: 'Cottage',
+  tagline: 'Homemade goods from kitchens near you',
+  accentColor: '#ea580c',
+  commissionRate: 10,
+  minPayoutAmount: 2500,
+  payoutSchedule: 'weekly',
+  taxRate: 9.5,
+  requirePermit: true,
+  emailEnabled: false,
+  smtpHost: '',
+  smtpPort: 587,
+  smtpUser: '',
+  smtpPass: '',
+  smtpFrom: 'noreply@cottage.local',
+  adminPassword: 'cottage-admin-2026',
+  maxProductPhotos: 4,
+  maxProfilePhotos: 6,
+  locationFuzzyRadius: 0.005,
+  freeViews: 5,
+  enableRatings: true,
+  enableMessaging: true
+});
 
 // ── Phone Normalization ─────────────────────────────────────────────────────
 function normalizePhone(raw) {
@@ -200,6 +228,7 @@ function makeUser(fields) {
     phone: fields.phone || null,
     googleId: fields.googleId || null,
     phoneVerified: fields.phoneVerified || false,
+    status: 'active',
     profile: { displayName: '', bio: '', photos: [], location: null },
     sessions: [],
     createdAt: new Date().toISOString(),
@@ -209,6 +238,118 @@ function makeUser(fields) {
 
 // Pending phone verifications
 const pendingVerifications = {};
+
+// ── Admin Authentication ────────────────────────────────────────────────────
+const adminTokens = new Set();
+
+function getAdminSession(req) {
+  const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('cottage_admin='));
+  if (!cookie) return false;
+  const token = cookie.split('=')[1].trim();
+  return adminTokens.has(token);
+}
+
+// ── Email System ────────────────────────────────────────────────────────────
+function getEmailTransporter() {
+  if (!platformSettings.emailEnabled || !platformSettings.smtpHost) return null;
+  return nodemailer.createTransport({
+    host: platformSettings.smtpHost,
+    port: platformSettings.smtpPort || 587,
+    secure: platformSettings.smtpPort === 465,
+    auth: { user: platformSettings.smtpUser, pass: platformSettings.smtpPass }
+  });
+}
+
+async function sendEmail(to, subject, html) {
+  const transporter = getEmailTransporter();
+  if (!transporter) {
+    console.log(`📧 Email (not sent - disabled): ${subject} → ${to}`);
+    return;
+  }
+  try {
+    await transporter.sendMail({ from: platformSettings.smtpFrom, to, subject, html });
+    console.log(`✓ Email sent: ${subject} → ${to}`);
+  } catch (e) {
+    console.error('Email error:', e.message);
+  }
+}
+
+function emailWrap(title, body) {
+  const accent = platformSettings.accentColor || '#ea580c';
+  const name = platformSettings.platformName || 'Cottage';
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#f5f5f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:560px;margin:24px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+<div style="background:${accent};padding:20px 24px;color:#fff;font-size:20px;font-weight:700;">${name}</div>
+<div style="padding:24px;">
+<h2 style="margin:0 0 16px;color:#1c1917;font-size:18px;">${title}</h2>
+${body}
+</div>
+<div style="padding:16px 24px;background:#fafaf9;color:#a8a29e;font-size:12px;text-align:center;">
+${name} &mdash; ${platformSettings.tagline || ''}
+</div>
+</div></body></html>`;
+}
+
+function sendOrderNotificationToSeller(order) {
+  const seller = users.users.find(u => u.id === order.sellerId);
+  if (!seller || !seller.email) return;
+  const html = emailWrap('New Order Received', `
+    <p style="color:#44403c;line-height:1.6;">You have a new order from <strong>${order.buyerName}</strong>!</p>
+    <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
+      <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
+      <p style="margin:0 0 8px;"><strong>Amount:</strong> $${(order.amount / 100).toFixed(2)}</p>
+      <p style="margin:0;"><strong>Order ID:</strong> ${order.id}</p>
+      ${order.note ? `<p style="margin:8px 0 0;"><strong>Note:</strong> ${order.note}</p>` : ''}
+    </div>
+    <p style="color:#44403c;">Log in to your seller dashboard to confirm or manage this order.</p>
+  `);
+  sendEmail(seller.email, `New Order: ${order.productName}`, html);
+}
+
+function sendOrderConfirmationToBuyer(order) {
+  const buyer = users.users.find(u => u.id === order.buyerId);
+  if (!buyer || !buyer.email) return;
+  const html = emailWrap('Order Confirmed', `
+    <p style="color:#44403c;line-height:1.6;">Great news! Your order has been confirmed by <strong>${order.sellerName}</strong>.</p>
+    <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
+      <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
+      <p style="margin:0 0 8px;"><strong>Amount:</strong> $${(order.amount / 100).toFixed(2)}</p>
+      <p style="margin:0;"><strong>Order ID:</strong> ${order.id}</p>
+    </div>
+    <p style="color:#44403c;">The seller will reach out regarding pickup or delivery details.</p>
+  `);
+  sendEmail(buyer.email, `Order Confirmed: ${order.productName}`, html);
+}
+
+function sendOrderCompletionToBuyer(order) {
+  const buyer = users.users.find(u => u.id === order.buyerId);
+  if (!buyer || !buyer.email) return;
+  const html = emailWrap('Order Complete', `
+    <p style="color:#44403c;line-height:1.6;">Your order from <strong>${order.sellerName}</strong> has been marked as complete!</p>
+    <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
+      <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
+      <p style="margin:0;"><strong>Order ID:</strong> ${order.id}</p>
+    </div>
+    <p style="color:#44403c;">Enjoyed your purchase? Leave a rating to help other buyers and support your seller!</p>
+  `);
+  sendEmail(buyer.email, `Order Complete: ${order.productName}`, html);
+}
+
+function sendOrderCancellationToBuyer(order) {
+  const buyer = users.users.find(u => u.id === order.buyerId);
+  if (!buyer || !buyer.email) return;
+  const html = emailWrap('Order Cancelled', `
+    <p style="color:#44403c;line-height:1.6;">Unfortunately, your order from <strong>${order.sellerName}</strong> has been cancelled.</p>
+    <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
+      <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
+      <p style="margin:0 0 8px;"><strong>Amount:</strong> $${(order.amount / 100).toFixed(2)}</p>
+      <p style="margin:0;"><strong>Order ID:</strong> ${order.id}</p>
+    </div>
+    <p style="color:#44403c;">If you were charged, a refund will be processed. Feel free to browse other sellers on the marketplace.</p>
+  `);
+  sendEmail(buyer.email, `Order Cancelled: ${order.productName}`, html);
+}
 
 // ═════════════════════════════════════════════════════════════════════════════
 //  AUTH ROUTES
@@ -414,9 +555,10 @@ app.post('/api/profiles/photos', upload.single('photo'), (req, res) => {
   if (!req.file) return res.status(400).json({ ok: false, error: 'No file uploaded.' });
 
   if (!user.profile) user.profile = { displayName: '', bio: '', photos: [], location: null };
-  if (user.profile.photos.length >= 6) {
+  const maxPhotos = platformSettings.maxProfilePhotos || 6;
+  if (user.profile.photos.length >= maxPhotos) {
     fs.unlinkSync(req.file.path);
-    return res.status(400).json({ ok: false, error: 'Maximum 6 photos allowed.' });
+    return res.status(400).json({ ok: false, error: `Maximum ${maxPhotos} photos allowed.` });
   }
 
   const url = `/uploads/${req.file.filename}`;
@@ -456,7 +598,13 @@ app.delete('/api/profiles/photos/:index', (req, res) => {
 
 // GET /api/products?sellerId=
 app.get('/api/products', (req, res) => {
-  let filtered = products.products.filter(p => p.available !== false);
+  let filtered = products.products.filter(p => {
+    if (p.available === false) return false;
+    // Filter out products from suspended sellers
+    const seller = users.users.find(u => u.id === p.sellerId);
+    if (seller && seller.status === 'suspended') return false;
+    return true;
+  });
   if (req.query.sellerId) filtered = filtered.filter(p => p.sellerId === req.query.sellerId);
   res.json({ ok: true, products: filtered });
 });
@@ -497,7 +645,8 @@ app.post('/api/products/:id/photos', upload.single('photo'), (req, res) => {
   const product = products.products.find(p => p.id === req.params.id && p.sellerId === user.id);
   if (!product) { if (req.file) fs.unlinkSync(req.file.path); return res.status(404).json({ ok: false, error: 'Not found.' }); }
   if (!req.file) return res.status(400).json({ ok: false, error: 'No file.' });
-  if (product.photos.length >= 4) { fs.unlinkSync(req.file.path); return res.status(400).json({ ok: false, error: 'Max 4 photos per product.' }); }
+  const maxPhotos = platformSettings.maxProductPhotos || 4;
+  if (product.photos.length >= maxPhotos) { fs.unlinkSync(req.file.path); return res.status(400).json({ ok: false, error: `Max ${maxPhotos} photos per product.` }); }
 
   const url = `/uploads/${req.file.filename}`;
   product.photos.push(url);
@@ -550,6 +699,10 @@ app.post('/api/orders', async (req, res) => {
   if (!product) return res.status(404).json({ ok: false, error: 'Product not available.' });
   if (product.sellerId === user.id) return res.status(400).json({ ok: false, error: "Can't order your own product." });
 
+  // Check if seller is suspended
+  const seller = users.users.find(u => u.id === product.sellerId);
+  if (seller && seller.status === 'suspended') return res.status(400).json({ ok: false, error: 'This seller is currently unavailable.' });
+
   const order = {
     id: 'ord_' + crypto.randomBytes(8).toString('hex'),
     buyerId: user.id, buyerName: user.name,
@@ -559,6 +712,7 @@ app.post('/api/orders', async (req, res) => {
     note: String(note || '').slice(0, 500),
     status: 'pending',
     stripeSessionId: null,
+    paidOut: false,
     createdAt: new Date().toISOString()
   };
 
@@ -585,6 +739,7 @@ app.post('/api/orders', async (req, res) => {
       order.status = 'awaiting_payment';
       orders.orders.push(order);
       saveData('orders', orders);
+      sendOrderNotificationToSeller(order);
       return res.json({ ok: true, order, checkoutUrl: session.url });
     } catch (e) {
       console.error('Stripe error:', e.message);
@@ -594,6 +749,7 @@ app.post('/api/orders', async (req, res) => {
   // No Stripe — order created as pending
   orders.orders.push(order);
   saveData('orders', orders);
+  sendOrderNotificationToSeller(order);
   res.json({ ok: true, order, checkoutUrl: null });
 });
 
@@ -631,6 +787,16 @@ app.put('/api/orders/:id/status', (req, res) => {
 
   order.status = status;
   saveData('orders', orders);
+
+  // Send email notifications based on status change
+  if (status === 'confirmed') {
+    sendOrderConfirmationToBuyer(order);
+  } else if (status === 'completed') {
+    sendOrderCompletionToBuyer(order);
+  } else if (status === 'cancelled') {
+    sendOrderCancellationToBuyer(order);
+  }
+
   res.json({ ok: true, order });
 });
 
@@ -660,7 +826,15 @@ app.post('/api/webhooks/stripe', express.raw({ type: 'application/json' }), (req
 // GET /api/elements
 app.get('/api/elements', (req, res) => {
   const { sw_lat, sw_lng, ne_lat, ne_lng } = req.query;
-  let filtered = elements.elements.filter(e => e.active !== false);
+  let filtered = elements.elements.filter(e => {
+    if (e.active === false) return false;
+    // Filter out suspended sellers
+    if (e.type === 'seller' && e.metadata && e.metadata.userId) {
+      const seller = users.users.find(u => u.id === e.metadata.userId);
+      if (seller && seller.status === 'suspended') return false;
+    }
+    return true;
+  });
 
   if (sw_lat && sw_lng && ne_lat && ne_lng) {
     const swLat = parseFloat(sw_lat), swLng = parseFloat(sw_lng);
@@ -668,13 +842,22 @@ app.get('/api/elements', (req, res) => {
     filtered = filtered.filter(e => e.lat >= swLat && e.lat <= neLat && e.lng >= swLng && e.lng <= neLng);
   }
 
-  // Attach product count for seller elements
+  // Attach product count and apply fuzzy location for seller elements
+  const fuzzyRadius = platformSettings.locationFuzzyRadius || 0.005;
   filtered = filtered.map(e => {
+    const copy = { ...e };
     if (e.metadata && e.metadata.userId) {
       const count = products.products.filter(p => p.sellerId === e.metadata.userId && p.available !== false).length;
-      return { ...e, productCount: count };
+      copy.productCount = count;
     }
-    return e;
+    // Fuzzy location - offset by random amount within radius
+    if (e.type === 'seller') {
+      const angle = Math.random() * Math.PI * 2;
+      const r = Math.random() * fuzzyRadius;
+      copy.lat = e.lat + Math.sin(angle) * r;
+      copy.lng = e.lng + Math.cos(angle) * r;
+    }
+    return copy;
   });
 
   res.json({ ok: true, elements: filtered, total: filtered.length });
@@ -686,6 +869,16 @@ app.get('/api/elements/:id', (req, res) => {
   if (!el) return res.status(404).json({ ok: false, error: 'Not found.' });
 
   let result = { ...el };
+
+  // Fuzzy location for seller elements on public API
+  if (el.type === 'seller') {
+    const fuzzyRadius = platformSettings.locationFuzzyRadius || 0.005;
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.random() * fuzzyRadius;
+    result.lat = el.lat + Math.sin(angle) * r;
+    result.lng = el.lng + Math.cos(angle) * r;
+  }
+
   if (el.metadata && el.metadata.userId) {
     result.products = products.products.filter(p => p.sellerId === el.metadata.userId && p.available !== false);
   }
@@ -768,6 +961,7 @@ app.post('/api/elements/seed-nearby', (req, res) => {
 app.post('/api/messages', (req, res) => {
   const user = getSession(req);
   if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+  if (!platformSettings.enableMessaging) return res.status(403).json({ ok: false, error: 'Messaging is disabled.' });
   const { to, text } = req.body;
   if (!to || !text) return res.status(400).json({ ok: false, error: 'Recipient and text required.' });
   const msg = { id: 'msg_' + crypto.randomBytes(8).toString('hex'), fromId: user.id, toId: to, text: text.slice(0, 2000), createdAt: new Date().toISOString() };
@@ -796,6 +990,424 @@ app.get('/api/messages/:peerId', (req, res) => {
     .filter(m => (m.fromId === user.id && m.toId === req.params.peerId) || (m.fromId === req.params.peerId && m.toId === user.id))
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
   res.json({ ok: true, messages: convo });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  RATINGS
+// ═════════════════════════════════════════════════════════════════════════════
+
+// POST /api/ratings — buyer rates a completed order
+app.post('/api/ratings', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+  if (!platformSettings.enableRatings) return res.status(403).json({ ok: false, error: 'Ratings are disabled.' });
+
+  const { orderId, rating, comment } = req.body;
+  if (!orderId || !rating) return res.status(400).json({ ok: false, error: 'orderId and rating required.' });
+
+  const ratingVal = parseInt(rating);
+  if (ratingVal < 1 || ratingVal > 5) return res.status(400).json({ ok: false, error: 'Rating must be 1-5.' });
+
+  const order = orders.orders.find(o => o.id === orderId);
+  if (!order) return res.status(404).json({ ok: false, error: 'Order not found.' });
+  if (order.buyerId !== user.id) return res.status(403).json({ ok: false, error: 'Only the buyer can rate this order.' });
+  if (order.status !== 'completed') return res.status(400).json({ ok: false, error: 'Can only rate completed orders.' });
+
+  // Check for existing rating on this order
+  const existing = ratings.ratings.find(r => r.orderId === orderId);
+  if (existing) return res.status(400).json({ ok: false, error: 'You already rated this order.' });
+
+  const ratingObj = {
+    id: 'rat_' + crypto.randomBytes(8).toString('hex'),
+    orderId: order.id,
+    buyerId: user.id,
+    buyerName: user.name,
+    sellerId: order.sellerId,
+    rating: ratingVal,
+    comment: String(comment || '').slice(0, 1000),
+    createdAt: new Date().toISOString()
+  };
+
+  ratings.ratings.push(ratingObj);
+  saveData('ratings', ratings);
+  res.json({ ok: true, rating: ratingObj });
+});
+
+// GET /api/ratings?sellerId= — get ratings for a seller
+app.get('/api/ratings', (req, res) => {
+  const { sellerId } = req.query;
+  if (!sellerId) return res.status(400).json({ ok: false, error: 'sellerId required.' });
+
+  const sellerRatings = ratings.ratings
+    .filter(r => r.sellerId === sellerId)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  res.json({ ok: true, ratings: sellerRatings });
+});
+
+// GET /api/ratings/summary?sellerId= — rating summary for a seller
+app.get('/api/ratings/summary', (req, res) => {
+  const { sellerId } = req.query;
+  if (!sellerId) return res.status(400).json({ ok: false, error: 'sellerId required.' });
+
+  const sellerRatings = ratings.ratings.filter(r => r.sellerId === sellerId);
+  const count = sellerRatings.length;
+
+  if (count === 0) {
+    return res.json({ ok: true, average: 0, count: 0, distribution: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } });
+  }
+
+  const sum = sellerRatings.reduce((acc, r) => acc + r.rating, 0);
+  const distribution = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  sellerRatings.forEach(r => { distribution[r.rating]++; });
+
+  res.json({
+    ok: true,
+    average: Math.round((sum / count) * 10) / 10,
+    count,
+    distribution
+  });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  SELLER DASHBOARD
+// ═════════════════════════════════════════════════════════════════════════════
+
+// GET /api/seller/dashboard
+app.get('/api/seller/dashboard', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const sellerOrders = orders.orders.filter(o => o.sellerId === user.id);
+  const completedOrders = sellerOrders.filter(o => o.status === 'completed');
+  const pendingOrders = sellerOrders.filter(o => ['pending', 'paid', 'confirmed'].includes(o.status));
+  const totalRevenue = completedOrders.reduce((sum, o) => sum + o.amount, 0);
+
+  const sellerRatings = ratings.ratings.filter(r => r.sellerId === user.id);
+  const avgRating = sellerRatings.length > 0
+    ? Math.round((sellerRatings.reduce((sum, r) => sum + r.rating, 0) / sellerRatings.length) * 10) / 10
+    : 0;
+
+  const sellerProducts = products.products.filter(p => p.sellerId === user.id);
+
+  res.json({
+    ok: true,
+    totalRevenue,
+    totalOrders: sellerOrders.length,
+    pendingOrders: pendingOrders.length,
+    completedOrders: completedOrders.length,
+    averageRating: avgRating,
+    totalRatings: sellerRatings.length,
+    products: sellerProducts
+  });
+});
+
+// GET /api/seller/payouts
+app.get('/api/seller/payouts', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const sellerPayouts = payouts.payouts
+    .filter(p => p.sellerId === user.id)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  res.json({ ok: true, payouts: sellerPayouts });
+});
+
+// PUT /api/seller/tax-info
+app.put('/api/seller/tax-info', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const { businessName, ein, ssnLast4, address, city, state, zip } = req.body;
+  user.taxInfo = {
+    businessName: String(businessName || '').slice(0, 200),
+    ein: String(ein || '').slice(0, 20),
+    ssnLast4: String(ssnLast4 || '').slice(0, 4),
+    address: String(address || '').slice(0, 300),
+    city: String(city || '').slice(0, 100),
+    state: String(state || '').slice(0, 2),
+    zip: String(zip || '').slice(0, 10)
+  };
+
+  saveData('users', users);
+  res.json({ ok: true, taxInfo: user.taxInfo });
+});
+
+// GET /api/seller/tax-info
+app.get('/api/seller/tax-info', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+  res.json({ ok: true, taxInfo: user.taxInfo || null });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  ADMIN AUTH
+// ═════════════════════════════════════════════════════════════════════════════
+
+app.post('/api/admin/login', (req, res) => {
+  const { password } = req.body;
+  if (password !== platformSettings.adminPassword) {
+    return res.status(401).json({ ok: false, error: 'Invalid password.' });
+  }
+  const token = 'adm_' + crypto.randomBytes(24).toString('hex');
+  adminTokens.add(token);
+  const expires = new Date(Date.now() + 7 * 86400000).toUTCString();
+  res.setHeader('Set-Cookie', `cottage_admin=${token}; Path=/; Expires=${expires}; HttpOnly; SameSite=Lax`);
+  res.json({ ok: true });
+});
+
+app.post('/api/admin/logout', (req, res) => {
+  const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('cottage_admin='));
+  if (cookie) adminTokens.delete(cookie.split('=')[1].trim());
+  res.setHeader('Set-Cookie', 'cottage_admin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax');
+  res.json({ ok: true });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  ADMIN API
+// ═════════════════════════════════════════════════════════════════════════════
+
+// GET /api/admin/dashboard
+app.get('/api/admin/dashboard', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  // Total sellers = users with at least 1 product
+  const sellerIds = new Set(products.products.map(p => p.sellerId));
+  const totalSellers = sellerIds.size;
+
+  // Total buyers = users who placed at least 1 order
+  const buyerIds = new Set(orders.orders.map(o => o.buyerId));
+  const totalBuyers = buyerIds.size;
+
+  const totalOrders = orders.orders.length;
+  const totalRevenue = orders.orders
+    .filter(o => ['completed', 'paid', 'confirmed'].includes(o.status))
+    .reduce((sum, o) => sum + o.amount, 0);
+
+  const recentOrders = orders.orders
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 20);
+
+  // Pending payout amounts per seller (completed orders not yet paid out)
+  const pendingPayouts = {};
+  orders.orders
+    .filter(o => o.status === 'completed' && !o.paidOut)
+    .forEach(o => {
+      if (!pendingPayouts[o.sellerId]) {
+        pendingPayouts[o.sellerId] = { sellerId: o.sellerId, sellerName: o.sellerName, amount: 0, orderCount: 0 };
+      }
+      pendingPayouts[o.sellerId].amount += o.amount;
+      pendingPayouts[o.sellerId].orderCount++;
+    });
+
+  res.json({
+    ok: true,
+    totalSellers,
+    totalBuyers,
+    totalOrders,
+    totalRevenue,
+    recentOrders,
+    pendingPayouts: Object.values(pendingPayouts)
+  });
+});
+
+// GET /api/admin/sellers
+app.get('/api/admin/sellers', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const sellerIds = new Set(products.products.map(p => p.sellerId));
+  const sellerList = users.users
+    .filter(u => sellerIds.has(u.id))
+    .map(u => {
+      const userProducts = products.products.filter(p => p.sellerId === u.id);
+      const userOrders = orders.orders.filter(o => o.sellerId === u.id);
+      const completedOrders = userOrders.filter(o => o.status === 'completed');
+      const revenue = completedOrders.reduce((sum, o) => sum + o.amount, 0);
+      const userRatings = ratings.ratings.filter(r => r.sellerId === u.id);
+      const avgRating = userRatings.length > 0
+        ? Math.round((userRatings.reduce((s, r) => s + r.rating, 0) / userRatings.length) * 10) / 10
+        : 0;
+
+      return {
+        id: u.id,
+        name: u.name,
+        displayName: (u.profile && u.profile.displayName) || u.name,
+        email: u.email,
+        phone: u.phone,
+        status: u.status || 'active',
+        productsCount: userProducts.length,
+        ordersCount: userOrders.length,
+        revenue,
+        rating: avgRating,
+        ratingsCount: userRatings.length,
+        permitType: (u.profile && u.profile.permitType) || null,
+        permitNumber: (u.profile && u.profile.permitNumber) || null,
+        createdAt: u.createdAt
+      };
+    });
+
+  res.json({ ok: true, sellers: sellerList });
+});
+
+// GET /api/admin/buyers
+app.get('/api/admin/buyers', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const buyerMap = {};
+  orders.orders.forEach(o => {
+    if (!buyerMap[o.buyerId]) {
+      buyerMap[o.buyerId] = { buyerId: o.buyerId, buyerName: o.buyerName, orderCount: 0, totalSpent: 0 };
+    }
+    buyerMap[o.buyerId].orderCount++;
+    if (['completed', 'paid', 'confirmed'].includes(o.status)) {
+      buyerMap[o.buyerId].totalSpent += o.amount;
+    }
+  });
+
+  const buyerList = Object.values(buyerMap).map(b => {
+    const user = users.users.find(u => u.id === b.buyerId);
+    return {
+      ...b,
+      email: user ? user.email : null,
+      phone: user ? user.phone : null,
+      createdAt: user ? user.createdAt : null
+    };
+  });
+
+  res.json({ ok: true, buyers: buyerList });
+});
+
+// GET /api/admin/orders
+app.get('/api/admin/orders', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  let filtered = [...orders.orders];
+  if (req.query.status) {
+    filtered = filtered.filter(o => o.status === req.query.status);
+  }
+  filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  res.json({ ok: true, orders: filtered });
+});
+
+// PUT /api/admin/sellers/:id/status
+app.put('/api/admin/sellers/:id/status', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const user = users.users.find(u => u.id === req.params.id);
+  if (!user) return res.status(404).json({ ok: false, error: 'User not found.' });
+
+  const { status } = req.body;
+  if (!['active', 'suspended'].includes(status)) {
+    return res.status(400).json({ ok: false, error: 'Status must be "active" or "suspended".' });
+  }
+
+  user.status = status;
+  saveData('users', users);
+  res.json({ ok: true, id: user.id, status: user.status });
+});
+
+// GET /api/admin/settings
+app.get('/api/admin/settings', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  res.json({ ok: true, settings: platformSettings });
+});
+
+// PUT /api/admin/settings
+app.put('/api/admin/settings', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const updates = req.body;
+  // Partial merge — only update keys that are provided
+  for (const key of Object.keys(updates)) {
+    if (key in platformSettings) {
+      platformSettings[key] = updates[key];
+    }
+  }
+  saveData('platform_settings', platformSettings);
+  res.json({ ok: true, settings: platformSettings });
+});
+
+// GET /api/admin/payouts
+app.get('/api/admin/payouts', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const allPayouts = [...payouts.payouts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  res.json({ ok: true, payouts: allPayouts });
+});
+
+// POST /api/admin/payouts/:sellerId/process
+app.post('/api/admin/payouts/:sellerId/process', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const sellerId = req.params.sellerId;
+  const seller = users.users.find(u => u.id === sellerId);
+  if (!seller) return res.status(404).json({ ok: false, error: 'Seller not found.' });
+
+  // Find all completed orders not yet paid out for this seller
+  const eligibleOrders = orders.orders.filter(o => o.sellerId === sellerId && o.status === 'completed' && !o.paidOut);
+  if (eligibleOrders.length === 0) {
+    return res.status(400).json({ ok: false, error: 'No eligible orders to pay out.' });
+  }
+
+  const totalAmount = eligibleOrders.reduce((sum, o) => sum + o.amount, 0);
+  const commissionRate = platformSettings.commissionRate || 10;
+  const commission = Math.round(totalAmount * (commissionRate / 100));
+  const netAmount = totalAmount - commission;
+
+  if (netAmount < (platformSettings.minPayoutAmount || 2500)) {
+    return res.status(400).json({ ok: false, error: `Net payout ($${(netAmount / 100).toFixed(2)}) is below minimum ($${((platformSettings.minPayoutAmount || 2500) / 100).toFixed(2)}).` });
+  }
+
+  const payout = {
+    id: 'pay_' + crypto.randomBytes(8).toString('hex'),
+    sellerId,
+    sellerName: (seller.profile && seller.profile.displayName) || seller.name,
+    amount: totalAmount,
+    commission,
+    netAmount,
+    orderIds: eligibleOrders.map(o => o.id),
+    method: 'manual',
+    status: 'processed',
+    processedAt: new Date().toISOString(),
+    createdAt: new Date().toISOString()
+  };
+
+  // Mark orders as paid out
+  eligibleOrders.forEach(o => { o.paidOut = true; });
+  saveData('orders', orders);
+
+  payouts.payouts.push(payout);
+  saveData('payouts', payouts);
+
+  res.json({ ok: true, payout });
+});
+
+// GET /api/admin/ratings
+app.get('/api/admin/ratings', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const allRatings = [...ratings.ratings].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  res.json({ ok: true, ratings: allRatings });
+});
+
+// DELETE /api/admin/ratings/:id
+app.delete('/api/admin/ratings/:id', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const idx = ratings.ratings.findIndex(r => r.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ ok: false, error: 'Rating not found.' });
+
+  ratings.ratings.splice(idx, 1);
+  saveData('ratings', ratings);
+  res.json({ ok: true });
+});
+
+// GET /api/admin/elements — return elements with real (non-fuzzy) locations
+app.get('/api/admin/elements', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  res.json({ ok: true, elements: elements.elements });
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -882,7 +1494,7 @@ function seedDefaults() {
       lat: 34.0500, lng: -118.2400, address: "Little Tokyo, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-2788",
       products: [
         { name: "Fresh Fettuccine (1lb)", price: 800, category: "pasta", description: "Classic egg fettuccine, hand-rolled and cut. Cooks in 3 minutes.", allergens: ["wheat", "eggs"] },
-        { name: "Pappardelle (1lb)", price: 900, category: "pasta", description: "Wide ribbon pasta, perfect for ragù or brown butter sage.", allergens: ["wheat", "eggs"] },
+        { name: "Pappardelle (1lb)", price: 900, category: "pasta", description: "Wide ribbon pasta, perfect for ragu or brown butter sage.", allergens: ["wheat", "eggs"] },
         { name: "Pasta Sampler Box", price: 2200, category: "pasta", description: "1/2 lb each of fettuccine, pappardelle, tagliatelle, and orecchiette.", allergens: ["wheat", "eggs"] }
       ]
     },
@@ -904,6 +1516,7 @@ function seedDefaults() {
     // Create user
     users.users.push({
       id: userId, name: s.name, email: null, phone: null, googleId: null, phoneVerified: false,
+      status: 'active',
       profile: {
         displayName: s.name, bio: s.bio,
         photos: [`https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(s.name)}&backgroundColor=7c2d12&textColor=fff`],

@@ -83,6 +83,15 @@
     .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
     .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
+    /* ── Trust Section ── */
+    .trust-section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+    .trust-section h2 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.02em; }
+    .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+    .trust-item { text-align: center; }
+    .trust-icon { font-size: 36px; margin-bottom: 12px; }
+    .trust-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .trust-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
     /* ── Cottage Food Info ── */
     .info-section { padding: 0 24px 80px; max-width: 720px; margin: 0 auto; }
     .info-card {
@@ -94,6 +103,12 @@
     .info-card p { font-size: 14px; color: var(--dim, #a0a0c0); line-height: 1.7; margin-bottom: 12px; }
     .info-card a { color: var(--accent-light); text-decoration: none; font-weight: 600; font-size: 14px; }
     .info-card a:hover { text-decoration: underline; }
+
+    /* ── Seller CTA ── */
+    .seller-cta { padding: 0 24px 80px; max-width: 720px; margin: 0 auto; }
+    .seller-cta-card { background: linear-gradient(135deg, rgba(234,88,12,0.08) 0%, rgba(234,88,12,0.02) 100%); border: 1px solid rgba(234,88,12,0.2); border-radius: 20px; padding: 48px 32px; text-align: center; }
+    .seller-cta-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+    .seller-cta-card p { font-size: 15px; color: var(--dim, #a0a0c0); line-height: 1.6; max-width: 500px; margin: 0 auto; }
 
     /* ── Footer ── */
     footer {
@@ -162,7 +177,7 @@
       <span class="hero-icon">🍞</span>
       <h1 class="logo" id="hero-logo">Cot<span>tage</span></h1>
       <p class="tagline">Homemade goods from kitchens near you</p>
-      <p class="sub-tagline">Discover local home bakers, order fresh bread, cookies, jams & more — direct from permitted cottage food kitchens in Los Angeles.</p>
+      <p class="sub-tagline">Discover verified home bakers in your neighborhood. Fresh bread, cookies, jams & more — direct from permitted kitchens. Every seller verified. Every product labeled. Every purchase rated.</p>
 
       <div class="cta-stack">
         <a href="/map" class="cta-btn cta-browse">
@@ -177,7 +192,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           Sign in with phone
         </button>
-        <a href="/map?auth=1" class="cta-btn cta-seller">
+        <a href="/seller" class="cta-btn cta-seller">
           I'm a home baker — start selling
         </a>
       </div>
@@ -224,6 +239,47 @@
         <h3>Start selling</h3>
         <p>List your homemade goods, set your prices, and reach customers in your neighborhood. All under California's Cottage Food law.</p>
       </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>Your privacy, protected</h3>
+        <p>Seller locations are approximate on the map — we never share exact addresses. Pickup details are shared only after an order is confirmed.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✅</span>
+        <h3>Verified sellers</h3>
+        <p>Every seller is verified with a valid California Cottage Food permit. We check so you don't have to.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⭐</span>
+        <h3>Rated by real buyers</h3>
+        <p>Every purchase gets a rating. See what your neighbors think before you order. No fake reviews, no bots.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-section">
+    <h2>Why buy from Cottage?</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🤝</div>
+        <h4>Direct from the baker</h4>
+        <p>No middlemen, no warehouses. Your order goes straight from a home kitchen to your hands. You know exactly who made your food.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📍</div>
+        <h4>Hyper-local</h4>
+        <p>Every seller is in your neighborhood. Fresher than any delivery app. Lower carbon footprint. Support your actual community.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">💰</div>
+        <h4>Fair prices, fair pay</h4>
+        <p>Sellers set their own prices. No surge pricing, no hidden fees. What you see is what you pay. Sellers keep 90% of every sale.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛡️</div>
+        <h4>Safe & compliant</h4>
+        <p>Protected by California's Cottage Food law (AB 1616). Every seller holds a valid permit. Allergens clearly labeled on every product.</p>
+      </div>
     </div>
   </section>
 
@@ -233,6 +289,17 @@
       <p>All sellers on Cottage operate under California's AB 1616 Cottage Food law. This means every kitchen is registered with their local county, follows food safety guidelines, and is legally permitted to sell homemade goods directly to you.</p>
       <p>Class A permits allow direct-to-consumer sales up to $75,000/year. Class B permits allow indirect sales through stores and restaurants up to $150,000/year.</p>
       <a href="http://publichealth.lacounty.gov/Eh/business/home-based-cottage-food.htm" target="_blank" rel="noopener">Learn more about LA County cottage food permits →</a>
+    </div>
+  </section>
+
+  <section class="seller-cta">
+    <div class="seller-cta-card">
+      <h2>Ready to sell your homemade goods?</h2>
+      <p>Join hundreds of home bakers on Cottage. Set up your kitchen in minutes. No monthly fees — we only take 10% when you make a sale.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+        <a href="/seller" class="cta-btn cta-browse" style="width:auto;padding:16px 32px">Start selling today</a>
+        <a href="/map" class="cta-btn cta-phone" style="width:auto;padding:16px 32px">Browse as a buyer</a>
+      </div>
     </div>
   </section>
 

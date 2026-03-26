@@ -59,7 +59,85 @@ app.use(express.json());
 
 // Clean URL routes (before static)
 app.get('/map', (req, res) => res.sendFile(path.join(__dirname, 'public/map.html')));
-app.get('/profile/:id?', (req, res) => res.sendFile(path.join(__dirname, 'public/profile.html')));
+app.get('/profile/:id', (req, res) => {
+  const id = req.params.id;
+  // Look up element by ownerId or element ID
+  let el = elements.elements.find(e => e.ownerId === id && e.active !== false);
+  if (!el) el = elements.elements.find(e => e.id === id && e.active !== false);
+  if (!el) return res.status(404).send('<h1>Not Found</h1>');
+
+  const userId = (el.metadata && el.metadata.userId) || el.ownerId;
+  const elProducts = products.products.filter(p => p.sellerId === userId && p.available !== false);
+  const sellerRatings = ratings.ratings.filter(r => r.sellerId === userId);
+  const avgRating = sellerRatings.length > 0
+    ? Math.round((sellerRatings.reduce((s, r) => s + r.rating, 0) / sellerRatings.length) * 10) / 10
+    : 0;
+
+  const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const accent = platformSettings.accentColor || '#ea580c';
+
+  const productCards = elProducts.map(p => `
+    <div style="background:#1e1e2e;border-radius:12px;padding:16px;margin-bottom:12px;">
+      ${p.photos && p.photos.length ? `<img src="${esc(p.photos[0])}" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:12px;" alt="${esc(p.name)}">` : ''}
+      <div style="font-size:16px;font-weight:600;color:#f5f5f5;">${esc(p.name)}</div>
+      ${p.price > 0 ? `<div style="color:${accent};font-weight:700;margin-top:4px;">$${(p.price / 100).toFixed(2)}</div>` : ''}
+      ${p.description ? `<div style="color:#a0a0b8;font-size:13px;margin-top:6px;line-height:1.4;">${esc(p.description)}</div>` : ''}
+      ${p.allergens && p.allergens.length ? `<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">${p.allergens.map(a => `<span style="background:#2a2a3a;color:#d0d0e0;padding:2px 8px;border-radius:10px;font-size:11px;">${esc(a)}</span>`).join('')}</div>` : ''}
+    </div>
+  `).join('');
+
+  const contactItems = [];
+  if (el.email) contactItems.push(`<a href="mailto:${esc(el.email)}" style="color:${accent};text-decoration:none;">&#9993; ${esc(el.email)}</a>`);
+  if (el.phone) contactItems.push(`<a href="tel:${esc(el.phone)}" style="color:${accent};text-decoration:none;">&#9742; ${esc(el.phone)}</a>`);
+  if (el.instagram) contactItems.push(`<a href="https://instagram.com/${esc(el.instagram.replace(/^@/, ''))}" target="_blank" style="color:${accent};text-decoration:none;">&#64; ${esc(el.instagram)}</a>`);
+  if (el.externalOrderUrl) contactItems.push(`<a href="${esc(el.externalOrderUrl)}" target="_blank" style="color:${accent};text-decoration:none;">&#127760; Website</a>`);
+
+  const tagsHtml = (el.tags && el.tags.length)
+    ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">${(Array.isArray(el.tags) ? el.tags : String(el.tags).split(',').map(t => t.trim()).filter(Boolean)).map(t => `<span style="background:#2a2a3a;color:#d0d0e0;padding:4px 10px;border-radius:12px;font-size:12px;">${esc(t)}</span>`).join('')}</div>`
+    : '';
+
+  const html = `<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(el.title)} | ${platformSettings.platformName || 'Cottage'}</title>
+<meta name="description" content="${esc(el.description || el.subtitle || '')}">
+<meta property="og:title" content="${esc(el.title)}">
+<meta property="og:description" content="${esc(el.description || el.subtitle || '')}">
+${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f0f1a;color:#e0e0f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+.container{max-width:600px;margin:0 auto;padding:16px}
+.back{display:inline-block;color:${accent};text-decoration:none;font-size:14px;margin-bottom:16px;opacity:0.8}
+.back:hover{opacity:1}
+.hero{width:100%;height:240px;object-fit:cover;border-radius:16px;margin-bottom:20px;background:#1a1a2e}
+h1{font-size:24px;font-weight:700;margin-bottom:4px}
+.subtitle{color:#a0a0b8;font-size:14px;margin-bottom:6px}
+.rating{color:#fbbf24;font-size:14px;margin-bottom:12px}
+.desc{color:#c0c0d8;font-size:14px;line-height:1.6;margin-bottom:20px}
+.section-title{font-size:18px;font-weight:600;margin-bottom:12px;color:#f5f5f5}
+.contact{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.order-btn{display:block;text-align:center;background:${accent};color:#fff;font-size:16px;font-weight:700;padding:14px 24px;border-radius:12px;text-decoration:none;margin:20px 0}
+.order-btn:hover{opacity:0.9}
+</style>
+</head><body>
+<div class="container">
+  <a href="map" class="back">&larr; Back to map</a>
+  ${el.imageUrl ? `<img src="${esc(el.imageUrl)}" class="hero" alt="${esc(el.title)}">` : '<div class="hero" style="display:flex;align-items:center;justify-content:center;font-size:64px;">' + (el.icon || '🏪') + '</div>'}
+  <h1>${esc(el.title)}</h1>
+  ${el.subtitle ? `<div class="subtitle">${esc(el.subtitle)}</div>` : ''}
+  ${el.cuisineType ? `<div class="subtitle">${esc(el.cuisineType)}</div>` : ''}
+  ${el.address ? `<div class="subtitle">&#128205; ${esc(el.address)}</div>` : ''}
+  ${avgRating > 0 ? `<div class="rating">${'&#9733;'.repeat(Math.round(avgRating))} ${avgRating} (${sellerRatings.length} review${sellerRatings.length !== 1 ? 's' : ''})</div>` : ''}
+  ${tagsHtml}
+  ${el.description ? `<div class="desc">${esc(el.description)}</div>` : ''}
+  ${el.externalOrderUrl ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" class="order-btn">Order Now</a>` : ''}
+  ${elProducts.length > 0 ? `<div class="section-title">Products</div>${productCards}` : ''}
+  ${contactItems.length > 0 ? `<div class="section-title" style="margin-top:20px;">Contact</div><div class="contact">${contactItems.join('')}</div>` : ''}
+</div>
+</body></html>`;
+
+  res.send(html);
+});
 app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public/terms.html')));
 app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public/privacy.html')));
 app.get('/seller', (req, res) => res.sendFile(path.join(__dirname, 'public/seller.html')));
@@ -953,8 +1031,10 @@ app.get('/api/elements', (req, res) => {
   const { sw_lat, sw_lng, ne_lat, ne_lng } = req.query;
   let filtered = elements.elements.filter(e => {
     if (e.active === false) return false;
+    // Only return seller elements
+    if (e.type !== 'seller') return false;
     // Filter out suspended sellers
-    if (e.type === 'seller' && e.metadata && e.metadata.userId) {
+    if (e.metadata && e.metadata.userId) {
       const seller = users.users.find(u => u.id === e.metadata.userId);
       if (seller && seller.status === 'suspended') return false;
     }
@@ -967,25 +1047,75 @@ app.get('/api/elements', (req, res) => {
     filtered = filtered.filter(e => e.lat >= swLat && e.lat <= neLat && e.lng >= swLng && e.lng <= neLng);
   }
 
-  // Attach product count and apply fuzzy location for seller elements
-  const fuzzyRadius = platformSettings.locationFuzzyRadius || 0.005;
+  // Attach product count — exact locations (businesses, not people)
   filtered = filtered.map(e => {
     const copy = { ...e };
     if (e.metadata && e.metadata.userId) {
       const count = products.products.filter(p => p.sellerId === e.metadata.userId && p.available !== false).length;
       copy.productCount = count;
     }
-    // Fuzzy location - offset by random amount within radius
-    if (e.type === 'seller') {
-      const angle = Math.random() * Math.PI * 2;
-      const r = Math.random() * fuzzyRadius;
-      copy.lat = e.lat + Math.sin(angle) * r;
-      copy.lng = e.lng + Math.cos(angle) * r;
-    }
     return copy;
   });
 
   res.json({ ok: true, elements: filtered, total: filtered.length });
+});
+
+// GET /api/elements/search — search elements by text query
+app.get('/api/elements/search', (req, res) => {
+  const q = (req.query.q || '').trim().toLowerCase();
+  if (!q) return res.json({ ok: true, elements: [], total: 0 });
+
+  const active = elements.elements.filter(e => e.active !== false && e.type === 'seller');
+  const scored = [];
+
+  for (const e of active) {
+    // Filter out suspended sellers
+    if (e.metadata && e.metadata.userId) {
+      const seller = users.users.find(u => u.id === e.metadata.userId);
+      if (seller && seller.status === 'suspended') continue;
+    }
+
+    let score = 0;
+    const title = (e.title || '').toLowerCase();
+    const subtitle = (e.subtitle || '').toLowerCase();
+    const description = (e.description || '').toLowerCase();
+    const address = (e.address || '').toLowerCase();
+    const cuisine = (e.cuisineType || '').toLowerCase();
+    const tagsStr = Array.isArray(e.tags) ? e.tags.join(' ').toLowerCase() : (e.tags || '').toLowerCase();
+
+    // Exact title match gets highest score
+    if (title === q) score += 100;
+    else if (title.startsWith(q)) score += 60;
+    else if (title.includes(q)) score += 40;
+
+    if (subtitle.includes(q)) score += 20;
+    if (description.includes(q)) score += 15;
+    if (address.includes(q)) score += 25;
+    if (cuisine.includes(q)) score += 30;
+    if (tagsStr.includes(q)) score += 25;
+
+    // Also search products for this seller
+    if (e.metadata && e.metadata.userId) {
+      const sellerProducts = products.products.filter(p => p.sellerId === e.metadata.userId && p.available !== false);
+      for (const p of sellerProducts) {
+        if ((p.name || '').toLowerCase().includes(q)) { score += 20; break; }
+        if ((p.description || '').toLowerCase().includes(q)) { score += 10; break; }
+      }
+    }
+
+    if (score > 0) {
+      const copy = { ...e };
+      if (e.metadata && e.metadata.userId) {
+        copy.productCount = products.products.filter(p => p.sellerId === e.metadata.userId && p.available !== false).length;
+      }
+      scored.push({ el: copy, score });
+    }
+  }
+
+  scored.sort((a, b) => b.score - a.score);
+  const results = scored.slice(0, 20).map(s => s.el);
+
+  res.json({ ok: true, elements: results, total: results.length });
 });
 
 // GET /api/elements/:id
@@ -994,15 +1124,6 @@ app.get('/api/elements/:id', (req, res) => {
   if (!el) return res.status(404).json({ ok: false, error: 'Not found.' });
 
   let result = { ...el };
-
-  // Fuzzy location for seller elements on public API
-  if (el.type === 'seller') {
-    const fuzzyRadius = platformSettings.locationFuzzyRadius || 0.005;
-    const angle = Math.random() * Math.PI * 2;
-    const r = Math.random() * fuzzyRadius;
-    result.lat = el.lat + Math.sin(angle) * r;
-    result.lng = el.lng + Math.cos(angle) * r;
-  }
 
   if (el.metadata && el.metadata.userId) {
     result.products = products.products.filter(p => p.sellerId === el.metadata.userId && p.available !== false);
@@ -1713,7 +1834,7 @@ app.post('/api/admin/prospects/:id/make-live', (req, res) => {
     title: prospect.businessName || prospect.name,
     subtitle: prospect.neighborhood || '',
     description: prospect.notes || '',
-    imageUrl: '',
+    imageUrl: prospect.imageUrl || '',
     icon: '🏪',
     lat: parseFloat(lat),
     lng: parseFloat(lng),
@@ -1721,6 +1842,12 @@ app.post('/api/admin/prospects/:id/make-live', (req, res) => {
     metadata: { userId, prospectId: prospect.id },
     online: true,
     active: true,
+    cuisineType: prospect.cuisineType || '',
+    tags: prospect.tags || '',
+    email: prospect.email || '',
+    phone: prospect.phone || '',
+    instagram: prospect.instagram || '',
+    address: prospect.address || '',
     createdAt: new Date().toISOString()
   };
 
@@ -1898,7 +2025,7 @@ app.post('/api/admin/prospects/bulk-make-live', (req, res) => {
       title: prospect.businessName || prospect.name,
       subtitle: prospect.neighborhood || '',
       description: prospect.notes || '',
-      imageUrl: '',
+      imageUrl: prospect.imageUrl || '',
       icon: '🏪',
       lat: parseFloat(prospect.lat),
       lng: parseFloat(prospect.lng),
@@ -1906,6 +2033,12 @@ app.post('/api/admin/prospects/bulk-make-live', (req, res) => {
       metadata: { userId, prospectId: prospect.id },
       online: true,
       active: true,
+      cuisineType: prospect.cuisineType || '',
+      tags: prospect.tags || '',
+      email: prospect.email || '',
+      phone: prospect.phone || '',
+      instagram: prospect.instagram || '',
+      address: prospect.address || '',
       createdAt: new Date().toISOString()
     };
 
@@ -2147,7 +2280,7 @@ function seedDefaults() {
   console.log(`✓ Seeded ${sellers.length} cottage food kitchens with ${products.products.length} products`);
 }
 
-seedDefaults();
+// seedDefaults(); // Disabled — using real MEHKO data from scraper
 
 app.listen(PORT, () => {
   console.log(`\n  🗺️  Map Framework running at http://localhost:${PORT}`);

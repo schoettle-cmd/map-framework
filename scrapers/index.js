@@ -45,6 +45,7 @@ function makeProspect(data, source, sourceUrl) {
     website: (data.website || '').slice(0, 500),
     instagram: (data.instagram || '').slice(0, 100),
     products: Array.isArray(data.products) ? data.products.map(p => String(p).slice(0, 200)) : [],
+    imageUrl: (data.imageUrl || '').slice(0, 1000),
     permitType: (data.permitType || 'MEHKO').slice(0, 50),
     permitNumber: (data.permitNumber || '').slice(0, 100),
     source,
@@ -102,7 +103,124 @@ async function deepScrape(url) {
 
     const metaDesc = $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || '';
 
-    return { phone, email, instagram: igHandle, description: (metaDesc || bodyText.slice(0, 300)) };
+    // ── Products / menu items extraction ──
+    const products = [];
+    const seenProducts = new Set();
+    const addProduct = (name) => {
+      const cleaned = clean(name).slice(0, 200);
+      if (cleaned.length >= 2 && cleaned.length <= 200 && !seenProducts.has(cleaned.toLowerCase())) {
+        seenProducts.add(cleaned.toLowerCase());
+        products.push(cleaned);
+      }
+    };
+
+    // 1) JSON-LD Product or Menu schema data
+    $('script[type="application/ld+json"]').each((_, el) => {
+      try {
+        const ld = JSON.parse($(el).html());
+        const items = Array.isArray(ld) ? ld : [ld];
+        for (const item of items) {
+          if (item['@type'] === 'Product' && item.name) addProduct(item.name);
+          if (item['@type'] === 'Menu' && Array.isArray(item.hasMenuSection)) {
+            for (const section of item.hasMenuSection) {
+              if (Array.isArray(section.hasMenuItem)) {
+                for (const mi of section.hasMenuItem) { if (mi.name) addProduct(mi.name); }
+              }
+            }
+          }
+          if (item['@type'] === 'MenuItem' && item.name) addProduct(item.name);
+          if (item['@type'] === 'ItemList' && Array.isArray(item.itemListElement)) {
+            for (const li of item.itemListElement) {
+              if (li.name) addProduct(li.name);
+              if (li.item && li.item.name) addProduct(li.item.name);
+            }
+          }
+        }
+      } catch (_) {}
+    });
+
+    // 2) Elements with class containing product/menu-item/dish/item keywords
+    $('[class*="product" i], [class*="menu-item" i], [class*="dish" i], [class*="menu_item" i]').each((_, el) => {
+      // Look for a heading or title-like child first, fallback to the element's own text
+      const heading = $(el).find('h1, h2, h3, h4, h5, .title, .name, [class*="title"], [class*="name"]').first().text();
+      const text = heading || $(el).text();
+      const name = clean(text).split(/\n/)[0]?.slice(0, 200);
+      if (name && name.length >= 2 && name.length <= 120) addProduct(name);
+    });
+
+    // 3) h3/h4 tags within sections that have "menu" or "product" in class/id
+    $('[class*="menu" i], [id*="menu" i], [class*="product" i], [id*="product" i]').find('h3, h4').each((_, el) => {
+      const name = clean($(el).text());
+      if (name && name.length >= 2 && name.length <= 120) addProduct(name);
+    });
+
+    // 4) Square / Shopify / e-commerce product titles
+    $('.product-title, .product-name, .product-card__title, .grid-product__title, .ProductItem-details h2, .ProductItem-details h3').each((_, el) => {
+      const name = clean($(el).text());
+      if (name && name.length >= 2 && name.length <= 120) addProduct(name);
+    });
+
+    // 5) Meta tags with product info
+    const metaProduct = $('meta[property="product:name"]').attr('content') || $('meta[property="og:title"]').attr('content') || '';
+    if (metaProduct && metaProduct.length <= 120) addProduct(metaProduct);
+
+    // Cap at 20 products
+    const finalProducts = products.slice(0, 20);
+
+    // ── Logo / hero image extraction ──
+    let imageUrl = '';
+
+    // Priority 1: og:image meta tag
+    imageUrl = $('meta[property="og:image"]').attr('content') || '';
+
+    // Priority 2: JSON-LD logo field
+    if (!imageUrl) {
+      $('script[type="application/ld+json"]').each((_, el) => {
+        if (imageUrl) return;
+        try {
+          const ld = JSON.parse($(el).html());
+          const items = Array.isArray(ld) ? ld : [ld];
+          for (const item of items) {
+            if (item.logo) {
+              imageUrl = typeof item.logo === 'string' ? item.logo : (item.logo.url || '');
+              if (imageUrl) return;
+            }
+            if (item.image) {
+              const img = Array.isArray(item.image) ? item.image[0] : item.image;
+              imageUrl = typeof img === 'string' ? img : (img?.url || '');
+              if (imageUrl) return;
+            }
+          }
+        } catch (_) {}
+      });
+    }
+
+    // Priority 3: First img with "logo" in class, id, or alt
+    if (!imageUrl) {
+      const logoImg = $('img[class*="logo" i], img[id*="logo" i], img[alt*="logo" i]').first();
+      imageUrl = logoImg.attr('src') || '';
+    }
+
+    // Priority 4: apple-touch-icon
+    if (!imageUrl) {
+      imageUrl = $('link[rel="apple-touch-icon"]').attr('href') || $('link[rel="apple-touch-icon-precomposed"]').attr('href') || '';
+    }
+
+    // Priority 5: favicon as last resort
+    if (!imageUrl) {
+      imageUrl = $('link[rel="icon"]').attr('href') || $('link[rel="shortcut icon"]').attr('href') || '';
+    }
+
+    // Make relative URLs absolute
+    if (imageUrl && !imageUrl.startsWith('http')) {
+      try {
+        imageUrl = new URL(imageUrl, url).href;
+      } catch (_) {
+        imageUrl = '';
+      }
+    }
+
+    return { phone, email, instagram: igHandle, description: (metaDesc || bodyText.slice(0, 300)), products: finalProducts, imageUrl };
   } catch (e) {
     return { error: e.message };
   }
@@ -171,6 +289,8 @@ async function enrichWithWebsites(prospects) {
           if (d.email && !p.email) p.email = d.email;
           if (d.instagram && !p.instagram) p.instagram = d.instagram;
           if (d.description) p.notes = (p.notes + ' | ' + d.description).slice(0, 2000);
+          if (d.products && d.products.length > 0 && (!p.products || p.products.length === 0)) p.products = d.products;
+          if (d.imageUrl) p.imageUrl = d.imageUrl;
         } else {
           log.failed++;
         }

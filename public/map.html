@@ -128,14 +128,6 @@
     .sheet-btn.secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
     .sheet-btn.secondary:hover { background: rgba(255,255,255,0.08); }
 
-    /* Blurred state for view limit */
-    .detail-sheet.sheet-blurred .sheet-content { filter: blur(10px); pointer-events: none; user-select: none; }
-    .sheet-upgrade {
-      position: absolute; top: 60px; left: 0; right: 0; bottom: 0;
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      padding: 40px; text-align: center; z-index: 2;
-    }
-    .detail-sheet.sheet-blurred .sheet-upgrade { display: flex; }
 
     /* ── Auth Modal ── */
     .auth-backdrop {
@@ -206,26 +198,101 @@
       margin-bottom: 14px; display: none;
     }
 
-    /* ── View Limit Toast ── */
-    .view-toast {
-      position: fixed; bottom: 28px; left: 50%; z-index: 15;
-      transform: translateX(-50%) translateY(120px);
-      background: rgba(18,18,26,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    /* ── Search Bar ── */
+    .search-wrap {
+      flex: 1; max-width: 420px; margin: 0 16px; position: relative;
+    }
+    .search-input {
+      width: 100%; padding: 10px 18px 10px 40px; border-radius: 22px;
+      background: rgba(255,255,255,0.07); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.08); color: var(--text);
+      font-size: 14px; font-family: inherit; outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .search-input:focus { border-color: var(--accent); background: rgba(255,255,255,0.1); }
+    .search-input::placeholder { color: #5a5a78; }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); pointer-events: none;
+    }
+    .search-dropdown {
+      position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+      background: rgba(18,18,26,0.96); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--border); border-radius: 16px;
-      padding: 14px 20px; display: flex; align-items: center; gap: 14px;
-      transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
-      max-width: 440px; width: calc(100% - 32px);
+      max-height: 340px; overflow-y: auto; display: none;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
     }
-    .view-toast.show { transform: translateX(-50%) translateY(0); }
-    .view-toast-text { font-size: 13px; color: var(--dim); flex: 1; line-height: 1.4; }
-    .view-toast-text strong { color: var(--text); }
-    .view-toast-btn {
-      padding: 9px 18px; border-radius: 10px;
-      background: var(--accent); color: #fff;
-      font-size: 12px; font-weight: 700; cursor: pointer;
-      border: none; font-family: inherit; white-space: nowrap; transition: filter 0.15s;
+    .search-dropdown.open { display: block; }
+    .search-item {
+      padding: 12px 16px; cursor: pointer; transition: background 0.12s;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    .view-toast-btn:hover { filter: brightness(1.15); }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: rgba(255,255,255,0.06); }
+    .search-item-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .search-item-meta { font-size: 12px; color: var(--muted); }
+    .search-empty { padding: 20px 16px; text-align: center; color: var(--muted); font-size: 13px; }
+
+    /* ── Profile Panel ── */
+    .profile-backdrop {
+      position: fixed; inset: 0; z-index: 22;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .profile-backdrop.open { opacity: 1; pointer-events: auto; }
+    .profile-panel {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 23;
+      width: 100%; max-width: 520px; background: var(--card);
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+      overflow-y: auto; border-left: 1px solid var(--border);
+    }
+    .profile-panel.open { transform: translateX(0); }
+    .profile-close {
+      position: absolute; top: 18px; right: 18px; z-index: 2;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1); color: #fff; font-size: 18px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s;
+    }
+    .profile-close:hover { background: rgba(0,0,0,0.6); }
+    .profile-hero { width: 100%; height: 280px; background: #1a1a2e; overflow: hidden; position: relative; }
+    .profile-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-hero-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 72px; }
+    .profile-body { padding: 28px 28px 40px; }
+    .profile-name { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .profile-cuisine { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+    .profile-address { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+    .profile-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .profile-tag {
+      padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 600;
+      background: rgba(124,58,237,0.12); color: var(--accent); border: 1px solid rgba(124,58,237,0.2);
+    }
+    .profile-section { margin-bottom: 22px; }
+    .profile-section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 10px; }
+    .profile-desc { font-size: 14px; line-height: 1.65; color: var(--dim); }
+    .profile-product {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 12px; margin-bottom: 8px;
+    }
+    .profile-product-name { font-size: 14px; font-weight: 600; flex: 1; }
+    .profile-product-price { font-size: 14px; font-weight: 800; color: var(--accent); }
+    .profile-contact { display: flex; flex-wrap: wrap; gap: 8px; }
+    .profile-contact-link {
+      display: flex; align-items: center; gap: 6px; padding: 9px 16px;
+      border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .profile-contact-link:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+    .profile-order-btn {
+      display: block; width: 100%; padding: 15px; border-radius: 12px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      border: none; font-family: inherit; text-align: center; text-decoration: none;
+      background: var(--accent); color: #fff; transition: filter 0.15s; margin-top: 8px;
+    }
+    .profile-order-btn:hover { filter: brightness(1.15); }
 
     /* ── Message Panel ── */
     .msg-panel {
@@ -319,6 +386,11 @@
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="brand" id="brand-name">Map<span>App</span></div>
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" class="search-input" id="search-input" placeholder="Search businesses or cities..." autocomplete="off">
+      <div class="search-dropdown" id="search-dropdown"></div>
+    </div>
     <div class="top-actions" id="top-actions">
       <button class="btn-pill accent" id="login-btn" onclick="openAuth()">Sign in</button>
     </div>
@@ -355,12 +427,6 @@
       <p class="sheet-desc" id="sheet-desc"></p>
       <div id="sheet-products"></div>
       <div class="sheet-actions" id="sheet-actions"></div>
-    </div>
-    <div class="sheet-upgrade" id="sheet-upgrade">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" style="margin-bottom:16px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <h3 style="font-size:20px;font-weight:800;margin-bottom:8px;letter-spacing:-0.02em">Sign up to see more</h3>
-      <p style="color:var(--muted);font-size:14px;margin-bottom:24px;line-height:1.5">Create a free account to view unlimited profiles and connect with people nearby.</p>
-      <button class="auth-btn" style="max-width:260px" onclick="closeSheet();openAuth()">Create free account</button>
     </div>
   </div>
 
@@ -399,10 +465,14 @@
     </div>
   </div>
 
-  <!-- View Limit Toast -->
-  <div class="view-toast" id="view-toast">
-    <div class="view-toast-text" id="view-toast-text"></div>
-    <button class="view-toast-btn" onclick="openAuth()">Sign up free</button>
+  <!-- Profile Panel -->
+  <div class="profile-backdrop" id="profile-backdrop" onclick="closeProfile()"></div>
+  <div class="profile-panel" id="profile-panel">
+    <button class="profile-close" onclick="closeProfile()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="profile-hero" id="profile-hero"></div>
+    <div class="profile-body" id="profile-body"></div>
   </div>
 
   <!-- Message Panel -->
@@ -438,7 +508,6 @@ const BASE = window.location.pathname.replace(/\/[^/]*\.html.*$/, '').replace(/\
 let mapMarkers = [];
 let mapElements = [];
 let activeElement = null;
-let viewedIds = JSON.parse(localStorage.getItem('mapfw_viewed') || '[]');
 let sentPhone = '';
 let loadDebounce = null;
 
@@ -527,7 +596,7 @@ async function loadElements() {
     const r = await fetch(url);
     const d = await r.json();
     if (d.ok) {
-      mapElements = d.elements;
+      mapElements = d.elements.filter(e => e.type === 'seller');
       renderMarkers();
     }
   } catch (e) {
@@ -568,16 +637,6 @@ function renderMarkers() {
 function openElement(el) {
   activeElement = el;
 
-  // Track unique views
-  if (!viewedIds.includes(el.id)) {
-    viewedIds.push(el.id);
-    localStorage.setItem('mapfw_viewed', JSON.stringify(viewedIds));
-  }
-
-  const freeViews = CFG.freeViews || 5;
-  const viewCount = viewedIds.length;
-  const isLimited = !currentUser && viewCount > freeViews;
-
   // Populate
   const heroEl = document.getElementById('sheet-hero');
   const imgEl = document.getElementById('sheet-img');
@@ -598,36 +657,29 @@ function openElement(el) {
 
   // Action buttons
   const actionsEl = document.getElementById('sheet-actions');
-  const hasProfile = el.metadata && el.metadata.userId;
   let btns = '';
 
-  if (hasProfile) {
-    btns += `<a href="${BASE}/profile/${el.metadata.userId}" class="sheet-btn primary" style="text-decoration:none">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      View Profile</a>`;
-    // Load product previews
-    fetch(`/api/elements/${el.id}`).then(r => r.json()).then(d => {
-      if (d.ok && d.products && d.products.length) {
-        prodsEl.innerHTML = d.products.slice(0, 3).map(p =>
-          `<div class="sheet-product"><div class="sheet-product-info"><div class="sheet-product-name">${escHtml(p.name)}</div></div><div class="sheet-product-price">$${(p.price/100).toFixed(2)}</div></div>`
-        ).join('') + (d.products.length > 3 ? `<div style="font-size:12px;color:var(--muted);text-align:center;padding:4px">+${d.products.length - 3} more</div>` : '');
-      }
-    }).catch(() => {});
-  }
+  btns += `<button class="sheet-btn primary" onclick="openProfile(activeElement)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    View Profile</button>`;
 
-  btns += `<button class="sheet-btn ${hasProfile ? 'secondary' : 'primary'}" onclick="messageElement()">
+  // Load product previews
+  fetch(BASE + '/api/elements/' + el.id).then(r => r.json()).then(d => {
+    if (d.ok && d.products && d.products.length) {
+      prodsEl.innerHTML = d.products.slice(0, 3).map(p =>
+        `<div class="sheet-product"><div class="sheet-product-info"><div class="sheet-product-name">${escHtml(p.name)}</div></div><div class="sheet-product-price">$${(p.price/100).toFixed(2)}</div></div>`
+      ).join('') + (d.products.length > 3 ? `<div style="font-size:12px;color:var(--muted);text-align:center;padding:4px">+${d.products.length - 3} more</div>` : '');
+    }
+  }).catch(() => {});
+
+  btns += `<button class="sheet-btn secondary" onclick="messageElement()">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     Message</button>`;
   actionsEl.innerHTML = btns;
 
   const sheet = document.getElementById('detail-sheet');
-  sheet.classList.toggle('sheet-blurred', isLimited);
   sheet.classList.add('open');
   document.getElementById('sheet-backdrop').classList.add('open');
-
-  if (!currentUser && viewCount >= freeViews - 1) {
-    showViewToast(viewCount, freeViews);
-  }
 
   map.easeTo({ center: [el.lng, el.lat], duration: 400 });
 }
@@ -636,19 +688,6 @@ function closeSheet() {
   document.getElementById('detail-sheet').classList.remove('open');
   document.getElementById('sheet-backdrop').classList.remove('open');
   activeElement = null;
-}
-
-function showViewToast(count, max) {
-  const toast = document.getElementById('view-toast');
-  const text = document.getElementById('view-toast-text');
-  if (count >= max) {
-    text.innerHTML = `You've used all <strong>${max} free views</strong>. Sign up to continue exploring.`;
-  } else {
-    text.innerHTML = `<strong>${count} of ${max}</strong> free views used.`;
-  }
-  toast.classList.add('show');
-  clearTimeout(toast._timeout);
-  toast._timeout = setTimeout(() => toast.classList.remove('show'), 6000);
 }
 
 // ── Auth ────────────────────────────────────────────────────────────────────
@@ -668,7 +707,6 @@ function updateAuthUI() {
   if (currentUser) {
     const initials = (currentUser.name || '?').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
     actions.innerHTML = `<div class="user-avatar" onclick="toggleUserMenu()" title="${escAttr(currentUser.name)}">${initials}</div>`;
-    document.getElementById('view-toast').classList.remove('show');
   } else {
     actions.innerHTML = `<button class="btn-pill accent" onclick="openAuth()">Sign in</button>`;
   }
@@ -843,7 +881,7 @@ function closeMessages() {
 
 async function loadMessages(peerId) {
   try {
-    const r = await fetch(`/api/messages/${peerId}`);
+    const r = await fetch(BASE + '/api/messages/' + peerId);
     const d = await r.json();
     if (d.ok) {
       const list = document.getElementById('msg-list');
@@ -892,10 +930,218 @@ function requestElement() {
 function escHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function escAttr(s) { return s.replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
+// ── Search ──────────────────────────────────────────────────────────────
+let searchDebounce = null;
+
+(function initSearch() {
+  const input = document.getElementById('search-input');
+  const dropdown = document.getElementById('search-dropdown');
+
+  input.addEventListener('input', () => {
+    clearTimeout(searchDebounce);
+    const q = input.value.trim();
+    if (!q) { dropdown.classList.remove('open'); return; }
+    searchDebounce = setTimeout(() => doSearch(q), 300);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      clearTimeout(searchDebounce);
+      const q = input.value.trim();
+      if (q) doSearch(q);
+    }
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('open');
+      input.blur();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-wrap')) {
+      dropdown.classList.remove('open');
+    }
+  });
+})();
+
+async function doSearch(query) {
+  const dropdown = document.getElementById('search-dropdown');
+  try {
+    const r = await fetch(BASE + '/api/elements/search?q=' + encodeURIComponent(query));
+    const d = await r.json();
+    if (d.ok && d.elements && d.elements.length) {
+      dropdown.innerHTML = d.elements.map(el => {
+        const cuisine = (el.metadata && el.metadata.cuisineType) || '';
+        const neighborhood = (el.metadata && el.metadata.neighborhood) || '';
+        const city = (el.metadata && el.metadata.city) || '';
+        const loc = [neighborhood, city].filter(Boolean).join(', ');
+        const meta = [cuisine, loc].filter(Boolean).join(' \u00b7 ');
+        return `<div class="search-item" data-id="${el.id}" onclick="searchSelect('${el.id}')">
+          <div class="search-item-name">${escHtml(el.title)}</div>
+          <div class="search-item-meta">${meta}</div>
+        </div>`;
+      }).join('');
+      dropdown.classList.add('open');
+    } else {
+      dropdown.innerHTML = '<div class="search-empty">No results found</div>';
+      dropdown.classList.add('open');
+    }
+  } catch (e) {
+    dropdown.innerHTML = '<div class="search-empty">Search unavailable</div>';
+    dropdown.classList.add('open');
+  }
+}
+
+function searchSelect(elementId) {
+  const dropdown = document.getElementById('search-dropdown');
+  dropdown.classList.remove('open');
+  document.getElementById('search-input').value = '';
+
+  // Find in current mapElements or fetch it
+  const el = mapElements.find(e => e.id === elementId);
+  if (el) {
+    map.flyTo({ center: [el.lng, el.lat], zoom: 16, duration: 1200 });
+    setTimeout(() => openElement(el), 600);
+  } else {
+    // Element not in current viewport, fetch it
+    fetch(BASE + '/api/elements/' + elementId).then(r => r.json()).then(d => {
+      if (d.ok && d.element) {
+        const fetched = d.element;
+        map.flyTo({ center: [fetched.lng, fetched.lat], zoom: 16, duration: 1200 });
+        setTimeout(() => openElement(fetched), 600);
+      }
+    }).catch(() => {});
+  }
+}
+
+// ── Profile Panel ───────────────────────────────────────────────────────
+function openProfile(el) {
+  if (!el) return;
+  closeSheet();
+
+  const heroEl = document.getElementById('profile-hero');
+  const bodyEl = document.getElementById('profile-body');
+
+  // Hero image
+  if (el.imageUrl) {
+    heroEl.innerHTML = `<img src="${escAttr(el.imageUrl)}" alt="">`;
+  } else {
+    heroEl.innerHTML = `<div class="profile-hero-placeholder">${el.icon || '\u{1F3EA}'}</div>`;
+  }
+
+  // Fetch full element data with products
+  fetch(BASE + '/api/elements/' + el.id).then(r => r.json()).then(d => {
+    const data = (d.ok && d.element) ? d.element : el;
+    const products = (d.ok && d.products) ? d.products : [];
+    renderProfileBody(data, products);
+  }).catch(() => {
+    renderProfileBody(el, []);
+  });
+
+  document.getElementById('profile-backdrop').classList.add('open');
+  document.getElementById('profile-panel').classList.add('open');
+}
+
+function renderProfileBody(el, products) {
+  const bodyEl = document.getElementById('profile-body');
+  const meta = el.metadata || {};
+  const cuisine = meta.cuisineType || '';
+  const address = meta.address || el.subtitle || '';
+  const tags = meta.tags || [];
+  const description = el.description || meta.notes || '';
+  const website = meta.website || el.externalOrderUrl || '';
+  const instagram = meta.instagram || '';
+  const phone = meta.phone || '';
+  const email = meta.email || '';
+  const orderUrl = el.externalOrderUrl || website;
+
+  let html = '';
+
+  // Name
+  html += `<h2 class="profile-name">${escHtml(el.title)}</h2>`;
+
+  // Cuisine type
+  if (cuisine) {
+    html += `<div class="profile-cuisine">${escHtml(cuisine)}</div>`;
+  }
+
+  // Address
+  if (address) {
+    html += `<div class="profile-address">${escHtml(address)}</div>`;
+  }
+
+  // Tags
+  if (tags.length) {
+    html += `<div class="profile-tags">${tags.map(t => `<span class="profile-tag">${escHtml(t)}</span>`).join('')}</div>`;
+  }
+
+  // Description
+  if (description) {
+    html += `<div class="profile-section">
+      <div class="profile-section-title">About</div>
+      <div class="profile-desc">${escHtml(description)}</div>
+    </div>`;
+  }
+
+  // Products
+  if (products.length) {
+    html += `<div class="profile-section">
+      <div class="profile-section-title">Products</div>
+      ${products.map(p => `<div class="profile-product">
+        <div class="profile-product-name">${escHtml(p.name)}</div>
+        <div class="profile-product-price">$${(p.price/100).toFixed(2)}</div>
+      </div>`).join('')}
+    </div>`;
+  }
+
+  // Contact
+  const contacts = [];
+  if (website) {
+    contacts.push(`<a href="${escAttr(website)}" target="_blank" rel="noopener" class="profile-contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Website</a>`);
+  }
+  if (instagram) {
+    const igUrl = instagram.startsWith('http') ? instagram : 'https://instagram.com/' + instagram.replace('@', '');
+    contacts.push(`<a href="${escAttr(igUrl)}" target="_blank" rel="noopener" class="profile-contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>
+      Instagram</a>`);
+  }
+  if (phone) {
+    contacts.push(`<a href="tel:${escAttr(phone)}" class="profile-contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      ${escHtml(phone)}</a>`);
+  }
+  if (email) {
+    contacts.push(`<a href="mailto:${escAttr(email)}" class="profile-contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email</a>`);
+  }
+
+  if (contacts.length) {
+    html += `<div class="profile-section">
+      <div class="profile-section-title">Contact</div>
+      <div class="profile-contact">${contacts.join('')}</div>
+    </div>`;
+  }
+
+  // Order button
+  if (orderUrl) {
+    html += `<a href="${escAttr(orderUrl)}" target="_blank" rel="noopener" class="profile-order-btn">Order</a>`;
+  }
+
+  bodyEl.innerHTML = html;
+}
+
+function closeProfile() {
+  document.getElementById('profile-backdrop').classList.remove('open');
+  document.getElementById('profile-panel').classList.remove('open');
+}
+
 // ── Keyboard shortcuts ──────────────────────────────────────────────────────
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    if (document.getElementById('msg-panel').classList.contains('open')) closeMessages();
+    if (document.getElementById('profile-panel').classList.contains('open')) closeProfile();
+    else if (document.getElementById('msg-panel').classList.contains('open')) closeMessages();
     else if (document.getElementById('auth-backdrop').classList.contains('open')) closeAuth();
     else if (document.getElementById('detail-sheet').classList.contains('open')) closeSheet();
   }

@@ -1,13 +1,14 @@
 /**
- * Cottage Prospect Scraper — Multi-source scraper for finding cottage food sellers in LA
+ * MEHKO Prospect Scraper — Sources LA County permitted home kitchen operators
  *
- * Sources:
- *   - duckduckgo:  Search engine results (reliable, no captcha)
- *   - shef:        Shef.com home cook marketplace
- *   - lacounty:    LA County DPH cottage food page
- *   - webpage:     Deep-scrape any URL for business info
+ * Primary sources:
+ *   - mehko-registry: Official LA County DPH MEHKO permit list (283+ operators)
+ *   - mehko-map:      mehkomap.github.io — enriched data with addresses, coordinates,
+ *                     cuisine types, descriptions, Instagram, websites (260+ operators)
  *
- * Pipeline: search → discover URLs → deep-scrape each for contact info
+ * Enrichment:
+ *   - deep-scrape:    Scrapes individual business websites for phone/email/products
+ *   - duckduckgo:     Searches for operators without websites to find their online presence
  */
 
 const cheerio = require('cheerio');
@@ -19,17 +20,17 @@ const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 
 async function fetchPage(url, opts = {}) {
   const res = await fetch(url, {
-    headers: {
-      'User-Agent': UA,
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.9',
-      ...opts.headers
-    },
+    headers: { 'User-Agent': UA, 'Accept-Language': 'en-US,en;q=0.9', ...opts.headers },
     signal: AbortSignal.timeout(opts.timeout || 15000),
     redirect: 'follow'
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return res.text();
+}
+
+async function fetchJSON(url, opts = {}) {
+  const text = await fetchPage(url, opts);
+  return JSON.parse(text);
 }
 
 function makeProspect(data, source, sourceUrl) {
@@ -38,17 +39,21 @@ function makeProspect(data, source, sourceUrl) {
     name: (data.name || '').slice(0, 200),
     businessName: (data.businessName || data.name || '').slice(0, 200),
     address: (data.address || '').slice(0, 500),
-    neighborhood: (data.neighborhood || '').slice(0, 100),
+    neighborhood: (data.neighborhood || data.city || '').slice(0, 100),
     phone: (data.phone || '').slice(0, 30),
     email: (data.email || '').slice(0, 200),
     website: (data.website || '').slice(0, 500),
     instagram: (data.instagram || '').slice(0, 100),
     products: Array.isArray(data.products) ? data.products.map(p => String(p).slice(0, 200)) : [],
-    permitType: (data.permitType || '').slice(0, 50),
+    permitType: (data.permitType || 'MEHKO').slice(0, 50),
     permitNumber: (data.permitNumber || '').slice(0, 100),
     source,
     sourceUrl: (sourceUrl || '').slice(0, 500),
     notes: (data.notes || '').slice(0, 2000),
+    lat: data.lat || null,
+    lng: data.lng || null,
+    cuisineType: (data.cuisineType || '').slice(0, 100),
+    tags: (data.tags || '').slice(0, 500),
     status: 'prospect',
     featured: false,
     scrapedAt: new Date().toISOString(),
@@ -60,447 +65,116 @@ function makeProspect(data, source, sourceUrl) {
 
 function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
 
-function extractUrl(ddgHref) {
-  // DuckDuckGo wraps URLs in redirects: //duckduckgo.com/l/?uddg=<encoded>&rut=...
-  if (!ddgHref) return '';
-  try {
-    const match = ddgHref.match(/uddg=([^&]+)/);
-    if (match) return decodeURIComponent(match[1]);
-  } catch (e) {}
-  if (ddgHref.startsWith('http')) return ddgHref;
-  return '';
-}
-
-// ── DuckDuckGo Search ────────────────────────────────────────────────────────
-
-async function searchDDG(query) {
-  const url = `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`;
-  const html = await fetchPage(url);
-  const $ = cheerio.load(html);
-  const results = [];
-
-  // Parse DDG HTML results
-  $('.result').each((_, el) => {
-    const r = $(el);
-    const titleEl = r.find('.result__a');
-    const title = clean(titleEl.text());
-    const href = extractUrl(titleEl.attr('href'));
-    const snippet = clean(r.find('.result__snippet').text());
-
-    if (title && href && !href.includes('duckduckgo.com') && !href.includes('amazon.com') && !href.includes('bing.com')) {
-      results.push({ title, url: href, snippet });
-    }
-  });
-
-  return results;
+function titleCase(s) {
+  return s.toLowerCase().replace(/(?:^|\s|'|-)\w/g, c => c.toUpperCase());
 }
 
 // ── Deep Scrape a Business Website ───────────────────────────────────────────
 
 async function deepScrape(url) {
   try {
-    const html = await fetchPage(url, { timeout: 12000 });
+    const html = await fetchPage(url, { timeout: 10000 });
     const $ = cheerio.load(html);
-    const bodyHtml = html;
-
-    const title = clean($('title').text()) || clean($('h1').first().text());
-    const metaDesc = $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || '';
 
     $('script, style, noscript, svg').remove();
     const bodyText = clean($('body').text()).slice(0, 15000);
 
-    // Phone
     const phones = bodyText.match(/\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g) || [];
     const phone = phones[0] || '';
 
-    // Email
     const emails = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-    const email = (emails.find(e => !e.includes('sentry') && !e.includes('wixpress') && !e.includes('example')) || '');
+    const email = (emails.find(e =>
+      !e.includes('sentry') && !e.includes('wixpress') && !e.includes('example') &&
+      !e.includes('email.com') && !e.includes('squarespace') && !e.includes('godaddy')
+    ) || '');
 
-    // Instagram
-    const igMatches = bodyHtml.match(/(?:instagram\.com|instagr\.am)\/([a-zA-Z0-9_.]{2,30})/g) || [];
+    const igMatches = html.match(/(?:instagram\.com|instagr\.am)\/([a-zA-Z0-9_.]{2,30})/g) || [];
     const igHandle = igMatches.length > 0 ? '@' + igMatches[0].replace(/.*(?:instagram\.com|instagr\.am)\//, '').replace(/[/?].*/, '') : '';
 
-    // Address
-    const addressPatterns = [
-      /\d+\s+[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*\s+(?:St|Ave|Blvd|Dr|Rd|Way|Ln|Ct|Pl|Street|Avenue|Boulevard|Drive|Road|Lane|Court|Place)\.?(?:[\s,]+(?:Suite|Ste|Apt|Unit|#)\s*\S+)?[\s,]+[A-Z][a-zA-Z\s]+,?\s*(?:CA|California)\s*\d{5}/,
-      /\d+\s+[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*\s+(?:St|Ave|Blvd|Dr|Rd|Way|Ln|Ct|Pl|Street|Avenue|Boulevard|Drive)\.?[\s,]+[A-Z][a-zA-Z]+/
-    ];
-    let address = '';
-    for (const pat of addressPatterns) {
-      const m = bodyText.match(pat);
-      if (m) { address = m[0]; break; }
-    }
+    const metaDesc = $('meta[name="description"]').attr('content') || $('meta[property="og:description"]').attr('content') || '';
 
-    // Permit number
-    const permitMatch = bodyText.match(/(?:permit|registration|CFO|license)\s*#?\s*:?\s*((?:LA|CF|CFO)[\w-]+\d+)/i);
-    const permitNumber = permitMatch ? permitMatch[1] : '';
-    const permitType = bodyText.match(/class\s*[AB]/i)?.[0] || '';
-
-    // Products — look for menu/product items
-    const products = [];
-    $('h3, h4, .product-title, [class*="product-name"], [class*="menu-item"], .wsite-content-title').each((_, el) => {
-      const name = clean($(el).text());
-      if (name.length > 3 && name.length < 80 && !name.match(/^(home|about|contact|menu|shop|order|faq|blog)/i)) {
-        products.push(name);
-      }
-    });
-
-    // Neighborhood from text
-    const laNeighborhoods = ['Silver Lake', 'Los Feliz', 'Echo Park', 'Highland Park', 'Eagle Rock', 'Atwater Village', 'Glendale', 'Pasadena', 'Burbank', 'Hollywood', 'West Hollywood', 'Santa Monica', 'Venice', 'Culver City', 'Mar Vista', 'Palms', 'Westwood', 'Koreatown', 'Downtown', 'DTLA', 'Boyle Heights', 'East LA', 'El Sereno', 'Lincoln Heights', 'Chinatown', 'Arts District', 'South LA', 'Inglewood', 'Compton', 'Long Beach', 'Torrance', 'Lakewood', 'Whittier', 'Alhambra', 'Monterey Park', 'San Gabriel', 'Arcadia', 'Glassell Park', 'Cypress Park', 'Mt Washington', 'Frogtown', 'Elysian Park'];
-    let neighborhood = '';
-    for (const n of laNeighborhoods) {
-      if (bodyText.includes(n)) { neighborhood = n; break; }
-    }
-
-    return { phone, email, instagram: igHandle, address, permitNumber, permitType, products: products.slice(0, 10), neighborhood, description: metaDesc || bodyText.slice(0, 300) };
+    return { phone, email, instagram: igHandle, description: (metaDesc || bodyText.slice(0, 300)) };
   } catch (e) {
     return { error: e.message };
   }
 }
 
-// ── Source: DuckDuckGo Cottage Food Search ────────────────────────────────────
+// ── Source: MEHKO Map (mehkomap.github.io) — richest source ──────────────────
 
-async function scrapeDuckDuckGo() {
-  const results = [];
-  const queries = [
-    'cottage food Los Angeles order homemade',
-    '"cottage food" "Los Angeles" bakery permit',
-    'home bakery Los Angeles order cookies bread',
-    '"cottage food operation" California Los Angeles',
-    'homemade food Los Angeles delivery order online',
-    'LA cottage food permit Class A Class B baker'
-  ];
+async function scrapeMEHKOMap() {
+  const data = await fetchJSON('https://mehkomap.github.io/mehko/data/businesses.json', { timeout: 20000 });
+  const businesses = data.businesses || [];
 
-  for (const q of queries) {
-    try {
-      const searchResults = await searchDDG(q);
-
-      for (const sr of searchResults) {
-        // Filter: skip aggregator/news/govt pages — we want actual businesses
-        const dominated = ['yelp.com/search', 'google.com', 'youtube.com', 'wikipedia.org', 'reddit.com', 'facebook.com/groups', 'twitter.com', 'tiktok.com', 'amazon.com', 'linkedin.com', 'nytimes.com', 'latimes.com', 'eater.com', 'timeout.com'];
-        if (dominated.some(d => sr.url.includes(d))) continue;
-
-        // Skip government/info pages
-        if (sr.url.includes('cdph.ca.gov') || sr.url.includes('publichealth.lacounty.gov')) continue;
-
-        const bizName = sr.title.replace(/\s*[-|–—:].*/g, '').replace(/\s*\|.*/, '').trim();
-        if (bizName.length < 3 || bizName.length > 100) continue;
-
-        // Check if it looks like an actual cottage food business
-        const text = (sr.title + ' ' + sr.snippet).toLowerCase();
-        const relevant = ['cottage food', 'home bak', 'homemade', 'CFO', 'permit', 'Class A', 'Class B', 'order', 'cookies', 'bread', 'tamales', 'pastry', 'cake'].some(k => text.includes(k.toLowerCase()));
-        if (!relevant) continue;
-
-        results.push({
-          name: bizName,
-          businessName: bizName,
-          website: sr.url,
-          notes: sr.snippet,
-          _needsDeepScrape: true
-        });
-      }
-
-      await new Promise(r => setTimeout(r, 1500));
-    } catch (e) {
-      // continue with other queries
-    }
-  }
-
-  // Deduplicate by domain
-  const seen = new Set();
-  const unique = [];
-  for (const r of results) {
-    try {
-      const domain = new URL(r.website).hostname.replace('www.', '');
-      if (seen.has(domain)) continue;
-      seen.add(domain);
-      unique.push(r);
-    } catch (e) {
-      unique.push(r);
-    }
-  }
-
-  // Deep-scrape each business website for contact info (parallel, batched)
-  const batch = 5;
-  const enriched = [];
-  for (let i = 0; i < unique.length; i += batch) {
-    const chunk = unique.slice(i, i + batch);
-    const details = await Promise.allSettled(chunk.map(r => deepScrape(r.website)));
-
-    for (let j = 0; j < chunk.length; j++) {
-      const r = chunk[j];
-      const d = details[j].status === 'fulfilled' ? details[j].value : {};
-
-      enriched.push(makeProspect({
-        name: r.name,
-        businessName: r.businessName,
-        website: r.website,
-        phone: d.phone || '',
-        email: d.email || '',
-        instagram: d.instagram || '',
-        address: d.address || '',
-        neighborhood: d.neighborhood || '',
-        permitType: d.permitType || '',
-        permitNumber: d.permitNumber || '',
-        products: d.products || [],
-        notes: r.notes + (d.description ? ' | ' + d.description : '')
-      }, 'duckduckgo', r.website));
-    }
-
-    if (i + batch < unique.length) await new Promise(r => setTimeout(r, 1000));
-  }
-
-  return enriched;
+  return businesses.map(b => makeProspect({
+    name: titleCase(b.name),
+    businessName: titleCase(b.name),
+    address: b.address || '',
+    neighborhood: (b.address || '').split(',').pop()?.trim().split(/\s+\d/)[0]?.trim() || '',
+    website: b.website || '',
+    instagram: b.instagram || '',
+    lat: b.lat || null,
+    lng: b.lon || null,
+    cuisineType: b.type || '',
+    tags: b.tags || '',
+    notes: b.description || '',
+    permitType: 'MEHKO'
+  }, 'mehko-map', 'https://mehkomap.github.io/mehko/'));
 }
 
-// ── Source: Shef.com ─────────────────────────────────────────────────────────
+// ── Source: Official LA County MEHKO Registry ────────────────────────────────
 
-async function scrapeShef() {
-  const results = [];
+async function scrapeMEHKORegistry() {
+  const data = await fetchJSON('http://publichealth.lacounty.gov/eh/data/mehko.json', { timeout: 20000 });
+  const programs = data.programs || [];
 
-  try {
-    // Shef has a public API for browsing cooks by metro
-    const html = await fetchPage('https://shef.com/homemade-food-delivery/los-angeles-metro', { timeout: 12000 });
-    const $ = cheerio.load(html);
-
-    // Look for embedded Next.js data or cook cards
-    $('script#__NEXT_DATA__').each((_, el) => {
-      try {
-        const data = JSON.parse($(el).html());
-        const pageProps = data?.props?.pageProps || {};
-
-        // Shef embeds cook/menu data in page props
-        const cooks = pageProps.chefs || pageProps.cooks || pageProps.shefs || [];
-        if (Array.isArray(cooks)) {
-          cooks.forEach(cook => {
-            results.push(makeProspect({
-              name: cook.name || cook.firstName || '',
-              businessName: cook.businessName || cook.name || cook.firstName || '',
-              neighborhood: cook.neighborhood || cook.area || '',
-              website: cook.slug ? `https://shef.com/chef/${cook.slug}` : '',
-              products: (cook.dishes || cook.menuItems || []).map(d => d.name || d.title || '').filter(Boolean).slice(0, 5),
-              notes: cook.bio || cook.description || `Home cook on Shef.com`
-            }, 'shef', 'https://shef.com/homemade-food-delivery/los-angeles-metro'));
-          });
-        }
-
-        // Also try menu-level data
-        const menus = pageProps.menus || pageProps.dishes || [];
-        if (Array.isArray(menus) && results.length === 0) {
-          const cookNames = new Set();
-          menus.forEach(dish => {
-            const cookName = dish.chefName || dish.shefName || dish.cookName || '';
-            if (cookName && !cookNames.has(cookName)) {
-              cookNames.add(cookName);
-              results.push(makeProspect({
-                name: cookName,
-                businessName: cookName,
-                website: dish.chefSlug ? `https://shef.com/chef/${dish.chefSlug}` : '',
-                products: [dish.name || dish.title || ''],
-                notes: `Found on Shef.com LA metro`
-              }, 'shef', 'https://shef.com/homemade-food-delivery/los-angeles-metro'));
-            }
-          });
-        }
-      } catch (e) { /* skip */ }
-    });
-
-    // Fallback: parse HTML cook cards if no __NEXT_DATA__
-    if (results.length === 0) {
-      $('[class*="chef"], [class*="cook"], [class*="shef"], [data-testid*="chef"]').each((_, el) => {
-        const card = $(el);
-        const name = clean(card.find('h2, h3, h4, [class*="name"]').first().text());
-        const link = card.find('a').first().attr('href');
-
-        if (name && name.length > 2 && name.length < 60) {
-          results.push(makeProspect({
-            name,
-            businessName: name,
-            website: link?.startsWith('/') ? `https://shef.com${link}` : link || '',
-            notes: 'Home cook on Shef.com'
-          }, 'shef', 'https://shef.com/homemade-food-delivery/los-angeles-metro'));
-        }
-      });
-    }
-
-    // Also try to parse JSON-LD
-    $('script[type="application/ld+json"]').each((_, el) => {
-      try {
-        const data = JSON.parse($(el).html());
-        if (data['@type'] === 'ItemList' && data.itemListElement) {
-          data.itemListElement.forEach(item => {
-            const r = item.item || item;
-            if (r.name && !results.find(p => p.businessName === r.name)) {
-              results.push(makeProspect({
-                name: r.name,
-                businessName: r.name,
-                website: r.url || '',
-                notes: r.description || 'Listed on Shef.com'
-              }, 'shef', 'https://shef.com/homemade-food-delivery/los-angeles-metro'));
-            }
-          });
-        }
-      } catch (e) { /* skip */ }
-    });
-
-  } catch (e) {
-    results.push(makeProspect({
-      name: 'Shef.com LA Metro',
-      businessName: 'Shef.com LA Metro',
-      website: 'https://shef.com/homemade-food-delivery/los-angeles-metro',
-      notes: `Platform exists but scrape failed: ${e.message}. Manual review recommended — contains hundreds of LA home cooks.`
-    }, 'shef-platform', 'https://shef.com/homemade-food-delivery/los-angeles-metro'));
-  }
-
-  return results;
+  return {
+    lastUpdated: data.lastUpdated,
+    prospects: programs.map(p => makeProspect({
+      name: titleCase(p.name),
+      businessName: titleCase(p.name),
+      city: titleCase(p.city),
+      neighborhood: titleCase(p.city),
+      address: `${titleCase(p.city)}, CA ${p.zip}`,
+      permitType: 'MEHKO',
+      permitNumber: p.recordid,
+      notes: `Permitted MEHKO since ${p.startdate}. LA County Record: ${p.recordid}`
+    }, 'mehko-registry', 'http://publichealth.lacounty.gov/eh/i-want-to/view-mehko-list.htm'))
+  };
 }
 
-// ── Source: CottageMadeMarket ────────────────────────────────────────────────
+// ── Enrichment: Deep-scrape websites for contact info ────────────────────────
 
-async function scrapeCottageMade() {
-  const results = [];
+async function enrichWithWebsites(prospects) {
+  const withSites = prospects.filter(p => p.website && p.website.startsWith('http'));
+  const log = { attempted: withSites.length, success: 0, failed: 0 };
 
-  try {
-    const html = await fetchPage('https://cottagemademarket.com/', { timeout: 12000 });
-    const $ = cheerio.load(html);
+  // Batch 5 at a time
+  for (let i = 0; i < withSites.length; i += 5) {
+    const batch = withSites.slice(i, i + 5);
+    const results = await Promise.allSettled(batch.map(p => deepScrape(p.website)));
 
-    // Check for embedded data
-    $('script#__NEXT_DATA__, script#__NUXT_DATA__').each((_, el) => {
-      try {
-        const data = JSON.parse($(el).html());
-        const sellers = data?.props?.pageProps?.sellers || data?.props?.pageProps?.vendors || [];
-        if (Array.isArray(sellers)) {
-          sellers.forEach(s => {
-            results.push(makeProspect({
-              name: s.name || s.businessName || '',
-              businessName: s.businessName || s.name || '',
-              neighborhood: s.location || s.city || '',
-              website: s.website || s.url || '',
-              products: (s.products || []).map(p => p.name || p).filter(Boolean).slice(0, 5),
-              notes: s.description || 'Listed on CottageMadeMarket.com'
-            }, 'cottagemade', 'https://cottagemademarket.com/'));
-          });
-        }
-      } catch (e) { /* skip */ }
-    });
-
-    // HTML fallback: parse seller cards
-    if (results.length === 0) {
-      $('[class*="seller"], [class*="vendor"], [class*="producer"], [class*="card"], article').each((_, el) => {
-        const card = $(el);
-        const name = clean(card.find('h2, h3, h4, [class*="name"]').first().text());
-        const link = card.find('a').first().attr('href');
-        const desc = clean(card.find('p, [class*="desc"]').first().text());
-
-        if (name && name.length > 2 && name.length < 80) {
-          results.push(makeProspect({
-            name,
-            businessName: name,
-            website: link?.startsWith('/') ? `https://cottagemademarket.com${link}` : link || '',
-            notes: desc || 'Listed on CottageMadeMarket.com'
-          }, 'cottagemade', 'https://cottagemademarket.com/'));
-        }
-      });
-    }
-
-    // JSON-LD
-    $('script[type="application/ld+json"]').each((_, el) => {
-      try {
-        const data = JSON.parse($(el).html());
-        if (data.itemListElement) {
-          data.itemListElement.forEach(item => {
-            const r = item.item || item;
-            if (r.name && !results.find(p => p.businessName === r.name)) {
-              results.push(makeProspect({
-                name: r.name,
-                businessName: r.name,
-                website: r.url || '',
-                notes: r.description || 'CottageMadeMarket listing'
-              }, 'cottagemade', 'https://cottagemademarket.com/'));
-            }
-          });
-        }
-      } catch (e) { /* skip */ }
-    });
-
-  } catch (e) {
-    // Note the platform exists even if scrape fails
-  }
-
-  return results;
-}
-
-// ── Source: LA County DPH ────────────────────────────────────────────────────
-
-async function scrapeLACounty() {
-  const results = [];
-
-  try {
-    const html = await fetchPage('http://www.publichealth.lacounty.gov/eh/business/home-based-cottage-food.htm', { timeout: 12000 });
-    const $ = cheerio.load(html);
-
-    $('script, style, noscript').remove();
-    const bodyText = clean($('body').text());
-
-    // Look for links to operator lists, PDFs, or registration databases
-    const links = [];
-    $('a[href]').each((_, el) => {
-      const href = $(el).attr('href');
-      const text = clean($(el).text());
-      if (href && (text.toLowerCase().includes('registered') || text.toLowerCase().includes('operator') || text.toLowerCase().includes('list') || text.toLowerCase().includes('directory') || href.includes('.pdf') || href.includes('.csv') || href.includes('.xlsx'))) {
-        links.push({ href: href.startsWith('http') ? href : `http://www.publichealth.lacounty.gov${href.startsWith('/') ? '' : '/'}${href}`, text });
-      }
-    });
-
-    // Extract any useful regulatory info
-    const permitInfo = bodyText.match(/Class\s*[AB].*?(?:\.|$)/gi) || [];
-
-    results.push(makeProspect({
-      name: 'LA County DPH Cottage Food Program',
-      businessName: 'LA County Homebased Food Program',
-      website: 'http://www.publichealth.lacounty.gov/eh/business/home-based-cottage-food.htm',
-      notes: `Official registry page. ${links.length} resource links found. ${permitInfo.length ? 'Permit types: ' + permitInfo.slice(0, 3).join('; ') : ''} ${links.map(l => l.text).join(', ').slice(0, 500)}`
-    }, 'la-county', 'http://www.publichealth.lacounty.gov/eh/business/home-based-cottage-food.htm'));
-
-    // Try to scrape any linked operator lists
-    for (const link of links.slice(0, 3)) {
-      try {
-        if (link.href.endsWith('.pdf')) {
-          results.push(makeProspect({
-            name: link.text || 'LA County PDF Resource',
-            businessName: link.text || 'LA County Cottage Food Resource',
-            website: link.href,
-            notes: `PDF document from LA County DPH: ${link.text}`
-          }, 'la-county', link.href));
+    batch.forEach((p, j) => {
+      if (results[j].status === 'fulfilled') {
+        const d = results[j].value;
+        if (!d.error) {
+          log.success++;
+          if (d.phone && !p.phone) p.phone = d.phone;
+          if (d.email && !p.email) p.email = d.email;
+          if (d.instagram && !p.instagram) p.instagram = d.instagram;
+          if (d.description) p.notes = (p.notes + ' | ' + d.description).slice(0, 2000);
         } else {
-          const subHtml = await fetchPage(link.href, { timeout: 10000 });
-          const $sub = cheerio.load(subHtml);
-          const subTitle = clean($sub('title').text());
-
-          $sub('table tr').each((i, el) => {
-            if (i === 0) return; // skip header
-            const cells = [];
-            $(el).find('td, th').each((_, td) => cells.push(clean($(td).text())));
-            if (cells.length >= 2 && cells[0].length > 2 && cells[0].length < 100) {
-              results.push(makeProspect({
-                name: cells[0],
-                businessName: cells[0],
-                address: cells[1] || '',
-                phone: cells[2] || '',
-                permitNumber: cells[3] || '',
-                notes: `From LA County DPH: ${subTitle}`
-              }, 'la-county', link.href));
-            }
-          });
+          log.failed++;
         }
-      } catch (e) { /* skip */ }
-    }
-  } catch (e) {
-    // fallback
+      } else {
+        log.failed++;
+      }
+    });
+
+    // Rate limit
+    if (i + 5 < withSites.length) await new Promise(r => setTimeout(r, 800));
   }
 
-  return results;
+  return log;
 }
 
 // ── Generic Webpage Scraper ──────────────────────────────────────────────────
@@ -511,24 +185,19 @@ async function scrapeWebpage(url) {
     return [makeProspect({ name: url, businessName: url, website: url, notes: `Scrape failed: ${details.error}` }, 'webpage', url)];
   }
 
-  const $ = cheerio.load(await fetchPage(url));
+  const html = await fetchPage(url);
+  const $ = cheerio.load(html);
   const title = clean($('title').text()) || clean($('h1').first().text());
   const bizName = title.replace(/\s*[-|–—].*/g, '').trim() || url;
 
-  return [makeProspect({
-    name: bizName,
-    businessName: bizName,
-    website: url,
-    ...details
-  }, 'webpage', url)];
+  return [makeProspect({ name: bizName, businessName: bizName, website: url, ...details }, 'webpage', url)];
 }
 
 // ── Main Orchestrator ────────────────────────────────────────────────────────
 
 async function scrapeAll(options = {}) {
-  const { source, url } = options;
+  const { source, url, skipEnrich } = options;
   const log = [];
-  let allProspects = [];
 
   const runSource = async (name, fn) => {
     const start = Date.now();
@@ -536,7 +205,8 @@ async function scrapeAll(options = {}) {
     try {
       const results = await fn();
       const elapsed = Date.now() - start;
-      log.push({ source: name, status: 'done', count: results.length, elapsed: `${elapsed}ms` });
+      const count = Array.isArray(results) ? results.length : results?.prospects?.length || 0;
+      log.push({ source: name, status: 'done', count, elapsed: `${elapsed}ms` });
       return results;
     } catch (e) {
       const elapsed = Date.now() - start;
@@ -545,71 +215,72 @@ async function scrapeAll(options = {}) {
     }
   };
 
-  if (source && source !== 'all') {
-    switch (source) {
-      case 'duckduckgo':
-        allProspects = await runSource('duckduckgo', scrapeDuckDuckGo);
-        break;
-      case 'shef':
-        allProspects = await runSource('shef', scrapeShef);
-        break;
-      case 'cottagemade':
-        allProspects = await runSource('cottagemade', scrapeCottageMade);
-        break;
-      case 'la-county':
-        allProspects = await runSource('la-county', scrapeLACounty);
-        break;
-      case 'webpage':
-        if (!url) throw new Error('URL required for webpage scraper');
-        allProspects = await runSource('webpage', () => scrapeWebpage(url));
-        break;
-      default:
-        throw new Error(`Unknown source: ${source}. Valid: duckduckgo, shef, cottagemade, la-county, webpage`);
-    }
-  } else {
-    // Run all sources in parallel
-    const [ddg, shef, cottagemade, laCounty] = await Promise.allSettled([
-      runSource('duckduckgo', scrapeDuckDuckGo),
-      runSource('shef', scrapeShef),
-      runSource('cottagemade', scrapeCottageMade),
-      runSource('la-county', scrapeLACounty)
-    ]);
-
-    allProspects = [
-      ...(ddg.status === 'fulfilled' ? ddg.value : []),
-      ...(shef.status === 'fulfilled' ? shef.value : []),
-      ...(cottagemade.status === 'fulfilled' ? cottagemade.value : []),
-      ...(laCounty.status === 'fulfilled' ? laCounty.value : [])
-    ];
+  if (source === 'webpage') {
+    if (!url) throw new Error('URL required for webpage scraper');
+    const results = await runSource('webpage', () => scrapeWebpage(url));
+    return { prospects: results, log, total: results.length };
   }
 
-  // Deduplicate by business name (case-insensitive)
-  const seen = new Map();
-  const deduped = [];
-  for (const p of allProspects) {
+  if (source === 'mehko-registry') {
+    const reg = await runSource('mehko-registry', scrapeMEHKORegistry);
+    const prospects = reg.prospects || [];
+    return { prospects, log, total: prospects.length };
+  }
+
+  if (source === 'mehko-map') {
+    const prospects = await runSource('mehko-map', scrapeMEHKOMap);
+    return { prospects, log, total: prospects.length };
+  }
+
+  // Default: merge both sources + enrich
+  // Step 1: Fetch both sources in parallel
+  const [mapData, registryData] = await Promise.allSettled([
+    runSource('mehko-map', scrapeMEHKOMap),
+    runSource('mehko-registry', scrapeMEHKORegistry)
+  ]);
+
+  const mapProspects = mapData.status === 'fulfilled' ? (Array.isArray(mapData.value) ? mapData.value : []) : [];
+  const regResult = registryData.status === 'fulfilled' ? registryData.value : { prospects: [] };
+  const regProspects = regResult.prospects || [];
+
+  // Step 2: Merge — use map data as primary (it has coordinates, types, descriptions)
+  // then layer in registry data for permit numbers and any missing entries
+  const merged = new Map();
+
+  // Map data first (richer)
+  for (const p of mapProspects) {
+    const key = (p.businessName || p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (key.length >= 2) merged.set(key, p);
+  }
+
+  // Merge registry data
+  for (const p of regProspects) {
     const key = (p.businessName || p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     if (key.length < 2) continue;
-    if (seen.has(key)) {
-      const existing = seen.get(key);
-      if (!existing.phone && p.phone) existing.phone = p.phone;
-      if (!existing.email && p.email) existing.email = p.email;
-      if (!existing.website && p.website) existing.website = p.website;
-      if (!existing.instagram && p.instagram) existing.instagram = p.instagram;
-      if (!existing.address && p.address) existing.address = p.address;
-      if (!existing.neighborhood && p.neighborhood) existing.neighborhood = p.neighborhood;
-      if (!existing.permitNumber && p.permitNumber) existing.permitNumber = p.permitNumber;
-      if (!existing.permitType && p.permitType) existing.permitType = p.permitType;
-      if (p.products?.length && !existing.products?.length) existing.products = p.products;
-      if (p.notes && !existing.notes.includes(p.notes.slice(0, 50))) {
+
+    if (merged.has(key)) {
+      const existing = merged.get(key);
+      // Registry has permit number
+      if (p.permitNumber && !existing.permitNumber) existing.permitNumber = p.permitNumber;
+      if (p.notes && !existing.notes.includes(p.permitNumber || '')) {
         existing.notes = (existing.notes + ' | ' + p.notes).slice(0, 2000);
       }
     } else {
-      seen.set(key, p);
-      deduped.push(p);
+      // New entry only in registry
+      merged.set(key, p);
     }
   }
 
-  return { prospects: deduped, log, total: deduped.length };
+  let allProspects = [...merged.values()];
+  log.push({ source: 'merge', status: 'done', count: allProspects.length, note: `${mapProspects.length} from map + ${regProspects.length} from registry = ${allProspects.length} unique` });
+
+  // Step 3: Enrich — deep-scrape websites for phone/email
+  if (!skipEnrich) {
+    const enrichLog = await enrichWithWebsites(allProspects);
+    log.push({ source: 'deep-scrape', status: 'done', ...enrichLog });
+  }
+
+  return { prospects: allProspects, log, total: allProspects.length };
 }
 
-module.exports = { scrapeAll, scrapeDuckDuckGo, scrapeShef, scrapeCottageMade, scrapeLACounty, scrapeWebpage };
+module.exports = { scrapeAll, scrapeMEHKOMap, scrapeMEHKORegistry, enrichWithWebsites, scrapeWebpage, deepScrape };

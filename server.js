@@ -6,6 +6,10 @@ const multer = require('multer');
 const nodemailer = require('nodemailer');
 const { scrapeAll } = require('./scrapers');
 
+// Prevent crashes from unhandled rejections
+process.on('unhandledRejection', (err) => { console.error('Unhandled rejection:', err); });
+process.on('uncaughtException', (err) => { console.error('Uncaught exception:', err); });
+
 const app = express();
 
 // ── Load .env ───────────────────────────────────────────────────────────────
@@ -55,10 +59,21 @@ const upload = multer({
 });
 
 // ── Middleware ───────────────────────────────────────────────────────────────
-app.use(express.json());
+app.use(express.json({ limit: '1mb' }));
+
+// Log all requests for debugging
+app.use((req, res, next) => {
+  if (req.path.includes('chat')) {
+    console.log(`[req] ${req.method} ${req.path} | body: ${JSON.stringify(req.body).slice(0, 100)}`);
+  }
+  next();
+});
 
 // Clean URL routes (before static)
-app.get('/map', (req, res) => res.sendFile(path.join(__dirname, 'public/map.html')));
+const noCache = (req, res, next) => { res.set('Cache-Control', 'no-cache, no-store, must-revalidate'); next(); };
+app.get('/studio', noCache, (req, res) => res.sendFile(path.join(__dirname, 'public/studio.html')));
+app.get('/map', noCache, (req, res) => res.sendFile(path.join(__dirname, 'public/map.html')));
+app.get('/profile', (req, res) => res.redirect('/map.html'));
 app.get('/profile/:id', (req, res) => {
   const id = req.params.id;
   // Look up element by ownerId or element ID
@@ -74,15 +89,15 @@ app.get('/profile/:id', (req, res) => {
     : 0;
 
   const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  const accent = platformSettings.accentColor || '#ea580c';
+  const accent = platformSettings.accentColor || '#C46A3C';
 
   const productCards = elProducts.map(p => `
-    <div style="background:#1e1e2e;border-radius:12px;padding:16px;margin-bottom:12px;">
-      ${p.photos && p.photos.length ? `<img src="${esc(p.photos[0])}" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:12px;" alt="${esc(p.name)}">` : ''}
-      <div style="font-size:16px;font-weight:600;color:#f5f5f5;">${esc(p.name)}</div>
+    <div style="background:#FDFBF7;border:1px solid rgba(47,58,47,0.12);border-radius:14px;padding:18px;margin-bottom:10px;">
+      ${p.photos && p.photos.length ? `<img src="${esc(p.photos[0])}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:12px;" alt="${esc(p.name)}">` : ''}
+      <div style="font-size:16px;font-weight:600;color:#1A1A1A;">${esc(p.name)}</div>
       ${p.price > 0 ? `<div style="color:${accent};font-weight:700;margin-top:4px;">$${(p.price / 100).toFixed(2)}</div>` : ''}
-      ${p.description ? `<div style="color:#a0a0b8;font-size:13px;margin-top:6px;line-height:1.4;">${esc(p.description)}</div>` : ''}
-      ${p.allergens && p.allergens.length ? `<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">${p.allergens.map(a => `<span style="background:#2a2a3a;color:#d0d0e0;padding:2px 8px;border-radius:10px;font-size:11px;">${esc(a)}</span>`).join('')}</div>` : ''}
+      ${p.description ? `<div style="color:#8A8577;font-size:13px;margin-top:6px;line-height:1.5;">${esc(p.description)}</div>` : ''}
+      ${p.allergens && p.allergens.length ? `<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">${p.allergens.map(a => `<span style="background:rgba(196,106,60,0.08);color:#C46A3C;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;">${esc(a)}</span>`).join('')}</div>` : ''}
     </div>
   `).join('');
 
@@ -93,46 +108,48 @@ app.get('/profile/:id', (req, res) => {
   if (el.externalOrderUrl) contactItems.push(`<a href="${esc(el.externalOrderUrl)}" target="_blank" style="color:${accent};text-decoration:none;">&#127760; Website</a>`);
 
   const tagsHtml = (el.tags && el.tags.length)
-    ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">${(Array.isArray(el.tags) ? el.tags : String(el.tags).split(',').map(t => t.trim()).filter(Boolean)).map(t => `<span style="background:#2a2a3a;color:#d0d0e0;padding:4px 10px;border-radius:12px;font-size:12px;">${esc(t)}</span>`).join('')}</div>`
+    ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">${(Array.isArray(el.tags) ? el.tags : String(el.tags).split(',').map(t => t.trim()).filter(Boolean)).map(t => `<span style="background:rgba(47,58,47,0.06);color:#2F3A2F;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;">${esc(t)}</span>`).join('')}</div>`
     : '';
 
   const html = `<!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(el.title)} | ${platformSettings.platformName || 'Cottage'}</title>
+<title>${esc(el.title)} | Kinseb</title>
 <meta name="description" content="${esc(el.description || el.subtitle || '')}">
-<meta property="og:title" content="${esc(el.title)}">
+<meta property="og:title" content="${esc(el.title)} — Kinseb">
 <meta property="og:description" content="${esc(el.description || el.subtitle || '')}">
 ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#0f0f1a;color:#e0e0f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh}
-.container{max-width:600px;margin:0 auto;padding:16px}
-.back{display:inline-block;color:${accent};text-decoration:none;font-size:14px;margin-bottom:16px;opacity:0.8}
-.back:hover{opacity:1}
-.hero{width:100%;height:240px;object-fit:cover;border-radius:16px;margin-bottom:20px;background:#1a1a2e}
-h1{font-size:24px;font-weight:700;margin-bottom:4px}
-.subtitle{color:#a0a0b8;font-size:14px;margin-bottom:6px}
-.rating{color:#fbbf24;font-size:14px;margin-bottom:12px}
-.desc{color:#c0c0d8;font-size:14px;line-height:1.6;margin-bottom:20px}
-.section-title{font-size:18px;font-weight:600;margin-bottom:12px;color:#f5f5f5}
+body{background:#F5F1E8;color:#1A1A1A;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+.container{max-width:640px;margin:0 auto;padding:20px 24px 60px}
+.back{display:inline-flex;align-items:center;gap:6px;color:#8A8577;text-decoration:none;font-size:14px;margin-bottom:20px;font-weight:500}
+.back:hover{color:#1A1A1A}
+.hero{width:100%;height:320px;object-fit:cover;border-radius:20px;margin-bottom:24px;background:#e8e4db}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:32px;font-weight:600;margin-bottom:6px;letter-spacing:-0.02em}
+.subtitle{color:#8A8577;font-size:14px;margin-bottom:6px}
+.cuisine{color:${accent};font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.rating{color:#C46A3C;font-size:14px;margin-bottom:16px}
+.desc{color:#4a4a42;font-size:15px;line-height:1.7;margin-bottom:24px}
+.section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:${accent};margin-bottom:14px}
 .contact{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.order-btn{display:block;text-align:center;background:${accent};color:#fff;font-size:16px;font-weight:700;padding:14px 24px;border-radius:12px;text-decoration:none;margin:20px 0}
-.order-btn:hover{opacity:0.9}
+.order-btn{display:block;text-align:center;background:${accent};color:#fff;font-size:15px;font-weight:600;padding:16px 24px;border-radius:100px;text-decoration:none;margin:24px 0;transition:background 0.2s}
+.order-btn:hover{background:#D4845A}
 </style>
 </head><body>
 <div class="container">
-  <a href="map" class="back">&larr; Back to map</a>
-  ${el.imageUrl ? `<img src="${esc(el.imageUrl)}" class="hero" alt="${esc(el.title)}">` : '<div class="hero" style="display:flex;align-items:center;justify-content:center;font-size:64px;">' + (el.icon || '🏪') + '</div>'}
+  <a href="/map" class="back">&larr; Back to map</a>
+  ${el.imageUrl ? `<img src="${esc(el.imageUrl)}" class="hero" alt="${esc(el.title)}">` : '<div class="hero" style="display:flex;align-items:center;justify-content:center;font-size:72px;color:rgba(47,58,47,0.15);">' + (el.icon || '&#127860;') + '</div>'}
+  ${el.cuisineType ? `<div class="cuisine">${esc(el.cuisineType)}</div>` : ''}
   <h1>${esc(el.title)}</h1>
   ${el.subtitle ? `<div class="subtitle">${esc(el.subtitle)}</div>` : ''}
-  ${el.cuisineType ? `<div class="subtitle">${esc(el.cuisineType)}</div>` : ''}
   ${el.address ? `<div class="subtitle">&#128205; ${esc(el.address)}</div>` : ''}
   ${avgRating > 0 ? `<div class="rating">${'&#9733;'.repeat(Math.round(avgRating))} ${avgRating} (${sellerRatings.length} review${sellerRatings.length !== 1 ? 's' : ''})</div>` : ''}
   ${tagsHtml}
   ${el.description ? `<div class="desc">${esc(el.description)}</div>` : ''}
   ${el.externalOrderUrl ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" class="order-btn">Order Now</a>` : ''}
-  ${elProducts.length > 0 ? `<div class="section-title">Products</div>${productCards}` : ''}
-  ${contactItems.length > 0 ? `<div class="section-title" style="margin-top:20px;">Contact</div><div class="contact">${contactItems.join('')}</div>` : ''}
+  ${elProducts.length > 0 ? `<div class="section-title">Menu</div>${productCards}` : ''}
+  ${contactItems.length > 0 ? `<div class="section-title" style="margin-top:24px;">Contact</div><div class="contact">${contactItems.join('')}</div>` : ''}
 </div>
 </body></html>`;
 
@@ -141,9 +158,16 @@ h1{font-size:24px;font-weight:700;margin-bottom:4px}
 app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public/terms.html')));
 app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public/privacy.html')));
 app.get('/seller', (req, res) => res.sendFile(path.join(__dirname, 'public/seller.html')));
+app.get('/join', (req, res) => res.sendFile(path.join(__dirname, 'public/join.html')));
 app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public/admin.html')));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
+  }
+}));
 
 // ── Data Persistence ────────────────────────────────────────────────────────
 const DATA_DIR = path.join(__dirname, 'data');
@@ -171,7 +195,7 @@ let payouts = loadData('payouts', { payouts: [] });
 let prospects = loadData('prospects', { prospects: [] });
 let campaigns = loadData('campaigns', { campaigns: [] });
 let platformSettings = loadData('platform_settings', {
-  platformName: 'Cottage',
+  platformName: 'Kinseb',
   tagline: 'Homemade goods from kitchens near you',
   accentColor: '#ea580c',
   commissionRate: 20,
@@ -184,7 +208,7 @@ let platformSettings = loadData('platform_settings', {
   smtpPort: 587,
   smtpUser: '',
   smtpPass: '',
-  smtpFrom: 'noreply@cottage.local',
+  smtpFrom: 'noreply@kinseb.com',
   adminPassword: 'cottage-admin-2026',
   maxProductPhotos: 4,
   maxProfilePhotos: 6,
@@ -196,7 +220,7 @@ let platformSettings = loadData('platform_settings', {
   igShareDiscount: 10,
   igShareDefaultRate: 20,
   igShareVerifyRequired: true,
-  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @CottageLA! 🍞 Homemade goods from kitchens near you. #CottageFood #HomeBaked #SupportLocal",
+  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @Kinseb! 🍽 Eat beautifully. #Kinseb #HomeChef #EatLocal",
   igShareImageUrl: ""
 });
 
@@ -366,7 +390,7 @@ async function sendEmail(to, subject, html) {
 
 function emailWrap(title, body) {
   const accent = platformSettings.accentColor || '#ea580c';
-  const name = platformSettings.platformName || 'Cottage';
+  const name = platformSettings.platformName || 'Kinseb';
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="margin:0;padding:0;background:#f5f5f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
 <div style="max-width:560px;margin:24px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
@@ -479,7 +503,7 @@ app.post('/api/auth/verify', async (req, res) => {
   if (existing) {
     const token = createSession(existing);
     setSessionCookie(res, token);
-    return res.json({ ok: true, user: { id: existing.id, name: existing.name, phone: existing.phone } });
+    return res.json({ ok: true, user: { id: existing.id, name: existing.name, phone: existing.phone, role: existing.role || 'buyer' } });
   }
 
   pendingVerifications[phone] = { verifiedAt: Date.now() };
@@ -497,14 +521,15 @@ app.post('/api/auth/complete', (req, res) => {
     return res.status(401).json({ ok: false, error: 'Verification expired. Please start over.' });
   delete pendingVerifications[phone];
 
-  const user = makeUser({ name, phone, phoneVerified: true });
+  const role = (req.body.role || 'buyer').toLowerCase() === 'seller' ? 'seller' : 'buyer';
+  const user = makeUser({ name, phone, phoneVerified: true, role });
   users.users.push(user);
 
   const token = createSession(user);
   setSessionCookie(res, token);
   saveData('users', users);
 
-  res.json({ ok: true, user: { id: user.id, name: user.name, phone: user.phone } });
+  res.json({ ok: true, user: { id: user.id, name: user.name, phone: user.phone, role: user.role } });
 });
 
 // POST /api/auth/google — verify Google credential JWT
@@ -551,6 +576,7 @@ app.get('/api/auth/me', (req, res) => {
     ok: true,
     user: {
       id: user.id, name: user.name, email: user.email, phone: user.phone,
+      role: user.role || 'buyer',
       profile: user.profile || { displayName: '', bio: '', photos: [], location: null }
     }
   });
@@ -1068,11 +1094,21 @@ app.get('/api/elements/search', (req, res) => {
   const active = elements.elements.filter(e => e.active !== false && e.type === 'seller');
   const scored = [];
 
+  // Extract unique cities for city-level search results
+  const cityMap = {};
+
   for (const e of active) {
     // Filter out suspended sellers
     if (e.metadata && e.metadata.userId) {
       const seller = users.users.find(u => u.id === e.metadata.userId);
       if (seller && seller.status === 'suspended') continue;
+    }
+
+    // Track cities
+    const city = (e.subtitle || '').trim();
+    if (city) {
+      if (!cityMap[city]) cityMap[city] = { name: city, count: 0, lat: e.lat, lng: e.lng };
+      cityMap[city].count++;
     }
 
     let score = 0;
@@ -1115,7 +1151,17 @@ app.get('/api/elements/search', (req, res) => {
   scored.sort((a, b) => b.score - a.score);
   const results = scored.slice(0, 20).map(s => s.el);
 
-  res.json({ ok: true, elements: results, total: results.length });
+  // Find matching cities
+  const matchedCities = Object.values(cityMap)
+    .filter(c => c.name.toLowerCase().includes(q))
+    .sort((a, b) => {
+      const aExact = a.name.toLowerCase() === q ? 1 : 0;
+      const bExact = b.name.toLowerCase() === q ? 1 : 0;
+      return bExact - aExact || b.count - a.count;
+    })
+    .slice(0, 5);
+
+  res.json({ ok: true, elements: results, cities: matchedCities, total: results.length });
 });
 
 // GET /api/elements/:id
@@ -2141,7 +2187,7 @@ function seedDefaults() {
 
   const sellers = [
     {
-      name: "Maria's Cocina", bio: "Third-generation recipes from Oaxaca. Conchas, empanadas, and tamales baked fresh. Class A Cottage Food Permit.",
+      name: "Maria's Cocina", bio: "Third-generation recipes from Oaxaca. Conchas, empanadas, and tamales baked fresh every morning.",
       lat: 34.0869, lng: -118.2627, address: "Silver Lake, LA", permitType: "Class A", permitNumber: "CFO-LA-2024-1847",
       products: [
         { name: "Conchas (6-pack)", price: 900, category: "bread", description: "Traditional Mexican sweet bread with colorful sugar shell topping. Vanilla and chocolate flavors.", allergens: ["wheat", "eggs", "milk"] },
@@ -2277,13 +2323,312 @@ function seedDefaults() {
   saveData('users', users);
   saveData('elements', elements);
   saveData('products', products);
-  console.log(`✓ Seeded ${sellers.length} cottage food kitchens with ${products.products.length} products`);
+  console.log(`✓ Seeded ${sellers.length} chefs with ${products.products.length} meals`);
 }
 
 // seedDefaults(); // Disabled — using real MEHKO data from scraper
 
+// ════════════════════════════════════════════════════════════════════════════
+// ── Claude Chat Agent ──────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+let Anthropic = null;
+let anthropicClient = null;
+
+if (ANTHROPIC_API_KEY) {
+  try {
+    Anthropic = require('@anthropic-ai/sdk');
+    anthropicClient = new Anthropic({ apiKey: ANTHROPIC_API_KEY });
+    console.log('✓ Claude Chat Agent initialized');
+  } catch (e) {
+    console.log('⚠ Anthropic SDK not available:', e.message);
+  }
+}
+
+// Chat sessions stored in memory (keyed by session ID)
+const chatSessions = {};
+
+const PROJECT_ROOT = __dirname;
+
+// Tools Claude can use to modify the project
+const CLAUDE_TOOLS = [
+  {
+    name: 'read_file',
+    description: 'Read the contents of a file in the project. Use this to understand current code before making changes.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        file_path: { type: 'string', description: 'Relative path from project root (e.g. "public/map.html", "server.js")' }
+      },
+      required: ['file_path']
+    }
+  },
+  {
+    name: 'list_files',
+    description: 'List files and directories in the project. Use to explore the project structure.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        directory: { type: 'string', description: 'Relative directory path (e.g. "public", "data"). Defaults to project root.' }
+      },
+      required: []
+    }
+  },
+  {
+    name: 'write_file',
+    description: 'Write content to a file, creating it if it does not exist or overwriting if it does. Use for creating new files or complete rewrites.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        file_path: { type: 'string', description: 'Relative path from project root' },
+        content: { type: 'string', description: 'The full file content to write' }
+      },
+      required: ['file_path', 'content']
+    }
+  },
+  {
+    name: 'edit_file',
+    description: 'Replace a specific string in a file with new content. The old_string must match exactly (including whitespace). Use for targeted edits.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        file_path: { type: 'string', description: 'Relative path from project root' },
+        old_string: { type: 'string', description: 'The exact text to find and replace' },
+        new_string: { type: 'string', description: 'The replacement text' }
+      },
+      required: ['file_path', 'old_string', 'new_string']
+    }
+  },
+  {
+    name: 'search_code',
+    description: 'Search for a pattern across project files. Returns matching lines with file paths and line numbers.',
+    input_schema: {
+      type: 'object',
+      properties: {
+        pattern: { type: 'string', description: 'Text or regex pattern to search for' },
+        file_glob: { type: 'string', description: 'Optional glob to filter files (e.g. "*.js", "public/*.html")' }
+      },
+      required: ['pattern']
+    }
+  }
+];
+
+// Execute a tool call
+function executeTool(name, input) {
+  const safePath = (rel) => {
+    const resolved = path.resolve(PROJECT_ROOT, rel);
+    if (!resolved.startsWith(PROJECT_ROOT)) throw new Error('Path outside project directory');
+    return resolved;
+  };
+
+  switch (name) {
+    case 'read_file': {
+      const fp = safePath(input.file_path);
+      if (!fs.existsSync(fp)) return { error: `File not found: ${input.file_path}` };
+      const stat = fs.statSync(fp);
+      if (stat.size > 500000) return { error: 'File too large (>500KB)' };
+      return { content: fs.readFileSync(fp, 'utf-8') };
+    }
+    case 'list_files': {
+      const dir = safePath(input.directory || '.');
+      if (!fs.existsSync(dir)) return { error: `Directory not found: ${input.directory}` };
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      return {
+        files: entries
+          .filter(e => !e.name.startsWith('.') && e.name !== 'node_modules')
+          .map(e => ({ name: e.name, type: e.isDirectory() ? 'directory' : 'file' }))
+      };
+    }
+    case 'write_file': {
+      const fp = safePath(input.file_path);
+      const dir = path.dirname(fp);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(fp, input.content, 'utf-8');
+      return { success: true, message: `Wrote ${input.file_path} (${input.content.length} chars)` };
+    }
+    case 'edit_file': {
+      const fp = safePath(input.file_path);
+      if (!fs.existsSync(fp)) return { error: `File not found: ${input.file_path}` };
+      let content = fs.readFileSync(fp, 'utf-8');
+      if (!content.includes(input.old_string)) return { error: 'old_string not found in file. Read the file first to get the exact text.' };
+      content = content.replace(input.old_string, input.new_string);
+      fs.writeFileSync(fp, content, 'utf-8');
+      return { success: true, message: `Edited ${input.file_path}` };
+    }
+    case 'search_code': {
+      const results = [];
+      const glob = input.file_glob || '**';
+      const searchDir = (dir, rel) => {
+        if (!fs.existsSync(dir)) return;
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+          if (entry.name.startsWith('.') || entry.name === 'node_modules') continue;
+          const fullPath = path.join(dir, entry.name);
+          const relPath = path.join(rel, entry.name);
+          if (entry.isDirectory()) {
+            searchDir(fullPath, relPath);
+          } else if (entry.isFile()) {
+            if (input.file_glob && !relPath.match(new RegExp(input.file_glob.replace(/\*/g, '.*')))) continue;
+            try {
+              const content = fs.readFileSync(fullPath, 'utf-8');
+              const lines = content.split('\n');
+              lines.forEach((line, i) => {
+                if (line.includes(input.pattern)) {
+                  results.push({ file: relPath, line: i + 1, text: line.trim() });
+                }
+              });
+            } catch (e) {}
+          }
+        }
+      };
+      searchDir(PROJECT_ROOT, '');
+      return { matches: results.slice(0, 50) };
+    }
+    default:
+      return { error: `Unknown tool: ${name}` };
+  }
+}
+
+const CHAT_SYSTEM_PROMPT = `You are a coding assistant embedded in the Kinseb website. You can read, edit, and create files in this project to modify the website in real time.
+
+The project is a Node.js/Express app with MapLibre GL JS frontend — Kinseb is a curated platform for discovering and ordering meals from home chefs.
+Key files:
+- server.js — Express backend (API routes, auth, data management)
+- public/map.html — Main map page (full SPA with markers, profiles, messaging)
+- public/profile.html — Profile page
+- public/admin.html — Admin dashboard
+- public/seller.html — Seller dashboard
+- config.json — Service configuration
+- data/ — JSON data files (elements, users, products, etc.)
+
+When the user asks for changes:
+1. Read the relevant file(s) first to understand the current code
+2. Make targeted edits (prefer edit_file over write_file for existing files)
+3. Explain what you changed briefly
+
+The changes take effect immediately — the site serves files directly from disk. For server.js changes, note that a server restart may be needed.
+
+Keep responses concise. Focus on making the requested changes.`;
+
+// POST /api/chat — send a message in a chat session
+app.post('/api/chat', async (req, res) => {
+  console.log('[chat] Request received:', JSON.stringify(req.body).slice(0, 200));
+  if (!anthropicClient) return res.status(503).json({ ok: false, error: 'Chat agent not configured' });
+
+  const { sessionId, message } = req.body;
+  if (!message) return res.status(400).json({ ok: false, error: 'Message required' });
+
+  const sid = sessionId || 'sess_' + crypto.randomBytes(8).toString('hex');
+  console.log('[chat] Session:', sid, '| Message:', message.slice(0, 100));
+
+  if (!chatSessions[sid] || !chatSessions[sid].apiMessages) {
+    chatSessions[sid] = {
+      id: sid,
+      apiMessages: [],
+      createdAt: new Date().toISOString()
+    };
+  }
+
+  const session = chatSessions[sid];
+
+  // Append user message to full API history
+  session.apiMessages.push({ role: 'user', content: message });
+
+  // Trim if context gets too large, but ensure we start with a user message
+  if (session.apiMessages.length > 40) {
+    let msgs = session.apiMessages.slice(-30);
+    // Ensure first message is a user role (not orphaned tool_result)
+    while (msgs.length > 1 && msgs[0].role !== 'user') msgs.shift();
+    // Ensure first user message is a plain string (not tool_result)
+    while (msgs.length > 1 && typeof msgs[0].content !== 'string') msgs.shift();
+    session.apiMessages = msgs;
+  }
+
+  try {
+    let toolUseLog = [];
+
+    for (let turn = 0; turn < 8; turn++) {
+      console.log('[chat] Turn', turn, '| Messages:', session.apiMessages.length);
+      const response = await anthropicClient.messages.create({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 2048,
+        system: CHAT_SYSTEM_PROMPT,
+        tools: CLAUDE_TOOLS,
+        messages: session.apiMessages
+      });
+      console.log('[chat] API response, stop_reason:', response.stop_reason, '| blocks:', response.content.length);
+
+      const assistantContent = response.content;
+      let hasToolUse = false;
+
+      for (const block of assistantContent) {
+        if (block.type === 'tool_use') {
+          hasToolUse = true;
+          const result = executeTool(block.name, block.input);
+          toolUseLog.push({ tool: block.name, input: block.input, result });
+
+          // Persist tool use exchange in session history
+          session.apiMessages.push({ role: 'assistant', content: assistantContent });
+          session.apiMessages.push({
+            role: 'user',
+            content: [{
+              type: 'tool_result',
+              tool_use_id: block.id,
+              content: JSON.stringify(result)
+            }]
+          });
+          break;
+        }
+      }
+
+      if (!hasToolUse) {
+        const textParts = assistantContent.filter(b => b.type === 'text').map(b => b.text);
+        const reply = textParts.join('\n');
+
+        // Persist final assistant reply in session history
+        session.apiMessages.push({ role: 'assistant', content: reply });
+
+        const filesChanged = toolUseLog
+          .filter(t => t.tool === 'write_file' || t.tool === 'edit_file')
+          .map(t => t.input.file_path);
+
+        return res.json({
+          ok: true,
+          sessionId: sid,
+          reply,
+          toolsUsed: toolUseLog.map(t => ({ tool: t.tool, file: t.input.file_path || t.input.directory || t.input.pattern })),
+          filesChanged: [...new Set(filesChanged)]
+        });
+      }
+    }
+
+    // Hit max turns
+    session.apiMessages.push({ role: 'assistant', content: 'Hit iteration limit. Check results and ask for more if needed.' });
+    return res.json({
+      ok: true,
+      sessionId: sid,
+      reply: 'I made several changes but hit the iteration limit. Check the results and let me know if you need more.',
+      toolsUsed: toolUseLog.map(t => ({ tool: t.tool, file: t.input.file_path || t.input.directory || t.input.pattern })),
+      filesChanged: [...new Set(toolUseLog.filter(t => t.tool === 'write_file' || t.tool === 'edit_file').map(t => t.input.file_path))]
+    });
+
+  } catch (e) {
+    console.error('[chat] Error:', e.message);
+    if (!res.headersSent) {
+      return res.status(500).json({ ok: false, error: 'Chat failed: ' + e.message });
+    }
+  }
+});
+
+// GET /api/chat/:sessionId — get chat history
+app.get('/api/chat/:sessionId', (req, res) => {
+  const session = chatSessions[req.params.sessionId];
+  if (!session) return res.status(404).json({ ok: false, error: 'Session not found' });
+  res.json({ ok: true, session });
+});
+
 app.listen(PORT, () => {
-  console.log(`\n  🗺️  Map Framework running at http://localhost:${PORT}`);
+  console.log(`\n  🍽  Kinseb running at http://localhost:${PORT}`);
   console.log(`  Service: ${config.name}`);
   console.log(`  Elements: ${elements.elements.length} | Products: ${products.products.length} | Users: ${users.users.length}\n`);
 });

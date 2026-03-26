@@ -3,17 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cottage — Homemade Goods Near You</title>
+  <title>Kinseb — Eat beautifully.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&q=80">
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1486427944544-d2c246c4df14?w=1920&q=80">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
-    :root { --accent: #ea580c; --accent-light: #fb923c; --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; --warm: #fef3c7; --dim: #a0a0c0; }
+    :root {
+      --cream: #F5F1E8;
+      --ink: #1A1A1A;
+      --olive: #2F3A2F;
+      --terracotta: #C46A3C;
+      --terracotta-light: #D4845A;
+      --warm-gray: #8A8577;
+      --light-border: rgba(47,58,47,0.12);
+      --card-bg: #FDFBF7;
+      --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(245,241,232,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--light-border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      transition: color 0.4s;
+    }
+    .nav.scrolled .nav-logo { color: var(--ink); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.01em;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav.scrolled .nav-link { color: var(--warm-gray); }
+    .nav.scrolled .nav-link:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 24px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,0.25); }
+    .nav.scrolled .nav-cta {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: #fff;
+    }
+    .nav.scrolled .nav-cta:hover { background: var(--terracotta-light); }
+
+    .nav-mobile-btn {
+      display: none; background: none; border: none; color: #fff; cursor: pointer;
+      transition: color 0.4s;
+    }
+    .nav.scrolled .nav-mobile-btn { color: var(--ink); }
 
     /* ── Hero ── */
     .hero {
@@ -24,466 +103,684 @@
       justify-content: center;
       overflow: hidden;
     }
-
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+      position: absolute; inset: 0; z-index: 0;
+      background: url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1920&q=80') center/cover no-repeat;
     }
-
-    .hero-bg-img {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-      animation: kenburns 20s ease-in-out infinite alternate;
-      will-change: opacity, transform;
-    }
-
-    .hero-bg-img.active {
-      opacity: 1;
-    }
-
-    .hero-bg-img:nth-child(2) { animation-delay: -3s; }
-    .hero-bg-img:nth-child(3) { animation-delay: -6s; }
-    .hero-bg-img:nth-child(4) { animation-delay: -9s; }
-    .hero-bg-img:nth-child(5) { animation-delay: -12s; }
-    .hero-bg-img:nth-child(6) { animation-delay: -15s; }
-    .hero-bg-img:nth-child(7) { animation-delay: -18s; }
-    .hero-bg-img:nth-child(8) { animation-delay: -1s; }
-
-    @keyframes kenburns {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
-    }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         to bottom,
-        rgba(10, 10, 15, 0.7) 0%,
-        rgba(10, 10, 15, 0.5) 40%,
-        rgba(10, 10, 15, 0.8) 100%
+        rgba(26,26,26,0.3) 0%,
+        rgba(26,26,26,0.15) 40%,
+        rgba(26,26,26,0.5) 100%
       );
-      z-index: 1;
     }
-
     .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 520px;
-      width: 100%;
+      position: relative; z-index: 2;
       text-align: center;
       padding: 40px 24px;
+      max-width: 700px;
     }
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 400;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: var(--sans);
+      transition: all 0.3s;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary { background: var(--terracotta); color: #fff; }
+    .btn-primary:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); transform: translateY(-1px); }
+    .btn-dark { background: var(--olive); color: #fff; }
+    .btn-dark:hover { background: #3a4a3a; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--terracotta);
+      color: var(--terracotta);
+    }
+    .btn-outline:hover { background: var(--terracotta); color: #fff; }
 
-    .hero-dots {
+    .hero-scroll {
       position: absolute;
       bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      display: flex;
-      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
     }
 
-    .hero-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
+    /* ── Section Shared ── */
+    .section {
+      padding: 100px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--warm-gray);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-header .section-desc {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Featured Chef of the Week ── */
+    .chef-spotlight {
+      padding: 80px 24px;
+      background: var(--olive);
+      color: #fff;
+    }
+    .chef-spotlight-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .spotlight-img {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: #1a2a1a;
+    }
+    .spotlight-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .spotlight-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--terracotta-light);
+      margin-bottom: 16px;
+    }
+    .spotlight-name {
+      font-family: var(--serif);
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .spotlight-cuisine {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .spotlight-bio {
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 32px;
+    }
+
+    /* ── Featured Chefs Grid ── */
+    .chefs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .chef-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s;
       cursor: pointer;
-      transition: all 0.3s;
-      border: none;
-      padding: 0;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--light-border);
+    }
+    .chef-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(47,58,47,0.12);
+    }
+    .chef-card-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: #e8e4db;
+      display: block;
+    }
+    .chef-card-body { padding: 22px 24px 26px; }
+    .chef-card-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .chef-card-cuisine {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--terracotta);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .chef-card-tagline {
+      font-size: 14px;
+      color: var(--warm-gray);
+      line-height: 1.6;
     }
 
-    .hero-dot.active {
-      background: var(--accent);
-      width: 24px;
-      border-radius: 4px;
+    /* ── Explore Near You ── */
+    .explore-section {
+      padding: 100px 24px;
+      background: #EFEBE2;
     }
-
-    .hero-icon { font-size: 56px; margin-bottom: 16px; display: block; }
-    .logo { font-size: 52px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 12px; line-height: 1.1; }
-    .logo span { color: var(--accent); }
-    .tagline { font-size: 20px; color: rgba(240,240,255,0.85); margin-bottom: 12px; line-height: 1.5; }
-    .sub-tagline { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 44px; line-height: 1.5; }
-
-    .cta-stack { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
-    .cta-btn {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; padding: 16px 24px; border-radius: 14px;
-      font-size: 15px; font-weight: 700; cursor: pointer;
-      border: none; font-family: inherit; transition: all 0.2s; text-decoration: none;
+    .explore-inner {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .cta-browse { background: var(--accent); color: #fff; }
-    .cta-browse:hover { filter: brightness(1.15); transform: translateY(-1px); }
-    .cta-google { background: #fff; color: #333; }
-    .cta-google:hover { background: #f0f0f0; transform: translateY(-1px); }
-    .cta-google svg { width: 20px; height: 20px; }
-    .cta-phone { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-    .cta-phone:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
-    .cta-seller { background: transparent; color: var(--accent-light); border: 1px solid rgba(234,88,12,0.3); margin-top: 4px; font-size: 14px; }
-    .cta-seller:hover { background: rgba(234,88,12,0.08); transform: translateY(-1px); }
-
-    .legal-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 24px; line-height: 1.6; }
-    .legal-note a { color: rgba(255,255,255,0.45); text-decoration: none; }
-    .legal-note a:hover { text-decoration: underline; }
-    #google-btn-hidden { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; overflow: hidden; }
-
-    /* ── Featured Products ── */
-    .featured { padding: 80px 24px 0; max-width: 960px; margin: 0 auto; }
-    .featured h2 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .featured-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 40px; }
-    .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .product-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
-      overflow: hidden; transition: all 0.25s; cursor: pointer;
+    .explore-map-wrap {
+      border-radius: 24px;
+      overflow: hidden;
+      height: 420px;
+      background: #ddd8ce;
+      position: relative;
+      border: 1px solid var(--light-border);
+      margin-top: 48px;
     }
-    .product-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(234,88,12,0.1); }
-    .product-img {
-      width: 100%; height: 160px; object-fit: cover;
-      background: #1a1a28;
+    .explore-map-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--warm-gray);
     }
-    .product-info { padding: 16px; }
-    .product-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .product-seller { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-    .product-price { font-size: 16px; font-weight: 800; color: var(--accent-light); }
-    .product-card-placeholder {
-      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
-      overflow: hidden; min-height: 240px;
-      display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px;
+    .explore-map-placeholder svg { opacity: 0.4; }
+    .explore-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+      justify-content: center;
     }
-
-    /* ── Stats Counter ── */
-    .stats-section { padding: 60px 24px; max-width: 720px; margin: 0 auto; }
-    .stats-grid { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
-    .stat-item { text-align: center; }
-    .stat-number { font-size: 42px; font-weight: 900; color: var(--accent); letter-spacing: -0.03em; }
-    .stat-label { font-size: 14px; color: var(--muted); margin-top: 4px; font-weight: 500; }
-
-    /* ── Categories ── */
-    .categories { padding: 64px 24px 0; max-width: 720px; margin: 0 auto; }
-    .categories h2 { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 28px; letter-spacing: -0.02em; }
-    .cat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .cat-pill {
-      display: flex; align-items: center; gap: 6px;
-      padding: 10px 18px; border-radius: 20px;
-      background: var(--card); border: 1px solid var(--border);
-      font-size: 14px; font-weight: 600; color: var(--text);
-      text-decoration: none; transition: all 0.15s;
+    .chip {
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-family: var(--sans);
     }
-    .cat-pill:hover { border-color: var(--accent); background: rgba(234,88,12,0.06); }
+    .chip:hover {
+      background: var(--olive);
+      color: #fff;
+      border-color: var(--olive);
+    }
 
     /* ── How It Works ── */
-    .features { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
-    .features h2 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 12px; letter-spacing: -0.02em; }
-    .features-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 48px; }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .feature-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
-      padding: 28px 24px; text-align: center;
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
     }
-    .feature-icon { font-size: 32px; margin-bottom: 14px; display: block; }
-    .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ── Trust Section ── */
-    .trust-section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
-    .trust-section h2 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 48px; letter-spacing: -0.02em; }
-    .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
-    .trust-item { text-align: center; }
-    .trust-icon { font-size: 36px; margin-bottom: 12px; }
-    .trust-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .trust-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ── Cottage Food Info ── */
-    .info-section { padding: 0 24px 80px; max-width: 720px; margin: 0 auto; }
-    .info-card {
-      background: linear-gradient(135deg, rgba(234,88,12,0.06) 0%, rgba(234,88,12,0.02) 100%);
-      border: 1px solid rgba(234,88,12,0.15); border-radius: 18px;
-      padding: 32px 28px; text-align: center;
+    .how-item { text-align: center; }
+    .how-number {
+      font-family: var(--serif);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+      line-height: 1;
     }
-    .info-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--accent-light); }
-    .info-card p { font-size: 14px; color: var(--dim); line-height: 1.7; margin-bottom: 12px; }
-    .info-card a { color: var(--accent-light); text-decoration: none; font-weight: 600; font-size: 14px; }
-    .info-card a:hover { text-decoration: underline; }
+    .how-item h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .how-item p {
+      font-size: 15px;
+      color: var(--warm-gray);
+      line-height: 1.7;
+      max-width: 300px;
+      margin: 0 auto;
+    }
 
-    /* ── Seller CTA ── */
-    .seller-cta { padding: 0 24px 80px; max-width: 720px; margin: 0 auto; }
-    .seller-cta-card { background: linear-gradient(135deg, rgba(234,88,12,0.08) 0%, rgba(234,88,12,0.02) 100%); border: 1px solid rgba(234,88,12,0.2); border-radius: 20px; padding: 48px 32px; text-align: center; }
-    .seller-cta-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
-    .seller-cta-card p { font-size: 15px; color: var(--dim); line-height: 1.6; max-width: 500px; margin: 0 auto; }
+    /* ── Email Capture ── */
+    .email-section {
+      padding: 100px 24px;
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+    }
+    .email-section .section-title { color: #fff; }
+    .email-section .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto 40px; }
+    .email-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .email-input {
+      flex: 1;
+      padding: 16px 24px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 15px;
+      font-family: var(--sans);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .email-input::placeholder { color: rgba(255,255,255,0.35); }
+    .email-input:focus { border-color: var(--terracotta); }
+    .email-submit {
+      padding: 16px 32px;
+      border-radius: 100px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .email-submit:hover { background: var(--terracotta-light); }
 
     /* ── Footer ── */
-    footer {
-      padding: 32px 24px; text-align: center; border-top: 1px solid var(--border);
-      font-size: 13px; color: #4a4a6a;
+    .footer {
+      padding: 60px 24px 40px;
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
-    footer a { color: var(--muted); text-decoration: none; margin: 0 12px; }
-    footer a:hover { color: var(--text); }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+    .footer-link {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: #fff; }
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
 
     /* ── Auth Modal ── */
     .auth-backdrop {
-      position: fixed; inset: 0; z-index: 30;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(26,26,26,0.6);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      padding: 20px;
     }
     .auth-backdrop.open { opacity: 1; pointer-events: auto; }
     .auth-card {
-      width: 100%; max-width: 400px; position: relative;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 24px; padding: 40px 32px;
-      transform: scale(0.93) translateY(12px);
+      width: 100%; max-width: 420px; position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 24px;
+      padding: 44px 36px;
+      transform: scale(0.95) translateY(10px);
       transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
     }
     .auth-backdrop.open .auth-card { transform: scale(1) translateY(0); }
     .auth-close {
       position: absolute; top: 18px; right: 18px;
-      width: 34px; height: 34px; border-radius: 50%;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      color: var(--muted); font-size: 16px; cursor: pointer;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(47,58,47,0.06);
+      border: none;
+      color: var(--warm-gray);
+      font-size: 16px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
     }
-    .auth-close:hover { background: rgba(255,255,255,0.1); color: var(--text); }
-    .auth-title { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
-    .auth-sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; line-height: 1.5; }
+    .auth-close:hover { background: rgba(47,58,47,0.12); color: var(--ink); }
+    .auth-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .auth-sub { color: var(--warm-gray); font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
     .auth-input {
-      width: 100%; background: #07070e; border: 1px solid var(--border); border-radius: 12px;
-      padding: 14px 18px; color: var(--text); font-size: 15px;
-      outline: none; font-family: inherit; margin-bottom: 12px; transition: border-color 0.15s;
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid var(--light-border);
+      border-radius: 14px;
+      padding: 15px 20px;
+      color: var(--ink);
+      font-size: 15px;
+      outline: none;
+      font-family: var(--sans);
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
     }
-    .auth-input:focus { border-color: var(--accent); }
-    .auth-input::placeholder { color: #3a3a58; }
-    .auth-input.otp { text-align: center; font-size: 26px; font-weight: 700; font-family: monospace; letter-spacing: 0.35em; }
+    .auth-input:focus { border-color: var(--terracotta); }
+    .auth-input::placeholder { color: #b5b0a5; }
+    .auth-input.otp {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      letter-spacing: 0.35em;
+    }
     .auth-btn {
-      width: 100%; padding: 15px; border-radius: 12px;
-      font-size: 15px; font-weight: 700; cursor: pointer;
-      border: none; font-family: inherit; background: var(--accent); color: #fff;
-      transition: all 0.15s; margin-top: 4px;
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      font-family: var(--sans);
+      background: var(--terracotta);
+      color: #fff;
+      transition: all 0.2s;
+      margin-top: 4px;
     }
-    .auth-btn:hover { filter: brightness(1.15); }
-    .auth-btn:disabled { opacity: 0.4; cursor: default; filter: none; }
+    .auth-btn:hover { background: var(--terracotta-light); }
+    .auth-btn:disabled { opacity: 0.4; cursor: default; }
     .auth-link {
       display: block; text-align: center; margin-top: 18px;
-      font-size: 13px; color: var(--muted); cursor: pointer;
-      background: none; border: none; font-family: inherit;
+      font-size: 13px; color: var(--warm-gray); cursor: pointer;
+      background: none; border: none; font-family: var(--sans);
     }
-    .auth-link:hover { color: var(--accent); }
-    .auth-error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 11px 14px; color: #f87171; font-size: 13px; margin-bottom: 14px; display: none; }
-    .auth-success { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 11px 14px; color: #10b981; font-size: 13px; margin-bottom: 14px; display: none; }
-
-    /* ── Animated counter ── */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .auth-link:hover { color: var(--terracotta); }
+    .auth-error {
+      background: rgba(220,80,60,0.08); border: 1px solid rgba(220,80,60,0.2);
+      border-radius: 12px; padding: 12px 16px; color: #c0503c; font-size: 13px;
+      margin-bottom: 14px; display: none;
     }
-    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .auth-success {
+      background: rgba(47,58,47,0.08); border: 1px solid rgba(47,58,47,0.2);
+      border-radius: 12px; padding: 12px 16px; color: var(--olive); font-size: 13px;
+      margin-bottom: 14px; display: none;
+    }
+    #google-btn-hidden { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; overflow: hidden; }
 
     /* ── Responsive ── */
-    @media (max-width: 600px) {
-      .logo { font-size: 42px; }
-      .tagline { font-size: 18px; }
-      .hero-content { padding: 30px 20px; }
-      .stats-grid { gap: 32px; }
-      .stat-number { font-size: 34px; }
-      .featured-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .product-img { height: 120px; }
+    @media (max-width: 1024px) {
+      .chef-spotlight-inner { grid-template-columns: 1fr; gap: 40px; }
+      .spotlight-img { max-height: 400px; aspect-ratio: 16/9; }
+    }
+    @media (max-width: 768px) {
+      .nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: block; }
+      .how-grid { grid-template-columns: 1fr; gap: 48px; }
+      .chefs-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+      .email-form { flex-direction: column; }
+      .hero-sub { font-size: 16px; }
+      .section { padding: 72px 20px; }
+      .explore-map-wrap { height: 320px; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 300px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <a href="/" class="nav-logo">Kinseb</a>
+    <div class="nav-links">
+      <a href="#chefs" class="nav-link">Chefs</a>
+      <a href="#explore" class="nav-link">Explore</a>
+      <a href="#how" class="nav-link">How it works</a>
+      <a href="/join" class="nav-link">Become a chef</a>
+      <button class="nav-cta" id="nav-signin" onclick="openPhoneAuth()">Sign in</button>
+    </div>
+    <button class="nav-mobile-btn" onclick="openPhoneAuth()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </nav>
+
+  <!-- Hero -->
   <section class="hero">
-    <div class="hero-bg" id="hero-bg">
-      <!-- Background images injected by JS -->
-    </div>
+    <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-
     <div class="hero-content">
-      <span class="hero-icon">🍞</span>
-      <h1 class="logo" id="hero-logo">Cot<span>tage</span></h1>
-      <p class="tagline">Homemade goods from kitchens near you</p>
-      <p class="sub-tagline">Discover verified home bakers in your neighborhood. Fresh bread, cookies, jams & more — direct from permitted kitchens. Every seller verified. Every product labeled. Every purchase rated.</p>
+      <h1 class="hero-tagline">Eat beautifully.</h1>
+      <p class="hero-sub">Discover extraordinary meals from home chefs in your neighborhood. Crafted with care, served with story.</p>
+      <div class="hero-actions">
+        <a href="/map" class="btn btn-primary">Discover chefs</a>
+        <button class="btn btn-ghost" onclick="openPhoneAuth()">Sign in</button>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
 
-      <div class="cta-stack">
-        <a href="/map" class="cta-btn cta-browse">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
-          Browse the map
+  <!-- Featured Chef of the Week -->
+  <section class="chef-spotlight" id="spotlight">
+    <div class="chef-spotlight-inner">
+      <div class="spotlight-img">
+        <img src="https://images.unsplash.com/photo-1583394293214-28ez069bd2bf?w=800&q=80" alt="Chef of the week" onerror="this.parentElement.style.background='#3a4a3a'">
+      </div>
+      <div>
+        <div class="spotlight-label">Chef of the Week</div>
+        <h2 class="spotlight-name" id="spotlight-name">Featured Chef</h2>
+        <div class="spotlight-cuisine" id="spotlight-cuisine">Local Cuisine</div>
+        <p class="spotlight-bio" id="spotlight-bio">Every week, we highlight a home chef whose passion and craft stand out. Their kitchen tells a story — of heritage, of experimentation, of love poured into every dish.</p>
+        <a href="/map" class="btn btn-primary" id="spotlight-link">View their menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Chefs -->
+  <section class="section" id="chefs">
+    <div class="section-header">
+      <div class="section-label">Featured Chefs</div>
+      <h2 class="section-title">Meet the people behind<br>your next favorite meal</h2>
+      <p class="section-desc">Home kitchens with heart. Every chef on Kinseb is hand-selected for quality, creativity, and care.</p>
+    </div>
+    <div class="chefs-grid" id="chefs-grid">
+      <!-- Populated by JS -->
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="/map" class="btn btn-dark">Explore all chefs</a>
+    </div>
+  </section>
+
+  <!-- Explore Near You -->
+  <section class="explore-section" id="explore">
+    <div class="explore-inner">
+      <div class="section-header">
+        <div class="section-label">Explore</div>
+        <h2 class="section-title">Find chefs near you</h2>
+        <p class="section-desc">Browse the map to discover home kitchens in your neighborhood. Every chef is verified and ready to cook.</p>
+      </div>
+      <div class="explore-chips" id="cuisine-chips">
+        <a href="/map" class="chip">All cuisines</a>
+        <a href="/map" class="chip">Mexican</a>
+        <a href="/map" class="chip">Mediterranean</a>
+        <a href="/map" class="chip">Asian Fusion</a>
+        <a href="/map" class="chip">Bakery</a>
+        <a href="/map" class="chip">Vegan</a>
+        <a href="/map" class="chip">Soul Food</a>
+        <a href="/map" class="chip">Italian</a>
+      </div>
+      <div class="explore-map-wrap">
+        <a href="/map" class="explore-map-placeholder" style="text-decoration:none;color:inherit">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
+          <span style="font-size:18px;font-weight:600">Open the map</span>
+          <span style="font-size:14px">Discover chefs in your area</span>
         </a>
-        <button class="cta-btn cta-google" id="google-btn" style="display:none" onclick="triggerGoogleSignIn()">
-          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Continue with Google
-        </button>
-        <button class="cta-btn cta-phone" onclick="openPhoneAuth()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-          Sign in with phone
-        </button>
-        <a href="/seller" class="cta-btn cta-seller">
-          I'm a home baker — start selling
-        </a>
-      </div>
-
-      <p class="legal-note">
-        By continuing, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
-      </p>
-    </div>
-
-    <div class="hero-dots" id="hero-dots">
-      <!-- Dots injected by JS -->
-    </div>
-
-    <div id="google-btn-hidden"></div>
-  </section>
-
-  <!-- Featured Products -->
-  <section class="featured" id="featured-section" style="display:none">
-    <h2>Fresh from the kitchen</h2>
-    <p class="featured-sub">See what your neighbors are baking today</p>
-    <div class="featured-grid" id="featured-grid"></div>
-  </section>
-
-  <!-- Stats -->
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number" data-target="10">0</div>
-        <div class="stat-label">Verified Sellers</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="50">0</div>
-        <div class="stat-label">Homemade Products</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="5">0</div>
-        <div class="stat-label">Neighborhoods</div>
       </div>
     </div>
   </section>
 
-  <section class="categories">
-    <h2>What's cooking nearby</h2>
-    <div class="cat-grid">
-      <a href="/map" class="cat-pill">🍞 Breads</a>
-      <a href="/map" class="cat-pill">🥐 Pastries</a>
-      <a href="/map" class="cat-pill">🍪 Cookies</a>
-      <a href="/map" class="cat-pill">🍰 Cakes</a>
-      <a href="/map" class="cat-pill">🫙 Jams</a>
-      <a href="/map" class="cat-pill">🍯 Honey</a>
-      <a href="/map" class="cat-pill">🍝 Pasta</a>
-      <a href="/map" class="cat-pill">🥜 Nuts</a>
-      <a href="/map" class="cat-pill">🍫 Candy</a>
-      <a href="/map" class="cat-pill">🧁 Treats</a>
+  <!-- How It Works -->
+  <section class="section" id="how">
+    <div class="section-header">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Three steps to a beautiful meal</h2>
     </div>
-  </section>
-
-  <section class="features">
-    <h2>How it works</h2>
-    <p class="features-sub">Whether you're buying fresh-baked bread or selling your famous cookies.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <span class="feature-icon">🗺️</span>
-        <h3>Explore the map</h3>
-        <p>Browse home kitchens near you. See what's baking, read reviews, and find your new favorite baker.</p>
+    <div class="how-grid">
+      <div class="how-item">
+        <div class="how-number">1</div>
+        <h3>Discover</h3>
+        <p>Browse home chefs near you. Read their stories, explore their menus, see what inspires them.</p>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">🛒</span>
-        <h3>Order directly</h3>
-        <p>Place orders right from the app. Message sellers, arrange pickup, and pay securely.</p>
+      <div class="how-item">
+        <div class="how-number">2</div>
+        <h3>Order</h3>
+        <p>Choose your meals and place an order directly. Message your chef with any special requests.</p>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">👩‍🍳</span>
-        <h3>Start selling</h3>
-        <p>List your homemade goods, set your prices, and reach customers in your neighborhood. All under California's Cottage Food law.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">🔒</span>
-        <h3>Your privacy, protected</h3>
-        <p>Seller locations are approximate on the map — we never share exact addresses. Pickup details are shared only after an order is confirmed.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">✅</span>
-        <h3>Verified sellers</h3>
-        <p>Every seller is verified with a valid California Cottage Food permit. We check so you don't have to.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">⭐</span>
-        <h3>Rated by real buyers</h3>
-        <p>Every purchase gets a rating. See what your neighbors think before you order. No fake reviews, no bots.</p>
+      <div class="how-item">
+        <div class="how-number">3</div>
+        <h3>Enjoy</h3>
+        <p>Pick up your meal or arrange delivery. Taste the difference that real care makes.</p>
       </div>
     </div>
   </section>
 
-  <section class="trust-section">
-    <h2>Why buy from Cottage?</h2>
-    <div class="trust-grid">
-      <div class="trust-item">
-        <div class="trust-icon">🤝</div>
-        <h4>Direct from the baker</h4>
-        <p>No middlemen, no warehouses. Your order goes straight from a home kitchen to your hands. You know exactly who made your food.</p>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">📍</div>
-        <h4>Hyper-local</h4>
-        <p>Every seller is in your neighborhood. Fresher than any delivery app. Lower carbon footprint. Support your actual community.</p>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">💰</div>
-        <h4>Fair prices, fair pay</h4>
-        <p>Sellers set their own prices. No surge pricing, no hidden fees. What you see is what you pay. Sellers keep 90% of every sale.</p>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">🛡️</div>
-        <h4>Safe & compliant</h4>
-        <p>Protected by California's Cottage Food law (AB 1616). Every seller holds a valid permit. Allergens clearly labeled on every product.</p>
-      </div>
-    </div>
+  <!-- Email Capture -->
+  <section class="email-section" id="early-access">
+    <div class="section-label" style="color:var(--terracotta-light)">Early Access</div>
+    <h2 class="section-title">Get early access</h2>
+    <p class="section-desc">Be the first to know when new chefs join your neighborhood.</p>
+    <form class="email-form" onsubmit="handleEmail(event)">
+      <input type="email" class="email-input" placeholder="Your email address" required id="email-capture">
+      <button type="submit" class="email-submit">Join waitlist</button>
+    </form>
+    <p id="email-thanks" style="display:none;margin-top:16px;color:var(--terracotta-light);font-size:14px">Thank you! We'll be in touch.</p>
   </section>
 
-  <section class="info-section">
-    <div class="info-card">
-      <h3>Protected by California Cottage Food Law</h3>
-      <p>All sellers on Cottage operate under California's AB 1616 Cottage Food law. This means every kitchen is registered with their local county, follows food safety guidelines, and is legally permitted to sell homemade goods directly to you.</p>
-      <p>Class A permits allow direct-to-consumer sales up to $75,000/year. Class B permits allow indirect sales through stores and restaurants up to $150,000/year.</p>
-      <a href="http://publichealth.lacounty.gov/Eh/business/home-based-cottage-food.htm" target="_blank" rel="noopener">Learn more about LA County cottage food permits →</a>
-    </div>
-  </section>
-
-  <section class="seller-cta">
-    <div class="seller-cta-card">
-      <h2>Ready to sell your homemade goods?</h2>
-      <p>Join hundreds of home bakers on Cottage. Set up your kitchen in minutes. No monthly fees — we only take 10% when you make a sale.</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
-        <a href="/seller" class="cta-btn cta-browse" style="width:auto;padding:16px 32px">Start selling today</a>
-        <a href="/map" class="cta-btn cta-phone" style="width:auto;padding:16px 32px">Browse as a buyer</a>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Kinseb</div>
+      <div class="footer-links">
+        <a href="/map" class="footer-link">Explore</a>
+        <a href="/join" class="footer-link">Become a chef</a>
+        <a href="/terms" class="footer-link">Terms</a>
+        <a href="/privacy" class="footer-link">Privacy</a>
       </div>
+      <div class="footer-copy">&copy; 2026 Kinseb. All rights reserved.</div>
     </div>
-  </section>
-
-  <footer>
-    <a href="/terms">Terms of Service</a>
-    <a href="/privacy">Privacy Policy</a>
-    <span style="display:inline-block;margin-top:12px;width:100%">&copy; 2026 Cottage. All rights reserved.</span>
   </footer>
 
-  <!-- Phone Auth Modal -->
+  <!-- Auth Modal -->
   <div class="auth-backdrop" id="auth-backdrop">
     <div class="auth-card">
-      <button class="auth-close" onclick="closeAuth()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="auth-close" onclick="closeAuth()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
       <div id="auth-step-phone">
-        <h2 class="auth-title">Sign in with phone</h2>
-        <p class="auth-sub">We'll text you a code to verify your number.</p>
+        <h2 class="auth-title">Welcome to Kinseb</h2>
+        <p class="auth-sub">Enter your phone number to sign in or create an account.</p>
         <div id="auth-error" class="auth-error"></div>
         <input type="tel" class="auth-input" id="auth-phone" placeholder="+1 (555) 123-4567" autocomplete="tel">
-        <button class="auth-btn" id="auth-send-btn" onclick="authSendOtp()">Send code</button>
+        <button class="auth-btn" id="auth-send-btn" onclick="authSendOtp()">Continue</button>
       </div>
       <div id="auth-step-otp" style="display:none">
-        <h2 class="auth-title">Enter code</h2>
+        <h2 class="auth-title">Enter your code</h2>
         <p class="auth-sub">Sent to <strong id="auth-sent-phone"></strong></p>
         <div id="auth-error-otp" class="auth-error"></div>
         <div id="auth-success-otp" class="auth-success"></div>
@@ -501,167 +798,154 @@
     </div>
   </div>
 
+  <div id="google-btn-hidden"></div>
+
 <script>
-// ── Hero Image Carousel ──
-const heroImages = [
-  'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&q=80',
-  'https://images.unsplash.com/photo-1486427944544-d2c246c4df14?w=1920&q=80',
-  'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1920&q=80',
-  'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=1920&q=80',
-  'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=1920&q=80',
-  'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1920&q=80',
-  'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=1920&q=80',
-  'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=1920&q=80',
-];
-
-// Preload first 2 images for fast initial paint
-heroImages.slice(0, 2).forEach(src => {
-  const img = new Image();
-  img.src = src;
-});
-
-// Build hero background slides and dots
-const heroBg = document.getElementById('hero-bg');
-const heroDots = document.getElementById('hero-dots');
-
-heroImages.forEach((src, i) => {
-  const slide = document.createElement('div');
-  slide.className = 'hero-bg-img' + (i === 0 ? ' active' : '');
-  slide.style.backgroundImage = `url(${src})`;
-  heroBg.appendChild(slide);
-
-  const dot = document.createElement('button');
-  dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-  dot.setAttribute('aria-label', `Slide ${i + 1}`);
-  dot.addEventListener('click', () => showSlide(i));
-  heroDots.appendChild(dot);
-});
-
-let currentSlide = 0;
-const slides = document.querySelectorAll('.hero-bg-img');
-const dots = document.querySelectorAll('.hero-dot');
-
-function showSlide(n) {
-  slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
-  currentSlide = ((n % slides.length) + slides.length) % slides.length;
-  slides[currentSlide].classList.add('active');
-  dots[currentSlide].classList.add('active');
-}
-
-setInterval(() => showSlide(currentSlide + 1), 5000);
-
-// ── Animated Stat Counters ──
-function animateCounters() {
-  const counters = document.querySelectorAll('.stat-number[data-target]');
-  counters.forEach(counter => {
-    const target = parseInt(counter.dataset.target);
-    const duration = 1200;
-    const start = performance.now();
-    function tick(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3);
-      counter.textContent = Math.round(ease * target) + '+';
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  });
-}
-
-// Trigger counters when section scrolls into view
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounters();
-      statsObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-const statsSection = document.querySelector('.stats-section');
-if (statsSection) statsObserver.observe(statsSection);
-
-// ── Featured Products ──
-async function loadFeatured() {
-  try {
-    const res = await fetch(BASE + '/api/products');
-    const data = await res.json();
-    if (!data.products || !data.products.length) return;
-
-    const section = document.getElementById('featured-section');
-    const grid = document.getElementById('featured-grid');
-    // Pick up to 4 random products
-    const shuffled = data.products.sort(() => 0.5 - Math.random()).slice(0, 4);
-
-    shuffled.forEach(p => {
-      const card = document.createElement('a');
-      card.href = '/map';
-      card.className = 'product-card';
-      card.style.textDecoration = 'none';
-      card.style.color = 'inherit';
-      card.innerHTML = `
-        <img class="product-img" src="${p.image || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%231a1a28%22 width=%221%22 height=%221%22/></svg>'}" alt="${p.name || ''}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%231a1a28%22 width=%221%22 height=%221%22/></svg>'">
-        <div class="product-info">
-          <div class="product-name">${p.name || 'Homemade Good'}</div>
-          <div class="product-seller">${p.sellerName || p.seller || 'Local Baker'}</div>
-          <div class="product-price">$${(p.price || 0).toFixed(2)}</div>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-
-    section.style.display = 'block';
-  } catch (e) {
-    // Silently fail — featured section stays hidden
-  }
-}
-loadFeatured();
-
-// ── Auth & Config (unchanged) ──
 const BASE = window.location.pathname.replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
-let CFG = {}; let sentPhone = '';
+let CFG = {};
+let sentPhone = '';
+
+// ── Init ──
 async function init() {
   try { CFG = await (await fetch(BASE + '/api/config')).json(); } catch(e) { CFG = {}; }
-  document.documentElement.style.setProperty('--accent', CFG.accent || '#ea580c');
   if (CFG.googleClientId) {
-    document.getElementById('google-btn').style.display = 'flex';
     try {
       google.accounts.id.initialize({ client_id: CFG.googleClientId, callback: handleGoogleCredential, auto_select: false });
       google.accounts.id.renderButton(document.getElementById('google-btn-hidden'), { type: 'standard', theme: 'filled_black', size: 'large' });
     } catch(e) {}
   }
   const me = await fetch(BASE + '/api/auth/me').then(r=>r.json()).catch(()=>({}));
-  if (me.ok && me.user) window.location.href = '/map';
+  if (me.ok && me.user) {
+    document.getElementById('nav-signin').textContent = 'Go to map';
+    document.getElementById('nav-signin').onclick = () => window.location.href = '/map';
+  }
+  loadFeaturedChefs();
+  loadSpotlight();
 }
-function triggerGoogleSignIn() { const h = document.querySelector('#google-btn-hidden div[role="button"]'); if(h) h.click(); else google.accounts.id.prompt(); }
+
+// ── Featured Chefs ──
+async function loadFeaturedChefs() {
+  try {
+    const r = await fetch(BASE + '/api/elements?bounds=-180,-90,180,90');
+    const d = await r.json();
+    if (!d.elements || !d.elements.length) { showPlaceholderChefs(); return; }
+
+    const grid = document.getElementById('chefs-grid');
+    const chefs = d.elements
+      .filter(e => e.active !== false)
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 4);
+
+    if (!chefs.length) { showPlaceholderChefs(); return; }
+
+    grid.innerHTML = chefs.map(c => `
+      <a href="/profile/${c.metadata?.userId || c.id}" class="chef-card">
+        <img class="chef-card-img"
+          src="${c.imageUrl || 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80'}"
+          alt="${esc(c.title)}"
+          loading="lazy"
+          onerror="this.src='https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80'">
+        <div class="chef-card-body">
+          <div class="chef-card-name">${esc(c.title)}</div>
+          <div class="chef-card-cuisine">${esc(c.cuisineType || c.subtitle || 'Home Chef')}</div>
+          <div class="chef-card-tagline">${esc(c.description ? c.description.substring(0, 100) + (c.description.length > 100 ? '...' : '') : 'Crafting meals with love from their home kitchen.')}</div>
+        </div>
+      </a>
+    `).join('');
+  } catch(e) {
+    showPlaceholderChefs();
+  }
+}
+
+function showPlaceholderChefs() {
+  const names = [
+    { name: 'Maria Rodriguez', cuisine: 'Mexican', tag: 'Handmade tamales and salsas passed down three generations.' },
+    { name: 'James Chen', cuisine: 'Asian Fusion', tag: 'East-meets-West flavors from a Michelin-trained home cook.' },
+    { name: 'Amara Obi', cuisine: 'West African', tag: 'Bold spices and slow-cooked stews rooted in Lagos tradition.' },
+    { name: 'Sophie Laurent', cuisine: 'French Bakery', tag: 'Croissants, tarts, and breads baked fresh every morning.' },
+  ];
+  const imgs = [
+    'https://images.unsplash.com/photo-1583394293214-28ede060e79b?w=600&q=80',
+    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
+    'https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=600&q=80',
+    'https://images.unsplash.com/photo-1581299894007-aaa50297cf16?w=600&q=80',
+  ];
+  const grid = document.getElementById('chefs-grid');
+  grid.innerHTML = names.map((c, i) => `
+    <a href="/map" class="chef-card">
+      <img class="chef-card-img" src="${imgs[i]}" alt="${c.name}" loading="lazy" onerror="this.style.background='#ddd8ce'">
+      <div class="chef-card-body">
+        <div class="chef-card-name">${c.name}</div>
+        <div class="chef-card-cuisine">${c.cuisine}</div>
+        <div class="chef-card-tagline">${c.tag}</div>
+      </div>
+    </a>
+  `).join('');
+}
+
+// ── Spotlight ──
+async function loadSpotlight() {
+  try {
+    const r = await fetch(BASE + '/api/elements?bounds=-180,-90,180,90');
+    const d = await r.json();
+    if (!d.elements || !d.elements.length) return;
+    const featured = d.elements.filter(e => e.active !== false && e.imageUrl).sort(() => 0.5 - Math.random())[0];
+    if (!featured) return;
+    document.getElementById('spotlight-name').textContent = featured.title || 'Featured Chef';
+    document.getElementById('spotlight-cuisine').textContent = featured.cuisineType || featured.subtitle || 'Local Cuisine';
+    document.getElementById('spotlight-bio').textContent = featured.description || 'A passionate home chef bringing extraordinary flavors to your neighborhood.';
+    const imgEl = document.querySelector('.spotlight-img img');
+    if (featured.imageUrl) imgEl.src = featured.imageUrl;
+    if (featured.metadata?.userId) {
+      document.getElementById('spotlight-link').href = '/profile/' + featured.metadata.userId;
+    }
+  } catch(e) {}
+}
+
+// ── Nav Scroll ──
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Email Capture ──
+function handleEmail(e) {
+  e.preventDefault();
+  document.getElementById('email-thanks').style.display = 'block';
+  e.target.style.display = 'none';
+}
+
+// ── Auth ──
 async function handleGoogleCredential(r) {
-  try { const d = await(await fetch(BASE + '/api/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({credential:r.credential})})).json(); if(d.ok) window.location.href=BASE+'/map.html'; else alert(d.error); } catch(e) { alert('Network error.'); }
+  try { const d = await(await fetch(BASE + '/api/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({credential:r.credential})})).json(); if(d.ok) window.location.href='/map'; else alert(d.error); } catch(e) { alert('Network error.'); }
 }
 function openPhoneAuth() { document.getElementById('auth-backdrop').classList.add('open'); setTimeout(()=>document.getElementById('auth-phone').focus(),100); }
 function closeAuth() { document.getElementById('auth-backdrop').classList.remove('open'); authReset(); }
-function authReset() { ['auth-step-phone','auth-step-otp','auth-step-name'].forEach((id,i)=>{document.getElementById(id).style.display=i===0?'block':'none';}); ['auth-error','auth-error-otp','auth-error-name','auth-success-otp'].forEach(id=>{document.getElementById(id).style.display='none';}); document.getElementById('auth-send-btn').disabled=false; document.getElementById('auth-send-btn').textContent='Send code'; document.getElementById('auth-verify-btn').disabled=false; document.getElementById('auth-verify-btn').textContent='Verify'; }
+function authReset() { ['auth-step-phone','auth-step-otp','auth-step-name'].forEach((id,i)=>{document.getElementById(id).style.display=i===0?'block':'none';}); ['auth-error','auth-error-otp','auth-error-name','auth-success-otp'].forEach(id=>{document.getElementById(id).style.display='none';}); document.getElementById('auth-send-btn').disabled=false; document.getElementById('auth-send-btn').textContent='Continue'; document.getElementById('auth-verify-btn').disabled=false; document.getElementById('auth-verify-btn').textContent='Verify'; }
 function showErr(id,msg) { const el=document.getElementById(id); el.textContent=msg; el.style.display='block'; }
 async function authSendOtp() {
   const phone=document.getElementById('auth-phone').value.trim(); if(!phone) return showErr('auth-error','Phone number is required.');
   const btn=document.getElementById('auth-send-btn'); btn.disabled=true; btn.textContent='Sending...'; document.getElementById('auth-error').style.display='none';
-  try { const d=await(await fetch(BASE + '/api/auth/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone})})).json();
+  try { const d=await(await fetch(BASE+'/api/auth/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone})})).json();
     if(d.ok) { sentPhone=phone; document.getElementById('auth-sent-phone').textContent=phone; document.getElementById('auth-step-phone').style.display='none'; document.getElementById('auth-step-otp').style.display='block'; const s=document.getElementById('auth-success-otp'); s.textContent=d.devCode?`Code sent! (Dev: ${d.devCode})`:'Code sent!'; s.style.display='block'; setTimeout(()=>document.getElementById('auth-otp').focus(),100); }
-    else { showErr('auth-error',d.error); btn.disabled=false; btn.textContent='Send code'; }
-  } catch(e) { showErr('auth-error','Network error.'); btn.disabled=false; btn.textContent='Send code'; }
+    else { showErr('auth-error',d.error); btn.disabled=false; btn.textContent='Continue'; }
+  } catch(e) { showErr('auth-error','Network error.'); btn.disabled=false; btn.textContent='Continue'; }
 }
 async function authVerify() {
   const code=document.getElementById('auth-otp').value.trim(); if(!code||code.length!==6) return showErr('auth-error-otp','Enter the 6-digit code.');
   const btn=document.getElementById('auth-verify-btn'); btn.disabled=true; btn.textContent='Verifying...'; document.getElementById('auth-error-otp').style.display='none';
-  try { const d=await(await fetch(BASE + '/api/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,code})})).json();
-    if(d.ok) { if(d.needsName) { document.getElementById('auth-step-otp').style.display='none'; document.getElementById('auth-step-name').style.display='block'; setTimeout(()=>document.getElementById('auth-name').focus(),100); } else window.location.href=BASE+'/map.html'; }
+  try { const d=await(await fetch(BASE+'/api/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,code})})).json();
+    if(d.ok) { if(d.needsName) { document.getElementById('auth-step-otp').style.display='none'; document.getElementById('auth-step-name').style.display='block'; setTimeout(()=>document.getElementById('auth-name').focus(),100); } else window.location.href='/map'; }
     else { showErr('auth-error-otp',d.error); btn.disabled=false; btn.textContent='Verify'; }
   } catch(e) { showErr('auth-error-otp','Network error.'); btn.disabled=false; btn.textContent='Verify'; }
 }
 async function authComplete() {
   const name=document.getElementById('auth-name').value.trim(); if(!name) return showErr('auth-error-name','Name is required.');
-  try { const d=await(await fetch(BASE + '/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name})})).json(); if(d.ok) window.location.href=BASE+'/map.html'; else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
+  try { const d=await(await fetch(BASE+'/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name})})).json(); if(d.ok) window.location.href='/map'; else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAuth(); if(e.key==='Enter') { if(document.getElementById('auth-step-name').style.display!=='none') authComplete(); else if(document.getElementById('auth-step-otp').style.display!=='none') authVerify(); else if(document.getElementById('auth-backdrop').classList.contains('open')) authSendOtp(); }});
+
+function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
 init();
 </script>
 </body>

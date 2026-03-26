@@ -3,210 +3,466 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>Chef Profile — Kinseb</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --accent: #7c3aed; --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; --dim: #a0a0c0; }
+    :root {
+      --cream: #F5F1E8;
+      --ink: #1A1A1A;
+      --olive: #2F3A2F;
+      --terracotta: #C46A3C;
+      --terracotta-light: #D4845A;
+      --warm-gray: #8A8577;
+      --light-border: rgba(47,58,47,0.12);
+      --card-bg: #FDFBF7;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
 
     /* ── Top Nav ── */
     .topnav {
-      position: sticky; top: 0; z-index: 10;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px;
-      background: rgba(10,10,15,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      padding: 18px 32px;
+      background: rgba(245,241,232,0.92);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--light-border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
     }
     .back-btn {
-      display: flex; align-items: center; gap: 6px;
-      background: none; border: none; color: var(--muted); font-size: 14px; font-weight: 600;
-      cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; gap: 8px;
+      background: none; border: none; color: var(--warm-gray);
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      font-family: var(--sans); transition: color 0.2s;
     }
-    .back-btn:hover { color: var(--text); }
-    .nav-actions { display: flex; gap: 8px; }
+    .back-btn:hover { color: var(--ink); }
+    .nav-actions { display: flex; gap: 10px; }
     .nav-btn {
-      padding: 8px 16px; border-radius: 10px; font-size: 13px; font-weight: 600;
-      cursor: pointer; border: none; font-family: inherit; transition: all 0.15s;
+      padding: 9px 20px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      font-family: var(--sans); transition: all 0.2s; border: none;
     }
-    .nav-btn.primary { background: var(--accent); color: #fff; }
-    .nav-btn.primary:hover { filter: brightness(1.15); }
-    .nav-btn.secondary { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border); }
-    .nav-btn.secondary:hover { background: rgba(255,255,255,0.1); }
+    .nav-btn.primary { background: var(--terracotta); color: #fff; }
+    .nav-btn.primary:hover { background: var(--terracotta-light); }
+    .nav-btn.secondary {
+      background: rgba(47,58,47,0.06); color: var(--ink);
+      border: 1px solid var(--light-border);
+    }
+    .nav-btn.secondary:hover { background: rgba(47,58,47,0.12); }
 
-    /* ── Container ── */
-    .container { max-width: 640px; margin: 0 auto; padding: 24px 20px 60px; }
+    /* ── Hero Portrait ── */
+    .profile-hero {
+      width: 100%;
+      height: 65vh;
+      min-height: 400px;
+      max-height: 600px;
+      background: #e8e4db;
+      overflow: hidden;
+      position: relative;
+      margin-top: 60px;
+    }
+    .profile-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .profile-hero-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 120px; color: rgba(47,58,47,0.15);
+    }
+    .profile-hero-gradient {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--cream), transparent);
+    }
 
-    /* ── Photo Grid ── */
-    .photo-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
-      border-radius: 16px; overflow: hidden; margin-bottom: 24px;
+    /* ── Profile Content ── */
+    .profile-container {
+      max-width: 720px;
+      margin: -60px auto 0;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 2;
     }
-    .photo-cell {
-      aspect-ratio: 1; background: #1a1a2e; overflow: hidden; position: relative; cursor: pointer;
-    }
-    .photo-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s; }
-    .photo-cell:hover img { transform: scale(1.05); }
-    .photo-cell.add {
-      display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px;
-      color: var(--muted); font-size: 12px; font-weight: 600; border: 2px dashed var(--border);
-      background: transparent; cursor: pointer; transition: border-color 0.2s;
-    }
-    .photo-cell.add:hover { border-color: var(--accent); color: var(--accent); }
-    .photo-remove {
-      position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(0,0,0,0.7); border: none; color: #fff; font-size: 14px;
-      cursor: pointer; display: none; align-items: center; justify-content: center;
-    }
-    .photo-cell:hover .photo-remove { display: flex; }
 
-    /* ── Profile Info ── */
-    .profile-name { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .profile-location { font-size: 14px; color: var(--muted); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
-    .profile-bio { font-size: 15px; line-height: 1.65; color: var(--dim); margin-bottom: 16px; }
+    .profile-name {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+    .profile-cuisine {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .profile-location {
+      font-size: 14px;
+      color: var(--warm-gray);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .profile-bio {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #4a4a42;
+      margin-bottom: 32px;
+    }
 
     .permit-badge {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600;
-      background: rgba(234,88,12,0.1); border: 1px solid rgba(234,88,12,0.2); color: #fb923c;
-      margin-bottom: 12px;
+      padding: 8px 16px; border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+      background: rgba(47,58,47,0.06);
+      border: 1px solid rgba(47,58,47,0.1);
+      color: var(--olive);
+      margin-bottom: 24px;
     }
-    .home-kitchen-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 11px; font-weight: 600; color: #6b6b8a; margin-bottom: 16px;
-    }
-    .allergen-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
-    .allergen-tag { padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; background: rgba(239,68,68,0.1); color: #f87171; }
 
-    .profile-actions { display: flex; gap: 10px; margin-bottom: 32px; }
+    .profile-actions {
+      display: flex; gap: 12px; margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
     .action-btn {
-      flex: 1; padding: 14px; border-radius: 12px;
-      font-size: 14px; font-weight: 700; cursor: pointer;
-      border: none; font-family: inherit; transition: all 0.15s;
+      padding: 16px 36px; border-radius: 100px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      border: none; font-family: var(--sans); transition: all 0.25s;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    .action-btn.primary { background: var(--accent); color: #fff; }
-    .action-btn.primary:hover { filter: brightness(1.15); }
-    .action-btn.secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--border); }
-    .action-btn.secondary:hover { background: rgba(255,255,255,0.08); }
+    .action-btn.primary { background: var(--terracotta); color: #fff; }
+    .action-btn.primary:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+    .action-btn.secondary {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--light-border);
+    }
+    .action-btn.secondary:hover { border-color: var(--ink); }
 
-    /* ── Section ── */
-    .section-title {
-      font-size: 18px; font-weight: 700; margin-bottom: 16px; padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
+    /* ── Sections ── */
+    .section-divider {
+      width: 40px; height: 1px;
+      background: var(--terracotta);
+      margin-bottom: 48px;
     }
-    .section-title button {
-      font-size: 13px; font-weight: 600; color: var(--accent);
-      background: none; border: none; cursor: pointer; font-family: inherit;
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--terracotta);
+      margin-bottom: 24px;
     }
 
-    /* ── Product Cards ── */
-    .product-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-      overflow: hidden; margin-bottom: 12px;
+    /* ── Menu (Meals) ── */
+    .meal-list { margin-bottom: 48px; }
+    .meal-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--light-border);
+      transition: background 0.2s;
     }
-    .product-img { width: 100%; height: 180px; object-fit: cover; background: #1a1a2e; }
-    .product-body { padding: 16px 18px; }
-    .product-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-    .product-price { font-size: 18px; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
-    .product-desc { font-size: 13px; color: var(--dim); line-height: 1.5; margin-bottom: 14px; }
-    .product-actions { display: flex; gap: 8px; }
-    .product-btn {
-      flex: 1; padding: 11px; border-radius: 10px; font-size: 13px; font-weight: 700;
-      cursor: pointer; border: none; font-family: inherit; transition: all 0.15s;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
+    .meal-card:first-child { border-top: 1px solid var(--light-border); }
+    .meal-img {
+      width: 100px; height: 100px;
+      border-radius: 14px;
+      object-fit: cover;
+      background: #e8e4db;
+      flex-shrink: 0;
     }
-    .product-btn.buy { background: var(--accent); color: #fff; }
-    .product-btn.buy:hover { filter: brightness(1.15); }
-    .product-btn.edit { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border); }
+    .meal-info { flex: 1; min-width: 0; }
+    .meal-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .meal-desc {
+      font-size: 14px;
+      color: var(--warm-gray);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .meal-meta {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .meal-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .meal-allergens {
+      display: flex; flex-wrap: wrap; gap: 4px;
+    }
+    .allergen-tag {
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(196,106,60,0.08);
+      color: var(--terracotta);
+    }
+    .meal-order-btn {
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      background: var(--olive);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .meal-order-btn:hover { background: #3a4a3a; }
 
-    .no-products { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 14px; }
+    .no-meals {
+      text-align: center;
+      padding: 48px 20px;
+      color: var(--warm-gray);
+      font-size: 15px;
+    }
+
+    /* ── Availability ── */
+    .availability {
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .avail-row {
+      display: flex; justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      font-size: 14px;
+    }
+    .avail-row:not(:last-child) { border-bottom: 1px solid var(--light-border); }
+    .avail-day { font-weight: 600; }
+    .avail-time { color: var(--warm-gray); }
+
+    /* ── Photo Grid ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .photo-cell {
+      aspect-ratio: 1;
+      background: #e8e4db;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .photo-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .photo-cell:hover img { transform: scale(1.05); }
+    .photo-cell.add {
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px;
+      color: var(--warm-gray); font-size: 12px; font-weight: 600;
+      border: 2px dashed var(--light-border);
+      background: transparent; cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .photo-cell.add:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    .photo-remove {
+      position: absolute; top: 8px; right: 8px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(0,0,0,0.5); border: none; color: #fff;
+      font-size: 14px; cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+    }
+    .photo-cell:hover .photo-remove { display: flex; }
 
     /* ── Edit Form ── */
-    .edit-field { margin-bottom: 16px; }
-    .edit-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-    .edit-input {
-      width: 100%; background: #07070e; border: 1px solid var(--border); border-radius: 10px;
-      padding: 12px 16px; color: var(--text); font-size: 14px;
-      outline: none; font-family: inherit; transition: border-color 0.15s;
+    .edit-field { margin-bottom: 20px; }
+    .edit-label {
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--warm-gray);
+      margin-bottom: 8px;
     }
-    .edit-input:focus { border-color: var(--accent); }
-    textarea.edit-input { resize: vertical; min-height: 80px; }
+    .edit-input {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid var(--light-border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      color: var(--ink);
+      font-size: 15px;
+      outline: none;
+      font-family: var(--sans);
+      transition: border-color 0.2s;
+    }
+    .edit-input:focus { border-color: var(--terracotta); }
+    textarea.edit-input { resize: vertical; min-height: 100px; }
 
     /* ── Orders ── */
     .order-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 16px 18px; margin-bottom: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 16px;
+      padding: 18px 22px;
+      margin-bottom: 10px;
       display: flex; align-items: center; justify-content: space-between;
     }
-    .order-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-    .order-info p { font-size: 12px; color: var(--muted); }
+    .order-info h4 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .order-info p { font-size: 13px; color: var(--warm-gray); }
     .order-status {
-      padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+      padding: 6px 14px; border-radius: 100px;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
     }
-    .status-pending { background: rgba(234,179,8,0.15); color: #eab308; }
-    .status-paid { background: rgba(59,130,246,0.15); color: #3b82f6; }
-    .status-confirmed { background: rgba(16,185,129,0.15); color: #10b981; }
-    .status-completed { background: rgba(16,185,129,0.25); color: #10b981; }
-    .status-cancelled { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .status-pending { background: rgba(196,160,60,0.12); color: #a08428; }
+    .status-paid { background: rgba(60,120,196,0.12); color: #3c78c4; }
+    .status-confirmed { background: rgba(47,58,47,0.1); color: var(--olive); }
+    .status-completed { background: rgba(47,58,47,0.15); color: var(--olive); }
+    .status-cancelled { background: rgba(196,60,60,0.1); color: #c43c3c; }
 
     /* ── Modal ── */
     .modal-backdrop {
-      position: fixed; inset: 0; z-index: 30;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(26,26,26,0.5);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px;
     }
     .modal-backdrop.open { opacity: 1; pointer-events: auto; }
     .modal-card {
-      width: 100%; max-width: 420px; background: var(--card); border: 1px solid var(--border);
-      border-radius: 20px; padding: 32px 28px; position: relative;
-      transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+      width: 100%; max-width: 440px;
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 24px;
+      padding: 36px 32px;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     }
     .modal-backdrop.open .modal-card { transform: scale(1); }
-    .modal-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
-    .modal-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 22px; font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .modal-sub { font-size: 14px; color: var(--warm-gray); margin-bottom: 24px; line-height: 1.6; }
     .modal-close {
-      position: absolute; top: 16px; right: 16px; width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(255,255,255,0.05); border: none; color: var(--muted); cursor: pointer;
+      position: absolute; top: 18px; right: 18px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(47,58,47,0.06);
+      border: none; color: var(--warm-gray); cursor: pointer;
       display: flex; align-items: center; justify-content: center; font-size: 16px;
     }
 
     /* ── Loading ── */
-    .loading { text-align: center; padding: 80px 20px; color: var(--muted); font-size: 14px; }
+    .loading {
+      text-align: center; padding: 120px 20px;
+      color: var(--warm-gray); font-size: 15px;
+      margin-top: 60px;
+    }
 
     .hidden { display: none !important; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .topnav { padding: 14px 20px; }
+      .profile-hero { height: 50vh; min-height: 300px; }
+      .profile-container { margin-top: -40px; }
+      .meal-card { flex-direction: column; gap: 12px; }
+      .meal-img { width: 100%; height: 200px; border-radius: 16px; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .profile-actions { flex-direction: column; }
+      .action-btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Top Nav -->
   <nav class="topnav">
-    <button class="back-btn" onclick="history.back()">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Back
-    </button>
-    <div class="nav-actions" id="nav-actions"></div>
+    <a href="/" class="nav-logo">Kinseb</a>
+    <div style="display:flex;align-items:center;gap:16px">
+      <button class="back-btn" onclick="history.back()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <div class="nav-actions" id="nav-actions"></div>
+    </div>
   </nav>
 
-  <div class="container">
-    <!-- Loading -->
-    <div class="loading" id="loading">Loading profile...</div>
+  <!-- Loading -->
+  <div class="loading" id="loading">Loading chef profile...</div>
 
-    <!-- Profile Content -->
-    <div id="profile-content" class="hidden">
-      <!-- Photo Grid -->
-      <div class="photo-grid" id="photo-grid"></div>
+  <!-- Profile Content -->
+  <div id="profile-content" class="hidden">
+    <!-- Hero Portrait -->
+    <div class="profile-hero" id="hero-area"></div>
+
+    <div class="profile-container">
+      <!-- Photo Grid (edit mode) -->
+      <div class="photo-grid hidden" id="photo-grid"></div>
 
       <!-- View Mode -->
       <div id="view-mode">
+        <div class="profile-cuisine" id="profile-cuisine"></div>
         <h1 class="profile-name" id="profile-name"></h1>
         <div id="permit-badge-area"></div>
         <div class="profile-location" id="profile-location"></div>
         <p class="profile-bio" id="profile-bio"></p>
-        <div class="home-kitchen-badge">🏠 Made in a Home Kitchen &middot; CA Cottage Food</div>
+
         <div class="profile-actions" id="profile-actions"></div>
+
+        <div class="section-divider"></div>
+
+        <!-- Menu -->
+        <div id="meals-section">
+          <div class="section-label">The Menu</div>
+          <div class="meal-list" id="meals-list"></div>
+        </div>
+
+        <!-- Availability -->
+        <div class="section-label" style="margin-top:48px">Availability</div>
+        <div class="availability">
+          <div class="avail-row">
+            <span class="avail-day">Pickup</span>
+            <span class="avail-time">Available — message to arrange</span>
+          </div>
+          <div class="avail-row">
+            <span class="avail-day">Delivery</span>
+            <span class="avail-time">Within 5 miles — ask your chef</span>
+          </div>
+        </div>
       </div>
 
       <!-- Edit Mode -->
@@ -217,7 +473,7 @@
         </div>
         <div class="edit-field">
           <div class="edit-label">Bio</div>
-          <textarea class="edit-input" id="edit-bio" placeholder="Tell people about yourself or your business..."></textarea>
+          <textarea class="edit-input" id="edit-bio" placeholder="Tell your story \u2014 what inspires your cooking?"></textarea>
         </div>
         <div class="edit-field">
           <div class="edit-label">Location (latitude)</div>
@@ -228,25 +484,16 @@
           <input class="edit-input" id="edit-lng" placeholder="-118.2437" type="number" step="any">
         </div>
         <div class="edit-field">
-          <div class="edit-label">Location Label</div>
+          <div class="edit-label">Neighborhood</div>
           <input class="edit-input" id="edit-address" placeholder="Silver Lake, Los Angeles">
         </div>
-        <button class="action-btn primary" style="width:100%;margin-top:8px" onclick="saveProfile()">Save Profile</button>
+        <button class="action-btn primary" style="width:100%;margin-top:12px" onclick="saveProfile()">Save Profile</button>
         <input type="file" id="photo-upload" accept="image/*" style="display:none" onchange="uploadPhoto(this)">
       </div>
 
-      <!-- Products Section -->
-      <div id="products-section" style="margin-top:32px">
-        <div class="section-title">
-          Products
-          <button id="add-product-btn" class="hidden" onclick="openAddProduct()">+ Add product</button>
-        </div>
-        <div id="products-list"></div>
-      </div>
-
       <!-- Orders Section (own profile only) -->
-      <div id="orders-section" class="hidden" style="margin-top:32px">
-        <div class="section-title">Orders</div>
+      <div id="orders-section" class="hidden" style="margin-top:48px">
+        <div class="section-label">Your Orders</div>
         <div id="orders-list"></div>
       </div>
     </div>
@@ -255,36 +502,36 @@
   <!-- Order Confirmation Modal -->
   <div class="modal-backdrop" id="order-modal">
     <div class="modal-card">
-      <button class="modal-close" onclick="closeOrderModal()">✕</button>
+      <button class="modal-close" onclick="closeOrderModal()">&#10005;</button>
       <h3 class="modal-title" id="order-product-name"></h3>
       <p class="modal-sub" id="order-product-price"></p>
       <div class="edit-field">
-        <div class="edit-label">Note to seller (optional)</div>
-        <textarea class="edit-input" id="order-note" placeholder="Any special requests..." rows="2"></textarea>
+        <div class="edit-label">Note to chef (optional)</div>
+        <textarea class="edit-input" id="order-note" placeholder="Any special requests or dietary needs..." rows="2"></textarea>
       </div>
       <button class="action-btn primary" style="width:100%" id="order-confirm-btn" onclick="confirmOrder()">Place Order</button>
     </div>
   </div>
 
-  <!-- Add Product Modal -->
+  <!-- Add Meal Modal -->
   <div class="modal-backdrop" id="product-modal">
     <div class="modal-card">
-      <button class="modal-close" onclick="closeProductModal()">✕</button>
-      <h3 class="modal-title">Add Product</h3>
-      <p class="modal-sub">List something for sale on your profile.</p>
+      <button class="modal-close" onclick="closeProductModal()">&#10005;</button>
+      <h3 class="modal-title">Add a Meal</h3>
+      <p class="modal-sub">List a new meal on your profile.</p>
       <div class="edit-field">
-        <div class="edit-label">Product Name</div>
-        <input class="edit-input" id="prod-name" placeholder="Sourdough Loaf">
+        <div class="edit-label">Meal Name</div>
+        <input class="edit-input" id="prod-name" placeholder="Herb-Crusted Focaccia">
       </div>
       <div class="edit-field">
         <div class="edit-label">Price (USD)</div>
-        <input class="edit-input" id="prod-price" placeholder="8.00" type="number" step="0.01" min="0">
+        <input class="edit-input" id="prod-price" placeholder="12.00" type="number" step="0.01" min="0">
       </div>
       <div class="edit-field">
         <div class="edit-label">Description</div>
-        <textarea class="edit-input" id="prod-desc" placeholder="Fresh baked daily with organic flour..." rows="3"></textarea>
+        <textarea class="edit-input" id="prod-desc" placeholder="What makes this dish special..." rows="3"></textarea>
       </div>
-      <button class="action-btn primary" style="width:100%" onclick="createProduct()">Add Product</button>
+      <button class="action-btn primary" style="width:100%" onclick="createProduct()">Add Meal</button>
     </div>
   </div>
 
@@ -296,21 +543,16 @@ let editing = false;
 let orderProductId = null;
 
 async function init() {
-  // Get current user
   try {
     const r = await fetch('/api/auth/me');
     const d = await r.json();
     if (d.ok) currentUser = d.user;
   } catch (e) {}
 
-  // Determine which profile to load
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   let profileId = pathParts[1] || null;
 
-  if (!profileId && currentUser) {
-    profileId = currentUser.id;
-  }
-
+  if (!profileId && currentUser) profileId = currentUser.id;
   if (!profileId) {
     document.getElementById('loading').textContent = 'Please sign in to view your profile.';
     return;
@@ -324,43 +566,54 @@ async function loadProfile(userId) {
   try {
     const r = await fetch(`/api/profiles/${userId}`);
     const d = await r.json();
-    if (!d.ok) {
-      document.getElementById('loading').textContent = 'Profile not found.';
-      return;
-    }
+    if (!d.ok) { document.getElementById('loading').textContent = 'Chef not found.'; return; }
     profileUser = d.profile;
     render();
-  } catch (e) {
-    document.getElementById('loading').textContent = 'Failed to load profile.';
-  }
+  } catch (e) { document.getElementById('loading').textContent = 'Failed to load profile.'; }
 }
 
 function render() {
   document.getElementById('loading').classList.add('hidden');
   document.getElementById('profile-content').classList.remove('hidden');
 
-  // Nav actions
+  // Nav
   const nav = document.getElementById('nav-actions');
   if (isOwnProfile) {
     nav.innerHTML = `<button class="nav-btn secondary" id="edit-toggle" onclick="toggleEdit()">${editing ? 'Done' : 'Edit Profile'}</button>`;
   }
 
-  // Photos
-  renderPhotos();
+  // Hero image
+  const heroArea = document.getElementById('hero-area');
+  const photos = profileUser.photos || [];
+  if (photos.length > 0) {
+    heroArea.innerHTML = `<img src="${esc(photos[0])}" alt="${esc(profileUser.displayName || profileUser.name)}"><div class="profile-hero-gradient"></div>`;
+  } else {
+    heroArea.innerHTML = `<div class="profile-hero-placeholder">${(profileUser.displayName || profileUser.name || '?')[0].toUpperCase()}</div><div class="profile-hero-gradient"></div>`;
+  }
 
-  // View mode
+  // Photo grid in edit mode
+  if (isOwnProfile && editing) {
+    document.getElementById('photo-grid').classList.remove('hidden');
+    renderPhotos();
+  } else {
+    document.getElementById('photo-grid').classList.add('hidden');
+  }
+
+  // Profile info
   document.getElementById('profile-name').textContent = profileUser.displayName || profileUser.name;
+  document.getElementById('profile-cuisine').textContent = profileUser.cuisineType || 'Home Chef';
+
   const permitArea = document.getElementById('permit-badge-area');
   if (profileUser.permitType || profileUser.permitNumber) {
-    permitArea.innerHTML = `<div class="permit-badge">✓ ${esc(profileUser.permitType || 'Cottage Food')} Permit${profileUser.permitNumber ? ' #' + esc(profileUser.permitNumber) : ''}</div>`;
+    permitArea.innerHTML = `<div class="permit-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> ${esc(profileUser.permitType || 'Cottage Food')} Permit${profileUser.permitNumber ? ' #' + esc(profileUser.permitNumber) : ''}</div>`;
   } else { permitArea.innerHTML = ''; }
+
   const locEl = document.getElementById('profile-location');
   if (profileUser.location && profileUser.location.address) {
     locEl.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg> ${esc(profileUser.location.address)}`;
-  } else {
-    locEl.innerHTML = '';
-  }
-  document.getElementById('profile-bio').textContent = profileUser.bio || '';
+  } else { locEl.innerHTML = ''; }
+
+  document.getElementById('profile-bio').textContent = profileUser.bio || 'A passionate home chef crafting meals with care and intention.';
 
   // Actions
   const actions = document.getElementById('profile-actions');
@@ -368,16 +621,15 @@ function render() {
     actions.innerHTML = `
       <button class="action-btn primary" onclick="window.location.href='/map'">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Message
+        Message Chef
       </button>
+      <button class="action-btn secondary" onclick="window.location.href='/map'">View on Map</button>
     `;
   } else if (!isOwnProfile) {
-    actions.innerHTML = '';
-  } else {
-    actions.innerHTML = '';
-  }
+    actions.innerHTML = `<a href="/map" class="action-btn primary">Explore Map</a>`;
+  } else { actions.innerHTML = ''; }
 
-  // Edit mode fields
+  // Edit fields
   if (isOwnProfile) {
     document.getElementById('edit-name').value = profileUser.displayName || profileUser.name || '';
     document.getElementById('edit-bio').value = profileUser.bio || '';
@@ -391,76 +643,62 @@ function render() {
   document.getElementById('view-mode').classList.toggle('hidden', editing);
   document.getElementById('edit-mode').classList.toggle('hidden', !editing);
 
-  // Products
-  renderProducts();
+  renderMeals();
 
-  // Orders (own profile)
   if (isOwnProfile) {
     document.getElementById('orders-section').classList.remove('hidden');
     loadOrders();
   }
-
-  // Show add product button for own profile
-  if (isOwnProfile) document.getElementById('add-product-btn').classList.remove('hidden');
 }
 
 function renderPhotos() {
   const grid = document.getElementById('photo-grid');
   const photos = profileUser.photos || [];
   let html = '';
-
   photos.forEach((url, i) => {
-    html += `<div class="photo-cell">
-      <img src="${esc(url)}" alt="" loading="lazy">
-      ${isOwnProfile && editing ? `<button class="photo-remove" onclick="removePhoto(${i})" style="display:flex">✕</button>` : ''}
-    </div>`;
+    html += `<div class="photo-cell"><img src="${esc(url)}" alt="" loading="lazy">${editing ? `<button class="photo-remove" onclick="removePhoto(${i})" style="display:flex">&#10005;</button>` : ''}</div>`;
   });
-
   if (isOwnProfile && photos.length < 6) {
-    html += `<div class="photo-cell add" onclick="document.getElementById('photo-upload').click()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-      Add photo
-    </div>`;
+    html += `<div class="photo-cell add" onclick="document.getElementById('photo-upload').click()"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Add photo</div>`;
   }
-
-  if (!photos.length && !isOwnProfile) {
-    html = `<div class="photo-cell" style="grid-column:span 3;aspect-ratio:3/1;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px">No photos yet</div>`;
-  }
-
   grid.innerHTML = html;
 }
 
-function renderProducts() {
-  const list = document.getElementById('products-list');
+function renderMeals() {
+  const list = document.getElementById('meals-list');
   const prods = profileUser.products || [];
 
   if (!prods.length) {
-    list.innerHTML = `<div class="no-products">${isOwnProfile ? 'No products yet. Add your first product!' : 'No products listed.'}</div>`;
+    list.innerHTML = `<div class="no-meals">${isOwnProfile ? 'No meals yet. Add your first dish!' : 'This chef hasn\'t added meals yet.'}</div>`;
+    if (isOwnProfile) {
+      list.innerHTML += `<div style="text-align:center;margin-top:16px"><button class="meal-order-btn" onclick="openAddProduct()">+ Add a meal</button></div>`;
+    }
     return;
   }
 
-  list.innerHTML = prods.map(p => `
-    <div class="product-card">
-      ${p.photos && p.photos[0] ? `<img class="product-img" src="${esc(p.photos[0])}" alt="">` : ''}
-      <div class="product-body">
-        <div class="product-name">${esc(p.name)}</div>
-        <div class="product-price">$${(p.price / 100).toFixed(2)}</div>
-        <div class="product-desc">${esc(p.description)}</div>
-        ${p.allergens && p.allergens.length ? `<div class="allergen-tags">${p.allergens.map(a => `<span class="allergen-tag">${esc(a)}</span>`).join('')}</div>` : ''}
-        <div class="product-actions" style="margin-top:12px">
-          ${!isOwnProfile ? `<button class="product-btn buy" onclick="openOrder('${p.id}','${esc(p.name)}',${p.price})">Order</button>` : ''}
-          ${isOwnProfile ? `<button class="product-btn edit" onclick="deleteProduct('${p.id}')">Remove</button>` : ''}
+  if (isOwnProfile) {
+    list.innerHTML = `<div style="text-align:right;margin-bottom:16px"><button class="meal-order-btn" onclick="openAddProduct()">+ Add a meal</button></div>`;
+  } else {
+    list.innerHTML = '';
+  }
+
+  list.innerHTML += prods.map(p => `
+    <div class="meal-card">
+      ${p.photos && p.photos[0] ? `<img class="meal-img" src="${esc(p.photos[0])}" alt="${esc(p.name)}" loading="lazy">` : `<div class="meal-img" style="display:flex;align-items:center;justify-content:center;font-size:32px;color:rgba(47,58,47,0.15)">&#127860;</div>`}
+      <div class="meal-info">
+        <div class="meal-name">${esc(p.name)}</div>
+        <div class="meal-desc">${esc(p.description)}</div>
+        <div class="meal-meta">
+          <span class="meal-price">$${(p.price / 100).toFixed(2)}</span>
+          ${p.allergens && p.allergens.length ? `<div class="meal-allergens">${p.allergens.map(a => `<span class="allergen-tag">${esc(a)}</span>`).join('')}</div>` : ''}
         </div>
       </div>
+      ${!isOwnProfile ? `<button class="meal-order-btn" onclick="openOrder('${p.id}','${esc(p.name)}',${p.price})">Order</button>` : `<button class="meal-order-btn" style="background:rgba(196,60,60,0.1);color:#c43c3c" onclick="deleteProduct('${p.id}')">Remove</button>`}
     </div>
   `).join('');
 }
 
-// ── Edit ──
-function toggleEdit() {
-  editing = !editing;
-  render();
-}
+function toggleEdit() { editing = !editing; render(); }
 
 async function saveProfile() {
   const displayName = document.getElementById('edit-name').value.trim();
@@ -468,108 +706,55 @@ async function saveProfile() {
   const lat = parseFloat(document.getElementById('edit-lat').value);
   const lng = parseFloat(document.getElementById('edit-lng').value);
   const address = document.getElementById('edit-address').value.trim();
-
   const body = { displayName, bio };
-  if (!isNaN(lat) && !isNaN(lng)) {
-    body.location = { lat, lng, address };
-  }
-
+  if (!isNaN(lat) && !isNaN(lng)) body.location = { lat, lng, address };
   try {
-    const r = await fetch('/api/profiles', {
-      method: 'PUT', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
+    const r = await fetch('/api/profiles', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     const d = await r.json();
-    if (d.ok) {
-      profileUser.displayName = displayName;
-      profileUser.bio = bio;
-      if (body.location) profileUser.location = body.location;
-      editing = false;
-      render();
-    }
+    if (d.ok) { profileUser.displayName = displayName; profileUser.bio = bio; if (body.location) profileUser.location = body.location; editing = false; render(); }
   } catch (e) { alert('Save failed.'); }
 }
 
 async function uploadPhoto(input) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const formData = new FormData();
-  formData.append('photo', file);
-
+  const file = input.files[0]; if (!file) return;
+  const formData = new FormData(); formData.append('photo', file);
   try {
     const r = await fetch('/api/profiles/photos', { method: 'POST', body: formData });
     const d = await r.json();
-    if (d.ok) {
-      profileUser.photos = d.photos;
-      renderPhotos();
-    } else {
-      alert(d.error || 'Upload failed.');
-    }
+    if (d.ok) { profileUser.photos = d.photos; render(); } else { alert(d.error || 'Upload failed.'); }
   } catch (e) { alert('Upload failed.'); }
   input.value = '';
 }
 
 async function removePhoto(idx) {
-  try {
-    const r = await fetch(`/api/profiles/photos/${idx}`, { method: 'DELETE' });
-    const d = await r.json();
-    if (d.ok) {
-      profileUser.photos = d.photos;
-      renderPhotos();
-    }
-  } catch (e) { alert('Failed to remove photo.'); }
+  try { const r = await fetch(`/api/profiles/photos/${idx}`, { method: 'DELETE' }); const d = await r.json(); if (d.ok) { profileUser.photos = d.photos; render(); } } catch (e) { alert('Failed.'); }
 }
 
-// ── Products ──
 function openAddProduct() {
   document.getElementById('prod-name').value = '';
   document.getElementById('prod-price').value = '';
   document.getElementById('prod-desc').value = '';
   document.getElementById('product-modal').classList.add('open');
 }
-
-function closeProductModal() {
-  document.getElementById('product-modal').classList.remove('open');
-}
+function closeProductModal() { document.getElementById('product-modal').classList.remove('open'); }
 
 async function createProduct() {
   const name = document.getElementById('prod-name').value.trim();
   const price = document.getElementById('prod-price').value;
   const description = document.getElementById('prod-desc').value.trim();
-
   if (!name || !price) return alert('Name and price are required.');
-
   try {
-    const r = await fetch('/api/products', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, price: parseFloat(price), description })
-    });
+    const r = await fetch('/api/products', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, price: parseFloat(price), description }) });
     const d = await r.json();
-    if (d.ok) {
-      if (!profileUser.products) profileUser.products = [];
-      profileUser.products.push(d.product);
-      renderProducts();
-      closeProductModal();
-    } else {
-      alert(d.error || 'Failed.');
-    }
+    if (d.ok) { if (!profileUser.products) profileUser.products = []; profileUser.products.push(d.product); renderMeals(); closeProductModal(); } else { alert(d.error || 'Failed.'); }
   } catch (e) { alert('Network error.'); }
 }
 
 async function deleteProduct(id) {
-  if (!confirm('Remove this product?')) return;
-  try {
-    const r = await fetch(`/api/products/${id}`, { method: 'DELETE' });
-    const d = await r.json();
-    if (d.ok) {
-      profileUser.products = profileUser.products.filter(p => p.id !== id);
-      renderProducts();
-    }
-  } catch (e) { alert('Failed.'); }
+  if (!confirm('Remove this meal?')) return;
+  try { const r = await fetch(`/api/products/${id}`, { method: 'DELETE' }); const d = await r.json(); if (d.ok) { profileUser.products = profileUser.products.filter(p => p.id !== id); renderMeals(); } } catch (e) { alert('Failed.'); }
 }
 
-// ── Orders ──
 function openOrder(productId, name, price) {
   if (!currentUser) { window.location.href = '/?auth=phone'; return; }
   orderProductId = productId;
@@ -578,65 +763,37 @@ function openOrder(productId, name, price) {
   document.getElementById('order-note').value = '';
   document.getElementById('order-modal').classList.add('open');
 }
-
-function closeOrderModal() {
-  document.getElementById('order-modal').classList.remove('open');
-  orderProductId = null;
-}
+function closeOrderModal() { document.getElementById('order-modal').classList.remove('open'); orderProductId = null; }
 
 async function confirmOrder() {
   if (!orderProductId) return;
   const note = document.getElementById('order-note').value.trim();
   const btn = document.getElementById('order-confirm-btn');
   btn.disabled = true; btn.textContent = 'Placing order...';
-
   try {
-    const r = await fetch('/api/orders', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId: orderProductId, note })
-    });
+    const r = await fetch('/api/orders', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ productId: orderProductId, note }) });
     const d = await r.json();
-    if (d.ok) {
-      if (d.checkoutUrl) {
-        window.location.href = d.checkoutUrl;
-      } else {
-        closeOrderModal();
-        alert('Order placed! The seller will be notified.');
-      }
-    } else {
-      alert(d.error || 'Order failed.');
-    }
-  } catch (e) {
-    alert('Network error.');
-  }
+    if (d.ok) { if (d.checkoutUrl) { window.location.href = d.checkoutUrl; } else { closeOrderModal(); alert('Order placed! Your chef will be notified.'); } } else { alert(d.error || 'Order failed.'); }
+  } catch (e) { alert('Network error.'); }
   btn.disabled = false; btn.textContent = 'Place Order';
 }
 
 async function loadOrders() {
   try {
-    const r = await fetch('/api/orders');
-    const d = await r.json();
-    if (!d.ok) return;
-
+    const r = await fetch('/api/orders'); const d = await r.json(); if (!d.ok) return;
     const list = document.getElementById('orders-list');
-    if (!d.orders.length) {
-      list.innerHTML = '<div class="no-products">No orders yet.</div>';
-      return;
-    }
-
+    if (!d.orders.length) { list.innerHTML = '<div class="no-meals">No orders yet.</div>'; return; }
     list.innerHTML = d.orders.map(o => `
       <div class="order-card">
         <div class="order-info">
           <h4>${esc(o.productName)}</h4>
           <p>${o.buyerId === currentUser.id ? 'You ordered' : `From ${esc(o.buyerName)}`} &middot; $${(o.amount / 100).toFixed(2)}</p>
-          ${o.note ? `<p style="margin-top:4px;font-style:italic">"${esc(o.note)}"</p>` : ''}
+          ${o.note ? `<p style="margin-top:4px;font-style:italic;font-size:12px;color:var(--warm-gray)">"${esc(o.note)}"</p>` : ''}
         </div>
         <div>
           <span class="order-status status-${o.status}">${o.status}</span>
-          ${o.sellerId === currentUser.id && (o.status === 'pending' || o.status === 'paid') ?
-            `<button class="nav-btn primary" style="margin-top:6px;font-size:11px;padding:5px 10px" onclick="updateOrder('${o.id}','confirmed')">Confirm</button>` : ''}
-          ${o.sellerId === currentUser.id && o.status === 'confirmed' ?
-            `<button class="nav-btn primary" style="margin-top:6px;font-size:11px;padding:5px 10px" onclick="updateOrder('${o.id}','completed')">Complete</button>` : ''}
+          ${o.sellerId === currentUser.id && (o.status === 'pending' || o.status === 'paid') ? `<button class="meal-order-btn" style="margin-top:6px;font-size:11px;padding:6px 14px" onclick="updateOrder('${o.id}','confirmed')">Confirm</button>` : ''}
+          ${o.sellerId === currentUser.id && o.status === 'confirmed' ? `<button class="meal-order-btn" style="margin-top:6px;font-size:11px;padding:6px 14px" onclick="updateOrder('${o.id}','completed')">Complete</button>` : ''}
         </div>
       </div>
     `).join('');
@@ -644,28 +801,17 @@ async function loadOrders() {
 }
 
 async function updateOrder(id, status) {
-  try {
-    const r = await fetch(`/api/orders/${id}/status`, {
-      method: 'PUT', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status })
-    });
-    const d = await r.json();
-    if (d.ok) loadOrders();
-  } catch (e) { alert('Failed.'); }
+  try { const r = await fetch(`/api/orders/${id}/status`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status }) }); const d = await r.json(); if (d.ok) loadOrders(); } catch (e) { alert('Failed.'); }
 }
 
-// ── Utils ──
 function esc(s) { if (!s) return ''; const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeOrderModal(); closeProductModal(); }
 });
 
-// Check URL params
 const params = new URLSearchParams(window.location.search);
-if (params.get('order') === 'success') {
-  setTimeout(() => alert('Payment successful! Your order has been placed.'), 500);
-}
+if (params.get('order') === 'success') setTimeout(() => alert('Payment successful! Your order has been placed.'), 500);
 
 init();
 </script>

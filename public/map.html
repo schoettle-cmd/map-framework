@@ -1031,7 +1031,7 @@ function openProfile(el) {
   // Fetch full element data with products
   fetch(BASE + '/api/elements/' + el.id).then(r => r.json()).then(d => {
     const data = (d.ok && d.element) ? d.element : el;
-    const products = (d.ok && d.products) ? d.products : [];
+    const products = (d.ok && d.element && d.element.products) ? d.element.products : [];
     renderProfileBody(data, products);
   }).catch(() => {
     renderProfileBody(el, []);
@@ -1044,14 +1044,15 @@ function openProfile(el) {
 function renderProfileBody(el, products) {
   const bodyEl = document.getElementById('profile-body');
   const meta = el.metadata || {};
-  const cuisine = meta.cuisineType || '';
-  const address = meta.address || el.subtitle || '';
-  const tags = meta.tags || [];
+  const cuisine = el.cuisineType || meta.cuisineType || '';
+  const address = el.address || meta.address || el.subtitle || '';
+  const rawTags = el.tags || meta.tags || '';
+  const tags = Array.isArray(rawTags) ? rawTags : String(rawTags).split(',').map(t => t.trim()).filter(Boolean);
   const description = el.description || meta.notes || '';
   const website = meta.website || el.externalOrderUrl || '';
-  const instagram = meta.instagram || '';
-  const phone = meta.phone || '';
-  const email = meta.email || '';
+  const instagram = el.instagram || meta.instagram || '';
+  const phone = el.phone || meta.phone || '';
+  const email = el.email || meta.email || '';
   const orderUrl = el.externalOrderUrl || website;
 
   let html = '';

@@ -454,16 +454,16 @@
         <span class="nav-icon">&#128202;</span> Dashboard
       </button>
       <button class="nav-item" data-section="sellers" onclick="showSection('sellers')">
-        <span class="nav-icon">&#127978;</span> Sellers
+        <span class="nav-icon">&#127978;</span> Chefs
       </button>
       <button class="nav-item" data-section="listings" onclick="showSection('listings')">
-        <span class="nav-icon">&#128205;</span> Listings
+        <span class="nav-icon">&#128205;</span> Map Chefs
       </button>
       <button class="nav-item" data-section="prospects" onclick="showSection('prospects')">
-        <span class="nav-icon">&#127793;</span> Prospects
+        <span class="nav-icon">&#127793;</span> Pipeline
       </button>
       <button class="nav-item" data-section="buyers" onclick="showSection('buyers')">
-        <span class="nav-icon">&#128101;</span> Buyers
+        <span class="nav-icon">&#128101;</span> Diners
       </button>
       <button class="nav-item" data-section="orders" onclick="showSection('orders')">
         <span class="nav-icon">&#128203;</span> Orders
@@ -551,13 +551,13 @@
       <div class="section" id="sec-listings">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
           <div>
-            <div style="font-size:16px;font-weight:700;">Map Listings</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">All live map elements</div>
+            <div style="font-size:16px;font-weight:700;">Map Chefs</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">All live chefs on the map</div>
           </div>
         </div>
         <div class="table-wrapper">
           <div class="table-header">
-            <div class="table-title">Listings</div>
+            <div class="table-title">Chefs</div>
             <div style="display:flex;gap:8px;align-items:center;">
               <select class="filter-select" id="listingStatusFilter" onchange="searchListings()">
                 <option value="">All Status</option>
@@ -567,7 +567,7 @@
               <select class="filter-select" id="listingCuisineFilter" onchange="searchListings()">
                 <option value="">All Cuisines</option>
               </select>
-              <input type="text" class="search-input" id="listingSearch" placeholder="Search listings..." oninput="searchListings()">
+              <input type="text" class="search-input" id="listingSearch" placeholder="Search chefs..." oninput="searchListings()">
             </div>
           </div>
           <div class="table-scroll">
@@ -590,12 +590,12 @@
       <div class="section" id="sec-prospects">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
           <div>
-            <div style="font-size:16px;font-weight:700;">Prospect Pipeline</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Scraped and imported seller leads</div>
+            <div style="font-size:16px;font-weight:700;">Chef Pipeline</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Imported and scraped chef leads</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <button class="btn-make-all-live" onclick="bulkMakeAllLive()" title="Convert all prospects with coordinates to live map listings">Make All Live</button>
-            <button class="btn btn-accent" onclick="openProspectModal()">Add Prospect</button>
+            <button class="btn-make-all-live" onclick="bulkMakeAllLive()" title="Convert all leads with coordinates to live map chefs">Make All Live</button>
+            <button class="btn btn-accent" onclick="openProspectModal()">Add Chef Lead</button>
             <button class="btn btn-outline" onclick="openImportModal()">Import CSV</button>
             <button class="btn btn-outline" onclick="openScrapeModal()">Scrape Now</button>
           </div>
@@ -894,7 +894,7 @@
                 <input type="number" class="setting-input" id="set-locationFuzzyRadius" placeholder="0.005" step="0.001" min="0">
               </div>
               <div class="setting-row">
-                <div class="setting-label-group"><div class="setting-label">Require Permits</div><div class="setting-hint">Sellers must upload a valid cottage food permit</div></div>
+                <div class="setting-label-group"><div class="setting-label">Require Permits</div><div class="setting-hint">Sellers must upload a valid home kitchen permit</div></div>
                 <label class="toggle"><input type="checkbox" id="set-requirePermits"><span class="toggle-slider"></span></label>
               </div>
               <div class="setting-row">
@@ -933,7 +933,7 @@
               </div>
               <div class="setting-row">
                 <div class="setting-label-group"><div class="setting-label">From Address</div></div>
-                <input type="text" class="setting-input" id="set-fromAddress" placeholder="noreply@cottage.com">
+                <input type="text" class="setting-input" id="set-fromAddress" placeholder="noreply@kinseb.com">
               </div>
             </div>
           </div>
@@ -1024,7 +1024,7 @@
    COTTAGE ADMIN — Client-side Logic
    ══════════════════════════════════════════ */
 
-// Auto-detect base path (e.g. /cottage when served under /cottage/)
+// Auto-detect base path
 const BASE = window.location.pathname.replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
 const API = BASE;
 let sellersData = [];

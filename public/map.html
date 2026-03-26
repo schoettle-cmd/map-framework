@@ -111,28 +111,34 @@
     .map-marker {
       cursor: pointer;
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 2px 8px rgba(47,58,47,0.2));
       animation: marker-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
     }
-    .map-marker:hover { transform: scale(1.15); z-index: 100 !important; }
-    .marker-avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      border: 3px solid var(--olive);
-      overflow: hidden; background: var(--cream);
-      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    .map-marker:hover { transform: scale(1.2); z-index: 100 !important; }
+    .marker-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--olive);
+      border: 3px solid var(--card-bg);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
     }
-    .marker-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .marker-online .marker-avatar {
-      border-color: var(--terracotta);
-      box-shadow: 0 0 0 2px var(--cream), 0 0 12px rgba(196,106,60,0.3);
+    .marker-dot img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
     }
-    .marker-pointer {
-      width: 0; height: 0;
-      border-left: 6px solid transparent; border-right: 6px solid transparent;
-      border-top: 8px solid var(--olive);
-      margin: -2px auto 0;
+    .marker-dot .marker-icon {
+      font-size: 14px; color: #fff; line-height: 1;
     }
-    .marker-online .marker-pointer { border-top-color: var(--terracotta); }
+    .marker-online .marker-dot {
+      background: var(--terracotta);
+      box-shadow: 0 0 0 2px var(--card-bg), 0 0 14px rgba(196,106,60,0.35);
+    }
+    .marker-stem {
+      width: 2px; height: 6px;
+      background: var(--olive);
+      margin: 0 auto;
+      border-radius: 0 0 1px 1px;
+    }
+    .marker-online .marker-stem { background: var(--terracotta); }
 
     /* ── Bottom Sheet ── */
     .sheet-backdrop {
@@ -469,6 +475,7 @@
     <button class="filter-chip" data-filter="Vegan" onclick="setFilter('Vegan')">Vegan</button>
     <button class="filter-chip" data-filter="Italian" onclick="setFilter('Italian')">Italian</button>
     <button class="filter-chip" data-filter="Soul Food" onclick="setFilter('Soul Food')">Soul Food</button>
+    <button class="filter-chip" data-filter="available" onclick="setFilter('available')">Available now</button>
   </div>
 
   <!-- User Menu -->
@@ -691,7 +698,9 @@ function renderMarkers(animate) {
   mapMarkers = [];
 
   let filtered = mapElements;
-  if (activeFilter !== 'all') {
+  if (activeFilter === 'available') {
+    filtered = mapElements.filter(el => el.online);
+  } else if (activeFilter !== 'all') {
     filtered = mapElements.filter(el => {
       const ct = (el.cuisineType || el.tags || '').toLowerCase();
       return ct.includes(activeFilter.toLowerCase());
@@ -704,10 +713,10 @@ function renderMarkers(animate) {
     if (animate) div.style.animationDelay = `${Math.min(i * 20, 600)}ms`;
     else div.style.animation = 'none';
     div.innerHTML = `
-      <div class="marker-avatar">
-        ${el.imageUrl ? `<img src="${escAttr(el.imageUrl)}" alt="" loading="lazy">` : `<span>${el.icon || '&#127860;'}</span>`}
+      <div class="marker-dot">
+        ${el.imageUrl ? `<img src="${escAttr(el.imageUrl)}" alt="" loading="lazy">` : `<span class="marker-icon">${el.icon || '&#127860;'}</span>`}
       </div>
-      <div class="marker-pointer"></div>
+      <div class="marker-stem"></div>
     `;
     div.addEventListener('click', (e) => { e.stopPropagation(); openElement(el); });
     const marker = new maplibregl.Marker({ element: div, anchor: 'bottom' })

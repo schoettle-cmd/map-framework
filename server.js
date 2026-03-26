@@ -76,7 +76,6 @@ app.get('/map', noCache, (req, res) => res.sendFile(path.join(__dirname, 'public
 app.get('/profile', (req, res) => res.redirect('/map.html'));
 app.get('/profile/:id', (req, res) => {
   const id = req.params.id;
-  // Look up element by ownerId or element ID
   let el = elements.elements.find(e => e.ownerId === id && e.active !== false);
   if (!el) el = elements.elements.find(e => e.id === id && e.active !== false);
   if (!el) return res.status(404).send('<h1>Not Found</h1>');
@@ -89,69 +88,422 @@ app.get('/profile/:id', (req, res) => {
     : 0;
 
   const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  const accent = platformSettings.accentColor || '#C46A3C';
+  const tags = el.tags ? (Array.isArray(el.tags) ? el.tags : String(el.tags).split(',').map(t => t.trim()).filter(Boolean)) : [];
 
-  const productCards = elProducts.map(p => `
-    <div style="background:#FDFBF7;border:1px solid rgba(47,58,47,0.12);border-radius:14px;padding:18px;margin-bottom:10px;">
-      ${p.photos && p.photos.length ? `<img src="${esc(p.photos[0])}" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:12px;" alt="${esc(p.name)}">` : ''}
-      <div style="font-size:16px;font-weight:600;color:#1A1A1A;">${esc(p.name)}</div>
-      ${p.price > 0 ? `<div style="color:${accent};font-weight:700;margin-top:4px;">$${(p.price / 100).toFixed(2)}</div>` : ''}
-      ${p.description ? `<div style="color:#8A8577;font-size:13px;margin-top:6px;line-height:1.5;">${esc(p.description)}</div>` : ''}
-      ${p.allergens && p.allergens.length ? `<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px;">${p.allergens.map(a => `<span style="background:rgba(196,106,60,0.08);color:#C46A3C;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;">${esc(a)}</span>`).join('')}</div>` : ''}
+  const menuHtml = elProducts.map(p => `
+    <div class="meal-card">
+      ${p.photos && p.photos.length ? `<img src="${esc(p.photos[0])}" class="meal-img" alt="${esc(p.name)}">` : ''}
+      <div class="meal-body">
+        <div class="meal-header">
+          <h3 class="meal-name">${esc(p.name)}</h3>
+          ${p.price > 0 ? `<span class="meal-price">$${(p.price / 100).toFixed(2)}</span>` : ''}
+        </div>
+        ${p.description ? `<p class="meal-desc">${esc(p.description)}</p>` : ''}
+        ${p.allergens && p.allergens.length ? `<div class="meal-allergens">${p.allergens.map(a => `<span class="allergen-tag">${esc(a)}</span>`).join('')}</div>` : ''}
+      </div>
     </div>
   `).join('');
 
-  const contactItems = [];
-  if (el.email) contactItems.push(`<a href="mailto:${esc(el.email)}" style="color:${accent};text-decoration:none;">&#9993; ${esc(el.email)}</a>`);
-  if (el.phone) contactItems.push(`<a href="tel:${esc(el.phone)}" style="color:${accent};text-decoration:none;">&#9742; ${esc(el.phone)}</a>`);
-  if (el.instagram) contactItems.push(`<a href="https://instagram.com/${esc(el.instagram.replace(/^@/, ''))}" target="_blank" style="color:${accent};text-decoration:none;">&#64; ${esc(el.instagram)}</a>`);
-  if (el.externalOrderUrl) contactItems.push(`<a href="${esc(el.externalOrderUrl)}" target="_blank" style="color:${accent};text-decoration:none;">&#127760; Website</a>`);
+  const contactLinks = [];
+  if (el.email) contactLinks.push(`<a href="mailto:${esc(el.email)}" class="contact-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>`);
+  if (el.phone) contactLinks.push(`<a href="tel:${esc(el.phone)}" class="contact-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>`);
+  if (el.instagram) contactLinks.push(`<a href="https://instagram.com/${esc(el.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener" class="contact-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>Instagram</a>`);
+  if (el.externalOrderUrl) contactLinks.push(`<a href="${esc(el.externalOrderUrl)}" target="_blank" rel="noopener" class="contact-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>Website</a>`);
 
-  const tagsHtml = (el.tags && el.tags.length)
-    ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">${(Array.isArray(el.tags) ? el.tags : String(el.tags).split(',').map(t => t.trim()).filter(Boolean)).map(t => `<span style="background:rgba(47,58,47,0.06);color:#2F3A2F;padding:5px 14px;border-radius:100px;font-size:12px;font-weight:600;">${esc(t)}</span>`).join('')}</div>`
-    : '';
-
-  const html = `<!DOCTYPE html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(el.title)} | Kinseb</title>
 <meta name="description" content="${esc(el.description || el.subtitle || '')}">
 <meta property="og:title" content="${esc(el.title)} — Kinseb">
 <meta property="og:description" content="${esc(el.description || el.subtitle || '')}">
 ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#F5F1E8;color:#1A1A1A;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
-.container{max-width:640px;margin:0 auto;padding:20px 24px 60px}
-.back{display:inline-flex;align-items:center;gap:6px;color:#8A8577;text-decoration:none;font-size:14px;margin-bottom:20px;font-weight:500}
-.back:hover{color:#1A1A1A}
-.hero{width:100%;height:320px;object-fit:cover;border-radius:20px;margin-bottom:24px;background:#e8e4db}
-h1{font-family:'Playfair Display',Georgia,serif;font-size:32px;font-weight:600;margin-bottom:6px;letter-spacing:-0.02em}
-.subtitle{color:#8A8577;font-size:14px;margin-bottom:6px}
-.cuisine{color:${accent};font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
-.rating{color:#C46A3C;font-size:14px;margin-bottom:16px}
-.desc{color:#4a4a42;font-size:15px;line-height:1.7;margin-bottom:24px}
-.section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:${accent};margin-bottom:14px}
-.contact{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.order-btn{display:block;text-align:center;background:${accent};color:#fff;font-size:15px;font-weight:600;padding:16px 24px;border-radius:100px;text-decoration:none;margin:24px 0;transition:background 0.2s}
-.order-btn:hover{background:#D4845A}
+:root {
+  --cream: #F5F1E8;
+  --ink: #1A1A1A;
+  --olive: #2F3A2F;
+  --terracotta: #C46A3C;
+  --terracotta-light: #D4845A;
+  --warm-gray: #8A8577;
+  --light-border: rgba(47,58,47,0.12);
+  --card-bg: #FDFBF7;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Nav */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 28px;
+  background: rgba(245,241,232,0.92);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--light-border);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 700;
+  color: var(--ink); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-link {
+  font-size: 14px; font-weight: 500;
+  color: var(--warm-gray); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-cta {
+  padding: 9px 22px; border-radius: 100px;
+  background: var(--terracotta); border: none;
+  color: #fff; font-size: 13px; font-weight: 600;
+  text-decoration: none; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--terracotta-light); }
+
+/* Hero Portrait */
+.profile-hero {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 400px;
+  max-height: 700px;
+  overflow: hidden;
+  margin-top: 60px;
+}
+.profile-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-hero-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 120px; color: rgba(47,58,47,0.08);
+  background: #e8e4db;
+}
+.hero-gradient {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(26,26,26,0.6) 0%, transparent 100%);
+  pointer-events: none;
+}
+.hero-overlay-content {
+  position: absolute; bottom: 40px; left: 0; right: 0;
+  padding: 0 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.hero-cuisine {
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--terracotta-light);
+  margin-bottom: 10px;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.hero-location {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 400;
+}
+.hero-rating {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 10px;
+  font-size: 14px; color: #fff; font-weight: 500;
+}
+.hero-rating .stars { color: var(--terracotta-light); }
+
+/* Content */
+.profile-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Main Column */
+.profile-main {}
+.section-label {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--terracotta);
+  margin-bottom: 14px;
+}
+.profile-story {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #4a4a42;
+  margin-bottom: 40px;
+}
+.profile-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 40px;
+}
+.profile-tag {
+  padding: 6px 16px; border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+  background: rgba(47,58,47,0.06);
+  color: var(--olive);
+  border: 1px solid rgba(47,58,47,0.1);
+}
+
+/* Menu */
+.menu-section { margin-bottom: 40px; }
+.meal-card {
+  display: flex; gap: 16px;
+  padding: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 18px;
+  margin-bottom: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(47,58,47,0.08);
+}
+.meal-img {
+  width: 100px; height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.meal-body { flex: 1; min-width: 0; }
+.meal-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; gap: 12px;
+  margin-bottom: 6px;
+}
+.meal-name {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.meal-price {
+  font-size: 16px; font-weight: 700;
+  color: var(--terracotta);
+  white-space: nowrap;
+}
+.meal-desc {
+  font-size: 14px; line-height: 1.6;
+  color: var(--warm-gray);
+}
+.meal-allergens {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-top: 8px;
+}
+.allergen-tag {
+  padding: 3px 10px; border-radius: 100px;
+  font-size: 11px; font-weight: 600;
+  background: rgba(196,106,60,0.08);
+  color: var(--terracotta);
+}
+
+/* Sidebar */
+.profile-sidebar {
+  position: sticky; top: 84px;
+}
+.sidebar-card {
+  background: var(--card-bg);
+  border: 1px solid var(--light-border);
+  border-radius: 24px;
+  padding: 32px 28px;
+}
+.order-btn {
+  display: block; width: 100%;
+  padding: 16px; border-radius: 100px;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer; border: none;
+  font-family: var(--sans);
+  text-align: center; text-decoration: none;
+  background: var(--terracotta);
+  color: #fff;
+  transition: all 0.2s;
+  margin-bottom: 16px;
+}
+.order-btn:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+.message-btn {
+  display: block; width: 100%;
+  padding: 14px; border-radius: 100px;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  font-family: var(--sans);
+  text-align: center; text-decoration: none;
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--light-border);
+  transition: all 0.2s;
+  margin-bottom: 24px;
+}
+.message-btn:hover { border-color: var(--ink); }
+.sidebar-divider {
+  height: 1px;
+  background: var(--light-border);
+  margin: 20px 0;
+}
+.sidebar-section-title {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--warm-gray);
+  margin-bottom: 12px;
+}
+.contact-links {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(47,58,47,0.03);
+  color: var(--ink);
+  font-size: 13px; font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.contact-link:hover { background: rgba(47,58,47,0.08); }
+.contact-link svg { color: var(--warm-gray); flex-shrink: 0; }
+.availability-info {
+  font-size: 13px; line-height: 1.7;
+  color: var(--warm-gray);
+}
+.availability-info strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Footer */
+.profile-footer {
+  padding: 40px 28px;
+  text-align: center;
+  border-top: 1px solid var(--light-border);
+}
+.profile-footer-brand {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.profile-footer-tagline {
+  font-size: 13px; font-style: italic;
+  color: var(--warm-gray);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .profile-sidebar { position: static; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .profile-hero {
+    height: 50vh; min-height: 300px;
+    margin-top: 54px;
+  }
+  .hero-overlay-content { padding: 0 20px; bottom: 28px; }
+  .hero-name { font-size: clamp(28px, 8vw, 42px); }
+  .profile-content { padding: 32px 20px 60px; }
+  .meal-card { flex-direction: column; }
+  .meal-img { width: 100%; height: 180px; }
+}
 </style>
-</head><body>
-<div class="container">
-  <a href="/map" class="back">&larr; Back to map</a>
-  ${el.imageUrl ? `<img src="${esc(el.imageUrl)}" class="hero" alt="${esc(el.title)}">` : '<div class="hero" style="display:flex;align-items:center;justify-content:center;font-size:72px;color:rgba(47,58,47,0.15);">' + (el.icon || '&#127860;') + '</div>'}
-  ${el.cuisineType ? `<div class="cuisine">${esc(el.cuisineType)}</div>` : ''}
-  <h1>${esc(el.title)}</h1>
-  ${el.subtitle ? `<div class="subtitle">${esc(el.subtitle)}</div>` : ''}
-  ${el.address ? `<div class="subtitle">&#128205; ${esc(el.address)}</div>` : ''}
-  ${avgRating > 0 ? `<div class="rating">${'&#9733;'.repeat(Math.round(avgRating))} ${avgRating} (${sellerRatings.length} review${sellerRatings.length !== 1 ? 's' : ''})</div>` : ''}
-  ${tagsHtml}
-  ${el.description ? `<div class="desc">${esc(el.description)}</div>` : ''}
-  ${el.externalOrderUrl ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" class="order-btn">Order Now</a>` : ''}
-  ${elProducts.length > 0 ? `<div class="section-title">Menu</div>${productCards}` : ''}
-  ${contactItems.length > 0 ? `<div class="section-title" style="margin-top:24px;">Contact</div><div class="contact">${contactItems.join('')}</div>` : ''}
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">Kinseb</a>
+  <div class="nav-links">
+    <a href="/map" class="nav-link">Explore</a>
+    <a href="/join" class="nav-link">Become a chef</a>
+    <a href="/map" class="nav-cta">Discover chefs</a>
+  </div>
+</nav>
+
+<section class="profile-hero">
+  ${el.imageUrl
+    ? `<img src="${esc(el.imageUrl)}" alt="${esc(el.title)}">`
+    : `<div class="profile-hero-placeholder">${el.icon || '&#127860;'}</div>`}
+  <div class="hero-gradient"></div>
+  <div class="hero-overlay-content">
+    ${el.cuisineType ? `<div class="hero-cuisine">${esc(el.cuisineType)}</div>` : ''}
+    <h1 class="hero-name">${esc(el.title)}</h1>
+    ${el.address ? `<div class="hero-location">${esc(el.address)}</div>` : (el.subtitle ? `<div class="hero-location">${esc(el.subtitle)}</div>` : '')}
+    ${avgRating > 0 ? `<div class="hero-rating"><span class="stars">${'&#9733;'.repeat(Math.round(avgRating))}</span> ${avgRating} (${sellerRatings.length} review${sellerRatings.length !== 1 ? 's' : ''})</div>` : ''}
+  </div>
+</section>
+
+<div class="profile-content">
+  <div class="profile-grid">
+    <div class="profile-main">
+      ${el.description ? `
+        <div class="section-label">Their Story</div>
+        <p class="profile-story">${esc(el.description)}</p>
+      ` : ''}
+      ${tags.length ? `<div class="profile-tags">${tags.map(t => `<span class="profile-tag">${esc(t)}</span>`).join('')}</div>` : ''}
+      ${elProducts.length > 0 ? `
+        <div class="menu-section">
+          <div class="section-label">Menu</div>
+          ${menuHtml}
+        </div>
+      ` : ''}
+    </div>
+    <aside class="profile-sidebar">
+      <div class="sidebar-card">
+        ${el.externalOrderUrl ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" rel="noopener" class="order-btn">Order Now</a>` : `<a href="/map" class="order-btn">View on Map</a>`}
+        <a href="/map" class="message-btn">Message Chef</a>
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-section-title">Availability</div>
+        <div class="availability-info">
+          <strong>Pickup</strong> available<br>
+          Message chef for delivery options and scheduling.
+        </div>
+        ${contactLinks.length > 0 ? `
+          <div class="sidebar-divider"></div>
+          <div class="sidebar-section-title">Connect</div>
+          <div class="contact-links">${contactLinks.join('')}</div>
+        ` : ''}
+      </div>
+    </aside>
+  </div>
 </div>
-</body></html>`;
+
+<footer class="profile-footer">
+  <div class="profile-footer-brand">Kinseb</div>
+  <div class="profile-footer-tagline">Eat beautifully.</div>
+</footer>
+</body>
+</html>`;
 
   res.send(html);
 });
@@ -196,8 +548,8 @@ let prospects = loadData('prospects', { prospects: [] });
 let campaigns = loadData('campaigns', { campaigns: [] });
 let platformSettings = loadData('platform_settings', {
   platformName: 'Kinseb',
-  tagline: 'Homemade goods from kitchens near you',
-  accentColor: '#ea580c',
+  tagline: 'Eat beautifully.',
+  accentColor: '#C46A3C',
   commissionRate: 20,
   minPayoutAmount: 2500,
   payoutSchedule: 'weekly',
@@ -209,7 +561,7 @@ let platformSettings = loadData('platform_settings', {
   smtpUser: '',
   smtpPass: '',
   smtpFrom: 'noreply@kinseb.com',
-  adminPassword: 'cottage-admin-2026',
+  adminPassword: 'kinseb-admin-2026',
   maxProductPhotos: 4,
   maxProfilePhotos: 6,
   locationFuzzyRadius: 0.005,
@@ -357,7 +709,7 @@ const pendingVerifications = {};
 const adminTokens = new Set();
 
 function getAdminSession(req) {
-  const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('cottage_admin='));
+  const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('kinseb_admin='));
   if (!cookie) return false;
   const token = cookie.split('=')[1].trim();
   return adminTokens.has(token);
@@ -1453,14 +1805,14 @@ app.post('/api/admin/login', (req, res) => {
   const token = 'adm_' + crypto.randomBytes(24).toString('hex');
   adminTokens.add(token);
   const expires = new Date(Date.now() + 7 * 86400000).toUTCString();
-  res.setHeader('Set-Cookie', `cottage_admin=${token}; Path=/; Expires=${expires}; HttpOnly; SameSite=Lax`);
+  res.setHeader('Set-Cookie', `kinseb_admin=${token}; Path=/; Expires=${expires}; HttpOnly; SameSite=Lax`);
   res.json({ ok: true });
 });
 
 app.post('/api/admin/logout', (req, res) => {
-  const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('cottage_admin='));
+  const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('kinseb_admin='));
   if (cookie) adminTokens.delete(cookie.split('=')[1].trim());
-  res.setHeader('Set-Cookie', 'cottage_admin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax');
+  res.setHeader('Set-Cookie', 'kinseb_admin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax');
   res.json({ ok: true });
 });
 

@@ -81,7 +81,7 @@ async function main() {
     const loginRes = await fetch('http://localhost:4180/api/admin/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: 'cottage-admin-2026' }),
+      body: JSON.stringify({ password: 'kinseb-admin-2026' }),
       signal: AbortSignal.timeout(5000)
     });
     const loginData = await loginRes.json();

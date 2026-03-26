@@ -4,6 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
+const { scrapeAll } = require('./scrapers');
 
 const app = express();
 
@@ -112,7 +113,13 @@ let platformSettings = loadData('platform_settings', {
   locationFuzzyRadius: 0.005,
   freeViews: 5,
   enableRatings: true,
-  enableMessaging: true
+  enableMessaging: true,
+  igShareEnabled: true,
+  igShareDiscount: 10,
+  igShareDefaultRate: 20,
+  igShareVerifyRequired: true,
+  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @CottageLA! 🍞 Homemade goods from kitchens near you. #CottageFood #HomeBaked #SupportLocal",
+  igShareImageUrl: ""
 });
 
 // ── Phone Normalization ─────────────────────────────────────────────────────
@@ -488,7 +495,11 @@ app.post('/api/auth/logout', (req, res) => {
 // ═════════════════════════════════════════════════════════════════════════════
 //  CONFIG
 // ═════════════════════════════════════════════════════════════════════════════
-app.get('/api/config', (req, res) => res.json(config));
+app.get('/api/config', (req, res) => res.json({
+  ...config,
+  igShareEnabled: platformSettings.igShareEnabled,
+  igShareDiscount: platformSettings.igShareDiscount
+}));
 
 // ═════════════════════════════════════════════════════════════════════════════
 //  PROFILES
@@ -718,6 +729,10 @@ app.post('/api/orders', async (req, res) => {
     status: 'pending',
     stripeSessionId: null,
     paidOut: false,
+    igShareStatus: null,
+    igShareDiscount: 0,
+    igShareUsername: null,
+    igShareAt: null,
     createdAt: new Date().toISOString()
   };
 
@@ -765,7 +780,11 @@ app.get('/api/orders', (req, res) => {
 
   const userOrders = orders.orders
     .filter(o => o.buyerId === user.id || o.sellerId === user.id)
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .map(o => ({
+      ...o,
+      effectiveAmount: o.igShareStatus === 'verified' ? o.amount - (o.igShareDiscount || 0) : o.amount
+    }));
 
   res.json({ ok: true, orders: userOrders });
 });
@@ -822,6 +841,107 @@ app.post('/api/webhooks/stripe', express.raw({ type: 'application/json' }), (req
     console.error('Webhook error:', e);
   }
   res.json({ received: true });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  INSTAGRAM SHARE DISCOUNT
+// ═════════════════════════════════════════════════════════════════════════════
+
+// POST /api/orders/:id/ig-share-start — buyer declares intent to share
+app.post('/api/orders/:id/ig-share-start', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  if (!platformSettings.igShareEnabled) return res.status(400).json({ ok: false, error: 'Instagram share discount is not available.' });
+
+  const order = orders.orders.find(o => o.id === req.params.id && o.buyerId === user.id);
+  if (!order) return res.status(404).json({ ok: false, error: 'Order not found.' });
+
+  order.igShareStatus = 'pending';
+  saveData('orders', orders);
+
+  // Build share message from template
+  let shareMessage = platformSettings.igShareMessage || '';
+  shareMessage = shareMessage.replace(/\{\{productName\}\}/g, order.productName);
+  shareMessage = shareMessage.replace(/\{\{sellerName\}\}/g, order.sellerName);
+
+  res.json({
+    ok: true,
+    shareMessage,
+    igShareImageUrl: platformSettings.igShareImageUrl || null,
+    productName: order.productName,
+    sellerName: order.sellerName,
+    discountPct: platformSettings.igShareDiscount
+  });
+});
+
+// POST /api/orders/:id/ig-share-confirm — buyer confirms they shared
+app.post('/api/orders/:id/ig-share-confirm', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const order = orders.orders.find(o => o.id === req.params.id && o.buyerId === user.id);
+  if (!order) return res.status(404).json({ ok: false, error: 'Order not found.' });
+
+  const { igUsername } = req.body;
+  if (!igUsername) return res.status(400).json({ ok: false, error: 'Instagram username required.' });
+
+  order.igShareUsername = String(igUsername).slice(0, 100);
+  order.igShareAt = new Date().toISOString();
+
+  if (!platformSettings.igShareVerifyRequired) {
+    // Auto-verify: apply discount immediately
+    order.igShareDiscount = Math.round(order.amount * platformSettings.igShareDiscount / 100);
+    order.igShareStatus = 'verified';
+    saveData('orders', orders);
+    return res.json({ ok: true, discountApplied: true, discount: order.igShareDiscount, status: 'verified' });
+  }
+
+  // Require manual verification
+  order.igShareStatus = 'shared';
+  saveData('orders', orders);
+  res.json({ ok: true, discountApplied: false, discount: 0, status: 'shared' });
+});
+
+// PUT /api/admin/orders/:id/ig-verify — admin verifies Instagram post
+app.put('/api/admin/orders/:id/ig-verify', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const order = orders.orders.find(o => o.id === req.params.id);
+  if (!order) return res.status(404).json({ ok: false, error: 'Order not found.' });
+
+  const { verified } = req.body;
+  if (verified) {
+    order.igShareDiscount = Math.round(order.amount * platformSettings.igShareDiscount / 100);
+    order.igShareStatus = 'verified';
+  } else {
+    order.igShareStatus = null;
+    order.igShareDiscount = 0;
+    order.igShareUsername = null;
+    order.igShareAt = null;
+  }
+
+  saveData('orders', orders);
+  res.json({ ok: true, order });
+});
+
+// GET /api/orders/:id/ig-share-status — get IG share status for an order
+app.get('/api/orders/:id/ig-share-status', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const order = orders.orders.find(o => o.id === req.params.id && (o.buyerId === user.id || o.sellerId === user.id));
+  if (!order) return res.status(404).json({ ok: false, error: 'Order not found.' });
+
+  const effectiveAmount = order.igShareStatus === 'verified' ? order.amount - order.igShareDiscount : order.amount;
+
+  res.json({
+    ok: true,
+    igShareStatus: order.igShareStatus,
+    igShareDiscount: order.igShareDiscount,
+    igShareUsername: order.igShareUsername,
+    effectiveAmount
+  });
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -1684,19 +1804,36 @@ app.post('/api/admin/prospects/import', (req, res) => {
   res.json({ ok: true, imported: imported.length, prospects: imported });
 });
 
-// POST /api/admin/prospects/scrape — trigger scraping (stub)
-app.post('/api/admin/prospects/scrape', (req, res) => {
+// POST /api/admin/prospects/scrape — trigger live scraping
+app.post('/api/admin/prospects/scrape', async (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
 
-  const { source, url } = req.body;
-  // Stub — actual scraping logic to be added separately
-  res.json({
-    ok: true,
-    message: `Scraping in progress for source: ${source || 'la-county'}. Results will appear in the prospects list when complete.`,
-    source: source || 'la-county',
-    url: url || null,
-    status: 'in_progress'
-  });
+  const { source, url, query, autoImport } = req.body;
+
+  try {
+    const result = await scrapeAll({ source: source || 'all', url, query });
+
+    // Auto-import into prospects list if requested (default: true)
+    if (autoImport !== false && result.prospects.length > 0) {
+      const existingNames = new Set(prospects.prospects.map(p => (p.businessName || p.name || '').toLowerCase()));
+      let imported = 0;
+      for (const p of result.prospects) {
+        const key = (p.businessName || p.name || '').toLowerCase();
+        if (!existingNames.has(key)) {
+          prospects.prospects.push(p);
+          existingNames.add(key);
+          imported++;
+        }
+      }
+      if (imported > 0) saveData('prospects', prospects);
+      result.imported = imported;
+      result.skippedDuplicates = result.prospects.length - imported;
+    }
+
+    res.json({ ok: true, ...result });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
 });
 
 // ═════════════════════════════════════════════════════════════════════════════

@@ -454,7 +454,7 @@
 
   <!-- Top Bar -->
   <div class="top-bar">
-    <a href="/" class="brand">Kinseb</a>
+    <a href="/cottage/" class="brand" id="brand-link">Kinseb</a>
     <div class="search-wrap">
       <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       <input type="text" class="search-input" id="search-input" placeholder="Search chefs or cuisines..." autocomplete="off">
@@ -593,7 +593,8 @@
 let CFG = {};
 let currentUser = null;
 let map = null;
-const BASE = window.location.pathname.replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
+const BASE = window.location.pathname.replace(/\/(map|profile|join|seller|admin|studio)(\/.*)?$/, '').replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
+document.getElementById('brand-link').href = BASE + '/';
 
 let mapMarkers = [];
 let mapElements = [];
@@ -791,7 +792,7 @@ function updateAuthUI() {
 
 function goToMyProfile() {
   closeUserMenu();
-  if (currentUser) window.location.href = '/profile/' + currentUser.id;
+  if (currentUser) window.location.href = BASE + '/profile/' + currentUser.id;
 }
 
 function openAuth() {

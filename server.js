@@ -1836,6 +1836,170 @@ app.post('/api/admin/prospects/scrape', async (req, res) => {
   }
 });
 
+// POST /api/admin/prospects/bulk-make-live — convert multiple prospects to live listings
+app.post('/api/admin/prospects/bulk-make-live', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const { ids } = req.body;
+
+  // If ids provided, use those; otherwise grab all prospects that have lat/lng
+  let targetProspects;
+  if (Array.isArray(ids) && ids.length > 0) {
+    targetProspects = prospects.prospects.filter(p => ids.includes(p.id));
+  } else {
+    targetProspects = prospects.prospects.filter(p => p.lat != null && p.lng != null);
+  }
+
+  let converted = 0;
+  const results = [];
+
+  for (const prospect of targetProspects) {
+    // Skip already converted
+    if (prospect.convertedUserId || prospect.status === 'approved') {
+      results.push({ id: prospect.id, skipped: true, reason: 'already converted' });
+      continue;
+    }
+
+    // Skip rejected
+    if (prospect.status === 'rejected') {
+      results.push({ id: prospect.id, skipped: true, reason: 'rejected' });
+      continue;
+    }
+
+    // Must have lat/lng (from scraper data on the prospect itself)
+    if (prospect.lat == null || prospect.lng == null) {
+      results.push({ id: prospect.id, skipped: true, reason: 'no coordinates' });
+      continue;
+    }
+
+    // Create user
+    const userId = 'user_' + crypto.randomBytes(8).toString('hex');
+    const user = makeUser({
+      id: userId,
+      name: prospect.businessName || prospect.name,
+      email: prospect.email || null,
+      phone: prospect.phone || null,
+      phoneVerified: false,
+      profile: {
+        displayName: prospect.businessName || prospect.name,
+        bio: prospect.notes || '',
+        photos: [],
+        location: { lat: parseFloat(prospect.lat), lng: parseFloat(prospect.lng), address: prospect.address },
+        permitType: prospect.permitType || null,
+        permitNumber: prospect.permitNumber || null
+      }
+    });
+    users.users.push(user);
+
+    // Create map element
+    const el = {
+      id: 'el_' + crypto.randomBytes(8).toString('hex'),
+      type: 'seller',
+      title: prospect.businessName || prospect.name,
+      subtitle: prospect.neighborhood || '',
+      description: prospect.notes || '',
+      imageUrl: '',
+      icon: '🏪',
+      lat: parseFloat(prospect.lat),
+      lng: parseFloat(prospect.lng),
+      ownerId: userId,
+      metadata: { userId, prospectId: prospect.id },
+      online: true,
+      active: true,
+      createdAt: new Date().toISOString()
+    };
+
+    // Use external URL if prospect has a website
+    if (prospect.website) {
+      el.externalOrderUrl = prospect.website;
+    }
+
+    elements.elements.push(el);
+
+    // Create products
+    if (prospect.products && prospect.products.length > 0) {
+      prospect.products.forEach(prodName => {
+        products.products.push({
+          id: 'prod_' + crypto.randomBytes(8).toString('hex'),
+          sellerId: userId,
+          sellerName: prospect.businessName || prospect.name,
+          name: String(prodName),
+          description: '',
+          price: 0,
+          category: 'other',
+          allergens: [],
+          madeInHomeKitchen: true,
+          photos: [],
+          available: true,
+          createdAt: new Date().toISOString()
+        });
+      });
+    }
+
+    // Update prospect status
+    prospect.status = 'approved';
+    prospect.convertedAt = new Date().toISOString();
+    prospect.convertedUserId = userId;
+
+    converted++;
+    results.push({ id: prospect.id, userId, elementId: el.id, converted: true });
+  }
+
+  // Save all at once
+  if (converted > 0) {
+    saveData('users', users);
+    saveData('elements', elements);
+    saveData('products', products);
+    saveData('prospects', prospects);
+  }
+
+  res.json({ ok: true, converted, total: targetProspects.length, results });
+});
+
+// POST /api/admin/elements/bulk-remove — soft-delete elements (set active=false)
+app.post('/api/admin/elements/bulk-remove', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const { ids } = req.body;
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ ok: false, error: 'ids array required.' });
+  }
+
+  let removed = 0;
+  for (const id of ids) {
+    const el = elements.elements.find(e => e.id === id);
+    if (el && el.active !== false) {
+      el.active = false;
+      removed++;
+    }
+  }
+
+  if (removed > 0) saveData('elements', elements);
+  res.json({ ok: true, removed, requested: ids.length });
+});
+
+// POST /api/admin/elements/bulk-restore — restore soft-deleted elements (set active=true)
+app.post('/api/admin/elements/bulk-restore', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const { ids } = req.body;
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return res.status(400).json({ ok: false, error: 'ids array required.' });
+  }
+
+  let restored = 0;
+  for (const id of ids) {
+    const el = elements.elements.find(e => e.id === id);
+    if (el && el.active === false) {
+      el.active = true;
+      restored++;
+    }
+  }
+
+  if (restored > 0) saveData('elements', elements);
+  res.json({ ok: true, restored, requested: ids.length });
+});
+
 // ═════════════════════════════════════════════════════════════════════════════
 //  SEED
 // ═════════════════════════════════════════════════════════════════════════════

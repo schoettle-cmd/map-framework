@@ -1,0 +1,5373 @@
+{
+  "elements": [
+    {
+      "id": "el_seed_001",
+      "type": "seller",
+      "title": "Maria's Cocina",
+      "subtitle": "Silver Lake, LA",
+      "description": "Third-generation recipes from Oaxaca. Conchas, empanadas, and tamales baked fresh. Class A Cottage Food Permit.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Maria's%20Cocina&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.0869,
+      "lng": -118.2627,
+      "ownerId": "user_seed_001",
+      "metadata": {
+        "userId": "user_seed_001"
+      },
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-03T20:41:28.569Z"
+    },
+    {
+      "id": "el_seed_002",
+      "type": "seller",
+      "title": "Golden Crust Bread Co.",
+      "subtitle": "Los Feliz, LA",
+      "description": "Artisan sourdough baked fresh daily. Organic flour, wild-caught yeast, 48-hour ferment. Pickup in Los Feliz.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Golden%20Crust%20Bread%20Co.&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.1065,
+      "lng": -118.281,
+      "ownerId": "user_seed_002",
+      "metadata": {
+        "userId": "user_seed_002"
+      },
+      "online": false,
+      "active": true,
+      "createdAt": "2026-02-07T08:33:33.449Z"
+    },
+    {
+      "id": "el_seed_003",
+      "type": "seller",
+      "title": "Sweet Spot LA",
+      "subtitle": "Echo Park, LA",
+      "description": "Cookies, brownies, and sweet treats made with love in Echo Park. All butter, real vanilla, no shortcuts.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Sweet%20Spot%20LA&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.0781,
+      "lng": -118.2606,
+      "ownerId": "user_seed_003",
+      "metadata": {
+        "userId": "user_seed_003"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-01T10:04:01.599Z"
+    },
+    {
+      "id": "el_seed_004",
+      "type": "seller",
+      "title": "Jam Session",
+      "subtitle": "Highland Park, LA",
+      "description": "Small-batch jams & preserves from California-grown fruit. No pectin, just fruit, sugar, and time. Highland Park.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Jam%20Session&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.1097,
+      "lng": -118.192,
+      "ownerId": "user_seed_004",
+      "metadata": {
+        "userId": "user_seed_004"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-15T05:40:24.828Z"
+    },
+    {
+      "id": "el_seed_005",
+      "type": "seller",
+      "title": "The Honey Jar",
+      "subtitle": "Atwater Village, LA",
+      "description": "Local LA honey from our own hives + handmade granola. Sustainable beekeeping in Atwater Village since 2020.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=The%20Honey%20Jar&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.1172,
+      "lng": -118.2587,
+      "ownerId": "user_seed_005",
+      "metadata": {
+        "userId": "user_seed_005"
+      },
+      "online": false,
+      "active": true,
+      "createdAt": "2025-12-28T09:10:34.064Z"
+    },
+    {
+      "id": "el_seed_006",
+      "type": "seller",
+      "title": "Churro Queen",
+      "subtitle": "Boyle Heights, LA",
+      "description": "Fresh churros and dulces from my Boyle Heights kitchen. Weekend pop-ups and pre-orders. East LA pride.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Churro%20Queen&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.034,
+      "lng": -118.2116,
+      "ownerId": "user_seed_006",
+      "metadata": {
+        "userId": "user_seed_006"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-01-21T22:44:00.506Z"
+    },
+    {
+      "id": "el_seed_007",
+      "type": "seller",
+      "title": "Cake Pop Studio",
+      "subtitle": "Pasadena, LA",
+      "description": "Custom cake pops, cupcakes & decorated sugar cookies for every occasion. Pasadena pickup or local delivery.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Cake%20Pop%20Studio&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.1478,
+      "lng": -118.1445,
+      "ownerId": "user_seed_007",
+      "metadata": {
+        "userId": "user_seed_007"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-02-15T20:43:05.496Z"
+    },
+    {
+      "id": "el_seed_008",
+      "type": "seller",
+      "title": "LA Crumbs",
+      "subtitle": "Koreatown, LA",
+      "description": "Korean-inspired baked goods in Koreatown. Matcha, red bean, black sesame — East meets West in every bite.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=LA%20Crumbs&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.0579,
+      "lng": -118.3004,
+      "ownerId": "user_seed_008",
+      "metadata": {
+        "userId": "user_seed_008"
+      },
+      "online": false,
+      "active": true,
+      "createdAt": "2026-01-09T08:15:12.765Z"
+    },
+    {
+      "id": "el_seed_009",
+      "type": "seller",
+      "title": "Pasta Fresca LA",
+      "subtitle": "Little Tokyo, LA",
+      "description": "Handmade fresh pasta from my Little Tokyo kitchen. Semolina and egg doughs, cut to order. Weekend pickups.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Pasta%20Fresca%20LA&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.05,
+      "lng": -118.24,
+      "ownerId": "user_seed_009",
+      "metadata": {
+        "userId": "user_seed_009"
+      },
+      "online": false,
+      "active": true,
+      "createdAt": "2026-02-28T04:30:28.436Z"
+    },
+    {
+      "id": "el_seed_010",
+      "type": "seller",
+      "title": "Nutty Professor",
+      "subtitle": "Mid-City, LA",
+      "description": "Small-batch nut butters and roasted nuts. No sugar, no palm oil, no junk. Just nuts. Mid-City LA.",
+      "imageUrl": "https://api.dicebear.com/7.x/initials/svg?seed=Nutty%20Professor&backgroundColor=7c2d12&textColor=fff",
+      "icon": "🍞",
+      "lat": 34.0481,
+      "lng": -118.3417,
+      "ownerId": "user_seed_010",
+      "metadata": {
+        "userId": "user_seed_010"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-02-27T20:39:05.253Z"
+    },
+    {
+      "id": "el_near_4678d41a",
+      "type": "person",
+      "title": "Alex M.",
+      "subtitle": "0.4 mi away",
+      "description": "Coffee lover. Always exploring.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex%20M.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.011858563493156,
+      "lng": -118.46164985418018,
+      "ownerId": "system",
+      "metadata": {},
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_172ad883",
+      "type": "person",
+      "title": "Jordan K.",
+      "subtitle": "1.0 mi away",
+      "description": "New here — show me around!",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Jordan%20K.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.01071157644786,
+      "lng": -118.46322884315504,
+      "ownerId": "system",
+      "metadata": {},
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_154993e6",
+      "type": "person",
+      "title": "Sam R.",
+      "subtitle": "2.0 mi away",
+      "description": "Weekend hiker, weekday coder.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Sam%20R.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.012299982805246,
+      "lng": -118.46503045717522,
+      "ownerId": "system",
+      "metadata": {},
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_84d2396d",
+      "type": "person",
+      "title": "Taylor B.",
+      "subtitle": "2.4 mi away",
+      "description": "Looking for recommendations.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Taylor%20B.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.00385563720992,
+      "lng": -118.4543198555482,
+      "ownerId": "system",
+      "metadata": {},
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_dbf5c040",
+      "type": "person",
+      "title": "Casey L.",
+      "subtitle": "2.4 mi away",
+      "description": "Music and art enthusiast.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Casey%20L.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.0014239250712,
+      "lng": -118.45199816269394,
+      "ownerId": "system",
+      "metadata": {},
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_49854c87",
+      "type": "person",
+      "title": "Morgan P.",
+      "subtitle": "0.8 mi away",
+      "description": "Photographer capturing life.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Morgan%20P.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 33.99281498130462,
+      "lng": -118.45569013843432,
+      "ownerId": "system",
+      "metadata": {},
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_2673b630",
+      "type": "person",
+      "title": "Riley D.",
+      "subtitle": "1.8 mi away",
+      "description": "Fitness junkie, early riser.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Riley%20D.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.01466314183851,
+      "lng": -118.45858135215015,
+      "ownerId": "system",
+      "metadata": {},
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_cf6c824a",
+      "type": "person",
+      "title": "Avery C.",
+      "subtitle": "1.2 mi away",
+      "description": "Bookworm.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Avery%20C.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 33.990492851085236,
+      "lng": -118.45146893809373,
+      "ownerId": "system",
+      "metadata": {},
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_407dc1b0",
+      "type": "person",
+      "title": "Quinn S.",
+      "subtitle": "0.9 mi away",
+      "description": "Foodie on a mission.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Quinn%20S.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 33.99686951215737,
+      "lng": -118.45564050888648,
+      "ownerId": "system",
+      "metadata": {},
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_14da84d8",
+      "type": "person",
+      "title": "Drew N.",
+      "subtitle": "2.0 mi away",
+      "description": "Into live music.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Drew%20N.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 33.99594999113198,
+      "lng": -118.45313916348194,
+      "ownerId": "system",
+      "metadata": {},
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_daa95237",
+      "type": "person",
+      "title": "Blake H.",
+      "subtitle": "1.5 mi away",
+      "description": "Designer by day, gamer by night.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Blake%20H.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.01005934568228,
+      "lng": -118.45853183408755,
+      "ownerId": "system",
+      "metadata": {},
+      "online": false,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_near_2af63a3a",
+      "type": "person",
+      "title": "Charlie F.",
+      "subtitle": "1.4 mi away",
+      "description": "Travel addict.",
+      "imageUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Charlie%20F.&backgroundColor=1a1a2e",
+      "icon": "👤",
+      "lat": 34.00255885434851,
+      "lng": -118.4616438712479,
+      "ownerId": "system",
+      "metadata": {},
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-24T23:56:30.356Z"
+    },
+    {
+      "id": "el_519a6ee20dad76a6",
+      "type": "seller",
+      "title": "3 Up Burgers",
+      "subtitle": "LOS ANGELES",
+      "description": "Serves burgers with various toppings in Los Angeles. | Permitted MEHKO since 2026-02-05. LA County Record: PR0365044",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.05087593817,
+      "lng": -118.213378363668,
+      "ownerId": "user_3b1d67156f275667",
+      "metadata": {
+        "userId": "user_3b1d67156f275667",
+        "prospectId": "pros_bbd569ebccf06bb1"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_7e1ff73909d22187",
+      "type": "seller",
+      "title": "Absolute Sweetness Cafe",
+      "subtitle": "MONTEBELLO",
+      "description": "Mom-and-pop Mexican cafe offering food and sweet treats in Montebello. | Permitted MEHKO since 2025-07-15. LA County Record: PR0318812",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.001280854543,
+      "lng": -118.116748872372,
+      "ownerId": "user_26f1c847cf0df9f8",
+      "metadata": {
+        "userId": "user_26f1c847cf0df9f8",
+        "prospectId": "pros_6b17d240a955e80d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_87a8f322c5565a99",
+      "type": "seller",
+      "title": "Ada Deliciosa Comida Guat",
+      "subtitle": "NORTHRIDGE",
+      "description": "Serves delicious homemade Guatemalan food in Northridge.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.227270845963,
+      "lng": -118.539300930429,
+      "ownerId": "user_b957a9ce49422606",
+      "metadata": {
+        "userId": "user_b957a9ce49422606",
+        "prospectId": "pros_5712a992b786cc7f"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_8b9ac23eba91f3cf",
+      "type": "seller",
+      "title": "Alejandra'S Cocina",
+      "subtitle": "WHITTIER",
+      "description": "Mexican home kitchen serving carne asada, quesadillas, guisados, and mole fries. | Permitted MEHKO since 2025-05-28. LA County Record: PR0317643",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.033594903201,
+      "lng": -118.030571869099,
+      "ownerId": "user_27f22ed2d4c7d585",
+      "metadata": {
+        "userId": "user_27f22ed2d4c7d585",
+        "prospectId": "pros_f23fb83db84807b8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_c361f420021e628b",
+      "type": "seller",
+      "title": "Alena'S Lab Kitchen",
+      "subtitle": "WILMINGTON",
+      "description": "Home kitchen business in Wilmington with limited available details. | Permitted MEHKO since 2025-07-08. LA County Record: PR0318623 | 0 Skip to Content Home Our Story Our Mission Menu Bundle & Serve Events Shop Contact Open Menu Close Menu Home Our Story Our Mission Menu Bundle & Serve Events Shop Contact Open Menu Close Menu Home Our Story Our Mission Menu Bundle & Serve Events Shop Contact Explore the flavors of Southeast Asia S",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.791217775758,
+      "lng": -118.243373249899,
+      "ownerId": "user_94d65ac9ea6d603c",
+      "metadata": {
+        "userId": "user_94d65ac9ea6d603c",
+        "prospectId": "pros_482ec501632caec9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z",
+      "externalOrderUrl": "https://www.alenaslabkitchen.com"
+    },
+    {
+      "id": "el_65433b9415898fbb",
+      "type": "seller",
+      "title": "Allen'S Baliwag Special Chi",
+      "subtitle": "LOS ANGELES",
+      "description": "Filipino food featuring Baliwag lechon manok, liempo, BBQ, and more.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.120838283848,
+      "lng": -118.208715002373,
+      "ownerId": "user_010f540f04641ad0",
+      "metadata": {
+        "userId": "user_010f540f04641ad0",
+        "prospectId": "pros_ffb3c6e88d4984c8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_538e5c52b909bed3",
+      "type": "seller",
+      "title": "Almuerzo Casero",
+      "subtitle": "MISSION HILLS",
+      "description": "Homestyle Latin American lunch meals served from a home kitchen. | Permitted MEHKO since 2025-12-24. LA County Record: PR0327486",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.268897959525,
+      "lng": -118.459717177728,
+      "ownerId": "user_0d973e74c474696a",
+      "metadata": {
+        "userId": "user_0d973e74c474696a",
+        "prospectId": "pros_c08e3c5cfd26f6ee"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_01e59fb9ed5ecb7b",
+      "type": "seller",
+      "title": "Amber Kitchen",
+      "subtitle": "ALHAMBRA",
+      "description": "Kitchen and coffee spot offering brunch and lunch fare in Alhambra. | Permitted MEHKO since 2025-05-21. LA County Record: PR0317584",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.101484190247,
+      "lng": -118.119272822168,
+      "ownerId": "user_5aa9450b21cf331e",
+      "metadata": {
+        "userId": "user_5aa9450b21cf331e",
+        "prospectId": "pros_aee0c5e2d42bc702"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_9f8ca81ba94c663c",
+      "type": "seller",
+      "title": "Andres S Fernandez Llc",
+      "subtitle": "CASTAIC",
+      "description": "Operates as The 805 Bar & Grilled Cheese offering sandwiches.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.474016436533,
+      "lng": -118.645059320526,
+      "ownerId": "user_aa2781da62f04892",
+      "metadata": {
+        "userId": "user_aa2781da62f04892",
+        "prospectId": "pros_4074bd37db46d2b7"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z"
+    },
+    {
+      "id": "el_529d8ffb9c1d8fa0",
+      "type": "seller",
+      "title": "Angel City Dumpling Co.",
+      "subtitle": "WOODLAND HILLS",
+      "description": "Fusion dumplings filled with chicken shawarma, basmati rice, and hummus. | Permitted MEHKO since 2024-11-06. LA County Record: PR0313266 | We make Dumplings with the bold and diverse flavors of Los Angeles. ",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.17832067053,
+      "lng": -118.617910496729,
+      "ownerId": "user_59f6e92e441c87e7",
+      "metadata": {
+        "userId": "user_59f6e92e441c87e7",
+        "prospectId": "pros_e92c790138e2a36d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z",
+      "externalOrderUrl": "https://www.hotplate.com/angelcitydumplings"
+    },
+    {
+      "id": "el_b54cb3b2c7392f2b",
+      "type": "seller",
+      "title": "Angry Bull Bbq",
+      "subtitle": "SHERMAN OAKS",
+      "description": "Smoked BBQ meats including brisket, ribs, chicken, and classic sides. | Permitted MEHKO since 2025-02-05. LA County Record: PR0314712 | David Zeichick of Angry Bull BBQ (Backyard Pitmaster) creating all kinds of delicious smoked meats; brisket, pulled pork, and ribs.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.150936135326,
+      "lng": -118.419160041435,
+      "ownerId": "user_162d70253041629c",
+      "metadata": {
+        "userId": "user_162d70253041629c",
+        "prospectId": "pros_7a3b11f0b3a07afc"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.304Z",
+      "externalOrderUrl": "https://www.angrybullbbq.com/"
+    },
+    {
+      "id": "el_b86ab844d0238ad6",
+      "type": "seller",
+      "title": "Anita Bakery",
+      "subtitle": "SIERRA MADRE",
+      "description": "Small bakery offering made-to-order cookies, mooncakes, and baking classes. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314216 | Health-conscious Delicious Cookies with less sugar, emphasizing the true taste of the ingredients, with Vegan, Gluten-Free options",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.163057731882,
+      "lng": -118.051212013724,
+      "ownerId": "user_0e0167efaf11c011",
+      "metadata": {
+        "userId": "user_0e0167efaf11c011",
+        "prospectId": "pros_8912abed3a2e8392"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.anitabakery.com"
+    },
+    {
+      "id": "el_1b0ab586dca6bee1",
+      "type": "seller",
+      "title": "Antojitos M.x. Y Mas",
+      "subtitle": "LANCASTER",
+      "description": "Mexican antojitos and more with vegan and gluten-free options available. | Permitted MEHKO since 2025-08-08. LA County Record: PR0319654",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.663270490989,
+      "lng": -118.164231012288,
+      "ownerId": "user_b01003f2af4627b6",
+      "metadata": {
+        "userId": "user_b01003f2af4627b6",
+        "prospectId": "pros_65244c5bb4768a15"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b50af721219f42d6",
+      "type": "seller",
+      "title": "Arusuvai Indian Cuisine",
+      "subtitle": "EL SEGUNDO",
+      "description": "Authentic North and South Indian cuisine prepared by an experienced chef. | Permitted MEHKO since 2025-05-21. LA County Record: PR0317587",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.920092235386,
+      "lng": -118.420694461482,
+      "ownerId": "user_cae726b38cb7c4a8",
+      "metadata": {
+        "userId": "user_cae726b38cb7c4a8",
+        "prospectId": "pros_e73a56d50f9d39d6"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://arusuvaiindiancuisine.square.site/"
+    },
+    {
+      "id": "el_e80f4047c276ef80",
+      "type": "seller",
+      "title": "Asados To Go",
+      "subtitle": "POLK",
+      "description": "Mexican-style BBQ asados served to go on weekends in Sylmar. | Permitted MEHKO since 2025-11-19. LA County Record: PR0326542",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.324140842632,
+      "lng": -118.43121764934,
+      "ownerId": "user_4093fb8e44bf953e",
+      "metadata": {
+        "userId": "user_4093fb8e44bf953e",
+        "prospectId": "pros_eeff4d8274ca8625"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_060f53e7cd3aeba7",
+      "type": "seller",
+      "title": "Baileys N' More",
+      "subtitle": "LOS ANGELES",
+      "description": "Nigerian-intercontinental fusion cuisine with organic, non-GMO healthy meals. | Permitted MEHKO since 2026-01-06. LA County Record: PR0327696 | Baileys N’ More offers organic, non-GMO Nigerian-inspired healthy meals through MEHKO and catering in Los Angeles, promoting wellness, culture, and community he...",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.979991291656,
+      "lng": -118.375530621112,
+      "ownerId": "user_c2353896b483a8b8",
+      "metadata": {
+        "userId": "user_c2353896b483a8b8",
+        "prospectId": "pros_e4e05c13638a9fd1"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.baileysnmore.com/"
+    },
+    {
+      "id": "el_31fffe6f155391ec",
+      "type": "seller",
+      "title": "Bake N' Bloom",
+      "subtitle": "POMONA",
+      "description": "Handcrafted cakes and baked gift items beautifully packaged for any occasion. | Permitted MEHKO since 2026-02-18. LA County Record: PR0365318",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.099726087341,
+      "lng": -117.749772247381,
+      "ownerId": "user_f1ff7fc031c229be",
+      "metadata": {
+        "userId": "user_f1ff7fc031c229be",
+        "prospectId": "pros_d4270175f5540bec"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_2cb470ad76866253",
+      "type": "seller",
+      "title": "Baobao Bread",
+      "subtitle": "SAN GABRIEL",
+      "description": "Home bakery in San Gabriel specializing in bread and bao products. | Permitted MEHKO since 2025-04-30. LA County Record: PR0317102",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.10032604438,
+      "lng": -118.092284828737,
+      "ownerId": "user_b6d02b876c4e5a54",
+      "metadata": {
+        "userId": "user_b6d02b876c4e5a54",
+        "prospectId": "pros_afabf7a42336090c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3c8aeb10f474b7ca",
+      "type": "seller",
+      "title": "Barrio Bites Llc",
+      "subtitle": "PACOIMA",
+      "description": "Mexican street food bites featuring barbacoa from a Pacoima home kitchen.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.269447913502,
+      "lng": -118.404689008876,
+      "ownerId": "user_9e8555abeeae0b62",
+      "metadata": {
+        "userId": "user_9e8555abeeae0b62",
+        "prospectId": "pros_8f9bf8964473aada"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_bda6a16c10337995",
+      "type": "seller",
+      "title": "Baylei'S Comfort Kitchen",
+      "subtitle": "LOS ANGELES",
+      "description": "In-home comfort dining experience run by professional Chef Baylei Yancey.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.042909735297,
+      "lng": -118.260610262174,
+      "ownerId": "user_66b12e78e48ac92f",
+      "metadata": {
+        "userId": "user_66b12e78e48ac92f",
+        "prospectId": "pros_cdc3d93f942ffc2d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_045a3f36c98c217c",
+      "type": "seller",
+      "title": "Bender'S Eat Well",
+      "subtitle": "SAN PEDRO",
+      "description": "Serves sandwiches, wraps, and wholesome meals in San Pedro. | Permitted MEHKO since 2025-07-15. LA County Record: PR0318807",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.742440822561,
+      "lng": -118.288461454294,
+      "ownerId": "user_f59da89a40b716d8",
+      "metadata": {
+        "userId": "user_f59da89a40b716d8",
+        "prospectId": "pros_f3d92d500e4fb2c0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b69406cfc6b9bc57",
+      "type": "seller",
+      "title": "Big Market Lamb Soup",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Serves lamb soup and related dishes from a Rowland Heights home kitchen.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.975739998652,
+      "lng": -117.897042878358,
+      "ownerId": "user_b8c54106730e875c",
+      "metadata": {
+        "userId": "user_b8c54106730e875c",
+        "prospectId": "pros_b64953361703c25b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_dbb4c3758e05af82",
+      "type": "seller",
+      "title": "Bodegacat La",
+      "subtitle": "LOS ANGELES",
+      "description": "Los Angeles bodega-style food concept with a neighborhood feel. | Permitted MEHKO since 2025-08-01. LA County Record: PR0319424",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.047173994348,
+      "lng": -118.24973968596,
+      "ownerId": "user_c76f929105750635",
+      "metadata": {
+        "userId": "user_c76f929105750635",
+        "prospectId": "pros_12b17e7f06c531ec"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c1b26f20c6f1db6a",
+      "type": "seller",
+      "title": "Bond Appetito",
+      "subtitle": "LOS ANGELES",
+      "description": "Artisan food business likely offering Italian-inspired homemade cuisine. | Permitted MEHKO since 2025-06-25. LA County Record: PR0318346 | LA's First Certified Home-Based Supper Club offering curated culinary experiences accompanied with cultural story telling in an intimate setting. MEHKO #PR0318346",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.096504034827,
+      "lng": -118.351806208148,
+      "ownerId": "user_e1d4eeb4e19ac4f3",
+      "metadata": {
+        "userId": "user_e1d4eeb4e19ac4f3",
+        "prospectId": "pros_ef511e4aeca1957d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.bondappetito.com"
+    },
+    {
+      "id": "el_eed1d81d452cca7a",
+      "type": "seller",
+      "title": "Bougie Boards La",
+      "subtitle": "LOS ANGELES",
+      "description": "Gourmet charcuterie boards and grazing tables with premium ingredients and florals. | Permitted MEHKO since 2025-02-04. LA County Record: PR0314665 | Bougie Boards LA brings gourmet charcuterie boards and grazing tables to life with premium ingredients, lush floral accents and handcrafted styling, perfect for weddings, brunches, corporate events or any celebration where you want your guests to be wowed.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.99567450508,
+      "lng": -118.325709908713,
+      "ownerId": "user_e16be8dd03e05294",
+      "metadata": {
+        "userId": "user_e16be8dd03e05294",
+        "prospectId": "pros_927da481dba4b5c0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.bougieboardsla.com/"
+    },
+    {
+      "id": "el_b74f22d3464d5a42",
+      "type": "seller",
+      "title": "Bubbas Bites",
+      "subtitle": "WALNUT",
+      "description": "Serves casual comfort bites and snack-style food in Walnut. | Permitted MEHKO since 2025-12-30. LA County Record: PR0327553",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.0028558317,
+      "lng": -117.852026646686,
+      "ownerId": "user_df61ad6e3d4a71a5",
+      "metadata": {
+        "userId": "user_df61ad6e3d4a71a5",
+        "prospectId": "pros_537bb5e14b0c26f9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_8b7d7083bca8ac2b",
+      "type": "seller",
+      "title": "Cafe Tumbado",
+      "subtitle": "NORWALK",
+      "description": "Latina-owned home cafe serving Oaxacan coffee, horchata lattes, and specialty drinks. | Permitted MEHKO since 2025-07-15. LA County Record: PR0318817",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.92809575518,
+      "lng": -118.073657767356,
+      "ownerId": "user_86085470f147a97d",
+      "metadata": {
+        "userId": "user_86085470f147a97d",
+        "prospectId": "pros_1f037d54104c698f"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_7174671b058d2435",
+      "type": "seller",
+      "title": "Cajun Flare",
+      "subtitle": "RESEDA",
+      "description": "Authentic Cajun comfort food including seafood boils, gumbo, jambalaya, and beignets. | Permitted MEHKO since 2026-01-06. LA County Record: PR0327711 | Cajun Flare is a Black woman-owned home kitchen serving authentic Cajun comfort food in Los Angeles, offering seafood boils, beignets, and soulful Louisiana classics.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.212762504847,
+      "lng": -118.536135223608,
+      "ownerId": "user_8c0379a55de84025",
+      "metadata": {
+        "userId": "user_8c0379a55de84025",
+        "prospectId": "pros_1191818059f55e33"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://cajunflarela.com"
+    },
+    {
+      "id": "el_4e8b23d305dcdbd5",
+      "type": "seller",
+      "title": "Carnitas El Bigoton Becerr",
+      "subtitle": "NORWALK",
+      "description": "Home kitchen serving carnitas and traditional Mexican pork dishes.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.889335245431,
+      "lng": -118.091838914929,
+      "ownerId": "user_b0cc0070f89281cb",
+      "metadata": {
+        "userId": "user_b0cc0070f89281cb",
+        "prospectId": "pros_b5919b394c55e256"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_7d4584810d1b682d",
+      "type": "seller",
+      "title": "Carol C Events",
+      "subtitle": "LOS ANGELES",
+      "description": "Event catering service for parties, picnics, and private gatherings. | Permitted MEHKO since 2025-08-07. LA County Record: PR0319571",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.918167894045,
+      "lng": -118.290002977076,
+      "ownerId": "user_6a2c736700f0398f",
+      "metadata": {
+        "userId": "user_6a2c736700f0398f",
+        "prospectId": "pros_1ebd941b57780e0e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c052003594a1da6c",
+      "type": "seller",
+      "title": "Cat'S Out The Bag",
+      "subtitle": "LOMITA",
+      "description": "Home kitchen likely specializing in homemade pet food or treats. | Permitted MEHKO since 2025-10-02. LA County Record: PR0324948",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.788401311556,
+      "lng": -118.317173673014,
+      "ownerId": "user_092868f6f58d89e4",
+      "metadata": {
+        "userId": "user_092868f6f58d89e4",
+        "prospectId": "pros_db2420c05ee8f4f7"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_08a59b3901520ab9",
+      "type": "seller",
+      "title": "Charcuterie Art Cart Llc",
+      "subtitle": "SAN PEDRO",
+      "description": "Artisan charcuterie boards and grazing cart service in San Pedro. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314217",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.729273888086,
+      "lng": -118.315106381164,
+      "ownerId": "user_966a92ca58b7844c",
+      "metadata": {
+        "userId": "user_966a92ca58b7844c",
+        "prospectId": "pros_81e1c3af3b617d08"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_2f983f85107d47c2",
+      "type": "seller",
+      "title": "Cheesecake De Granger",
+      "subtitle": "INGLEWOOD",
+      "description": "Home kitchen specializing in cheesecakes and desserts in Inglewood. | Permitted MEHKO since 2025-05-07. LA County Record: PR0317343",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.973921802904,
+      "lng": -118.354922955093,
+      "ownerId": "user_7cbd12afbe924982",
+      "metadata": {
+        "userId": "user_7cbd12afbe924982",
+        "prospectId": "pros_f452c00f521bf1c3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e57554fe41e3539d",
+      "type": "seller",
+      "title": "Chef C-Notes Creations",
+      "subtitle": "RESEDA",
+      "description": "Home kitchen offering creative chef-driven culinary creations. | Permitted MEHKO since 2025-12-03. LA County Record: PR0326863",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.187587129907,
+      "lng": -118.540322487739,
+      "ownerId": "user_d10f23296dfe315c",
+      "metadata": {
+        "userId": "user_d10f23296dfe315c",
+        "prospectId": "pros_010b00e44ec816b8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_2c9a02f4ef828267",
+      "type": "seller",
+      "title": "Chef Glenda Goodness",
+      "subtitle": "PALMDALE",
+      "description": "Chef-driven home kitchen offering wholesome homemade dishes in Palmdale. | Permitted MEHKO since 2025-05-08. LA County Record: PR0317380",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.565956013777,
+      "lng": -118.168828216341,
+      "ownerId": "user_c8b43fd17717fd6e",
+      "metadata": {
+        "userId": "user_c8b43fd17717fd6e",
+        "prospectId": "pros_ec7fa5e17aecc4ac"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.chefglendagoodness.com/"
+    },
+    {
+      "id": "el_c4ab9db555f4fda7",
+      "type": "seller",
+      "title": "Chef Tobin'S Plant Based Ki",
+      "subtitle": "GRANADA HILLS",
+      "description": "Plant-based home kitchen serving vegan meals in Granada Hills.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.263604814893,
+      "lng": -118.517804632949,
+      "ownerId": "user_913f7b9034d43086",
+      "metadata": {
+        "userId": "user_913f7b9034d43086",
+        "prospectId": "pros_593fecbe84a036a5"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_feca0c7a8a8f5588",
+      "type": "seller",
+      "title": "Chez Fatoumata",
+      "subtitle": "LOS ANGELES",
+      "description": "West African home kitchen serving traditional dishes in Los Angeles. | Permitted MEHKO since 2025-10-09. LA County Record: PR0325230",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.03579731847,
+      "lng": -118.30904548513,
+      "ownerId": "user_5d0ceea162b187c4",
+      "metadata": {
+        "userId": "user_5d0ceea162b187c4",
+        "prospectId": "pros_0d6306ab97e3b914"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_2ae3846532cba764",
+      "type": "seller",
+      "title": "Chi Town Pizza",
+      "subtitle": "GLENDORA",
+      "description": "Chicago-style pizza made from a home kitchen in Glendora. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314581 | Your appointment with Chi Town Pizza is one click away. See availability and schedule your appointment online.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.124292818734,
+      "lng": -117.863231244626,
+      "ownerId": "user_c34c14770298ecfc",
+      "metadata": {
+        "userId": "user_c34c14770298ecfc",
+        "prospectId": "pros_776a065a9b47fca0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://book.heygoldie.com/ChiTownPizzas"
+    },
+    {
+      "id": "el_b91203904330b300",
+      "type": "seller",
+      "title": "Chicago Meats La",
+      "subtitle": "VALLEY VILLAGE",
+      "description": "Chicago-style meats and deli sandwiches from a home kitchen. | Permitted MEHKO since 2024-11-13. LA County Record: PR0313417",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.172206434898,
+      "lng": -118.391333362493,
+      "ownerId": "user_9976659260428ace",
+      "metadata": {
+        "userId": "user_9976659260428ace",
+        "prospectId": "pros_724ed7ac84b2f47f"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://chicagomeatsla.com"
+    },
+    {
+      "id": "el_707e95bd01e9e96b",
+      "type": "seller",
+      "title": "Chuchu Dessert Lab",
+      "subtitle": "LOS ANGELES",
+      "description": "Creative dessert lab offering unique sweet treats in Los Angeles. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314599",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.045806429393,
+      "lng": -118.261538395481,
+      "ownerId": "user_7f6bf23e8fbb0042",
+      "metadata": {
+        "userId": "user_7f6bf23e8fbb0042",
+        "prospectId": "pros_87d297a48d90ed64"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_4ddcde440730d42d",
+      "type": "seller",
+      "title": "Cinema Chow",
+      "subtitle": "SANTA CLARITA",
+      "description": "Home kitchen offering homemade meals and comfort food in Santa Clarita. | Permitted MEHKO since 2025-09-25. LA County Record: PR0324608",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.43505610174,
+      "lng": -118.491455499946,
+      "ownerId": "user_50fe89a7f3a84064",
+      "metadata": {
+        "userId": "user_50fe89a7f3a84064",
+        "prospectId": "pros_7cc956a2c81f2a80"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e6bc746882067ec7",
+      "type": "seller",
+      "title": "Club 051",
+      "subtitle": "WOODLAND HILLS",
+      "description": "Home kitchen in Woodland Hills offering prepared meals and snacks. | Permitted MEHKO since 2025-09-23. LA County Record: PR0324489",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.189065854265,
+      "lng": -118.611736489856,
+      "ownerId": "user_1db8fdeaf762d399",
+      "metadata": {
+        "userId": "user_1db8fdeaf762d399",
+        "prospectId": "pros_94e32cd1dec449ba"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_57810434b90c9f4b",
+      "type": "seller",
+      "title": "Coach'S",
+      "subtitle": "GRANADA HILLS",
+      "description": "Health-focused home kitchen serving wholesome comfort food in Granada Hills. | Permitted MEHKO since 2025-10-15. LA County Record: PR0325423",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.278056957587,
+      "lng": -118.496686426169,
+      "ownerId": "user_622bfb93fc7f8126",
+      "metadata": {
+        "userId": "user_622bfb93fc7f8126",
+        "prospectId": "pros_1b14d0ef08e2b54a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_78065da183b3f9e9",
+      "type": "seller",
+      "title": "Coffee And Toast",
+      "subtitle": "VIEW PARK",
+      "description": "Coffee and toast home kitchen offering beverages and light bites. | Permitted MEHKO since 2026-02-09. LA County Record: PR0365112",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.004653216117,
+      "lng": -118.337416277077,
+      "ownerId": "user_25e23e2717e7f0fc",
+      "metadata": {
+        "userId": "user_25e23e2717e7f0fc",
+        "prospectId": "pros_6b3188bc06b37c09"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ea4bb8514121dbf9",
+      "type": "seller",
+      "title": "Corazon Coffee And Pastri",
+      "subtitle": "SOUTH GATE",
+      "description": "Weekly coffee and pastry drops from a home kitchen in South Gate.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.94076385509,
+      "lng": -118.204699875374,
+      "ownerId": "user_6b4704ed234571bb",
+      "metadata": {
+        "userId": "user_6b4704ed234571bb",
+        "prospectId": "pros_13540df0bbf836c3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1c492eb5172b5946",
+      "type": "seller",
+      "title": "Crazy Tasty",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen offering creative and tasty homemade dishes in LA. | Permitted MEHKO since 2025-09-17. LA County Record: PR0324337",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.063302093736,
+      "lng": -118.277517137969,
+      "ownerId": "user_24e4e1d1ed399c09",
+      "metadata": {
+        "userId": "user_24e4e1d1ed399c09",
+        "prospectId": "pros_0baff8145d3ed543"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c572a1de8b154a3b",
+      "type": "seller",
+      "title": "Creole Delight Haitian",
+      "subtitle": "LOS ANGELES",
+      "description": "Haitian Creole home kitchen serving traditional Caribbean dishes in LA. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314589",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.049712650144,
+      "lng": -118.324353709835,
+      "ownerId": "user_ecf9cfdc8b7fd788",
+      "metadata": {
+        "userId": "user_ecf9cfdc8b7fd788",
+        "prospectId": "pros_1dc0335d8c7bb055"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_689963bf91f3cf5d",
+      "type": "seller",
+      "title": "Cubamexico",
+      "subtitle": "SOUTH GATE",
+      "description": "Cuban-Mexican fusion home kitchen serving Latin dishes in South Gate. | Permitted MEHKO since 2025-07-01. LA County Record: PR0318499",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.957694832935,
+      "lng": -118.195870089621,
+      "ownerId": "user_b0cbfa9743235fd2",
+      "metadata": {
+        "userId": "user_b0cbfa9743235fd2",
+        "prospectId": "pros_609bc0385006db80"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b88c5a69271f3ae4",
+      "type": "seller",
+      "title": "Da Barbara",
+      "subtitle": "WLOS ANGELES",
+      "description": "Italian home kitchen by Chef Barbara Pollastrini blending tradition and innovation. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314220 | Italian chef, Da Barbara, Authentic Italian cuisine Italian restaurant in Los Angeles, Fresh pasta, Gourmet Italian menu, Cozy atmosphere, Italian chef, Unique culinary experience, Fresh ingredients, Seasonal menu, Special events",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.095262398994,
+      "lng": -118.328926642252,
+      "ownerId": "user_03b80fd53d4aa3e1",
+      "metadata": {
+        "userId": "user_03b80fd53d4aa3e1",
+        "prospectId": "pros_200a68d4e75ff134"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://barbarapollastrini.com/"
+    },
+    {
+      "id": "el_ece7a06efe06aae4",
+      "type": "seller",
+      "title": "Daria Poddubniak",
+      "subtitle": "VALLEY VILLAGE",
+      "description": "Authentic homemade dishes from a home kitchen in Valley Village. | Permitted MEHKO since 2025-01-23. LA County Record: PR0314512",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.155862436884,
+      "lng": -118.394771338431,
+      "ownerId": "user_961dfb3f2f5655cf",
+      "metadata": {
+        "userId": "user_961dfb3f2f5655cf",
+        "prospectId": "pros_7c11571c8170f991"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_836e79c6d4b8ea76",
+      "type": "seller",
+      "title": "Deddy'S Vibe",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen offering flavorful comfort food in Los Angeles. | Permitted MEHKO since 2025-09-17. LA County Record: PR0324336",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.910872355598,
+      "lng": -118.262478912179,
+      "ownerId": "user_4bcbe969d86ea04c",
+      "metadata": {
+        "userId": "user_4bcbe969d86ea04c",
+        "prospectId": "pros_9d0ac3afdd171903"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9f8487a45e01af45",
+      "type": "seller",
+      "title": "Delicia Pura",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen serving Latin American delicacies in Los Angeles. | Permitted MEHKO since 2026-01-22. LA County Record: PR0328301",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.956836269402,
+      "lng": -118.294576141987,
+      "ownerId": "user_c658453ffdb1c52b",
+      "metadata": {
+        "userId": "user_c658453ffdb1c52b",
+        "prospectId": "pros_6b050d27dcc9fe43"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a659baa5a34f45b2",
+      "type": "seller",
+      "title": "Delicias Sarita Food",
+      "subtitle": "DOWNEY",
+      "description": "Home kitchen serving homemade Latin comfort food in Downey. | Permitted MEHKO since 2025-12-08. LA County Record: PR0327035",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.967216053751,
+      "lng": -118.117678537943,
+      "ownerId": "user_8d0156c62e84e084",
+      "metadata": {
+        "userId": "user_8d0156c62e84e084",
+        "prospectId": "pros_8f6f6d2043fadfb2"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_38899ceb588d15ec",
+      "type": "seller",
+      "title": "Devon Eats",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen offering prepared meals and eats in Los Angeles. | Permitted MEHKO since 2025-02-05. LA County Record: PR0314711 | Devon Eats Corporate & Event Catering and Personal Chef Services. Delivery throughout the Los Angeles and Phoenix/Scottsdale area.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.100064419059,
+      "lng": -118.332397833815,
+      "ownerId": "user_9e38b1c99acf10fa",
+      "metadata": {
+        "userId": "user_9e38b1c99acf10fa",
+        "prospectId": "pros_67a0d870c5351a68"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://devoneats.com/"
+    },
+    {
+      "id": "el_56763b41e6406363",
+      "type": "seller",
+      "title": "Dolce Tesori",
+      "subtitle": "TUJUNGA",
+      "description": "Italian-inspired sweet treats and desserts from a home kitchen in Tujunga. | Permitted MEHKO since 2025-09-23. LA County Record: PR0324490",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.254412880338,
+      "lng": -118.285995108135,
+      "ownerId": "user_ac361984d0c57ed3",
+      "metadata": {
+        "userId": "user_ac361984d0c57ed3",
+        "prospectId": "pros_cb2e741a7a5a3c36"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_4f099e281106c9ab",
+      "type": "seller",
+      "title": "Don'T You Dairy",
+      "subtitle": "HAWTHORNE",
+      "description": "Dairy-free home kitchen offering plant-based meals and fish fry options. | Permitted MEHKO since 2025-05-21. LA County Record: PR0317585 |     ",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.914487657439,
+      "lng": -118.354368656023,
+      "ownerId": "user_c6d23c4c4930ddc8",
+      "metadata": {
+        "userId": "user_c6d23c4c4930ddc8",
+        "prospectId": "pros_af33dfc52df50f60"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://dontyoudairy.com/"
+    },
+    {
+      "id": "el_964164071526b301",
+      "type": "seller",
+      "title": "Dulce Sorpresa Y Mas",
+      "subtitle": "PALMDALE",
+      "description": "Home kitchen offering sweet treats and surprise dessert gifts in Palmdale. | Permitted MEHKO since 2026-01-02. LA County Record: PR0327672",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.570647705179,
+      "lng": -118.073613142473,
+      "ownerId": "user_cff9da7bac1a6c12",
+      "metadata": {
+        "userId": "user_cff9da7bac1a6c12",
+        "prospectId": "pros_d86aa1dc4539c3e3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e7853cd9630611de",
+      "type": "seller",
+      "title": "East British Curry Compan",
+      "subtitle": "NORTH HOLLYWOOD",
+      "description": "Serves British-style curry dishes from a home kitchen.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.180248970061,
+      "lng": -118.405317032934,
+      "ownerId": "user_90b37e789648827b",
+      "metadata": {
+        "userId": "user_90b37e789648827b",
+        "prospectId": "pros_b67bf2b06e4b5eb2"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c53ed69b1d6a3712",
+      "type": "seller",
+      "title": "Edible Kids Art",
+      "subtitle": "LOS ANGELES",
+      "description": "Creates edible art and treats designed for kids. | Permitted MEHKO since 2025-12-30. LA County Record: PR0327554 | Edible Kids Art is a vibrant food cart in South LA serving fresh Southeast Asian spring rolls and delightful, flavor-packed teas. Enjoy healthy, colorful, and veggie-rich meals that make eating exciting for families. Find us at Crenshaw Farmers Market and soon at Little Tokyo Farmers Market.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.007381917691,
+      "lng": -118.324642027505,
+      "ownerId": "user_308292ee8ec3d3d7",
+      "metadata": {
+        "userId": "user_308292ee8ec3d3d7",
+        "prospectId": "pros_44b2c8c58c220326"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.ediblekidsart.com/"
+    },
+    {
+      "id": "el_f7aadd286d000f1f",
+      "type": "seller",
+      "title": "El Patio Cafe",
+      "subtitle": "LOS ANGELES",
+      "description": "Cafe offering authentic Mexican cuisine and fusion fare with breakfast and lunch. | Permitted MEHKO since 2025-09-17. LA County Record: PR0324330",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.989768199388,
+      "lng": -118.284606249109,
+      "ownerId": "user_afcab3c6dc4d00a5",
+      "metadata": {
+        "userId": "user_afcab3c6dc4d00a5",
+        "prospectId": "pros_dc3d190b6805587a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3df2ceb283fa248d",
+      "type": "seller",
+      "title": "Erkitchen.com",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen business offering prepared meals. | Permitted MEHKO since 2025-01-14. LA County Record: PR0314325",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.140944120117,
+      "lng": -118.217253796914,
+      "ownerId": "user_de099c78f9173ed6",
+      "metadata": {
+        "userId": "user_de099c78f9173ed6",
+        "prospectId": "pros_4e63f9874a0a7d81"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_931947269459ac01",
+      "type": "seller",
+      "title": "Fat Dog Social",
+      "subtitle": "TARZANA",
+      "description": "Serves hot dogs and casual comfort food from a home kitchen. | Permitted MEHKO since 2025-12-11. LA County Record: PR0327136",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.154319467507,
+      "lng": -118.560572548649,
+      "ownerId": "user_9b49b41aa18dd428",
+      "metadata": {
+        "userId": "user_9b49b41aa18dd428",
+        "prospectId": "pros_0180eec374fc7971"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3105ed8ba1e3de11",
+      "type": "seller",
+      "title": "Favor&flavor Afriq Llc",
+      "subtitle": "LOS ANGELES",
+      "description": "Blends authentic African spices with Western cuisine for flavorful meals.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.98369683052,
+      "lng": -118.327978916218,
+      "ownerId": "user_af4a7ba0c2be4329",
+      "metadata": {
+        "userId": "user_af4a7ba0c2be4329",
+        "prospectId": "pros_b7a1c7f3505372d4"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_775fe98e4a7c81eb",
+      "type": "seller",
+      "title": "Fawzai Bakes",
+      "subtitle": "HAWTHORNE",
+      "description": "Offers Afghani homemade dishes like chicken kebab and lamb biryani. | Permitted MEHKO since 2024-12-23. LA County Record: PR0314072",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.914155653882,
+      "lng": -118.350358422643,
+      "ownerId": "user_7cbeca97d1615b57",
+      "metadata": {
+        "userId": "user_7cbeca97d1615b57",
+        "prospectId": "pros_5587de72bbfa8f2b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_45d73ef113b8213d",
+      "type": "seller",
+      "title": "Feng Ming Delicious, Inc",
+      "subtitle": "WALNUT",
+      "description": "Chinese home kitchen business based in Walnut.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.020563593112,
+      "lng": -117.860566535772,
+      "ownerId": "user_d30fea1fde363fff",
+      "metadata": {
+        "userId": "user_d30fea1fde363fff",
+        "prospectId": "pros_ff41e55491cf8768"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1345870f7362c3f5",
+      "type": "seller",
+      "title": "Flocal Kitchen",
+      "subtitle": "SAN PEDRO",
+      "description": "Home kitchen offering locally inspired prepared meals. | Permitted MEHKO since 2025-11-13. LA County Record: PR0326275",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.708690889097,
+      "lng": -118.291973274447,
+      "ownerId": "user_465ae5214055bf82",
+      "metadata": {
+        "userId": "user_465ae5214055bf82",
+        "prospectId": "pros_f407dad61bb52154"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_44b092fc8d9f0eb0",
+      "type": "seller",
+      "title": "Francesca Mallus Chef",
+      "subtitle": "TORRANCE",
+      "description": "Private chef offering at-home dining experiences and catering in Torrance. | Permitted MEHKO since 2025-02-12. LA County Record: PR0314860",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.864156903367,
+      "lng": -118.345882482436,
+      "ownerId": "user_67360ade524ddf15",
+      "metadata": {
+        "userId": "user_67360ade524ddf15",
+        "prospectId": "pros_22f48d01f1778266"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_50b486cc34588b30",
+      "type": "seller",
+      "title": "Free To Chat Fizzy",
+      "subtitle": "LOS ANGELES",
+      "description": "Serves healthy beverages and fizzy drinks with diverse menu options. | Permitted MEHKO since 2025-12-03. LA County Record: PR0326866",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.107003346693,
+      "lng": -118.21365699241,
+      "ownerId": "user_ad4bc5c631f73116",
+      "metadata": {
+        "userId": "user_ad4bc5c631f73116",
+        "prospectId": "pros_95b3490f2b946690"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1709396e303746be",
+      "type": "seller",
+      "title": "Fresh Fruit By Ruth",
+      "subtitle": "HUNTINGTON PARK",
+      "description": "Sells fresh fruit and healthy snack options in Huntington Park. | Permitted MEHKO since 2025-11-18. LA County Record: PR0326509",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.987152772442,
+      "lng": -118.196788755714,
+      "ownerId": "user_e8d40f050c07fa54",
+      "metadata": {
+        "userId": "user_e8d40f050c07fa54",
+        "prospectId": "pros_03692fabb9702c7d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_20c29f650f138590",
+      "type": "seller",
+      "title": "Fried Taco Co",
+      "subtitle": "PICO RIVERA",
+      "description": "Specializes in fried tacos and chilaquiles in Pico Rivera. | Permitted MEHKO since 2025-11-18. LA County Record: PR0326510",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.006638814244,
+      "lng": -118.089176546861,
+      "ownerId": "user_06493b1fc2b0ff36",
+      "metadata": {
+        "userId": "user_06493b1fc2b0ff36",
+        "prospectId": "pros_df3fadf93e535728"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_5afcab20a3e66078",
+      "type": "seller",
+      "title": "Frizzles",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen business offering homemade food in Los Angeles. | Permitted MEHKO since 2026-01-28. LA County Record: PR0328427",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.003252176221,
+      "lng": -118.324584398485,
+      "ownerId": "user_29f4fba2743c73f7",
+      "metadata": {
+        "userId": "user_29f4fba2743c73f7",
+        "prospectId": "pros_49cf2d671f4bb124"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_fbeb454d6f57dab2",
+      "type": "seller",
+      "title": "Full Tilt Bbq",
+      "subtitle": "WEST HILLS",
+      "description": "Serves American-style BBQ and smoked meats from a home kitchen. | Permitted MEHKO since 2025-09-17. LA County Record: PR0324334",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.196845355322,
+      "lng": -118.653274622378,
+      "ownerId": "user_b9d4045646da1c5c",
+      "metadata": {
+        "userId": "user_b9d4045646da1c5c",
+        "prospectId": "pros_6a8c2cb756f75682"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c87772f5173edc36",
+      "type": "seller",
+      "title": "Fundacion Sonrias Latinas",
+      "subtitle": "PANORAMA CITY",
+      "description": "Latin-inspired home kitchen operated by a Latina community organization.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.22265077227,
+      "lng": -118.432243597162,
+      "ownerId": "user_fef2e5f646253ef3",
+      "metadata": {
+        "userId": "user_fef2e5f646253ef3",
+        "prospectId": "pros_fa744b02667c729c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_4463cf6dc26b5da8",
+      "type": "seller",
+      "title": "Gamma Tamales",
+      "subtitle": "GREEN VALLEY",
+      "description": "Specializes in homemade traditional Mexican tamales. | Permitted MEHKO since 2026-01-05. LA County Record: PR0327682",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.618304954547,
+      "lng": -118.406839918404,
+      "ownerId": "user_2af0eccafad6ada3",
+      "metadata": {
+        "userId": "user_2af0eccafad6ada3",
+        "prospectId": "pros_76f2ecdebfb94944"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_4f40a79d3b1bc400",
+      "type": "seller",
+      "title": "Gancia'S Craft Kitchen",
+      "subtitle": "LOS ANGELES",
+      "description": "Artisan craft kitchen offering homemade prepared meals. | Permitted MEHKO since 2025-06-27. LA County Record: PR0318390 | Fresh. Homemade. This is what you've been craving.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.081310930909,
+      "lng": -118.16229726238,
+      "ownerId": "user_4a0994c629f88424",
+      "metadata": {
+        "userId": "user_4a0994c629f88424",
+        "prospectId": "pros_17ab56b64f2c3982"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.ganciascraftkitchen.com/"
+    },
+    {
+      "id": "el_892af5d82cb79bdf",
+      "type": "seller",
+      "title": "Garden Of Edendale",
+      "subtitle": "LOS ANGELES",
+      "description": "Offers fresh garden-inspired meals in Los Angeles. | Permitted MEHKO since 2025-03-13. LA County Record: PR0315401",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.091937117055,
+      "lng": -118.245336651601,
+      "ownerId": "user_8b46cc733d188d88",
+      "metadata": {
+        "userId": "user_8b46cc733d188d88",
+        "prospectId": "pros_7d3ae67989b5f9b3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_87904a4c66287889",
+      "type": "seller",
+      "title": "Geras_kocina",
+      "subtitle": "LYNWOOD",
+      "description": "Serves burritos de guisado and traditional Mexican homemade dishes. | Permitted MEHKO since 2025-05-08. LA County Record: PR0317383",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.933730175453,
+      "lng": -118.190938474287,
+      "ownerId": "user_97bbb0168fef873f",
+      "metadata": {
+        "userId": "user_97bbb0168fef873f",
+        "prospectId": "pros_e62a5c17a4b32aa5"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_de0292f68611906b",
+      "type": "seller",
+      "title": "Gertie'S Sweet Delights",
+      "subtitle": "GLENDORA",
+      "description": "Creates sweet desserts including gluten-free treats and mascarpone delights. | Permitted MEHKO since 2025-06-26. LA County Record: PR0318377",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.11658187447,
+      "lng": -117.850182765735,
+      "ownerId": "user_a378143ac5037a21",
+      "metadata": {
+        "userId": "user_a378143ac5037a21",
+        "prospectId": "pros_c9b2fdbfe8f20861"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_f4c16615fa34affd",
+      "type": "seller",
+      "title": "Gezhong Geyang De Tiandia",
+      "subtitle": "TORRANCE",
+      "description": "Offers Chinese sweets and desserts from a home kitchen in Torrance.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.877881030402,
+      "lng": -118.341819504707,
+      "ownerId": "user_d7bd38575a782b98",
+      "metadata": {
+        "userId": "user_d7bd38575a782b98",
+        "prospectId": "pros_00f553829a1f4cf2"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b7c22e62edb6105c",
+      "type": "seller",
+      "title": "Gm Coffee Co",
+      "subtitle": "LAKEWOOD",
+      "description": "Home-based coffee company serving specialty coffee drinks. | Permitted MEHKO since 2025-10-09. LA County Record: PR0325253 | Skip to the content SHOP ABOUT EVENTS CONTACT Gg GALLERY CART SHOP ABOUT EVENTS CONTACT CART Sold Read more ROSE Medium Roast $21.99 FeaturedWhole Bean Sold Read more Paradise GM Essentials Tote $24.99 FeaturedMerch Book an Event! Love The Grind · Made Better By It · Show Up Anyway · Give More · Lov",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.843996506092,
+      "lng": -118.112278349591,
+      "ownerId": "user_418e2102d6d3e19e",
+      "metadata": {
+        "userId": "user_418e2102d6d3e19e",
+        "prospectId": "pros_fa06d2571cb2eaac"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://gmcoffeeco.com/"
+    },
+    {
+      "id": "el_7ad2a463ebefac45",
+      "type": "seller",
+      "title": "Golden Gastronome",
+      "subtitle": "NORTHRIDGE",
+      "description": "Gourmet home kitchen offering refined prepared meals in Northridge. | Permitted MEHKO since 2026-01-06. LA County Record: PR0327688",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.249408432736,
+      "lng": -118.50070713358,
+      "ownerId": "user_f3f81efc360c0697",
+      "metadata": {
+        "userId": "user_f3f81efc360c0697",
+        "prospectId": "pros_cda74d7497057e71"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_d2623e8e2e4bdf8b",
+      "type": "seller",
+      "title": "Gorditas Laguneras",
+      "subtitle": "ROSEMEAD",
+      "description": "Serves traditional Mexican gorditas and discada from a home kitchen. | Permitted MEHKO since 2026-01-22. LA County Record: PR0328298",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.050952366208,
+      "lng": -118.101497628412,
+      "ownerId": "user_ba0b24f279df11e6",
+      "metadata": {
+        "userId": "user_ba0b24f279df11e6",
+        "prospectId": "pros_81df55df6007204a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ee1086816e800eac",
+      "type": "seller",
+      "title": "Gpc",
+      "subtitle": "CHATSWORTH",
+      "description": "Home kitchen business in Chatsworth offering prepared food. | Permitted MEHKO since 2025-10-15. LA County Record: PR0325425",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.249941844857,
+      "lng": -118.562941218414,
+      "ownerId": "user_23f414341421799f",
+      "metadata": {
+        "userId": "user_23f414341421799f",
+        "prospectId": "pros_47dd457eec266544"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_66794b407de7147f",
+      "type": "seller",
+      "title": "Granada",
+      "subtitle": "LOS ANGELES",
+      "description": "Serves kebab plates, hummus, and basmati rice with Middle Eastern flavors. | Permitted MEHKO since 2025-09-19. LA County Record: PR0324400",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.070161226677,
+      "lng": -118.255959782661,
+      "ownerId": "user_578da3c59ed60479",
+      "metadata": {
+        "userId": "user_578da3c59ed60479",
+        "prospectId": "pros_70dde4e1ff44e421"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e2641e63aff3369c",
+      "type": "seller",
+      "title": "Guille'S Kitchen",
+      "subtitle": "LITTLEROCK",
+      "description": "Home kitchen serving homemade Mexican food in Littlerock. | Permitted MEHKO since 2025-12-04. LA County Record: PR0326884",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.542872990483,
+      "lng": -117.924445293843,
+      "ownerId": "user_c7606e1f2a258fdc",
+      "metadata": {
+        "userId": "user_c7606e1f2a258fdc",
+        "prospectId": "pros_0dfcd828627641b4"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_6df0865070a66dba",
+      "type": "seller",
+      "title": "Guojie Jia Wei Xuan",
+      "subtitle": "ALHAMBRA",
+      "description": "Offers traditional Chinese home-style cooking from a kitchen in Alhambra. | Permitted MEHKO since 2025-06-25. LA County Record: PR0318343",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.07367066183,
+      "lng": -118.119616496583,
+      "ownerId": "user_17486690f3751f01",
+      "metadata": {
+        "userId": "user_17486690f3751f01",
+        "prospectId": "pros_88ae228c7138afe0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_6642c36279659a91",
+      "type": "seller",
+      "title": "Hampy Bread",
+      "subtitle": "LOS ANGELES",
+      "description": "Home bakery specializing in handmade bread products. | Permitted MEHKO since 2026-01-12. LA County Record: PR0327872",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.965432375493,
+      "lng": -118.300610101881,
+      "ownerId": "user_bcfef159b5e2e104",
+      "metadata": {
+        "userId": "user_bcfef159b5e2e104",
+        "prospectId": "pros_fee0d589abf091da"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_49ebf54c1858f9d8",
+      "type": "seller",
+      "title": "Happy Couple Kitchen",
+      "subtitle": "PALMDALE",
+      "description": "Home kitchen offering homestyle comfort food in Palmdale. | Permitted MEHKO since 2025-01-23. LA County Record: PR0314514 |  ",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.617752435463,
+      "lng": -118.191164981321,
+      "ownerId": "user_f7f6a1a2048beb25",
+      "metadata": {
+        "userId": "user_f7f6a1a2048beb25",
+        "prospectId": "pros_f21b41f3ae181ddf"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://happycouplekitchen.com/"
+    },
+    {
+      "id": "el_f79fd74653ec0249",
+      "type": "seller",
+      "title": "Hefan Home Kitchen",
+      "subtitle": "CARSON",
+      "description": "Home kitchen serving Chinese home-cooked meals in Carson. | Permitted MEHKO since 2025-05-12. LA County Record: PR0317447",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.828811465639,
+      "lng": -118.264927553423,
+      "ownerId": "user_8574325c58c0cdcc",
+      "metadata": {
+        "userId": "user_8574325c58c0cdcc",
+        "prospectId": "pros_cb258dd67b0afd63"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_0964e21029e79372",
+      "type": "seller",
+      "title": "Hevn & Rth Purpose Kchn",
+      "subtitle": "LOS ANGELES",
+      "description": "Purpose-driven kitchen offering pre-order meals and fresh juices. | Permitted MEHKO since 2025-04-01. LA County Record: PR0315815 | CLICK THE LINK TO VIEW OUR MENU SELECTIONS, PRE ORDER MEALS AND JUICES.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.031958363085,
+      "lng": -118.378586787098,
+      "ownerId": "user_467126329486129e",
+      "metadata": {
+        "userId": "user_467126329486129e",
+        "prospectId": "pros_fe96a6f4221494d4"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.herpurposekchn.com/"
+    },
+    {
+      "id": "el_54da0dc72997ce88",
+      "type": "seller",
+      "title": "Hibiscus & Watermelon",
+      "subtitle": "LOS ANGELES",
+      "description": "Soul food inspired by Juneteenth traditions with watermelon, barbecue, and red dishes. | Permitted MEHKO since 2026-02-25. LA County Record: PR0365713",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.06216223781,
+      "lng": -118.246508067118,
+      "ownerId": "user_14c2c06287f77bbd",
+      "metadata": {
+        "userId": "user_14c2c06287f77bbd",
+        "prospectId": "pros_8f3ada832b7ed5f7"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_755187da7183977d",
+      "type": "seller",
+      "title": "Hollywood Nosh",
+      "subtitle": "LOS ANGELES",
+      "description": "Eclectic Los Angeles home kitchen offering diverse prepared foods. | Permitted MEHKO since 2024-11-13. LA County Record: PR0313413 | \nIndulge in mouthwatering delights at Hollywood Nosh, where every noshable is guaranteed to delight! Our custom charcuterie, cheese & dessert boards are crafted with passion and creativity, ensuring a flavorful journey for your taste buds.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.12641806809,
+      "lng": -118.350205283621,
+      "ownerId": "user_e18b32110f64c845",
+      "metadata": {
+        "userId": "user_e18b32110f64c845",
+        "prospectId": "pros_21a5839de057ddaf"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.hollywoodnosh.com/"
+    },
+    {
+      "id": "el_ea595e06a8fcb3b3",
+      "type": "seller",
+      "title": "Home Kitchen",
+      "subtitle": "WEST COVINA",
+      "description": "Affordable homemade comfort food from a West Covina home kitchen. | Permitted MEHKO since 2026-01-05. LA County Record: PR0327680",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.045371317313,
+      "lng": -117.90512965089,
+      "ownerId": "user_1f53ef2041c3a678",
+      "metadata": {
+        "userId": "user_1f53ef2041c3a678",
+        "prospectId": "pros_7274cf4ffa432771"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_6fa6674543072067",
+      "type": "seller",
+      "title": "Home Table",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Home-cooked meals served from a Rowland Heights kitchen.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.985219940145,
+      "lng": -117.88329785606,
+      "ownerId": "user_5e9b24eb0de28c5a",
+      "metadata": {
+        "userId": "user_5e9b24eb0de28c5a",
+        "prospectId": "pros_ba60ff89f855a0dc"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_fe12cf01ec6bb935",
+      "type": "seller",
+      "title": "Homecooked By Kp",
+      "subtitle": "DOWNEY",
+      "description": "Flavorful homemade comfort food prepared with care and tradition. | Permitted MEHKO since 2025-05-28. LA County Record: PR0317644",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.950757590882,
+      "lng": -118.10074299309,
+      "ownerId": "user_770254d4b45a6abe",
+      "metadata": {
+        "userId": "user_770254d4b45a6abe",
+        "prospectId": "pros_8c167c4b42754ee0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_123bbae7e824f71d",
+      "type": "seller",
+      "title": "Homestyle Bites",
+      "subtitle": "AZUSA",
+      "description": "Homestyle bites inspired by Japanese comfort food like Nikujaga. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314583",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.139122411386,
+      "lng": -117.914464958065,
+      "ownerId": "user_c900596e8e7b86b9",
+      "metadata": {
+        "userId": "user_c900596e8e7b86b9",
+        "prospectId": "pros_b343802ad349889f"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9ec9f38a0e6e0e77",
+      "type": "seller",
+      "title": "Hui'S Exquisitely Hand Mad",
+      "subtitle": "EL MONTE",
+      "description": "Exquisitely handmade Chinese noodles or dumplings from El Monte.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.084326089671,
+      "lng": -118.044326087791,
+      "ownerId": "user_42374598c75bf597",
+      "metadata": {
+        "userId": "user_42374598c75bf597",
+        "prospectId": "pros_970150c03908c239"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_78c5e028b6e9cfb4",
+      "type": "seller",
+      "title": "Ibing Bing",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Chinese rice noodles and Guangxi-style dishes from Rowland Heights. | Permitted MEHKO since 2025-05-12. LA County Record: PR0317439",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.972359465143,
+      "lng": -117.883377579138,
+      "ownerId": "user_06ec27e947958991",
+      "metadata": {
+        "userId": "user_06ec27e947958991",
+        "prospectId": "pros_33551afb8e5827f4"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_6687286bdae2c0ae",
+      "type": "seller",
+      "title": "J Tan Home Kitchen",
+      "subtitle": "MONTEREY PARK",
+      "description": "Asian home kitchen serving Chinese-inspired dishes in Monterey Park. | Permitted MEHKO since 2025-10-15. LA County Record: PR0325401",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.063901948514,
+      "lng": -118.130535474211,
+      "ownerId": "user_cb8b821817fefaf6",
+      "metadata": {
+        "userId": "user_cb8b821817fefaf6",
+        "prospectId": "pros_01ceb720207a1595"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_89c7aed27109e349",
+      "type": "seller",
+      "title": "Jackrabbit'S Lair",
+      "subtitle": "LOS ANGELES",
+      "description": "Pop-up dinner events and catering from a Los Angeles home kitchen. | Permitted MEHKO since 2025-06-05. LA County Record: PR0317908",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.138983119508,
+      "lng": -118.222907132028,
+      "ownerId": "user_f713c46d3492952b",
+      "metadata": {
+        "userId": "user_f713c46d3492952b",
+        "prospectId": "pros_af5ba857d5479781"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_bce951d49f1b59be",
+      "type": "seller",
+      "title": "Jajah Omah",
+      "subtitle": "BEVERLY HILLS",
+      "description": "Indonesian-inspired bakery known for pandan chiffon cake and treats. | Permitted MEHKO since 2025-07-15. LA County Record: PR0318806",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.064712090982,
+      "lng": -118.398040490578,
+      "ownerId": "user_65ee6189de4fcaf0",
+      "metadata": {
+        "userId": "user_65ee6189de4fcaf0",
+        "prospectId": "pros_9086b49ac8335e94"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ba2ac6880af2ea2a",
+      "type": "seller",
+      "title": "Janet'S Home Cooking",
+      "subtitle": "BEVERLY HILLS",
+      "description": "Homestyle cooking and comfort meals from a Beverly Hills kitchen. | Permitted MEHKO since 2025-07-01. LA County Record: PR0318558",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.058077806335,
+      "lng": -118.389879172169,
+      "ownerId": "user_7975aa9f2d2b9cc8",
+      "metadata": {
+        "userId": "user_7975aa9f2d2b9cc8",
+        "prospectId": "pros_c0faad1b638c50b3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c8dd8135584ee714",
+      "type": "seller",
+      "title": "Janzen'S Hillside Table",
+      "subtitle": "CASTAIC",
+      "description": "Hillside home kitchen serving homestyle meals in Castaic. | Permitted MEHKO since 2026-01-06. LA County Record: PR0327714",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.47406113378,
+      "lng": -118.672877833004,
+      "ownerId": "user_4846a3a301a043fe",
+      "metadata": {
+        "userId": "user_4846a3a301a043fe",
+        "prospectId": "pros_5508d02459e24890"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_34846a2786247db2",
+      "type": "seller",
+      "title": "Jdawgz Eatz Llc",
+      "subtitle": "LA MIRADA",
+      "description": "Soul food kitchen serving comfort meals in La Mirada. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314219",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.901614371211,
+      "lng": -117.999763155015,
+      "ownerId": "user_ebd9f231feac893e",
+      "metadata": {
+        "userId": "user_ebd9f231feac893e",
+        "prospectId": "pros_5b3f91f5212b179c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3ea56a996aa876ee",
+      "type": "seller",
+      "title": "Jennifer Silbert",
+      "subtitle": "LOS ANGELES",
+      "description": "Creative home kitchen offering eclectic dishes in Los Angeles. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314587",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.05186856435,
+      "lng": -118.325843180675,
+      "ownerId": "user_523f53fff298209c",
+      "metadata": {
+        "userId": "user_523f53fff298209c",
+        "prospectId": "pros_27cc862e24286400"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_fcf26d6303d82bd3",
+      "type": "seller",
+      "title": "Jero'S Antojitos Mexicanos",
+      "subtitle": "LOS ANGELES",
+      "description": "Traditional Mexican antojitos and street food in Los Angeles. | Permitted MEHKO since 2025-12-03. LA County Record: PR0326865",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.926207377319,
+      "lng": -118.283615416712,
+      "ownerId": "user_11c5f9e283fd68fe",
+      "metadata": {
+        "userId": "user_11c5f9e283fd68fe",
+        "prospectId": "pros_106e74056a2d3674"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_30456b958acc5fe7",
+      "type": "seller",
+      "title": "Jp Bbq Inc",
+      "subtitle": "SAN PEDRO",
+      "description": "BBQ home kitchen specializing in smoked and grilled meats. | We’re getting things ready Loading your experience… This won’t take long.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.757686883853,
+      "lng": -118.295700561587,
+      "ownerId": "user_209f982fd20dda94",
+      "metadata": {
+        "userId": "user_209f982fd20dda94",
+        "prospectId": "pros_37da61a28a1f5a8c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.jp-bbq.com"
+    },
+    {
+      "id": "el_d40ff1492ca3ed5f",
+      "type": "seller",
+      "title": "Jus Brisket",
+      "subtitle": "NORTHRIDGE",
+      "description": "Juicy smoked brisket with 20 years of cooking expertise. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327259 | So Juicy It's Explicit",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.245477844343,
+      "lng": -118.545556191361,
+      "ownerId": "user_f93aed125afe5baa",
+      "metadata": {
+        "userId": "user_f93aed125afe5baa",
+        "prospectId": "pros_d8b5356ac1f1ef1f"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://jusbrisket.com/"
+    },
+    {
+      "id": "el_63d0f95c3f7c1c05",
+      "type": "seller",
+      "title": "Kafou Alkaline Foods",
+      "subtitle": "LOS ANGELES",
+      "description": "Alkaline and plant-based food offerings in Los Angeles.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.031855613054,
+      "lng": -118.302856700038,
+      "ownerId": "user_888bcf5efc768004",
+      "metadata": {
+        "userId": "user_888bcf5efc768004",
+        "prospectId": "pros_a22231946dc1ed89"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_870e1ee7522cc53c",
+      "type": "seller",
+      "title": "Karak Corner",
+      "subtitle": "NORTHRIDGE",
+      "description": "Karak chai and specialty tea beverages from Northridge. | Permitted MEHKO since 2025-11-07. LA County Record: PR0326192",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.247775795875,
+      "lng": -118.503964909824,
+      "ownerId": "user_3888b83f066b72ac",
+      "metadata": {
+        "userId": "user_3888b83f066b72ac",
+        "prospectId": "pros_2bce4deb63504f3d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_5076670bc2c981a7",
+      "type": "seller",
+      "title": "Kdc Hospitality Group Llc",
+      "subtitle": "LOS ANGELES",
+      "description": "Hospitality group offering catered food services in Los Angeles.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.095828359291,
+      "lng": -118.188025572605,
+      "ownerId": "user_e958698e7a5ca419",
+      "metadata": {
+        "userId": "user_e958698e7a5ca419",
+        "prospectId": "pros_27a21c7818c367ca"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_aa217854ca440e42",
+      "type": "seller",
+      "title": "Kerala",
+      "subtitle": "GARDENA",
+      "description": "South Indian Kerala-style cuisine served from a Gardena home kitchen. | Permitted MEHKO since 2024-12-09. LA County Record: PR0313863",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.893628622689,
+      "lng": -118.331448960231,
+      "ownerId": "user_a81377f3854364e0",
+      "metadata": {
+        "userId": "user_a81377f3854364e0",
+        "prospectId": "pros_7ad08bb4666503a9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ecbd7d5a5ef6a89d",
+      "type": "seller",
+      "title": "Keren 504 Fruits",
+      "subtitle": "LOS ANGELES",
+      "description": "Fresh fruit cups and fruit-based beverages in Los Angeles. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327260",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.035886957394,
+      "lng": -118.181548453845,
+      "ownerId": "user_5063f4baa342f4bf",
+      "metadata": {
+        "userId": "user_5063f4baa342f4bf",
+        "prospectId": "pros_0d9e1ce9c879de80"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9161883384fe5043",
+      "type": "seller",
+      "title": "Krishnaveni Bholanath",
+      "subtitle": "LOS ANGELES",
+      "description": "Indian-Jamaican fusion cuisine from a regenerative zero-waste home kitchen. | Krishnaveni Bholanath Krishnaveni Christine Bholanath Work Pen and Ink Krishnaveni Christine Bholanath Baskin Robbins Cakes Cakes and Pastries Plated Desserts All art work is the property of Krishnaveni Bholanath",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.068469527262,
+      "lng": -118.295479447164,
+      "ownerId": "user_358b47d7423436e7",
+      "metadata": {
+        "userId": "user_358b47d7423436e7",
+        "prospectId": "pros_11a9dc2debed2aef"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://krishnavenibholanath.crevado.com"
+    },
+    {
+      "id": "el_9c34139f4982dbcf",
+      "type": "seller",
+      "title": "Krybaby Cakes & Cards",
+      "subtitle": "MONROVIA",
+      "description": "Home bakery offering custom cakes and greeting cards.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.134181142399,
+      "lng": -118.003422052609,
+      "ownerId": "user_3b08904bc129d0bf",
+      "metadata": {
+        "userId": "user_3b08904bc129d0bf",
+        "prospectId": "pros_408ab8da8dbe9ba9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9e1bba828cb042f2",
+      "type": "seller",
+      "title": "La Belle Baguette",
+      "subtitle": "VALENCIA",
+      "description": "French-style baguette sandwiches made with fresh local ingredients. | Permitted MEHKO since 2025-07-16. LA County Record: PR0318863",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.386862633312,
+      "lng": -118.5503071268,
+      "ownerId": "user_ec1534b59651080d",
+      "metadata": {
+        "userId": "user_ec1534b59651080d",
+        "prospectId": "pros_144d07188205f9d5"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9124ff8230a177b5",
+      "type": "seller",
+      "title": "La La Happy Kitchen",
+      "subtitle": "SOUTH EL MONTE",
+      "description": "Home kitchen in South El Monte offering Asian-inspired dishes. | Permitted MEHKO since 2025-12-23. LA County Record: PR0327461",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.059523824601,
+      "lng": -118.062075887785,
+      "ownerId": "user_8725908fe44b4282",
+      "metadata": {
+        "userId": "user_8725908fe44b4282",
+        "prospectId": "pros_5f9cdfeea85fb41f"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e4feae03744c8e94",
+      "type": "seller",
+      "title": "La Shunxing",
+      "subtitle": "NORTHVIEW",
+      "description": "Chinese homestyle cooking likely specializing in Shunxing regional dishes. | Permitted MEHKO since 2025-11-07. LA County Record: PR0326191",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.024806802075,
+      "lng": -117.845100528163,
+      "ownerId": "user_e281852350de89ff",
+      "metadata": {
+        "userId": "user_e281852350de89ff",
+        "prospectId": "pros_100dec33ab6894a1"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ab2260aa72394637",
+      "type": "seller",
+      "title": "Lakay Flavors",
+      "subtitle": "LOS ANGELES",
+      "description": "Haitian-inspired tropical flavors and Caribbean food offerings. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327266 | Taste the vibrant flavors of Haiti! Shop handmade Haitian patties, Kremas, and authentic Caribbean spices from Lakay Flavors.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.009378784302,
+      "lng": -118.343974408441,
+      "ownerId": "user_bbd0a71af4de6cde",
+      "metadata": {
+        "userId": "user_bbd0a71af4de6cde",
+        "prospectId": "pros_2bd0bb2b04b5c5cd"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://lakayflavors.com"
+    },
+    {
+      "id": "el_d9b23a68df731bba",
+      "type": "seller",
+      "title": "Lamb House Grill",
+      "subtitle": "PALMDALE",
+      "description": "Mediterranean-style grilled lamb, chicken, and beef with pita and sides. | We offer Chef inspired comfort foods designed for families and groups with fresh ingredients and delicious desserts. roasted lamb, beef, chicken dinners, pasta, salads, burgers, sandwiches, soups, bowls, and made to order. Special menu options for members and free delivery to your home or office.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.589503860372,
+      "lng": -118.157808419532,
+      "ownerId": "user_b0ace73f67428575",
+      "metadata": {
+        "userId": "user_b0ace73f67428575",
+        "prospectId": "pros_bdf4623e7a4436d1"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.lambhousegrill.com"
+    },
+    {
+      "id": "el_11ff67bf8b794179",
+      "type": "seller",
+      "title": "Las Changas",
+      "subtitle": "SYLMAR",
+      "description": "Authentic Mexican food served on weekends until sold out. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314225",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.304902379297,
+      "lng": -118.441223684046,
+      "ownerId": "user_daaff38fb18af985",
+      "metadata": {
+        "userId": "user_daaff38fb18af985",
+        "prospectId": "pros_38feb57537937c9e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a9991391f5a6707d",
+      "type": "seller",
+      "title": "Lasagne Di Catania",
+      "subtitle": "LOS ANGELES",
+      "description": "Italian lasagna inspired by Catania, Sicily traditions. | Permitted MEHKO since 2025-07-16. LA County Record: PR0318852",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.130149524553,
+      "lng": -118.212073528856,
+      "ownerId": "user_36a168a3c93889fa",
+      "metadata": {
+        "userId": "user_36a168a3c93889fa",
+        "prospectId": "pros_1460c80fa1a560ae"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_79c820a462c5e2e3",
+      "type": "seller",
+      "title": "Layered Ice Cream Pies",
+      "subtitle": "LOS ANGELES",
+      "description": "Layered ice cream pies in creative and classic flavors. | Permitted MEHKO since 2026-02-05. LA County Record: PR0365043",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.04406683948,
+      "lng": -118.48515164013,
+      "ownerId": "user_98e7a8f20a9ad6c0",
+      "metadata": {
+        "userId": "user_98e7a8f20a9ad6c0",
+        "prospectId": "pros_cebc2be965b7503d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_55f009b2c9bb256c",
+      "type": "seller",
+      "title": "Lemme Smash Burger",
+      "subtitle": "LOS ANGELES",
+      "description": "Smash-style burgers made from a home kitchen in Los Angeles. | Permitted MEHKO since 2025-03-26. LA County Record: PR0315750",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.061364198934,
+      "lng": -118.345540026243,
+      "ownerId": "user_6c50045a34d9604a",
+      "metadata": {
+        "userId": "user_6c50045a34d9604a",
+        "prospectId": "pros_99dc23dd52e3b2b4"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1f3179a995abf014",
+      "type": "seller",
+      "title": "Leza",
+      "subtitle": "WOODLAND HILLS",
+      "description": "California-fresh Mediterranean food, pastries, and event catering. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314594 | food delivery in  woodland hills has never been easier with Cafe Lēza\n",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.17634333233,
+      "lng": -118.585500487025,
+      "ownerId": "user_9ed8f6b70c88a190",
+      "metadata": {
+        "userId": "user_9ed8f6b70c88a190",
+        "prospectId": "pros_d860ec9d2fa083a8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.lizamichellelifestyle.com/delivery-food-cafe-leza"
+    },
+    {
+      "id": "el_30002944e76f5ad7",
+      "type": "seller",
+      "title": "Liangpi House",
+      "subtitle": "TEMPLE CITY",
+      "description": "Chinese cold skin noodles (liangpi) and traditional street food. | Permitted MEHKO since 2025-11-12. LA County Record: PR0326241",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.1016118872,
+      "lng": -118.062708206174,
+      "ownerId": "user_2bc5bdb50dc3a652",
+      "metadata": {
+        "userId": "user_2bc5bdb50dc3a652",
+        "prospectId": "pros_5a178778006907da"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_8d76df823e1d3782",
+      "type": "seller",
+      "title": "Little City Farm",
+      "subtitle": "LOS ANGELES",
+      "description": "Organic urban farm offering sustainable, zero-waste food and recipes. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314585",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.051607446522,
+      "lng": -118.325986546475,
+      "ownerId": "user_281edfb7d6b8ed69",
+      "metadata": {
+        "userId": "user_281edfb7d6b8ed69",
+        "prospectId": "pros_e390828525ecccd9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3b75bd7d99ac9278",
+      "type": "seller",
+      "title": "Litucho'S Grill",
+      "subtitle": "BURBANK",
+      "description": "Latin American-inspired grilled plates and home-cooked meals. | Permitted MEHKO since 2025-04-24. LA County Record: PR0316974 | Skip to content Coming Soon",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.186644027346,
+      "lng": -118.334649876468,
+      "ownerId": "user_bc6f35a48e17a5fe",
+      "metadata": {
+        "userId": "user_bc6f35a48e17a5fe",
+        "prospectId": "pros_65c7de429c15ad81"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://lituchosgrill.com/"
+    },
+    {
+      "id": "el_d6c6b2f0aef54452",
+      "type": "seller",
+      "title": "Liv'S Lumpias",
+      "subtitle": "PALM",
+      "description": "Filipino lumpia (spring rolls) made fresh from a home kitchen. | Permitted MEHKO since 2025-05-28. LA County Record: PR0317648 | Our mission~To share the essence of Filipino culture through the delightful flavors & spread God's love one lumpia at a time!",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.088689074245,
+      "lng": -117.903985326538,
+      "ownerId": "user_9e56270ed2c37f0b",
+      "metadata": {
+        "userId": "user_9e56270ed2c37f0b",
+        "prospectId": "pros_28e14540d4dc039b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://livslumpias.com/"
+    },
+    {
+      "id": "el_3735f5e3e48eab16",
+      "type": "seller",
+      "title": "Lomo Fuego-Peruvian Food",
+      "subtitle": "LAKEWOOD",
+      "description": "Peruvian food featuring lomo saltado and other traditional dishes. | Permitted MEHKO since 2025-05-28. LA County Record: PR0317646",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.857685671871,
+      "lng": -118.128906934397,
+      "ownerId": "user_870db3605ae0c655",
+      "metadata": {
+        "userId": "user_870db3605ae0c655",
+        "prospectId": "pros_01c5785bb2e59603"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_14ed814a8c1a3ef6",
+      "type": "seller",
+      "title": "Long' Style",
+      "subtitle": "ROSEMEAD",
+      "description": "Chinese homestyle cooking from a Rosemead home kitchen. | Permitted MEHKO since 2025-05-07. LA County Record: PR0317340",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.071045787482,
+      "lng": -118.107062748305,
+      "ownerId": "user_6a5516f18a0d0095",
+      "metadata": {
+        "userId": "user_6a5516f18a0d0095",
+        "prospectId": "pros_8441e2aa6fcac5ee"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_04a98fcf6297a5d2",
+      "type": "seller",
+      "title": "Losnooyado",
+      "subtitle": "LOS ANGELES",
+      "description": "Handmade soba noodles and wagashi Japanese sweets from a home kitchen. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314227",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.175833434345,
+      "lng": -118.388603258052,
+      "ownerId": "user_2d62550e8cca7772",
+      "metadata": {
+        "userId": "user_2d62550e8cca7772",
+        "prospectId": "pros_fa198b32445baa00"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3ddb093c62eb21b6",
+      "type": "seller",
+      "title": "Lucky'S Place",
+      "subtitle": "HAWTHORNE",
+      "description": "Gourmet burgers and all-American classic comfort food. | Permitted MEHKO since 2025-12-12. LA County Record: PR0327172",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.907027994234,
+      "lng": -118.360753707912,
+      "ownerId": "user_24e51d1d502488a4",
+      "metadata": {
+        "userId": "user_24e51d1d502488a4",
+        "prospectId": "pros_8b2c73a760344ba6"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_f3420cae8d9e5865",
+      "type": "seller",
+      "title": "Luscious Tierra",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen business in Los Angeles offering homestyle meals. | Permitted MEHKO since 2024-12-17. LA County Record: PR0313960",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.014189515115,
+      "lng": -118.346126314629,
+      "ownerId": "user_d50fc813e5120826",
+      "metadata": {
+        "userId": "user_d50fc813e5120826",
+        "prospectId": "pros_e84d7c913c08ed7b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a8e8c1a17353c565",
+      "type": "seller",
+      "title": "Luvmi Charcuterie",
+      "subtitle": "INGLEWOOD",
+      "description": "Custom charcuterie and grazing boards for events and gatherings. | Permitted MEHKO since 2025-02-12. LA County Record: PR0314862 | LuvMi Charcuterie",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.958671248592,
+      "lng": -118.325316684994,
+      "ownerId": "user_7588a69ca0571a91",
+      "metadata": {
+        "userId": "user_7588a69ca0571a91",
+        "prospectId": "pros_48d30098daa93803"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://luvmicharcuterie.com"
+    },
+    {
+      "id": "el_4b46199615df15b2",
+      "type": "seller",
+      "title": "Ma'S Oasis",
+      "subtitle": "EL MONTE",
+      "description": "Home kitchen serving comforting homemade meals in El Monte. | Permitted MEHKO since 2025-09-23. LA County Record: PR0324491 | Ma's Oasis offers traditional Chinese postpartum meal delivery in Los Angeles. Nourishing confinement (月子餐) meals to support recovery and wellness.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.066803048748,
+      "lng": -118.060178519527,
+      "ownerId": "user_857a8156f4ccec08",
+      "metadata": {
+        "userId": "user_857a8156f4ccec08",
+        "prospectId": "pros_9e762a906768aa65"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.masoasis.com"
+    },
+    {
+      "id": "el_1b2946f8c4d06e64",
+      "type": "seller",
+      "title": "Mam'S Kitchen",
+      "subtitle": "BURBANK",
+      "description": "Home kitchen offering homestyle family meals in Burbank. | Permitted MEHKO since 2025-09-16. LA County Record: PR0324286",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.172556090989,
+      "lng": -118.310341047204,
+      "ownerId": "user_149b61a8f6e61762",
+      "metadata": {
+        "userId": "user_149b61a8f6e61762",
+        "prospectId": "pros_ac7dd96ed234e8ea"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_d9ec524a87d5f808",
+      "type": "seller",
+      "title": "Mama Chila",
+      "subtitle": "LOS ANGELES",
+      "description": "Homestyle Mexican cooking inspired by traditional family recipes. | Permitted MEHKO since 2025-05-28. LA County Record: PR0317640",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.964555895514,
+      "lng": -118.252355884849,
+      "ownerId": "user_e00f40925cf41f5d",
+      "metadata": {
+        "userId": "user_e00f40925cf41f5d",
+        "prospectId": "pros_de71769f9382c555"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_7e62ab50ae742d13",
+      "type": "seller",
+      "title": "Mama Glendas",
+      "subtitle": "COMPTON",
+      "description": "Homestyle comfort cooking from a Compton home kitchen.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.892043800358,
+      "lng": -118.241828744479,
+      "ownerId": "user_2792cafba1a7e127",
+      "metadata": {
+        "userId": "user_2792cafba1a7e127",
+        "prospectId": "pros_788d1fd50592bc50"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_2387ac03e233859f",
+      "type": "seller",
+      "title": "Mama'S Cooking",
+      "subtitle": "AZUSA",
+      "description": "Homestyle comfort cooking with hearty cooked meats and classic dishes. | Permitted MEHKO since 2025-11-13. LA County Record: PR0326273",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.107437188382,
+      "lng": -117.89031906656,
+      "ownerId": "user_6b62d94f723b3b31",
+      "metadata": {
+        "userId": "user_6b62d94f723b3b31",
+        "prospectId": "pros_01ac672b58a6fba5"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_0e9c0d146b9be23f",
+      "type": "seller",
+      "title": "Mamma Nicole'S Garden Goo",
+      "subtitle": "LOS ANGELES",
+      "description": "Garden-fresh healthy goods and wholesome homemade food.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.128099773282,
+      "lng": -118.231371593502,
+      "ownerId": "user_f714bd2a2efa06ca",
+      "metadata": {
+        "userId": "user_f714bd2a2efa06ca",
+        "prospectId": "pros_38b16eed898a64fd"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_59622177429894e3",
+      "type": "seller",
+      "title": "Manfu Snack",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Chinese snacks and street food from a Rowland Heights home kitchen. | Permitted MEHKO since 2025-03-17. LA County Record: PR0315496",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.984867099106,
+      "lng": -117.914541120084,
+      "ownerId": "user_02f02459878bc582",
+      "metadata": {
+        "userId": "user_02f02459878bc582",
+        "prospectId": "pros_d3f31a31a811bcb6"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b96dffe3c306a556",
+      "type": "seller",
+      "title": "Mangia At Home Llc",
+      "subtitle": "LA CANADA FLINTRIDGE",
+      "description": "Italian homemade meals and dishes for at-home dining. | Permitted MEHKO since 2025-01-06. LA County Record: PR0314223",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.186453243874,
+      "lng": -118.200011254839,
+      "ownerId": "user_f49ada0f8edf145d",
+      "metadata": {
+        "userId": "user_f49ada0f8edf145d",
+        "prospectId": "pros_ef5a1660decd4aec"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_26d26167626dbf93",
+      "type": "seller",
+      "title": "Mannge Chix",
+      "subtitle": "RESEDA",
+      "description": "Home kitchen specializing in chicken dishes in Reseda. | Permitted MEHKO since 2024-11-22. LA County Record: PR0313637",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.203213063468,
+      "lng": -118.555190471297,
+      "ownerId": "user_4b088b970f20cafc",
+      "metadata": {
+        "userId": "user_4b088b970f20cafc",
+        "prospectId": "pros_15c807686aa97abf"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e44bf277b57342ab",
+      "type": "seller",
+      "title": "Mardirosian Production In",
+      "subtitle": "GLENDALE",
+      "description": "Armenian home kitchen food production based in Glendale.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.188533728535,
+      "lng": -118.229838538164,
+      "ownerId": "user_b56380be04c46b29",
+      "metadata": {
+        "userId": "user_b56380be04c46b29",
+        "prospectId": "pros_71becd13754d3099"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_8685bf8c3b7ffc5b",
+      "type": "seller",
+      "title": "Maria And Claudio Jimenez",
+      "subtitle": "WOODLAND HILLS",
+      "description": "Mexican home-cooked meals prepared in Woodland Hills. | Permitted MEHKO since 2025-09-26. LA County Record: PR0324641",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.165075199741,
+      "lng": -118.595664599591,
+      "ownerId": "user_f818c8108b3c7149",
+      "metadata": {
+        "userId": "user_f818c8108b3c7149",
+        "prospectId": "pros_7c90548316ea2e91"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a5582287404ad09b",
+      "type": "seller",
+      "title": "Marjan Cookery",
+      "subtitle": "WOODLAND HILLS",
+      "description": "Persian home cookery serving homemade meals in Woodland Hills. | Permitted MEHKO since 2025-08-26. LA County Record: PR0323367",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.170999543652,
+      "lng": -118.597500503169,
+      "ownerId": "user_78492abf22bd8789",
+      "metadata": {
+        "userId": "user_78492abf22bd8789",
+        "prospectId": "pros_019c2fb8a4176872"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ed4811a627be3d5d",
+      "type": "seller",
+      "title": "Martha'S Tacos And Mexica",
+      "subtitle": "LOS ANGELES",
+      "description": "Mexican home kitchen specializing in tacos and traditional Mexican food.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.001104651874,
+      "lng": -118.281862338913,
+      "ownerId": "user_cb1dfbeb6a3616a5",
+      "metadata": {
+        "userId": "user_cb1dfbeb6a3616a5",
+        "prospectId": "pros_1c05df848a88c854"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_63168eead9f98d71",
+      "type": "seller",
+      "title": "Masterpiece Kitchen",
+      "subtitle": "SAN GABRIEL",
+      "description": "Home kitchen offering creative prepared meals in San Gabriel. | Permitted MEHKO since 2025-03-19. LA County Record: PR0315538",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.123309662816,
+      "lng": -118.078577222109,
+      "ownerId": "user_dde3cad5afe2e79b",
+      "metadata": {
+        "userId": "user_dde3cad5afe2e79b",
+        "prospectId": "pros_7bb58889dd03d131"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_4f3d8eaa9954eff0",
+      "type": "seller",
+      "title": "Mauritian Street Food",
+      "subtitle": "VAN NUYS",
+      "description": "Traditional Mauritian street food including dholl puri and boulettes. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327262 | Our blog features authentic Mauritian recipes for nostalgic dishes from street food to home-cooked meals with detailed instructions and photos.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.185733436509,
+      "lng": -118.445418661188,
+      "ownerId": "user_c02e1b20b9527862",
+      "metadata": {
+        "userId": "user_c02e1b20b9527862",
+        "prospectId": "pros_b653266771329fc1"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.mauritianstreetfood.com"
+    },
+    {
+      "id": "el_f6c4ebacae0ec92a",
+      "type": "seller",
+      "title": "Meat District",
+      "subtitle": "LOS ANGELES",
+      "description": "Specialty meat and cured meat products based in Los Angeles. | Permitted MEHKO since 2025-07-15. LA County Record: PR0318815",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.028719445157,
+      "lng": -118.294296372817,
+      "ownerId": "user_dff227cc415cf1c8",
+      "metadata": {
+        "userId": "user_dff227cc415cf1c8",
+        "prospectId": "pros_aa94fd4d6535d11a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_90f56b312939246e",
+      "type": "seller",
+      "title": "Mediterranean Home Kitch",
+      "subtitle": "REDONDO BEACH",
+      "description": "Mediterranean home kitchen serving homemade dishes in Redondo Beach.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.832298246001,
+      "lng": -118.379797111128,
+      "ownerId": "user_0e40ef7872abcf95",
+      "metadata": {
+        "userId": "user_0e40ef7872abcf95",
+        "prospectId": "pros_d4d06c2d37dc55eb"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e124e25c75e6b777",
+      "type": "seller",
+      "title": "Mehko Kitchen",
+      "subtitle": "INGLEWOOD",
+      "description": "Home kitchen offering personalized meals, snacks, and fruit packages in Inglewood. | Permitted MEHKO since 2026-01-06. LA County Record: PR0327700 | mehkokitchen.orgmehkokitchen.orgmehkokitchen.orgmehkokitchen.orgmehkokitchen.orgmehkokitchen.orgmehkokitchen.orgmehkokitchen.org Our MissionMehko Kitchen’s mission is to provide fresh, high-quality, home-prepared meals or snacks and convenient food options for individuals or small businesses. We are",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.946729704753,
+      "lng": -118.349073035545,
+      "ownerId": "user_fa41ba8a2cfb42f6",
+      "metadata": {
+        "userId": "user_fa41ba8a2cfb42f6",
+        "prospectId": "pros_282d604ebaeddfa4"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://mehkokitchen.org/"
+    },
+    {
+      "id": "el_3a78a2ef975f53e8",
+      "type": "seller",
+      "title": "Mei Lin'S Kitchen",
+      "subtitle": "HACIENDA HEIGHTS",
+      "description": "Chinese home kitchen serving homemade dishes in Hacienda Heights. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327261",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.995934391419,
+      "lng": -117.943925608455,
+      "ownerId": "user_ca40a4f9fa2a30e8",
+      "metadata": {
+        "userId": "user_ca40a4f9fa2a30e8",
+        "prospectId": "pros_49aedb1df6ecd792"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_d6179bfb3a5d7610",
+      "type": "seller",
+      "title": "Mexiq",
+      "subtitle": "CASTAIC",
+      "description": "Mexican cuisine home kitchen based in Castaic. | Permitted MEHKO since 2024-12-20. LA County Record: PR0314061",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.46243841661,
+      "lng": -118.620453594304,
+      "ownerId": "user_f159a60b7eacaeb8",
+      "metadata": {
+        "userId": "user_f159a60b7eacaeb8",
+        "prospectId": "pros_77323c91e010e520"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_f3e0ba096e86396b",
+      "type": "seller",
+      "title": "Mi-Ri Yvonne",
+      "subtitle": "SHERMAN OAKS",
+      "description": "Korean home kitchen serving homemade dishes in Sherman Oaks. | Permitted MEHKO since 2025-10-31. LA County Record: PR0326093",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.172053768455,
+      "lng": -118.462812066779,
+      "ownerId": "user_09c7f5a073052ad2",
+      "metadata": {
+        "userId": "user_09c7f5a073052ad2",
+        "prospectId": "pros_79ac3df82901a021"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ce7dcd9136e968b7",
+      "type": "seller",
+      "title": "Michis Lemonade Companyl",
+      "subtitle": "NORWALK",
+      "description": "Lemonade company offering fresh handmade lemonade beverages in Norwalk.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.925991538413,
+      "lng": -118.087890283668,
+      "ownerId": "user_dfd8157509d98c55",
+      "metadata": {
+        "userId": "user_dfd8157509d98c55",
+        "prospectId": "pros_bcdeea5bae71d8c5"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1b5e497c5f00e7d0",
+      "type": "seller",
+      "title": "Mideast Eats",
+      "subtitle": "LOS ANGELES",
+      "description": "Authentic Palestinian cuisine with halal and vegan options in Watts. | Permitted MEHKO since 2024-12-09. LA County Record: PR0313864 | Legally permitted home kitchen serving up authentic Palestinian cuisine in Watts, South Los Angeles. Halal and vegan food options!",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.949169056495,
+      "lng": -118.236225233843,
+      "ownerId": "user_2e31e90323fe7d97",
+      "metadata": {
+        "userId": "user_2e31e90323fe7d97",
+        "prospectId": "pros_52a7344654860d58"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.mideasteats.com/"
+    },
+    {
+      "id": "el_49a781ae95ea376a",
+      "type": "seller",
+      "title": "Milkshake",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen specializing in milkshakes in Los Angeles. | Permitted MEHKO since 2025-10-09. LA County Record: PR0325245",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.004737615872,
+      "lng": -118.356822872075,
+      "ownerId": "user_43e9b8a556d51d52",
+      "metadata": {
+        "userId": "user_43e9b8a556d51d52",
+        "prospectId": "pros_e628679ba4186fea"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ccd51b7bef54f6e0",
+      "type": "seller",
+      "title": "Minon Cake",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Specialty cake shop offering creative Asian-style cakes in Rowland Heights. | Permitted MEHKO since 2026-01-22. LA County Record: PR0328299",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.987328428171,
+      "lng": -117.911297776093,
+      "ownerId": "user_90c3c7d7bee173ac",
+      "metadata": {
+        "userId": "user_90c3c7d7bee173ac",
+        "prospectId": "pros_027f8fbbd026132c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a5f95234be0b53c5",
+      "type": "seller",
+      "title": "Misti'S House (peruvian Sty",
+      "subtitle": "VAN NUYS",
+      "description": "Peruvian-style home kitchen serving traditional dishes in Van Nuys.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.193851153068,
+      "lng": -118.47993917434,
+      "ownerId": "user_fbca8ff723caf0ce",
+      "metadata": {
+        "userId": "user_fbca8ff723caf0ce",
+        "prospectId": "pros_0c05582244e05bcd"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_58659fa911ee362e",
+      "type": "seller",
+      "title": "Montero Yogurt",
+      "subtitle": "SOUTH EL MONTE",
+      "description": "Yogurt-based desserts and treats from South El Monte. | Permitted MEHKO since 2025-10-30. LA County Record: PR0326071",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.061381756648,
+      "lng": -118.057781936185,
+      "ownerId": "user_3b34d7a8f01a5153",
+      "metadata": {
+        "userId": "user_3b34d7a8f01a5153",
+        "prospectId": "pros_88a6e3ed4d7edf30"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b47bc9f8fcd9f1af",
+      "type": "seller",
+      "title": "Mr Ryong'S Artist'S Rice",
+      "subtitle": "LOS ANGELES",
+      "description": "Korean-inspired artisan rice dishes served in Los Angeles. | Permitted MEHKO since 2024-12-06. LA County Record: PR0313838",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.059498688506,
+      "lng": -118.303148013764,
+      "ownerId": "user_fe03f66bce21a206",
+      "metadata": {
+        "userId": "user_fe03f66bce21a206",
+        "prospectId": "pros_ea2919887cf0a151"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_89567e39b155f57b",
+      "type": "seller",
+      "title": "My Kuzna",
+      "subtitle": "TORRANCE",
+      "description": "Authentic Caviteño Filipino dishes bringing back flavors from home. | Permitted MEHKO since 2024-11-13. LA County Record: PR0313421",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.834414501072,
+      "lng": -118.321320713011,
+      "ownerId": "user_f0ff7310295db9a3",
+      "metadata": {
+        "userId": "user_f0ff7310295db9a3",
+        "prospectId": "pros_fe93795103ffb1da"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_ea320a7c9febb4f5",
+      "type": "seller",
+      "title": "N. Diet",
+      "subtitle": "PANORAMA CITY",
+      "description": "Health-focused diet meal preparation service in Panorama City. | Permitted MEHKO since 2025-08-01. LA County Record: PR0319426",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.213880003695,
+      "lng": -118.432060553348,
+      "ownerId": "user_cf3f50fe781ee98e",
+      "metadata": {
+        "userId": "user_cf3f50fe781ee98e",
+        "prospectId": "pros_7989054feea37667"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_d9f6b277788ac793",
+      "type": "seller",
+      "title": "Napo Pizza, Llc",
+      "subtitle": "NORTHRIDGE",
+      "description": "Home kitchen pizza operation based in Northridge. | Permitted MEHKO since 2024-11-13. LA County Record: PR0313409 | Napo Pizza\nNeapolitan Pizza - Preorder/Pickup Only",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.248533492976,
+      "lng": -118.499261611831,
+      "ownerId": "user_eea2fb8435e5541e",
+      "metadata": {
+        "userId": "user_eea2fb8435e5541e",
+        "prospectId": "pros_dd2ecb1ee5f2d612"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.napopizzala.com"
+    },
+    {
+      "id": "el_cc426f70426b2b60",
+      "type": "seller",
+      "title": "Nawal",
+      "subtitle": "LOS ANGELES",
+      "description": "Syrian cooking through a Circassian lens served at pop-ups in LA. | Permitted MEHKO since 2025-11-19. LA County Record: PR0326543",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.078458321829,
+      "lng": -118.234893868348,
+      "ownerId": "user_8a6fb6ff6594a1d9",
+      "metadata": {
+        "userId": "user_8a6fb6ff6594a1d9",
+        "prospectId": "pros_7c40ffcd4c76aaa7"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_d7afb9b1219ed55c",
+      "type": "seller",
+      "title": "Neighborhood Coffee",
+      "subtitle": "LOS ANGELES",
+      "description": "Specialty coffee shop offering espresso, pour overs, and cold brew. | Permitted MEHKO since 2025-09-23. LA County Record: PR0324492",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.030117825322,
+      "lng": -118.348923615729,
+      "ownerId": "user_e7d1b903b299ec1d",
+      "metadata": {
+        "userId": "user_e7d1b903b299ec1d",
+        "prospectId": "pros_f681cd3098fa147e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_cc256a48d4ce4380",
+      "type": "seller",
+      "title": "Nia'S Table",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen serving prepared meals and catering in Los Angeles. | Permitted MEHKO since 2025-10-09. LA County Record: PR0325244",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.956941199757,
+      "lng": -118.394661193469,
+      "ownerId": "user_acbc49d9089a8871",
+      "metadata": {
+        "userId": "user_acbc49d9089a8871",
+        "prospectId": "pros_41d9d6d8f718557d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_3a1b8d8b4fd6588d",
+      "type": "seller",
+      "title": "Nicolasa'S Kitchen",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen serving Basque-inspired homemade cuisine in Los Angeles. | Permitted MEHKO since 2025-12-08. LA County Record: PR0327037",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.024705881347,
+      "lng": -118.261406570635,
+      "ownerId": "user_a312d129c7d31eca",
+      "metadata": {
+        "userId": "user_a312d129c7d31eca",
+        "prospectId": "pros_ebdc060d7c573f31"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b24640d0e187d694",
+      "type": "seller",
+      "title": "Nikkimomo",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen food business operating in Los Angeles. | Permitted MEHKO since 2025-01-14. LA County Record: PR0314321 | Nikkimomo",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.000880599544,
+      "lng": -118.353442521911,
+      "ownerId": "user_61412174f45fee2d",
+      "metadata": {
+        "userId": "user_61412174f45fee2d",
+        "prospectId": "pros_78d319bc153da164"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://nikkimomo.myshopify.com/"
+    },
+    {
+      "id": "el_0133d46df78e2736",
+      "type": "seller",
+      "title": "No Brand",
+      "subtitle": "GARDENA",
+      "description": "Japanese or Korean home kitchen operating in Gardena. | Permitted MEHKO since 2025-07-08. LA County Record: PR0318622",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.868928915975,
+      "lng": -118.291149061931,
+      "ownerId": "user_f42dddf78961a179",
+      "metadata": {
+        "userId": "user_f42dddf78961a179",
+        "prospectId": "pros_e62a10dd137c6258"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_8da22ab4d4ede2e5",
+      "type": "seller",
+      "title": "Noodle Girl",
+      "subtitle": "SOUTH PASADENA",
+      "description": "Vietnamese noodle and rice bowls with fresh healthy ingredients. | Permitted MEHKO since 2025-09-23. LA County Record: PR0324487",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.103372220932,
+      "lng": -118.156597740529,
+      "ownerId": "user_a1a80b5e96d07d0a",
+      "metadata": {
+        "userId": "user_a1a80b5e96d07d0a",
+        "prospectId": "pros_585b74d150e67d97"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_83bc8d4b508ffe1f",
+      "type": "seller",
+      "title": "Not Yo Mama'S Tacos",
+      "subtitle": "CASTAIC",
+      "description": "Fresh-made tacos and Mexican food with catering services. | Permitted MEHKO since 2025-11-12. LA County Record: PR0326236",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.49941282106,
+      "lng": -118.61748780991,
+      "ownerId": "user_c0d96668bb28b378",
+      "metadata": {
+        "userId": "user_c0d96668bb28b378",
+        "prospectId": "pros_9bbfdad874ca2781"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.notyomamastacos.com"
+    },
+    {
+      "id": "el_a6341b595a10450a",
+      "type": "seller",
+      "title": "Not Your Mom'S Pies",
+      "subtitle": "CASTAIC",
+      "description": "Homemade authentic Italian pies and food. | Permitted MEHKO since 2025-05-12. LA County Record: PR0317467",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.485461134629,
+      "lng": -118.637095806042,
+      "ownerId": "user_f5289458ae957a50",
+      "metadata": {
+        "userId": "user_f5289458ae957a50",
+        "prospectId": "pros_cf3c146989be9a4d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_c44f1fe8f594d84a",
+      "type": "seller",
+      "title": "Nourished Roots",
+      "subtitle": "GLENDORA",
+      "description": "Healthy meal bowls made with fresh ingredients for every taste.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.125456778248,
+      "lng": -117.839388080336,
+      "ownerId": "user_ea023577d4da4261",
+      "metadata": {
+        "userId": "user_ea023577d4da4261",
+        "prospectId": "pros_4807c65d84376624"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_127bd72a58f60db7",
+      "type": "seller",
+      "title": "Nourisoup",
+      "subtitle": "ARCADIA",
+      "description": "Herbal functional soups crafted for wellness in every jar. | Permitted MEHKO since 2026-02-05. LA County Record: PR0365050 | Nourisoup Home Handmade Soap Handmade Soap 02 Handmade Candles Perfume Shop Handmade Shop Handmade Shop 02 Handmade Shop Parallax Shop Shop layout Shop Sidebar Shop No Sidebar Shop Categories Shop Categories 02 Shop 03 Columns Infinity Scroll Shop Collection Shop Collection 02 Product Layout Product",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.118289746904,
+      "lng": -118.057368240875,
+      "ownerId": "user_79609d0522853417",
+      "metadata": {
+        "userId": "user_79609d0522853417",
+        "prospectId": "pros_1c12fe56a026deea"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://nourisoup.com/"
+    },
+    {
+      "id": "el_f4320af761ff44ae",
+      "type": "seller",
+      "title": "Ok Duck",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Chinese restaurant featuring roast duck and dim sum. | Permitted MEHKO since 2025-08-19. LA County Record: PR0319906",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.970145781302,
+      "lng": -117.895036331511,
+      "ownerId": "user_660075bc45fbbb21",
+      "metadata": {
+        "userId": "user_660075bc45fbbb21",
+        "prospectId": "pros_ab32f20f2e2e5572"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_69e7c022d307827a",
+      "type": "seller",
+      "title": "Omar'S Tacos",
+      "subtitle": "LA PUENTE",
+      "description": "Affordable Mexican tacos and related dishes. | Permitted MEHKO since 2025-03-27. LA County Record: PR0315755 | Home About us Delivery eGift Card REAL TACOSREAL TACOSREAL TACOSStreet Style Tacos in EscondidoYour best optionOn this side of the border!Skip the line!Call, order and pick upEnjoy your tacos!Eat & repeatGreat taco is all about using handmade tortillas y mucho guacamole!Tijuas Tacos. Delicious Tacos",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.034938849182,
+      "lng": -117.986599934335,
+      "ownerId": "user_3751c138cc8bc89d",
+      "metadata": {
+        "userId": "user_3751c138cc8bc89d",
+        "prospectId": "pros_eb4985991b0ee224"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://omarstacos.com/"
+    },
+    {
+      "id": "el_676b0a1f466c8fb7",
+      "type": "seller",
+      "title": "Onggi Jonggi",
+      "subtitle": "CULVER CITY",
+      "description": "unknown  | Permitted MEHKO since 2025-08-07. LA County Record: PR0319580",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.012839527235,
+      "lng": -118.395155021461,
+      "ownerId": "user_16f2add6f02f3616",
+      "metadata": {
+        "userId": "user_16f2add6f02f3616",
+        "prospectId": "pros_68cffc63fb3c5544"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_2a2ab55ceb473767",
+      "type": "seller",
+      "title": "Our Lady Of Shallot",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen food business in Los Angeles. | Permitted MEHKO since 2024-11-13. LA County Record: PR0313415",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.140401728319,
+      "lng": -118.183430023126,
+      "ownerId": "user_59ecb32e401ffe46",
+      "metadata": {
+        "userId": "user_59ecb32e401ffe46",
+        "prospectId": "pros_9e2cc14d95fb36dc"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_7ccb49afc37ffc14",
+      "type": "seller",
+      "title": "Pacaeli Services",
+      "subtitle": "HARBOR CITY",
+      "description": "Food delivery and catering services in Harbor City. | Permitted MEHKO since 2025-03-03. LA County Record: PR0315243",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.791418880435,
+      "lng": -118.301630799411,
+      "ownerId": "user_13232eb2c3c32f27",
+      "metadata": {
+        "userId": "user_13232eb2c3c32f27",
+        "prospectId": "pros_92b5582e96509d7d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_23150c699dbec54d",
+      "type": "seller",
+      "title": "Parker House Delights",
+      "subtitle": "LOS ANGELES",
+      "description": "Homemade baked delights and house specialties. | Permitted MEHKO since 2025-03-13. LA County Record: PR0315414",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.993115451751,
+      "lng": -118.341562364642,
+      "ownerId": "user_96171a845314b259",
+      "metadata": {
+        "userId": "user_96171a845314b259",
+        "prospectId": "pros_7813e820fbedb56d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_fe39eb65391b1b92",
+      "type": "seller",
+      "title": "Pies In The Sky",
+      "subtitle": "WHITTIER",
+      "description": "Homemade dough pizzas topped with fresh, perfectly seasoned ingredients. | Permitted MEHKO since 2025-10-29. LA County Record: PR0326031",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.976242844719,
+      "lng": -118.030569465123,
+      "ownerId": "user_0d47657d9614a055",
+      "metadata": {
+        "userId": "user_0d47657d9614a055",
+        "prospectId": "pros_0df86bfcfb782a83"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_876df599dc0d0016",
+      "type": "seller",
+      "title": "Pili Pili De Congo",
+      "subtitle": "LOS ANGELES",
+      "description": "Congolese cuisine featuring pili-pili pepper dishes and African flavors. | Permitted MEHKO since 2024-12-20. LA County Record: PR0314062 | pili pili de congopili pili de congopili pili de congopili pili de congoSign InCreate AccountOrdersMy AccountSigned in as:filler@godaddy.comOrdersMy AccountSign outHomeShopContact UsSafety Declaration MoreHomeShopContact UsSafety Declaration pili pili de congopili pili de congopili pili de congopili",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.113224464768,
+      "lng": -118.464701365514,
+      "ownerId": "user_12de01b8b5f4cad1",
+      "metadata": {
+        "userId": "user_12de01b8b5f4cad1",
+        "prospectId": "pros_d204556f51538d65"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://pilipilidecongo.com/"
+    },
+    {
+      "id": "el_9626ddadb528c491",
+      "type": "seller",
+      "title": "Pinkelicious By Chef Mylen",
+      "subtitle": "BURBANK",
+      "description": "Catering service by Chef Mylene creating food magic for special events.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.157483409904,
+      "lng": -118.349482823282,
+      "ownerId": "user_e73e3d3d19cef663",
+      "metadata": {
+        "userId": "user_e73e3d3d19cef663",
+        "prospectId": "pros_d8f3379644b361d0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1c383ceda3c6a449",
+      "type": "seller",
+      "title": "Pop Jerk",
+      "subtitle": "LOS ANGELES",
+      "description": "Caribbean-style jerk food pop-up in Los Angeles. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327263",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.987163954412,
+      "lng": -118.346676937098,
+      "ownerId": "user_0889d2202f28ba83",
+      "metadata": {
+        "userId": "user_0889d2202f28ba83",
+        "prospectId": "pros_a37ab99763befcba"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_83e34624b0a5590c",
+      "type": "seller",
+      "title": "Qudsia'S",
+      "subtitle": "LOS ANGELES",
+      "description": "South Asian homemade food inspired by traditional recipes. | Permitted MEHKO since 2026-01-29. LA County Record: PR0328443",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.023107196507,
+      "lng": -118.402877871274,
+      "ownerId": "user_03558e7c9855acdb",
+      "metadata": {
+        "userId": "user_03558e7c9855acdb",
+        "prospectId": "pros_47f6f48b30236fe8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_f95a1655ca44f0cc",
+      "type": "seller",
+      "title": "Rafnroll",
+      "subtitle": "GLENDALE",
+      "description": "Home kitchen food business in Glendale. | Permitted MEHKO since 2025-10-03. LA County Record: PR0324965",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.163364135858,
+      "lng": -118.266170711525,
+      "ownerId": "user_5866e668ce6f029c",
+      "metadata": {
+        "userId": "user_5866e668ce6f029c",
+        "prospectId": "pros_08c6f5d369d02fcd"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_d2206f18d4d0b52b",
+      "type": "seller",
+      "title": "Railroad Restaurant",
+      "subtitle": "LITTLEROCK",
+      "description": "Homestyle comfort food restaurant in Littlerock. | Permitted MEHKO since 2025-10-29. LA County Record: PR0326029",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.541217246258,
+      "lng": -117.922766579847,
+      "ownerId": "user_cfc03b4622203470",
+      "metadata": {
+        "userId": "user_cfc03b4622203470",
+        "prospectId": "pros_ee0568669b292f1e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_8f8fb423ff21e3a0",
+      "type": "seller",
+      "title": "Raspados Estilo Tonala, Ja",
+      "subtitle": "BALDWIN PARK",
+      "description": "Traditional Mexican-style raspados and frozen fruit treats from Tonala.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.089215959418,
+      "lng": -117.95907892007,
+      "ownerId": "user_c5bdffd8079d0c42",
+      "metadata": {
+        "userId": "user_c5bdffd8079d0c42",
+        "prospectId": "pros_f812649d8f6a4acf"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_016a78bb92b278a7",
+      "type": "seller",
+      "title": "Raspados Naturales",
+      "subtitle": "POMONA",
+      "description": "Natural fruit raspados and refreshing frozen treats. | Permitted MEHKO since 2025-03-28. LA County Record: PR0315802",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.043590939007,
+      "lng": -117.760630102899,
+      "ownerId": "user_45b16c491b89cdf6",
+      "metadata": {
+        "userId": "user_45b16c491b89cdf6",
+        "prospectId": "pros_c9e0974e3a327322"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a808fd3baf484a86",
+      "type": "seller",
+      "title": "Red Dragon Lounge",
+      "subtitle": "LOS ANGELES",
+      "description": "Lounge-style food and drinks experience in Los Angeles. | Permitted MEHKO since 2025-02-06. LA County Record: PR0314733 | Red Dragon Lounge is a tonic bar that crafts non-alcoholic beverages from whole-food ingredients and Chinese tonic herbs—no refined sugar or artificial additives. Discover bold, natural refreshment.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.064240764513,
+      "lng": -118.363769337582,
+      "ownerId": "user_12a4ec0456fcf087",
+      "metadata": {
+        "userId": "user_12a4ec0456fcf087",
+        "prospectId": "pros_d76d59c7a71a65d3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://reddragonlounge.com"
+    },
+    {
+      "id": "el_4c603317fba1126b",
+      "type": "seller",
+      "title": "Red Eye Cafe",
+      "subtitle": "WHITTIER",
+      "description": "Cafe serving croissants, burritos, coffee, and brunch fare. | Permitted MEHKO since 2025-12-23. LA County Record: PR0327460",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.944056436713,
+      "lng": -117.977169127098,
+      "ownerId": "user_a12fa7eb9fa6358a",
+      "metadata": {
+        "userId": "user_a12fa7eb9fa6358a",
+        "prospectId": "pros_a2911de951a3f198"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_faf9d27060cc10e8",
+      "type": "seller",
+      "title": "Renaissance South La Inc",
+      "subtitle": "LOS ANGELES",
+      "description": "Community-focused food business in South Los Angeles.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.019272570839,
+      "lng": -118.367970749822,
+      "ownerId": "user_450477b63f115e4e",
+      "metadata": {
+        "userId": "user_450477b63f115e4e",
+        "prospectId": "pros_b3047e21597be28d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a49626b75f885a64",
+      "type": "seller",
+      "title": "Reni Coffee",
+      "subtitle": "HARBOR CITY",
+      "description": "Coffee shop serving fresh brewed coffee and beverages. | Permitted MEHKO since 2025-12-24. LA County Record: PR0327487",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.794688959814,
+      "lng": -118.303239226426,
+      "ownerId": "user_7a73957f366b9b4d",
+      "metadata": {
+        "userId": "user_7a73957f366b9b4d",
+        "prospectId": "pros_b99f9155ab06507a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_704c166ecc54a6bc",
+      "type": "seller",
+      "title": "Rolli Bakehouse",
+      "subtitle": "ARCADIA",
+      "description": "Home bakehouse offering freshly baked rolls and goods. | Permitted MEHKO since 2025-04-17. LA County Record: PR0316838 | Discover handcrafted, organic baked desserts at Rolli Bakehouse. Fresh ingredients and expert craftsmanship make every treat a delightful experience.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.126588436752,
+      "lng": -118.01879687955,
+      "ownerId": "user_221299878305c016",
+      "metadata": {
+        "userId": "user_221299878305c016",
+        "prospectId": "pros_f29c02fb4cd50a7e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.rollibakehouse.com/"
+    },
+    {
+      "id": "el_5a64500d8f243abb",
+      "type": "seller",
+      "title": "Royal Home Deli",
+      "subtitle": "ROWLAND HEIGHTS",
+      "description": "Home deli offering prepared foods in Rowland Heights. | Permitted MEHKO since 2025-03-27. LA County Record: PR0315764",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.977306419602,
+      "lng": -117.889532229855,
+      "ownerId": "user_a8d393b656a62ed2",
+      "metadata": {
+        "userId": "user_a8d393b656a62ed2",
+        "prospectId": "pros_557f41c74e379801"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9be5e6ee006a0e94",
+      "type": "seller",
+      "title": "Rubie",
+      "subtitle": "LOS ANGELES",
+      "description": "Pop-up food business participating in LA food events. | Permitted MEHKO since 2025-02-05. LA County Record: PR0314710 | 0 Skip to Content Home About Contact Open Menu Close Menu Home About Contact Open Menu Close Menu Home About Contact A gem. Modern West coast Jamaican food",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.134660535669,
+      "lng": -118.207660288317,
+      "ownerId": "user_3b96d99e8c0224f9",
+      "metadata": {
+        "userId": "user_3b96d99e8c0224f9",
+        "prospectId": "pros_212a58711f12a25a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.rubie-la.com"
+    },
+    {
+      "id": "el_c7a166e87ed8e1df",
+      "type": "seller",
+      "title": "Sabor De Mi Tierra",
+      "subtitle": "ARLETA",
+      "description": "Traditional homestyle Latin American food with authentic flavors. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327265",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.24151973874,
+      "lng": -118.424510654162,
+      "ownerId": "user_a8b4ff730d6a3979",
+      "metadata": {
+        "userId": "user_a8b4ff730d6a3979",
+        "prospectId": "pros_d2a205e88bc34f11"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_7c216ff282e14338",
+      "type": "seller",
+      "title": "Sabor Mexico Homemade",
+      "subtitle": "NORWALK",
+      "description": "Homemade Mexican food with fresh tortillas and traditional dishes. | Permitted MEHKO since 2025-12-12. LA County Record: PR0327161",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.924247954563,
+      "lng": -118.081928899602,
+      "ownerId": "user_5c7040b9c678004f",
+      "metadata": {
+        "userId": "user_5c7040b9c678004f",
+        "prospectId": "pros_58b69e780a51410a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e06fb3e1bdf260e8",
+      "type": "seller",
+      "title": "Sabor Peruano",
+      "subtitle": "VAN NUYS",
+      "description": "Peruvian cuisine with gourmet appetizers, mains, and desserts. | Permitted MEHKO since 2025-07-10. LA County Record: PR0318686",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.208503435389,
+      "lng": -118.469277916907,
+      "ownerId": "user_ee22cb05e44c4f51",
+      "metadata": {
+        "userId": "user_ee22cb05e44c4f51",
+        "prospectId": "pros_e851cf6d4a9009fa"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_5d10e4c0d7d8e90b",
+      "type": "seller",
+      "title": "Sahani Delight Kitchen",
+      "subtitle": "LOS ANGELES",
+      "description": "Kenyan comfort food featuring savory stews, grilled meats, and classic Kenyan sides. | Permitted MEHKO since 2025-02-06. LA County Record: PR0314731 | Skip to content Home Menu About Services Contact Request a quoteRequest a quote Main Menu Home Menu About Services Contact Let Us Cater Your Next EventFrom intimate gatherings to big celebrations, Sahani Delights Kitchen brings authentic flavors to your table with seamless catering.We are fully cert",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.999097798143,
+      "lng": -118.333565048169,
+      "ownerId": "user_618551d58f4bfaeb",
+      "metadata": {
+        "userId": "user_618551d58f4bfaeb",
+        "prospectId": "pros_2dade2dcdc6bb2ee"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://sahanidelightkitchen.com/"
+    },
+    {
+      "id": "el_b7bec43829440584",
+      "type": "seller",
+      "title": "Savie Bake Shop",
+      "subtitle": "NORTH HOLLYWOOD",
+      "description": "Bake shop specializing in breakfast burritos with chorizo or sausage. | Permitted MEHKO since 2025-03-03. LA County Record: PR0315242",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.162762865265,
+      "lng": -118.363780382114,
+      "ownerId": "user_b221f1fc01ba2673",
+      "metadata": {
+        "userId": "user_b221f1fc01ba2673",
+        "prospectId": "pros_20a4c57e4f9f4e61"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_e05802a02615c22e",
+      "type": "seller",
+      "title": "Serve Coffee + Pastries",
+      "subtitle": "LANCASTER",
+      "description": "Coffee shop and pastry spot serving beverages and baked goods. | Permitted MEHKO since 2025-11-12. LA County Record: PR0326239",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.647563702923,
+      "lng": -118.215599623566,
+      "ownerId": "user_6d6bdf07d23f747d",
+      "metadata": {
+        "userId": "user_6d6bdf07d23f747d",
+        "prospectId": "pros_8df27ca33f897823"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9bc7aeb1fd176b68",
+      "type": "seller",
+      "title": "Seven Plates La",
+      "subtitle": "LOS ANGELES",
+      "description": "Plated multi-course meals with diverse culinary influences in Los Angeles. | Permitted MEHKO since 2026-01-29. LA County Record: PR0328442",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.06212459034,
+      "lng": -118.342928816549,
+      "ownerId": "user_3058960238fc0128",
+      "metadata": {
+        "userId": "user_3058960238fc0128",
+        "prospectId": "pros_14cd4cb2ea5250af"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_01a06d28d58efb28",
+      "type": "seller",
+      "title": "Simply Tastefull",
+      "subtitle": "ALHAMBRA",
+      "description": "Homestyle tasty meals prepared from a home kitchen in Alhambra. | Permitted MEHKO since 2025-12-03. LA County Record: PR0326864",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.094968029826,
+      "lng": -118.11884138652,
+      "ownerId": "user_a629c41ead3c6b4d",
+      "metadata": {
+        "userId": "user_a629c41ead3c6b4d",
+        "prospectId": "pros_ab1db7425103280b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_267ba644507f6790",
+      "type": "seller",
+      "title": "Smiling Islander",
+      "subtitle": "BURBANK",
+      "description": "Sri Lankan street food specializing in authentic wok-fried kottu with live cooking. | Permitted MEHKO since 2024-12-23. LA County Record: PR0314070 | Enjoy your Island Feast with smiling islander We believe food is an art, food is life and food brings communities together! Scroll Down Living the Island Life Originally from Sri Lanka, an island known as the “Pearl of the Indian Ocean.” Sri Lankan cuisine is known for its eclectic flavors, spice and bold profiles! Smiling […]",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.207280984572,
+      "lng": -118.327742900325,
+      "ownerId": "user_d924ce936de0cf81",
+      "metadata": {
+        "userId": "user_d924ce936de0cf81",
+        "prospectId": "pros_52da81a4c753a857"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://smilingislander.com/"
+    },
+    {
+      "id": "el_d8a75f9a8b1d3baa",
+      "type": "seller",
+      "title": "Smoke City Bbq La",
+      "subtitle": "LOS ANGELES",
+      "description": "Los Angeles BBQ serving smoked and barbecued meats. | Permitted MEHKO since 2024-11-14. LA County Record: PR0313451",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.020234855806,
+      "lng": -118.313958020167,
+      "ownerId": "user_f096e9397b5f4de3",
+      "metadata": {
+        "userId": "user_f096e9397b5f4de3",
+        "prospectId": "pros_085909704b5330a5"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_bcb35c67edf2707d",
+      "type": "seller",
+      "title": "Smoke Mo'S La",
+      "subtitle": "VAN NUYS",
+      "description": "Smoked BBQ with Mediterranean-influenced dishes in Van Nuys. | Permitted MEHKO since 2025-08-29. LA County Record: PR0323555",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.172179437072,
+      "lng": -118.429338745063,
+      "ownerId": "user_7e4c3f4c01137ed8",
+      "metadata": {
+        "userId": "user_7e4c3f4c01137ed8",
+        "prospectId": "pros_847f03ee296787ab"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9db2cc297d14ebda",
+      "type": "seller",
+      "title": "Smoked Out Sliders",
+      "subtitle": "LOS ANGELES",
+      "description": "Smoked sliders and small burger offerings in Los Angeles. | Permitted MEHKO since 2025-04-21. LA County Record: PR0316908",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.992782844989,
+      "lng": -118.332252385024,
+      "ownerId": "user_69fef9d406a0008b",
+      "metadata": {
+        "userId": "user_69fef9d406a0008b",
+        "prospectId": "pros_3e0d8315a17aa49a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_a5a91df79e3b00de",
+      "type": "seller",
+      "title": "Socal Pie Co",
+      "subtitle": "NORWALK",
+      "description": "Pizza and buffalo wings with various sauce options in Norwalk. | Permitted MEHKO since 2025-01-31. LA County Record: PR0314615",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.904091187964,
+      "lng": -118.097290605596,
+      "ownerId": "user_3ac40adcd8c9d973",
+      "metadata": {
+        "userId": "user_3ac40adcd8c9d973",
+        "prospectId": "pros_096ac65eca7952b7"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_1f7eb0a2c8c31e93",
+      "type": "seller",
+      "title": "Song'S Studio",
+      "subtitle": "PASADENA",
+      "description": "Home kitchen business based in Pasadena offering prepared meals. | Permitted MEHKO since 2025-08-21. LA County Record: PR0319979",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.145276669124,
+      "lng": -118.082441045016,
+      "ownerId": "user_ce17232c84165e66",
+      "metadata": {
+        "userId": "user_ce17232c84165e66",
+        "prospectId": "pros_1570479cb4a6cede"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9ce0021819365cc5",
+      "type": "seller",
+      "title": "Soul & Spice",
+      "subtitle": "WHITTIER",
+      "description": "Family-owned soul food kitchen serving Southern comfort dishes in Whittier. | Permitted MEHKO since 2025-06-25. LA County Record: PR0318349 | top of page A. AhanchiMenu Close HomeContactPortfolioGroupsMembersEventsBlogBook OnlineShopGift CardLog InSoul & Spice Wellness CollectiveNurturing the Mind, Body, and Spirit Through Food, Movement, and CommunityDiscover MoreOur StoryMy name is Ava, and Soul & Spice was born from my love of food, cu",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.953982218102,
+      "lng": -117.991763260773,
+      "ownerId": "user_84fd92d6d3342d60",
+      "metadata": {
+        "userId": "user_84fd92d6d3342d60",
+        "prospectId": "pros_5ffcda68ab6456d8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.soulandspice.org/"
+    },
+    {
+      "id": "el_74c1f5bcb33575cf",
+      "type": "seller",
+      "title": "Squat Fox Meal",
+      "subtitle": "ARCADIA",
+      "description": "Prepared home meals offered from an Arcadia-based kitchen. | Permitted MEHKO since 2025-05-01. LA County Record: PR0317111 | Squat Fox",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.113001594456,
+      "lng": -118.032855828299,
+      "ownerId": "user_08ad4382950af6fe",
+      "metadata": {
+        "userId": "user_08ad4382950af6fe",
+        "prospectId": "pros_5cb6475861c67402"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.squatfoxmeal.com/"
+    },
+    {
+      "id": "el_4c112a9283464d23",
+      "type": "seller",
+      "title": "Ssal&",
+      "subtitle": "RANCHO PALOS VERDES",
+      "description": "Korean cuisine featuring hot spicy ramen soups and noodle dishes. | Permitted MEHKO since 2026-02-25. LA County Record: PR0365687",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.765684377808,
+      "lng": -118.393766055617,
+      "ownerId": "user_5716c091637c5703",
+      "metadata": {
+        "userId": "user_5716c091637c5703",
+        "prospectId": "pros_ca78687a5951ce27"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_6ded3aa2aedd8578",
+      "type": "seller",
+      "title": "Sumth' N Delicious",
+      "subtitle": "PALMDALE",
+      "description": "Belizean and Jamaican Caribbean cuisine served in Palmdale. | Permitted MEHKO since 2024-12-20. LA County Record: PR0314063",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.601296663997,
+      "lng": -118.157942239426,
+      "ownerId": "user_cb7f983712548084",
+      "metadata": {
+        "userId": "user_cb7f983712548084",
+        "prospectId": "pros_13ee50b0ec9c57e9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_9e61407515cfe956",
+      "type": "seller",
+      "title": "Sup",
+      "subtitle": "LOS ANGELES",
+      "description": "Korean fusion chicken and sandwiches in Los Angeles. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327257",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.054175886915,
+      "lng": -118.307356289613,
+      "ownerId": "user_ab1e9e1aa020361a",
+      "metadata": {
+        "userId": "user_ab1e9e1aa020361a",
+        "prospectId": "pros_807e0da31cf70128"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_194bd07815a2513b",
+      "type": "seller",
+      "title": "Sweet Sticky Thangs",
+      "subtitle": "LOS ANGELES",
+      "description": "Homemade sweet and sticky dessert treats in Los Angeles. | Permitted MEHKO since 2025-02-06. LA County Record: PR0314734",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.016893318848,
+      "lng": -118.323304427574,
+      "ownerId": "user_c2756e0ac120166d",
+      "metadata": {
+        "userId": "user_c2756e0ac120166d",
+        "prospectId": "pros_9eaa79724decbe1a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://www.sweetstickythangs.com"
+    },
+    {
+      "id": "el_673b9ed8eda3a9b1",
+      "type": "seller",
+      "title": "Taco Legendz",
+      "subtitle": "DOWNEY",
+      "description": "Mexican taco spot serving classic tacos in Downey. | Permitted MEHKO since 2025-10-31. LA County Record: PR0326079",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.944135812894,
+      "lng": -118.146262781126,
+      "ownerId": "user_a9bd9e5dbea5dadd",
+      "metadata": {
+        "userId": "user_a9bd9e5dbea5dadd",
+        "prospectId": "pros_9a2f657b2def6bf9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://tacolegendz.square.site"
+    },
+    {
+      "id": "el_5f24f29b9a287ae1",
+      "type": "seller",
+      "title": "Tacos El Arbitro",
+      "subtitle": "ARLETA",
+      "description": "Mexican street food offering quesatacos, fish and chips, burritos, and quesadillas. | Permitted MEHKO since 2025-05-21. LA County Record: PR0317582 | Order online directly from the restaurant Tacos El Arbitro, browse the Tacos El Arbitro menu, or view Tacos El Arbitro hours.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.256691913911,
+      "lng": -118.442365684615,
+      "ownerId": "user_76b1dd28298c4b13",
+      "metadata": {
+        "userId": "user_76b1dd28298c4b13",
+        "prospectId": "pros_eef94a372ceb827c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z",
+      "externalOrderUrl": "https://tacoselarbitroca.com/"
+    },
+    {
+      "id": "el_3af240b8035e0e6c",
+      "type": "seller",
+      "title": "Tacos El Chino",
+      "subtitle": "LANCASTER",
+      "description": "Tijuana-style tacos, burritos, mulitas, and quesadillas in Lancaster. | Permitted MEHKO since 2025-10-30. LA County Record: PR0326072",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.660188779933,
+      "lng": -118.213470402587,
+      "ownerId": "user_757b60f34eee703c",
+      "metadata": {
+        "userId": "user_757b60f34eee703c",
+        "prospectId": "pros_5fdf8fff262259b0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_8b3695949aaa1161",
+      "type": "seller",
+      "title": "Tacos El Pariente De Maza",
+      "subtitle": "COMPTON",
+      "description": "Mazatlán Sinaloa-style tacos served in Compton. | Permitted MEHKO since 2026-01-29. LA County Record: PR0328452",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.902411224973,
+      "lng": -118.193730139691,
+      "ownerId": "user_c3be75b1d8d85fe3",
+      "metadata": {
+        "userId": "user_c3be75b1d8d85fe3",
+        "prospectId": "pros_ef9c0c0b10d39dc9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_7ffb67335bd49885",
+      "type": "seller",
+      "title": "Tao'S Kitchen",
+      "subtitle": "ROSEMEAD",
+      "description": "Vietnamese comfort food kitchen known for quality pho in Rosemead. | Permitted MEHKO since 2025-06-27. LA County Record: PR0318387",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.065162655198,
+      "lng": -118.10241447343,
+      "ownerId": "user_ac6ae606420f3381",
+      "metadata": {
+        "userId": "user_ac6ae606420f3381",
+        "prospectId": "pros_c2e9ed8ebdedfddf"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_88a41e86d3c4acfc",
+      "type": "seller",
+      "title": "Taurouxs Smash Burgers",
+      "subtitle": "WHITTIER",
+      "description": "Smash burgers made with grass-fed beef on toasted potato buns. | Permitted MEHKO since 2025-06-10. LA County Record: PR0318032",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.009180431758,
+      "lng": -118.061634779652,
+      "ownerId": "user_cd8b758517055c60",
+      "metadata": {
+        "userId": "user_cd8b758517055c60",
+        "prospectId": "pros_5d85e5ef2d8e1853"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.305Z"
+    },
+    {
+      "id": "el_b9441a240474fc1a",
+      "type": "seller",
+      "title": "Tequetable",
+      "subtitle": "LOS ANGELES",
+      "description": "South American flavors from Venezuela and Brazil in Playa Vista. | Permitted MEHKO since 2024-12-17. LA County Record: PR0313959",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.978491597936,
+      "lng": -118.411930359568,
+      "ownerId": "user_eb2b27ca269da0e4",
+      "metadata": {
+        "userId": "user_eb2b27ca269da0e4",
+        "prospectId": "pros_f613638e3d4f76ce"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_8fed03f0a6d28325",
+      "type": "seller",
+      "title": "Terra Table",
+      "subtitle": "GLENDALE",
+      "description": "Fresh Mediterranean and Persian dishes including koobideh in Glendale. | Permitted MEHKO since 2026-02-18. LA County Record: PR0365327",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.175456058845,
+      "lng": -118.260045934331,
+      "ownerId": "user_74b643934878c6a0",
+      "metadata": {
+        "userId": "user_74b643934878c6a0",
+        "prospectId": "pros_e24b5911ef720f6e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_7dfb0be8dc77cdfe",
+      "type": "seller",
+      "title": "Thai Rama Kitchen",
+      "subtitle": "GLENDALE",
+      "description": "Thai cuisine prepared from a home kitchen in Glendale. | Permitted MEHKO since 2025-03-19. LA County Record: PR0315545",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.160980490552,
+      "lng": -118.271456457227,
+      "ownerId": "user_c36087d46dcaef39",
+      "metadata": {
+        "userId": "user_c36087d46dcaef39",
+        "prospectId": "pros_72f773c36d3ea5b9"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_08a07298cee2aade",
+      "type": "seller",
+      "title": "The Apron Guild",
+      "subtitle": "STUDIO CITY",
+      "description": "Gourmet home kitchen offering curated culinary creations in Studio City. | Permitted MEHKO since 2025-04-01. LA County Record: PR0315845",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.142946524442,
+      "lng": -118.408919071346,
+      "ownerId": "user_d0f39168056ac655",
+      "metadata": {
+        "userId": "user_d0f39168056ac655",
+        "prospectId": "pros_7abb38c4d51e0958"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_eb1d296a5dd3a6a9",
+      "type": "seller",
+      "title": "The Best Kosher Burger",
+      "subtitle": "LOS ANGELES",
+      "description": "Kosher smash burgers with specialty sauces in Los Angeles. | Permitted MEHKO since 2025-08-07. LA County Record: PR0319570",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.044452419668,
+      "lng": -118.341236558876,
+      "ownerId": "user_a4373f4f5e61660e",
+      "metadata": {
+        "userId": "user_a4373f4f5e61660e",
+        "prospectId": "pros_ebe5791114c67f22"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_08491eee636d77e5",
+      "type": "seller",
+      "title": "The Ernest Elixirs Corpora",
+      "subtitle": "LOS ANGELES",
+      "description": "Craft elixir and beverage company based in Los Angeles.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.106608076417,
+      "lng": -118.275659583666,
+      "ownerId": "user_02959c0d84cec4dd",
+      "metadata": {
+        "userId": "user_02959c0d84cec4dd",
+        "prospectId": "pros_e71c92270a01bece"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_585415d2fa947287",
+      "type": "seller",
+      "title": "The Hearty Home Company",
+      "subtitle": "WEST HILLS",
+      "description": "Hearty homestyle comfort meals from a West Hills home kitchen. | Permitted MEHKO since 2025-12-30. LA County Record: PR0327551",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.212932132561,
+      "lng": -118.634704519446,
+      "ownerId": "user_985ef4bca032d2a7",
+      "metadata": {
+        "userId": "user_985ef4bca032d2a7",
+        "prospectId": "pros_9395f6c41e8bc13b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_4ee50203e46696bd",
+      "type": "seller",
+      "title": "The Herbitage Table",
+      "subtitle": "LOS ANGELES",
+      "description": "Hyper-seasonal, locally sourced dishes with a focus on sustainability and fresh ingredients. | Permitted MEHKO since 2026-01-07. LA County Record: PR0327781",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.063243090214,
+      "lng": -118.441408372116,
+      "ownerId": "user_19c73dd34420794a",
+      "metadata": {
+        "userId": "user_19c73dd34420794a",
+        "prospectId": "pros_b6519f185a6f59f7"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_ecb8fcdd1094b931",
+      "type": "seller",
+      "title": "The Kebab Mob",
+      "subtitle": "PALMDALE",
+      "description": "Grilled kebabs with chicken, beef, pork belly, salmon, hummus, rice, and salads. | Permitted MEHKO since 2025-01-23. LA County Record: PR0314515 | Skip to content Order Now MenuBlog Welcome to The Kebab Mob order now curbside pick-up and carry out now available EXPERIENCE since 1988 Wonderful dining experience & food. Welcome to The Kebab Mob, your go-to backyard spot for delicious charcoal-grilled kebabs! With 15 years of restaurant industry ",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.601357497673,
+      "lng": -118.192051113559,
+      "ownerId": "user_7b4b57cf090a32fb",
+      "metadata": {
+        "userId": "user_7b4b57cf090a32fb",
+        "prospectId": "pros_d3612c1bf9dffd18"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://thekebabmob.com/"
+    },
+    {
+      "id": "el_9bae261ca9fe22f4",
+      "type": "seller",
+      "title": "The Mini Bites Company",
+      "subtitle": "LOS ANGELES",
+      "description": "Small bite-sized foods likely for events and catering occasions. | Permitted MEHKO since 2025-09-16. LA County Record: PR0324287",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.09021159218,
+      "lng": -118.231630578819,
+      "ownerId": "user_4e3936825179b828",
+      "metadata": {
+        "userId": "user_4e3936825179b828",
+        "prospectId": "pros_477ee7878dc26549"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_531d6839b2e6c039",
+      "type": "seller",
+      "title": "The Ocean'S Table",
+      "subtitle": "REDONDO BEACH",
+      "description": "Home kitchen offering seafood-focused dishes in Redondo Beach. | Permitted MEHKO since 2025-04-30. LA County Record: PR0317082",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.835495190613,
+      "lng": -118.389146520631,
+      "ownerId": "user_793e3cea67664a97",
+      "metadata": {
+        "userId": "user_793e3cea67664a97",
+        "prospectId": "pros_fce4a74855c20751"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_db6221ee368fd376",
+      "type": "seller",
+      "title": "The Pastry Song",
+      "subtitle": "HACIENDA HEIGHTS",
+      "description": "Home bakery specializing in pastries and baked treats. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314608",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.997324976345,
+      "lng": -117.939483953649,
+      "ownerId": "user_4dd72758b0b9cb98",
+      "metadata": {
+        "userId": "user_4dd72758b0b9cb98",
+        "prospectId": "pros_90be82fb7cd78605"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_2c5166cfdc23b8ea",
+      "type": "seller",
+      "title": "The Patio",
+      "subtitle": "COMPTON",
+      "description": "Home kitchen in Compton offering comfort food and patio-style dining. | Permitted MEHKO since 2025-09-17. LA County Record: PR0324321",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.904514009692,
+      "lng": -118.253022211456,
+      "ownerId": "user_5067ac0e3167bda3",
+      "metadata": {
+        "userId": "user_5067ac0e3167bda3",
+        "prospectId": "pros_73acf04e50b71a2e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_673940e7fc151552",
+      "type": "seller",
+      "title": "The Smokey Sermon",
+      "subtitle": "SUNLAND",
+      "description": "Smoked and barbecued meats crafted with a signature smokey style. | Permitted MEHKO since 2025-12-16. LA County Record: PR0327264",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.263281732899,
+      "lng": -118.312310955192,
+      "ownerId": "user_e22cedfc624a6da4",
+      "metadata": {
+        "userId": "user_e22cedfc624a6da4",
+        "prospectId": "pros_914980b0724e1b16"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_5891d6f0219fa92e",
+      "type": "seller",
+      "title": "The Sweet Mexicraft",
+      "subtitle": "LOS ANGELES",
+      "description": "Mexican-inspired sweet treats and artisan confections. | Permitted MEHKO since 2025-12-30. LA County Record: PR0327583",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.01352755827,
+      "lng": -118.139372274114,
+      "ownerId": "user_614c03b9f22c6366",
+      "metadata": {
+        "userId": "user_614c03b9f22c6366",
+        "prospectId": "pros_10168b665b053529"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_d93584a216f34048",
+      "type": "seller",
+      "title": "The Tamale Shoppe",
+      "subtitle": "LOS ANGELES",
+      "description": "Handmade tamales daily using a family recipe since 1975. | Permitted MEHKO since 2025-04-30. LA County Record: PR0317086 | CATERING & DELIVERY Makin' Tamales Since 1975PHX. x DTLA ORDER INQUIRY",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.115763319164,
+      "lng": -118.184172652965,
+      "ownerId": "user_0e31320b13295800",
+      "metadata": {
+        "userId": "user_0e31320b13295800",
+        "prospectId": "pros_03ac305478e16b27"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://www.thetamaleshoppe.com/"
+    },
+    {
+      "id": "el_091e2081e7efead5",
+      "type": "seller",
+      "title": "Three Monsters Kitchen &",
+      "subtitle": "TORRANCE",
+      "description": "Home kitchen in Torrance serving comfort dishes with a casually classy vibe.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.819068709847,
+      "lng": -118.302503205234,
+      "ownerId": "user_257700a1c00c6436",
+      "metadata": {
+        "userId": "user_257700a1c00c6436",
+        "prospectId": "pros_b1bf760ea6b01788"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_9416e97e96b54590",
+      "type": "seller",
+      "title": "Ting'S Kitchen",
+      "subtitle": "HACIENDA HEIGHTS",
+      "description": "Home kitchen in Hacienda Heights serving homestyle Chinese dishes. | Permitted MEHKO since 2025-09-09. LA County Record: PR0323969",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.005422663582,
+      "lng": -117.954469813295,
+      "ownerId": "user_6a148ff644f8dc91",
+      "metadata": {
+        "userId": "user_6a148ff644f8dc91",
+        "prospectId": "pros_ff60af16e0e59f43"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_67370d9baf59ebed",
+      "type": "seller",
+      "title": "Tl Tiny Treats",
+      "subtitle": "EL MONTE",
+      "description": "Small-batch tiny treats and sweet confections from El Monte. | Permitted MEHKO since 2025-02-12. LA County Record: PR0314858",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.067285714393,
+      "lng": -118.022934111743,
+      "ownerId": "user_28669b4328ae680e",
+      "metadata": {
+        "userId": "user_28669b4328ae680e",
+        "prospectId": "pros_15caaebe92464ed8"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_12f95068d716db05",
+      "type": "seller",
+      "title": "Toasted Sugar Bakery",
+      "subtitle": "GARDENA",
+      "description": "Home bakery in Gardena specializing in baked goods and sugar treats. | Permitted MEHKO since 2025-12-04. LA County Record: PR0326887 | top of pageCatering ServicesAboutContact UsConnect on SocialHoliday Menu 2025Party PlattersMoreUse tab to navigate through the menu items.Enter © 2023 Toasted Sugar, INC. All Rights Reserved. bottom of page",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.895452610175,
+      "lng": -118.302508609899,
+      "ownerId": "user_dfcbb20137798b4a",
+      "metadata": {
+        "userId": "user_dfcbb20137798b4a",
+        "prospectId": "pros_4b0e4db9bdcfac7e"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://www.toastedsugarbakery.com/"
+    },
+    {
+      "id": "el_82be7144b37db3c2",
+      "type": "seller",
+      "title": "True Form",
+      "subtitle": "LOS ANGELES",
+      "description": "Health-conscious meals made with fresh ingredients and mindful nutrition. | Permitted MEHKO since 2024-11-15. LA County Record: PR0313525",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.09339782002,
+      "lng": -118.342876581702,
+      "ownerId": "user_d7c59647376afbd3",
+      "metadata": {
+        "userId": "user_d7c59647376afbd3",
+        "prospectId": "pros_ed5db7196d98bbaf"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_8eb44abbb3c29d42",
+      "type": "seller",
+      "title": "U.s. Xiafei Tiandi Education",
+      "subtitle": "HACIENDA HEIGHTS",
+      "description": "Chinese home kitchen and culinary education business in Hacienda Heights.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.011795838403,
+      "lng": -117.96058763132,
+      "ownerId": "user_e1c3c321de37ceda",
+      "metadata": {
+        "userId": "user_e1c3c321de37ceda",
+        "prospectId": "pros_48a57b42a641d96a"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_6f118bd057736f78",
+      "type": "seller",
+      "title": "Vegan Got Soul!",
+      "subtitle": "CULVER CITY",
+      "description": "Vegan soul food restaurant offering plant-based comfort dishes in Culver City. | Permitted MEHKO since 2026-02-25. LA County Record: PR0365710 | We Do Down Home Cooking from Around the World!\n",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.980878065537,
+      "lng": -118.385247085022,
+      "ownerId": "user_013d35f1e631f71c",
+      "metadata": {
+        "userId": "user_013d35f1e631f71c",
+        "prospectId": "pros_173661198ccd98dc"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://sites.google.com/mail.csuchico.edu/vegangotsoul/home"
+    },
+    {
+      "id": "el_7bd4b4cc9e4db088",
+      "type": "seller",
+      "title": "Veggie Y Que",
+      "subtitle": "WHITTIER",
+      "description": "Vegetarian and vegan Mexican-inspired dishes served in Whittier. | Permitted MEHKO since 2025-04-01. LA County Record: PR0315822 | Welcome to Veggie y Qué, the FIRST Permitted Home Restaurant in Whittier! I'm passionate about creating delicious, scratch-made vegan Mexican cuisine that brings the vibrant flavors of Mexico to your table. Each dish is crafted with love, using fresh ingredients to ensure every bite is bursting with flavor and nutrition.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.997471296445,
+      "lng": -118.065326927731,
+      "ownerId": "user_43281684d73a54ac",
+      "metadata": {
+        "userId": "user_43281684d73a54ac",
+        "prospectId": "pros_2534286b125d9791"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://www.hotplate.com/veggieyque/323e5dcc-df5d-4881-8947-39c1238f9c4b"
+    },
+    {
+      "id": "el_e74aeebd09854c86",
+      "type": "seller",
+      "title": "Vendittis Pizza",
+      "subtitle": "STEVENSON RANCH",
+      "description": "Home kitchen serving pizza and Italian-style dishes in Stevenson Ranch. | Permitted MEHKO since 2024-11-06. LA County Record: PR0313244",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.380146304675,
+      "lng": -118.585113308905,
+      "ownerId": "user_0b52b62ea1eb73f1",
+      "metadata": {
+        "userId": "user_0b52b62ea1eb73f1",
+        "prospectId": "pros_4fe11ab462737dd0"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_888e81976911d803",
+      "type": "seller",
+      "title": "Vida Kitchen",
+      "subtitle": "LOMITA",
+      "description": "Culinary fusion rooted in heritage with bold flavors and shared moments. | Permitted MEHKO since 2025-02-12. LA County Record: PR0314864 | Experience fusion of Middle Eastern and Latin American flavors at Vida Kitchen in Lomita. Enjoy curated dining, artistic workshops, and private events in a warm, inviting setting.",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.784485820729,
+      "lng": -118.313729796645,
+      "ownerId": "user_38018b81137fe15b",
+      "metadata": {
+        "userId": "user_38018b81137fe15b",
+        "prospectId": "pros_41ada665b414fa69"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://vida.kitchen/"
+    },
+    {
+      "id": "el_64d6d1d7beb599d4",
+      "type": "seller",
+      "title": "Village Gate",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen business in Los Angeles with unspecified cuisine. | Permitted MEHKO since 2025-09-26. LA County Record: PR0324634",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.974514860226,
+      "lng": -118.30285967623,
+      "ownerId": "user_8fe477d7f0dca1ca",
+      "metadata": {
+        "userId": "user_8fe477d7f0dca1ca",
+        "prospectId": "pros_d8b24f2d34d298ea"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_91c1886ca6dced49",
+      "type": "seller",
+      "title": "Voodi'S Kitchen",
+      "subtitle": "WOODLAND HILLS",
+      "description": "Home kitchen in Woodland Hills serving homestyle comfort dishes. | Permitted MEHKO since 2025-10-03. LA County Record: PR0324968",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.177572616206,
+      "lng": -118.658419410085,
+      "ownerId": "user_e8e0424c8bacce16",
+      "metadata": {
+        "userId": "user_e8e0424c8bacce16",
+        "prospectId": "pros_07362c2c0643fb40"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_4e31aedcaa0693eb",
+      "type": "seller",
+      "title": "Wait Wait Wait",
+      "subtitle": "HACIENDA HEIGHTS",
+      "description": "Asian home kitchen in Hacienda Heights serving Chinese-style dishes. | Permitted MEHKO since 2025-06-25. LA County Record: PR0318347",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.998072497673,
+      "lng": -117.961865940626,
+      "ownerId": "user_6a5f5b4e07051f92",
+      "metadata": {
+        "userId": "user_6a5f5b4e07051f92",
+        "prospectId": "pros_2ef719059333024b"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_e7d528b384e187bb",
+      "type": "seller",
+      "title": "Wraps-To-Gomeztrejo",
+      "subtitle": "MONROVIA",
+      "description": "First MEHKO in San Gabriel Valley specializing in wraps and to-go meals. | Permitted MEHKO since 2024-11-22. LA County Record: PR0313636 | Hello, and welcome to WRAPS~TO~GOmeztrejo. My name is Richard Gomeztrejo and I'd like to introduce myself and my food to you. I make \ngourmet wraps and sliders from my home kitchen, to provide you with a \ntasty and a bit healthier alternative to fast food. \n\nMy company is part of a newly formed",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.157600501269,
+      "lng": -117.998865079123,
+      "ownerId": "user_da958316e5457ab6",
+      "metadata": {
+        "userId": "user_da958316e5457ab6",
+        "prospectId": "pros_6c40212f40eb2d77"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z",
+      "externalOrderUrl": "https://sites.google.com/view/wraps-to-gomeztrejo/home"
+    },
+    {
+      "id": "el_3e82b726b0f3925b",
+      "type": "seller",
+      "title": "Wurst Barbeque",
+      "subtitle": "LOS ANGELES",
+      "description": "Barbecue home kitchen specializing in wurst-style grilled sausages and meats. | Permitted MEHKO since 2025-08-21. LA County Record: PR0319981",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.13058103692,
+      "lng": -118.224430879529,
+      "ownerId": "user_561c1c3ee1407713",
+      "metadata": {
+        "userId": "user_561c1c3ee1407713",
+        "prospectId": "pros_6317198e0d555a4c"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_998a018fe646ac2e",
+      "type": "seller",
+      "title": "Yana'S Ladas",
+      "subtitle": "LOS ANGELES",
+      "description": "Home kitchen serving ladas and Latin American-inspired dishes in Los Angeles. | Permitted MEHKO since 2025-05-07. LA County Record: PR0317314",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 33.959748905482,
+      "lng": -118.24187885986,
+      "ownerId": "user_8ac4137581d81452",
+      "metadata": {
+        "userId": "user_8ac4137581d81452",
+        "prospectId": "pros_f659f0b6105f6db3"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_33a1d271ac73afa1",
+      "type": "seller",
+      "title": "Yang'S Family Kitchen",
+      "subtitle": "POMONA",
+      "description": "Family-run home kitchen in Pomona serving homestyle Chinese food. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314592",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.037894484304,
+      "lng": -117.787897819084,
+      "ownerId": "user_72217fb0ea360d41",
+      "metadata": {
+        "userId": "user_72217fb0ea360d41",
+        "prospectId": "pros_d4e2f697e22c4c9d"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_f061fed7c19708cb",
+      "type": "seller",
+      "title": "Yu'S Kitchen",
+      "subtitle": "SAN GABRIEL",
+      "description": "Home kitchen in San Gabriel serving homestyle Chinese cuisine. | Permitted MEHKO since 2025-10-09. LA County Record: PR0325227",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.081550289357,
+      "lng": -118.097351657218,
+      "ownerId": "user_a05b8cf2657dda61",
+      "metadata": {
+        "userId": "user_a05b8cf2657dda61",
+        "prospectId": "pros_c8966846b00fcac6"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    },
+    {
+      "id": "el_cc652cab31952adf",
+      "type": "seller",
+      "title": "Yue Yummy Kitchen",
+      "subtitle": "WEST COVINA",
+      "description": "Asian home kitchen offering variety of dishes from soup broths to stir-fry. | Permitted MEHKO since 2025-02-12. LA County Record: PR0314854",
+      "imageUrl": "",
+      "icon": "🏪",
+      "lat": 34.059004420156,
+      "lng": -117.911370442465,
+      "ownerId": "user_4dc715ad773a7feb",
+      "metadata": {
+        "userId": "user_4dc715ad773a7feb",
+        "prospectId": "pros_7637ea649c3a0950"
+      },
+      "online": true,
+      "active": true,
+      "createdAt": "2026-03-26T05:03:02.306Z"
+    }
+  ]
+}

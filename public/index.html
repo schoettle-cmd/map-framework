@@ -6,34 +6,112 @@
   <title>Cottage — Homemade Goods Near You</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&q=80">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1486427944544-d2c246c4df14?w=1920&q=80">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
-    :root { --accent: #ea580c; --accent-light: #fb923c; --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; --warm: #fef3c7; }
+    :root { --accent: #ea580c; --accent-light: #fb923c; --bg: #0a0a0f; --card: #12121a; --border: #1e1e2e; --text: #f0f0ff; --muted: #6b6b8a; --warm: #fef3c7; --dim: #a0a0c0; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
 
     /* ── Hero ── */
     .hero {
-      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 40px 24px; text-align: center; position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 600px 400px at 30% 30%, rgba(234,88,12,0.1) 0%, transparent 70%),
-        radial-gradient(ellipse 500px 500px at 70% 60%, rgba(251,146,60,0.06) 0%, transparent 70%),
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px),
-        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px);
-      pointer-events: none;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 520px; width: 100%; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      animation: kenburns 20s ease-in-out infinite alternate;
+      will-change: opacity, transform;
+    }
+
+    .hero-bg-img.active {
+      opacity: 1;
+    }
+
+    .hero-bg-img:nth-child(2) { animation-delay: -3s; }
+    .hero-bg-img:nth-child(3) { animation-delay: -6s; }
+    .hero-bg-img:nth-child(4) { animation-delay: -9s; }
+    .hero-bg-img:nth-child(5) { animation-delay: -12s; }
+    .hero-bg-img:nth-child(6) { animation-delay: -15s; }
+    .hero-bg-img:nth-child(7) { animation-delay: -18s; }
+    .hero-bg-img:nth-child(8) { animation-delay: -1s; }
+
+    @keyframes kenburns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 15, 0.7) 0%,
+        rgba(10, 10, 15, 0.5) 40%,
+        rgba(10, 10, 15, 0.8) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .hero-dots {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+
+    .hero-dot.active {
+      background: var(--accent);
+      width: 24px;
+      border-radius: 4px;
+    }
+
     .hero-icon { font-size: 56px; margin-bottom: 16px; display: block; }
     .logo { font-size: 52px; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 12px; line-height: 1.1; }
     .logo span { color: var(--accent); }
-    .tagline { font-size: 20px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
-    .sub-tagline { font-size: 14px; color: #4a4a6a; margin-bottom: 44px; line-height: 1.5; }
+    .tagline { font-size: 20px; color: rgba(240,240,255,0.85); margin-bottom: 12px; line-height: 1.5; }
+    .sub-tagline { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 44px; line-height: 1.5; }
 
     .cta-stack { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 380px; margin: 0 auto; }
     .cta-btn {
@@ -43,19 +121,50 @@
       border: none; font-family: inherit; transition: all 0.2s; text-decoration: none;
     }
     .cta-browse { background: var(--accent); color: #fff; }
-    .cta-browse:hover { filter: brightness(1.15); }
+    .cta-browse:hover { filter: brightness(1.15); transform: translateY(-1px); }
     .cta-google { background: #fff; color: #333; }
-    .cta-google:hover { background: #f0f0f0; }
+    .cta-google:hover { background: #f0f0f0; transform: translateY(-1px); }
     .cta-google svg { width: 20px; height: 20px; }
-    .cta-phone { background: rgba(255,255,255,0.06); color: var(--text); border: 1px solid var(--border); }
-    .cta-phone:hover { background: rgba(255,255,255,0.1); }
+    .cta-phone { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+    .cta-phone:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
     .cta-seller { background: transparent; color: var(--accent-light); border: 1px solid rgba(234,88,12,0.3); margin-top: 4px; font-size: 14px; }
-    .cta-seller:hover { background: rgba(234,88,12,0.08); }
+    .cta-seller:hover { background: rgba(234,88,12,0.08); transform: translateY(-1px); }
 
-    .legal-note { font-size: 12px; color: #4a4a6a; margin-top: 24px; line-height: 1.6; }
-    .legal-note a { color: var(--muted); text-decoration: none; }
+    .legal-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 24px; line-height: 1.6; }
+    .legal-note a { color: rgba(255,255,255,0.45); text-decoration: none; }
     .legal-note a:hover { text-decoration: underline; }
     #google-btn-hidden { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; overflow: hidden; }
+
+    /* ── Featured Products ── */
+    .featured { padding: 80px 24px 0; max-width: 960px; margin: 0 auto; }
+    .featured h2 { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .featured-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 40px; }
+    .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .product-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      overflow: hidden; transition: all 0.25s; cursor: pointer;
+    }
+    .product-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(234,88,12,0.1); }
+    .product-img {
+      width: 100%; height: 160px; object-fit: cover;
+      background: #1a1a28;
+    }
+    .product-info { padding: 16px; }
+    .product-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-seller { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .product-price { font-size: 16px; font-weight: 800; color: var(--accent-light); }
+    .product-card-placeholder {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      overflow: hidden; min-height: 240px;
+      display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 14px;
+    }
+
+    /* ── Stats Counter ── */
+    .stats-section { padding: 60px 24px; max-width: 720px; margin: 0 auto; }
+    .stats-grid { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 42px; font-weight: 900; color: var(--accent); letter-spacing: -0.03em; }
+    .stat-label { font-size: 14px; color: var(--muted); margin-top: 4px; font-weight: 500; }
 
     /* ── Categories ── */
     .categories { padding: 64px 24px 0; max-width: 720px; margin: 0 auto; }
@@ -100,7 +209,7 @@
       padding: 32px 28px; text-align: center;
     }
     .info-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--accent-light); }
-    .info-card p { font-size: 14px; color: var(--dim, #a0a0c0); line-height: 1.7; margin-bottom: 12px; }
+    .info-card p { font-size: 14px; color: var(--dim); line-height: 1.7; margin-bottom: 12px; }
     .info-card a { color: var(--accent-light); text-decoration: none; font-weight: 600; font-size: 14px; }
     .info-card a:hover { text-decoration: underline; }
 
@@ -108,7 +217,7 @@
     .seller-cta { padding: 0 24px 80px; max-width: 720px; margin: 0 auto; }
     .seller-cta-card { background: linear-gradient(135deg, rgba(234,88,12,0.08) 0%, rgba(234,88,12,0.02) 100%); border: 1px solid rgba(234,88,12,0.2); border-radius: 20px; padding: 48px 32px; text-align: center; }
     .seller-cta-card h2 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
-    .seller-cta-card p { font-size: 15px; color: var(--dim, #a0a0c0); line-height: 1.6; max-width: 500px; margin: 0 auto; }
+    .seller-cta-card p { font-size: 15px; color: var(--dim); line-height: 1.6; max-width: 500px; margin: 0 auto; }
 
     /* ── Footer ── */
     footer {
@@ -168,11 +277,34 @@
     .auth-link:hover { color: var(--accent); }
     .auth-error { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 11px 14px; color: #f87171; font-size: 13px; margin-bottom: 14px; display: none; }
     .auth-success { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 10px; padding: 11px 14px; color: #10b981; font-size: 13px; margin-bottom: 14px; display: none; }
+
+    /* ── Animated counter ── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .logo { font-size: 42px; }
+      .tagline { font-size: 18px; }
+      .hero-content { padding: 30px 20px; }
+      .stats-grid { gap: 32px; }
+      .stat-number { font-size: 34px; }
+      .featured-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .product-img { height: 120px; }
+    }
   </style>
 </head>
 <body>
 
   <section class="hero">
+    <div class="hero-bg" id="hero-bg">
+      <!-- Background images injected by JS -->
+    </div>
+    <div class="hero-overlay"></div>
+
     <div class="hero-content">
       <span class="hero-icon">🍞</span>
       <h1 class="logo" id="hero-logo">Cot<span>tage</span></h1>
@@ -201,7 +333,37 @@
         By continuing, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>
       </p>
     </div>
+
+    <div class="hero-dots" id="hero-dots">
+      <!-- Dots injected by JS -->
+    </div>
+
     <div id="google-btn-hidden"></div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured" id="featured-section" style="display:none">
+    <h2>Fresh from the kitchen</h2>
+    <p class="featured-sub">See what your neighbors are baking today</p>
+    <div class="featured-grid" id="featured-grid"></div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="10">0</div>
+        <div class="stat-label">Verified Sellers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="50">0</div>
+        <div class="stat-label">Homemade Products</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="5">0</div>
+        <div class="stat-label">Neighborhoods</div>
+      </div>
+    </div>
   </section>
 
   <section class="categories">
@@ -340,6 +502,122 @@
   </div>
 
 <script>
+// ── Hero Image Carousel ──
+const heroImages = [
+  'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1920&q=80',
+  'https://images.unsplash.com/photo-1486427944544-d2c246c4df14?w=1920&q=80',
+  'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1920&q=80',
+  'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=1920&q=80',
+  'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=1920&q=80',
+  'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=1920&q=80',
+  'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=1920&q=80',
+  'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=1920&q=80',
+];
+
+// Preload first 2 images for fast initial paint
+heroImages.slice(0, 2).forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
+// Build hero background slides and dots
+const heroBg = document.getElementById('hero-bg');
+const heroDots = document.getElementById('hero-dots');
+
+heroImages.forEach((src, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'hero-bg-img' + (i === 0 ? ' active' : '');
+  slide.style.backgroundImage = `url(${src})`;
+  heroBg.appendChild(slide);
+
+  const dot = document.createElement('button');
+  dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+  dot.setAttribute('aria-label', `Slide ${i + 1}`);
+  dot.addEventListener('click', () => showSlide(i));
+  heroDots.appendChild(dot);
+});
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-bg-img');
+const dots = document.querySelectorAll('.hero-dot');
+
+function showSlide(n) {
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  currentSlide = ((n % slides.length) + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+setInterval(() => showSlide(currentSlide + 1), 5000);
+
+// ── Animated Stat Counters ──
+function animateCounters() {
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  counters.forEach(counter => {
+    const target = parseInt(counter.dataset.target);
+    const duration = 1200;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = Math.round(ease * target) + '+';
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+}
+
+// Trigger counters when section scrolls into view
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounters();
+      statsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const statsSection = document.querySelector('.stats-section');
+if (statsSection) statsObserver.observe(statsSection);
+
+// ── Featured Products ──
+async function loadFeatured() {
+  try {
+    const res = await fetch('/api/products');
+    const data = await res.json();
+    if (!data.products || !data.products.length) return;
+
+    const section = document.getElementById('featured-section');
+    const grid = document.getElementById('featured-grid');
+    // Pick up to 4 random products
+    const shuffled = data.products.sort(() => 0.5 - Math.random()).slice(0, 4);
+
+    shuffled.forEach(p => {
+      const card = document.createElement('a');
+      card.href = '/map';
+      card.className = 'product-card';
+      card.style.textDecoration = 'none';
+      card.style.color = 'inherit';
+      card.innerHTML = `
+        <img class="product-img" src="${p.image || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%231a1a28%22 width=%221%22 height=%221%22/></svg>'}" alt="${p.name || ''}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%231a1a28%22 width=%221%22 height=%221%22/></svg>'">
+        <div class="product-info">
+          <div class="product-name">${p.name || 'Homemade Good'}</div>
+          <div class="product-seller">${p.sellerName || p.seller || 'Local Baker'}</div>
+          <div class="product-price">$${(p.price || 0).toFixed(2)}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    section.style.display = 'block';
+  } catch (e) {
+    // Silently fail — featured section stays hidden
+  }
+}
+loadFeatured();
+
+// ── Auth & Config (unchanged) ──
 let CFG = {}; let sentPhone = '';
 async function init() {
   try { CFG = await (await fetch('/api/config')).json(); } catch(e) { CFG = {}; }

@@ -351,6 +351,44 @@
     .toast.success { border-color: rgba(34,197,94,0.3); }
     .toast.error { border-color: rgba(239,68,68,0.3); }
 
+    /* ── Bulk Action Bar ── */
+    .bulk-bar {
+      position: fixed; bottom: 0; left: 220px; right: 0; z-index: 100;
+      background: var(--card); border-top: 2px solid var(--accent);
+      padding: 14px 28px; display: none; align-items: center; gap: 14px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+    }
+    .bulk-bar.visible { display: flex; }
+    .bulk-bar-count {
+      font-size: 14px; font-weight: 700; color: var(--accent-light);
+      margin-right: auto;
+    }
+    @media (max-width: 900px) {
+      .bulk-bar { left: 0; }
+    }
+
+    /* ── Contact Cell ── */
+    .contact-cell a {
+      color: var(--accent-light); text-decoration: none; font-size: 12px;
+      display: block; line-height: 1.6;
+    }
+    .contact-cell a:hover { text-decoration: underline; }
+
+    /* ── Checkbox Styling ── */
+    .row-checkbox {
+      width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer;
+    }
+
+    /* ── Make All Live Button ── */
+    .btn-make-all-live {
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #fff; font-weight: 800; font-size: 13px;
+      padding: 10px 20px; border-radius: 10px; border: none;
+      cursor: pointer; font-family: inherit; transition: all 0.15s;
+    }
+    .btn-make-all-live:hover { filter: brightness(1.15); }
+    .btn-make-all-live:disabled { opacity: 0.5; cursor: not-allowed; }
+
     /* ── Mobile Overlay ── */
     .sidebar-overlay {
       display: none; position: fixed; inset: 0;
@@ -417,6 +455,9 @@
       </button>
       <button class="nav-item" data-section="sellers" onclick="showSection('sellers')">
         <span class="nav-icon">&#127978;</span> Sellers
+      </button>
+      <button class="nav-item" data-section="listings" onclick="showSection('listings')">
+        <span class="nav-icon">&#128205;</span> Listings
       </button>
       <button class="nav-item" data-section="prospects" onclick="showSection('prospects')">
         <span class="nav-icon">&#127793;</span> Prospects
@@ -506,6 +547,45 @@
         </div>
       </div>
 
+      <!-- ═══════ LISTINGS ═══════ -->
+      <div class="section" id="sec-listings">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+          <div>
+            <div style="font-size:16px;font-weight:700;">Map Listings</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">All live map elements</div>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <div class="table-header">
+            <div class="table-title">Listings</div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <select class="filter-select" id="listingStatusFilter" onchange="searchListings()">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+              <select class="filter-select" id="listingCuisineFilter" onchange="searchListings()">
+                <option value="">All Cuisines</option>
+              </select>
+              <input type="text" class="search-input" id="listingSearch" placeholder="Search listings..." oninput="searchListings()">
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th style="width:36px"><input type="checkbox" class="row-checkbox" id="listingSelectAll" onchange="toggleSelectAll('listings')"></th><th>Name</th><th>Neighborhood</th><th>Cuisine</th><th>Email / Contact</th><th>Website</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="listingsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Listing Bulk Action Bar -->
+      <div class="bulk-bar" id="listingBulkBar">
+        <div class="bulk-bar-count"><span id="listingBulkCount">0</span> selected</div>
+        <button class="btn btn-danger" onclick="bulkRemoveListings()">Remove Selected</button>
+        <button class="btn btn-success" onclick="bulkRestoreListings()">Restore Selected</button>
+      </div>
+
       <!-- ═══════ PROSPECTS ═══════ -->
       <div class="section" id="sec-prospects">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
@@ -513,7 +593,8 @@
             <div style="font-size:16px;font-weight:700;">Prospect Pipeline</div>
             <div style="font-size:13px;color:var(--muted);margin-top:2px;">Scraped and imported seller leads</div>
           </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+            <button class="btn-make-all-live" onclick="bulkMakeAllLive()" title="Convert all prospects with coordinates to live map listings">Make All Live</button>
             <button class="btn btn-accent" onclick="openProspectModal()">Add Prospect</button>
             <button class="btn btn-outline" onclick="openImportModal()">Import CSV</button>
             <button class="btn btn-outline" onclick="openScrapeModal()">Scrape Now</button>
@@ -521,28 +602,40 @@
         </div>
 
         <!-- Filter Tabs -->
-        <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;" id="prospectFilterTabs">
+        <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center;" id="prospectFilterTabs">
           <button class="btn btn-accent prospect-filter-btn" data-filter="all" onclick="filterProspects('all')">All <span id="prospect-count-all" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline prospect-filter-btn" data-filter="prospect" onclick="filterProspects('prospect')">Prospects <span id="prospect-count-prospect" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline prospect-filter-btn" data-filter="approved" onclick="filterProspects('approved')">Approved <span id="prospect-count-approved" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline prospect-filter-btn" data-filter="contacted" onclick="filterProspects('contacted')">Contacted <span id="prospect-count-contacted" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline prospect-filter-btn" data-filter="rejected" onclick="filterProspects('rejected')">Rejected <span id="prospect-count-rejected" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline prospect-filter-btn" data-filter="converted" onclick="filterProspects('converted')">Converted <span id="prospect-count-converted" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <select class="filter-select" id="prospectCuisineFilter" onchange="searchProspects()" style="margin-left:8px;">
+            <option value="">All Cuisines</option>
+          </select>
         </div>
 
         <!-- Prospects Table -->
         <div class="table-wrapper">
           <div class="table-header">
             <div class="table-title">Seller Leads</div>
-            <input type="text" class="search-input" id="prospectSearch" placeholder="Search prospects..." oninput="searchProspects()">
+            <input type="text" class="search-input" id="prospectSearch" placeholder="Search name, cuisine, tags..." oninput="searchProspects()">
           </div>
           <div class="table-scroll">
             <table>
-              <thead><tr><th>Name</th><th>Business</th><th>Location</th><th>Products</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
+              <thead><tr><th style="width:36px"><input type="checkbox" class="row-checkbox" id="prospectSelectAll" onchange="toggleSelectAll('prospects')"></th><th>Name</th><th>Business</th><th>Email / Contact</th><th>Location</th><th>Products</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
               <tbody id="prospectsBody"></tbody>
             </table>
           </div>
         </div>
+      </div>
+
+      <!-- Prospect Bulk Action Bar -->
+      <div class="bulk-bar" id="prospectBulkBar">
+        <div class="bulk-bar-count"><span id="prospectBulkCount">0</span> selected</div>
+        <button class="btn btn-success" onclick="bulkMakeLive()">Make Live</button>
+        <button class="btn btn-accent" onclick="bulkApproveProspects()">Approve</button>
+        <button class="btn btn-outline" onclick="bulkRejectProspects()">Reject</button>
+        <button class="btn btn-danger" onclick="bulkRemoveProspects()">Remove Selected</button>
       </div>
 
       <!-- ── Prospect Add/Edit Modal ── -->
@@ -935,6 +1028,9 @@ const API = '';
 let sellersData = [];
 let buyersData = [];
 let ordersData = [];
+let listingsData = [];
+const selectedProspects = new Set();
+const selectedListings = new Set();
 
 // ── Helpers ──
 
@@ -1025,6 +1121,7 @@ async function checkAuth() {
       const data = await res.json();
       renderDashboard(data);
       loadSellers();
+      loadListings();
       loadProspects();
       loadBuyers();
       loadOrders();
@@ -1084,6 +1181,7 @@ async function doLogout() {
 const sectionTitles = {
   dashboard: ['Platform Command Center', 'Overview of your marketplace'],
   sellers:   ['Sellers', 'Manage your seller community'],
+  listings:  ['Map Listings', 'All live map elements'],
   prospects: ['Prospect Pipeline', 'Scraped and imported seller leads'],
   buyers:    ['Buyers', 'Browse and search buyer accounts'],
   orders:    ['Orders', 'Track every transaction'],
@@ -1240,10 +1338,26 @@ async function loadProspects() {
     if (res.ok) {
       const data = await res.json();
       prospectsData = data.prospects || [];
+      selectedProspects.clear();
+      updateBulkBar('prospects');
       updateProspectCounts();
+      populateCuisineDropdown();
       filterProspects(prospectFilter);
     }
   } catch(e) {}
+}
+
+function populateCuisineDropdown() {
+  const cuisines = new Set();
+  prospectsData.forEach(p => {
+    if (p.cuisineType) cuisines.add(p.cuisineType);
+  });
+  const select = document.getElementById('prospectCuisineFilter');
+  const current = select.value;
+  select.innerHTML = '<option value="">All Cuisines</option>';
+  Array.from(cuisines).sort().forEach(c => {
+    select.innerHTML += '<option value="' + esc(c) + '"' + (current === c ? ' selected' : '') + '>' + esc(c) + '</option>';
+  });
 }
 
 function updateProspectCounts() {
@@ -1271,13 +1385,19 @@ function filterProspects(status) {
 
 function searchProspects() {
   const q = document.getElementById('prospectSearch').value.toLowerCase().trim();
+  const cuisineVal = document.getElementById('prospectCuisineFilter').value.toLowerCase();
   let list = prospectFilter === 'all' ? prospectsData : prospectsData.filter(p => p.status === prospectFilter);
+  if (cuisineVal) {
+    list = list.filter(p => (p.cuisineType || '').toLowerCase() === cuisineVal);
+  }
   if (q) {
     list = list.filter(p =>
       (p.name || '').toLowerCase().includes(q) ||
       (p.businessName || '').toLowerCase().includes(q) ||
       (p.address || '').toLowerCase().includes(q) ||
-      (p.neighborhood || '').toLowerCase().includes(q)
+      (p.neighborhood || '').toLowerCase().includes(q) ||
+      (p.cuisineType || '').toLowerCase().includes(q) ||
+      (p.tags || []).some(t => t.toLowerCase().includes(q))
     );
   }
   renderProspects(list);
@@ -1297,7 +1417,7 @@ function prospectStatusBadge(status) {
 function renderProspects(list) {
   const body = document.getElementById('prospectsBody');
   if (!list || !list.length) {
-    body.innerHTML = '<tr><td colspan="7" class="empty-state"><span class="empty-state-icon">&#127793;</span><div class="empty-state-text">No prospects found</div></td></tr>';
+    body.innerHTML = '<tr><td colspan="9" class="empty-state"><span class="empty-state-icon">&#127793;</span><div class="empty-state-text">No prospects found</div></td></tr>';
     return;
   }
   body.innerHTML = list.map(p => {
@@ -1305,10 +1425,23 @@ function renderProspects(list) {
     const moreTag = (p.products || []).length > 3 ? '<span class="prospect-product-tag">+' + ((p.products || []).length - 3) + ' more</span>' : '';
     const canMakeLive = ['prospect', 'approved', 'contacted'].includes(p.status);
     const websiteIcon = p.website ? '<a href="' + esc(p.website) + '" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none;font-size:14px;" title="Visit website">&#128279;</a>' : '';
+    const checked = selectedProspects.has(p.id) ? 'checked' : '';
+
+    // Build contact cell
+    let contactHtml = '';
+    if (p.email) contactHtml += '<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + '</a>';
+    if (p.phone) contactHtml += '<a href="tel:' + esc(p.phone) + '">' + esc(p.phone) + '</a>';
+    if (p.instagram) {
+      const igHandle = p.instagram.replace(/^@/, '');
+      contactHtml += '<a href="https://instagram.com/' + esc(igHandle) + '" target="_blank" rel="noopener">@' + esc(igHandle) + '</a>';
+    }
+    if (!contactHtml) contactHtml = '<span style="color:var(--muted)">--</span>';
 
     return '<tr>' +
+      '<td onclick="event.stopPropagation()"><input type="checkbox" class="row-checkbox" ' + checked + ' onchange="toggleProspectSelect(\'' + p.id + '\')"></td>' +
       '<td style="font-weight:600;color:var(--text)">' + esc(p.name || '--') + '</td>' +
       '<td>' + esc(p.businessName || '--') + '</td>' +
+      '<td class="contact-cell">' + contactHtml + '</td>' +
       '<td>' + esc(p.neighborhood || p.address || '--') + '</td>' +
       '<td>' + prodTags + moreTag + '</td>' +
       '<td>' + esc(p.source || '--') + '</td>' +
@@ -1546,6 +1679,362 @@ async function doScrape() {
   }
   btn.disabled = false;
   btn.textContent = 'Run Scraper';
+}
+
+// ── Bulk Selection (Prospects) ──
+
+function toggleSelectAll(type) {
+  if (type === 'prospects') {
+    const cb = document.getElementById('prospectSelectAll');
+    const checkboxes = document.querySelectorAll('#prospectsBody .row-checkbox');
+    if (cb.checked) {
+      // Select all visible rows
+      checkboxes.forEach(c => {
+        c.checked = true;
+        const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
+        selectedProspects.add(id);
+      });
+    } else {
+      checkboxes.forEach(c => {
+        c.checked = false;
+        const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
+        selectedProspects.delete(id);
+      });
+    }
+    updateBulkBar('prospects');
+  } else if (type === 'listings') {
+    const cb = document.getElementById('listingSelectAll');
+    const checkboxes = document.querySelectorAll('#listingsBody .row-checkbox');
+    if (cb.checked) {
+      checkboxes.forEach(c => {
+        c.checked = true;
+        const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
+        selectedListings.add(id);
+      });
+    } else {
+      checkboxes.forEach(c => {
+        c.checked = false;
+        const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
+        selectedListings.delete(id);
+      });
+    }
+    updateBulkBar('listings');
+  }
+}
+
+function toggleProspectSelect(id) {
+  if (selectedProspects.has(id)) {
+    selectedProspects.delete(id);
+  } else {
+    selectedProspects.add(id);
+  }
+  updateBulkBar('prospects');
+}
+
+function toggleListingSelect(id) {
+  if (selectedListings.has(id)) {
+    selectedListings.delete(id);
+  } else {
+    selectedListings.add(id);
+  }
+  updateBulkBar('listings');
+}
+
+function updateBulkBar(type) {
+  if (type === 'prospects') {
+    const bar = document.getElementById('prospectBulkBar');
+    const count = document.getElementById('prospectBulkCount');
+    if (selectedProspects.size > 0) {
+      bar.classList.add('visible');
+      count.textContent = selectedProspects.size;
+    } else {
+      bar.classList.remove('visible');
+    }
+  } else if (type === 'listings') {
+    const bar = document.getElementById('listingBulkBar');
+    const count = document.getElementById('listingBulkCount');
+    if (selectedListings.size > 0) {
+      bar.classList.add('visible');
+      count.textContent = selectedListings.size;
+    } else {
+      bar.classList.remove('visible');
+    }
+  }
+}
+
+async function bulkMakeLive() {
+  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
+  if (!confirm('Make ' + selectedProspects.size + ' selected prospects live on the map?')) return;
+  try {
+    const res = await apiFetch('/api/admin/prospects/bulk-make-live', {
+      method: 'POST', body: { ids: Array.from(selectedProspects) }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      showToast((data.converted || selectedProspects.size) + ' prospects made live', 'success');
+      selectedProspects.clear();
+      updateBulkBar('prospects');
+      loadProspects();
+      loadListings();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to bulk make live', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+async function bulkMakeAllLive() {
+  if (!confirm('Convert ALL prospects with coordinates to live map listings?')) return;
+  try {
+    const res = await apiFetch('/api/admin/prospects/bulk-make-live', {
+      method: 'POST', body: {}
+    });
+    if (res.ok) {
+      const data = await res.json();
+      showToast((data.converted || 0) + ' prospects made live', 'success');
+      loadProspects();
+      loadListings();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to bulk make live', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+async function bulkRemoveProspects() {
+  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
+  if (!confirm('Delete ' + selectedProspects.size + ' selected prospects? This cannot be undone.')) return;
+  try {
+    const ids = Array.from(selectedProspects);
+    let successCount = 0;
+    for (const id of ids) {
+      const res = await apiFetch('/api/admin/prospects/' + id, { method: 'DELETE' });
+      if (res.ok) successCount++;
+    }
+    showToast(successCount + ' prospects removed', 'success');
+    selectedProspects.clear();
+    updateBulkBar('prospects');
+    loadProspects();
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+async function bulkApproveProspects() {
+  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
+  try {
+    const ids = Array.from(selectedProspects);
+    let successCount = 0;
+    for (const id of ids) {
+      const res = await apiFetch('/api/admin/prospects/' + id + '/status', { method: 'PUT', body: { status: 'approved' } });
+      if (res.ok) successCount++;
+    }
+    showToast(successCount + ' prospects approved', 'success');
+    selectedProspects.clear();
+    updateBulkBar('prospects');
+    loadProspects();
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+async function bulkRejectProspects() {
+  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
+  if (!confirm('Reject ' + selectedProspects.size + ' selected prospects?')) return;
+  try {
+    const ids = Array.from(selectedProspects);
+    let successCount = 0;
+    for (const id of ids) {
+      const res = await apiFetch('/api/admin/prospects/' + id + '/status', { method: 'PUT', body: { status: 'rejected' } });
+      if (res.ok) successCount++;
+    }
+    showToast(successCount + ' prospects rejected', 'success');
+    selectedProspects.clear();
+    updateBulkBar('prospects');
+    loadProspects();
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+// ── Listings ──
+
+async function loadListings() {
+  try {
+    const res = await apiFetch('/api/admin/listings');
+    if (res.ok) {
+      const data = await res.json();
+      listingsData = data.listings || data || [];
+      if (!Array.isArray(listingsData)) listingsData = [];
+      selectedListings.clear();
+      updateBulkBar('listings');
+      populateListingCuisineDropdown();
+      renderListings(listingsData);
+    }
+  } catch(e) {}
+}
+
+function populateListingCuisineDropdown() {
+  const cuisines = new Set();
+  listingsData.forEach(l => {
+    if (l.cuisineType) cuisines.add(l.cuisineType);
+  });
+  const select = document.getElementById('listingCuisineFilter');
+  const current = select.value;
+  select.innerHTML = '<option value="">All Cuisines</option>';
+  Array.from(cuisines).sort().forEach(c => {
+    select.innerHTML += '<option value="' + esc(c) + '"' + (current === c ? ' selected' : '') + '>' + esc(c) + '</option>';
+  });
+}
+
+function searchListings() {
+  const q = document.getElementById('listingSearch').value.toLowerCase().trim();
+  const statusVal = document.getElementById('listingStatusFilter').value;
+  const cuisineVal = document.getElementById('listingCuisineFilter').value.toLowerCase();
+  let list = listingsData;
+  if (statusVal === 'active') {
+    list = list.filter(l => l.active !== false);
+  } else if (statusVal === 'inactive') {
+    list = list.filter(l => l.active === false);
+  }
+  if (cuisineVal) {
+    list = list.filter(l => (l.cuisineType || '').toLowerCase() === cuisineVal);
+  }
+  if (q) {
+    list = list.filter(l =>
+      (l.name || '').toLowerCase().includes(q) ||
+      (l.businessName || '').toLowerCase().includes(q) ||
+      (l.neighborhood || '').toLowerCase().includes(q) ||
+      (l.cuisineType || '').toLowerCase().includes(q) ||
+      (l.email || '').toLowerCase().includes(q)
+    );
+  }
+  renderListings(list);
+}
+
+function renderListings(list) {
+  const body = document.getElementById('listingsBody');
+  if (!list || !list.length) {
+    body.innerHTML = '<tr><td colspan="8" class="empty-state"><span class="empty-state-icon">&#128205;</span><div class="empty-state-text">No listings found</div></td></tr>';
+    return;
+  }
+  body.innerHTML = list.map(l => {
+    const id = l.id || l._id;
+    const checked = selectedListings.has(id) ? 'checked' : '';
+    const isActive = l.active !== false;
+
+    // Contact cell
+    let contactHtml = '';
+    if (l.email) contactHtml += '<a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a>';
+    if (l.instagram) {
+      const igHandle = (l.instagram || '').replace(/^@/, '');
+      contactHtml += '<a href="https://instagram.com/' + esc(igHandle) + '" target="_blank" rel="noopener">@' + esc(igHandle) + '</a>';
+    }
+    if (!contactHtml) contactHtml = '<span style="color:var(--muted)">--</span>';
+
+    // Website
+    const websiteHtml = l.website
+      ? '<a href="' + esc(l.website) + '" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none;font-size:12px;word-break:break-all;">' + esc(l.website.replace(/^https?:\/\//, '').slice(0, 30)) + '</a>'
+      : '<span style="color:var(--muted)">--</span>';
+
+    return '<tr>' +
+      '<td onclick="event.stopPropagation()"><input type="checkbox" class="row-checkbox" ' + checked + ' onchange="toggleListingSelect(\'' + id + '\')"></td>' +
+      '<td style="font-weight:600;color:var(--text)">' + esc(l.name || l.businessName || '--') + '</td>' +
+      '<td>' + esc(l.neighborhood || '--') + '</td>' +
+      '<td>' + esc(l.cuisineType || '--') + '</td>' +
+      '<td class="contact-cell">' + contactHtml + '</td>' +
+      '<td>' + websiteHtml + '</td>' +
+      '<td>' + (isActive ? '<span class="badge badge-active">active</span>' : '<span class="badge badge-suspended">inactive</span>') + '</td>' +
+      '<td style="white-space:nowrap">' +
+        (isActive
+          ? '<button class="btn btn-danger" onclick="toggleListingActive(\'' + id + '\', false)" style="margin-right:4px;">Deactivate</button>'
+          : '<button class="btn btn-success" onclick="toggleListingActive(\'' + id + '\', true)" style="margin-right:4px;">Activate</button>'
+        ) +
+      '</td>' +
+    '</tr>';
+  }).join('');
+}
+
+async function toggleListingActive(id, active) {
+  try {
+    const res = await apiFetch('/api/admin/listings/' + id, {
+      method: 'PUT', body: { active }
+    });
+    if (res.ok) {
+      showToast('Listing ' + (active ? 'activated' : 'deactivated'), 'success');
+      loadListings();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to update listing', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+async function bulkRemoveListings() {
+  if (selectedListings.size === 0) { showToast('No listings selected', 'error'); return; }
+  if (!confirm('Deactivate ' + selectedListings.size + ' selected listings?')) return;
+  try {
+    const res = await apiFetch('/api/admin/listings/bulk-remove', {
+      method: 'POST', body: { ids: Array.from(selectedListings) }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      showToast((data.removed || selectedListings.size) + ' listings deactivated', 'success');
+      selectedListings.clear();
+      updateBulkBar('listings');
+      loadListings();
+    } else {
+      // Fallback: individual updates
+      const ids = Array.from(selectedListings);
+      let successCount = 0;
+      for (const id of ids) {
+        const r = await apiFetch('/api/admin/listings/' + id, { method: 'PUT', body: { active: false } });
+        if (r.ok) successCount++;
+      }
+      showToast(successCount + ' listings deactivated', 'success');
+      selectedListings.clear();
+      updateBulkBar('listings');
+      loadListings();
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+async function bulkRestoreListings() {
+  if (selectedListings.size === 0) { showToast('No listings selected', 'error'); return; }
+  try {
+    const res = await apiFetch('/api/admin/listings/bulk-restore', {
+      method: 'POST', body: { ids: Array.from(selectedListings) }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      showToast((data.restored || selectedListings.size) + ' listings restored', 'success');
+      selectedListings.clear();
+      updateBulkBar('listings');
+      loadListings();
+    } else {
+      // Fallback: individual updates
+      const ids = Array.from(selectedListings);
+      let successCount = 0;
+      for (const id of ids) {
+        const r = await apiFetch('/api/admin/listings/' + id, { method: 'PUT', body: { active: true } });
+        if (r.ok) successCount++;
+      }
+      showToast(successCount + ' listings restored', 'success');
+      selectedListings.clear();
+      updateBulkBar('listings');
+      loadListings();
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
 }
 
 // ── Buyers ──

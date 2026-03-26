@@ -1,0 +1,507 @@
+{
+  "products": [
+    {
+      "id": "prod_seed_001_1",
+      "sellerId": "user_seed_001",
+      "sellerName": "Maria's Cocina",
+      "name": "Conchas (6-pack)",
+      "description": "Traditional Mexican sweet bread with colorful sugar shell topping. Vanilla and chocolate flavors.",
+      "price": 900,
+      "category": "bread",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-02-25T04:20:37.087Z"
+    },
+    {
+      "id": "prod_seed_001_2",
+      "sellerId": "user_seed_001",
+      "sellerName": "Maria's Cocina",
+      "name": "Empanadas (4-pack)",
+      "description": "Flaky hand pies filled with sweet pumpkin or apple. Family recipe.",
+      "price": 1400,
+      "category": "pastry",
+      "allergens": [
+        "wheat",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-08T11:17:43.325Z"
+    },
+    {
+      "id": "prod_seed_001_3",
+      "sellerId": "user_seed_001",
+      "sellerName": "Maria's Cocina",
+      "name": "Tamales (6-pack)",
+      "description": "Sweet tamales with raisins and cinnamon, wrapped in corn husks.",
+      "price": 1800,
+      "category": "pastry",
+      "allergens": [
+        "wheat"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-06T08:33:34.842Z"
+    },
+    {
+      "id": "prod_seed_002_1",
+      "sellerId": "user_seed_002",
+      "sellerName": "Golden Crust Bread Co.",
+      "name": "Sourdough Loaf",
+      "description": "Classic tangy sourdough with crispy crust. 48-hour cold ferment with organic flour.",
+      "price": 900,
+      "category": "bread",
+      "allergens": [
+        "wheat"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-09T11:54:50.172Z"
+    },
+    {
+      "id": "prod_seed_002_2",
+      "sellerId": "user_seed_002",
+      "sellerName": "Golden Crust Bread Co.",
+      "name": "Focaccia Slab",
+      "description": "Olive oil focaccia with rosemary and sea salt. Perfect for sandwiches.",
+      "price": 800,
+      "category": "bread",
+      "allergens": [
+        "wheat"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-13T19:46:11.710Z"
+    },
+    {
+      "id": "prod_seed_002_3",
+      "sellerId": "user_seed_002",
+      "sellerName": "Golden Crust Bread Co.",
+      "name": "Cinnamon Rolls (4-pack)",
+      "description": "Soft, gooey cinnamon rolls with cream cheese frosting.",
+      "price": 1200,
+      "category": "pastry",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-10T05:39:57.005Z"
+    },
+    {
+      "id": "prod_seed_003_1",
+      "sellerId": "user_seed_003",
+      "sellerName": "Sweet Spot LA",
+      "name": "Cookie Box (12)",
+      "description": "Assorted cookies: chocolate chip, snickerdoodle, oatmeal raisin, double chocolate.",
+      "price": 1500,
+      "category": "cookie",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk",
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-12T03:07:07.445Z"
+    },
+    {
+      "id": "prod_seed_003_2",
+      "sellerId": "user_seed_003",
+      "sellerName": "Sweet Spot LA",
+      "name": "Fudge Brownies (6)",
+      "description": "Dense, fudgy brownies with a crackly top. Made with Belgian chocolate.",
+      "price": 1200,
+      "category": "cookie",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk",
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-05T06:09:27.971Z"
+    },
+    {
+      "id": "prod_seed_003_3",
+      "sellerId": "user_seed_003",
+      "sellerName": "Sweet Spot LA",
+      "name": "Cake Pops (6)",
+      "description": "Moist cake pops dipped in chocolate. Assorted flavors.",
+      "price": 1000,
+      "category": "candy",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk",
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-18T20:08:21.011Z"
+    },
+    {
+      "id": "prod_seed_004_1",
+      "sellerId": "user_seed_004",
+      "sellerName": "Jam Session",
+      "name": "Strawberry Jam (8oz)",
+      "description": "Made with Oxnard strawberries at peak ripeness. Classic and bright.",
+      "price": 800,
+      "category": "jam",
+      "allergens": [],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-11T12:36:20.305Z"
+    },
+    {
+      "id": "prod_seed_004_2",
+      "sellerId": "user_seed_004",
+      "sellerName": "Jam Session",
+      "name": "Meyer Lemon Marmalade (8oz)",
+      "description": "Bittersweet citrus marmalade from backyard Meyer lemons.",
+      "price": 900,
+      "category": "jam",
+      "allergens": [],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-24T06:53:30.774Z"
+    },
+    {
+      "id": "prod_seed_004_3",
+      "sellerId": "user_seed_004",
+      "sellerName": "Jam Session",
+      "name": "Fig Preserves (8oz)",
+      "description": "Mission figs slow-cooked with vanilla bean and a splash of port.",
+      "price": 1000,
+      "category": "jam",
+      "allergens": [],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-21T14:42:38.517Z"
+    },
+    {
+      "id": "prod_seed_005_1",
+      "sellerId": "user_seed_005",
+      "sellerName": "The Honey Jar",
+      "name": "Raw Wildflower Honey (12oz)",
+      "description": "Unfiltered, raw honey from our LA hives. Floral and complex.",
+      "price": 1400,
+      "category": "honey",
+      "allergens": [],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-10T21:21:18.009Z"
+    },
+    {
+      "id": "prod_seed_005_2",
+      "sellerId": "user_seed_005",
+      "sellerName": "The Honey Jar",
+      "name": "Honey Granola (12oz)",
+      "description": "Oats, almonds, and local honey, slow-baked until crunchy.",
+      "price": 800,
+      "category": "snack",
+      "allergens": [
+        "wheat",
+        "tree nuts",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-09T08:28:54.016Z"
+    },
+    {
+      "id": "prod_seed_005_3",
+      "sellerId": "user_seed_005",
+      "sellerName": "The Honey Jar",
+      "name": "Honeycomb (6oz)",
+      "description": "Cut-comb honey straight from the hive. Drizzle on toast or cheese.",
+      "price": 1800,
+      "category": "honey",
+      "allergens": [],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-04T00:53:06.216Z"
+    },
+    {
+      "id": "prod_seed_006_1",
+      "sellerId": "user_seed_006",
+      "sellerName": "Churro Queen",
+      "name": "Churros (6-pack)",
+      "description": "Crispy, cinnamon-sugar churros. Plain or filled with cajeta.",
+      "price": 800,
+      "category": "pastry",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-02-27T20:47:30.693Z"
+    },
+    {
+      "id": "prod_seed_006_2",
+      "sellerId": "user_seed_006",
+      "sellerName": "Churro Queen",
+      "name": "Cajeta Fudge (8oz)",
+      "description": "Creamy goat milk caramel fudge. Cuts into 12 pieces.",
+      "price": 600,
+      "category": "candy",
+      "allergens": [
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-05T07:08:43.129Z"
+    },
+    {
+      "id": "prod_seed_006_3",
+      "sellerId": "user_seed_006",
+      "sellerName": "Churro Queen",
+      "name": "Mexican Hot Cocoa Mix (8oz)",
+      "description": "Spiced chocolate mix with cinnamon and chili. Just add hot milk.",
+      "price": 1000,
+      "category": "snack",
+      "allergens": [
+        "milk",
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-20T08:07:19.272Z"
+    },
+    {
+      "id": "prod_seed_007_1",
+      "sellerId": "user_seed_007",
+      "sellerName": "Cake Pop Studio",
+      "name": "Custom Cake Pops (12)",
+      "description": "Beautifully decorated cake pops in your choice of flavors and colors.",
+      "price": 2400,
+      "category": "candy",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk",
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-24T01:23:24.405Z"
+    },
+    {
+      "id": "prod_seed_007_2",
+      "sellerId": "user_seed_007",
+      "sellerName": "Cake Pop Studio",
+      "name": "Cupcakes (6-pack)",
+      "description": "Moist cupcakes with buttercream frosting. Flavors rotate weekly.",
+      "price": 1800,
+      "category": "pastry",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-02-25T12:45:10.843Z"
+    },
+    {
+      "id": "prod_seed_007_3",
+      "sellerId": "user_seed_007",
+      "sellerName": "Cake Pop Studio",
+      "name": "Decorated Sugar Cookies (12)",
+      "description": "Royal icing decorated sugar cookies. Custom shapes available.",
+      "price": 2000,
+      "category": "cookie",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-12T16:08:35.967Z"
+    },
+    {
+      "id": "prod_seed_008_1",
+      "sellerId": "user_seed_008",
+      "sellerName": "LA Crumbs",
+      "name": "Matcha Cookies (8)",
+      "description": "Chewy white chocolate matcha cookies with ceremonial-grade matcha.",
+      "price": 1200,
+      "category": "cookie",
+      "allergens": [
+        "wheat",
+        "eggs",
+        "milk",
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-02T00:02:29.611Z"
+    },
+    {
+      "id": "prod_seed_008_2",
+      "sellerId": "user_seed_008",
+      "sellerName": "LA Crumbs",
+      "name": "Red Bean Mochi Cake",
+      "description": "Glutinous rice cake with sweet red bean filling. Chewy and not too sweet.",
+      "price": 1500,
+      "category": "pastry",
+      "allergens": [
+        "eggs",
+        "milk"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-01T05:54:45.722Z"
+    },
+    {
+      "id": "prod_seed_008_3",
+      "sellerId": "user_seed_008",
+      "sellerName": "LA Crumbs",
+      "name": "Black Sesame Brittle (6oz)",
+      "description": "Crunchy caramelized brittle loaded with toasted black sesame.",
+      "price": 700,
+      "category": "candy",
+      "allergens": [
+        "soy"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-02-27T12:49:04.792Z"
+    },
+    {
+      "id": "prod_seed_009_1",
+      "sellerId": "user_seed_009",
+      "sellerName": "Pasta Fresca LA",
+      "name": "Fresh Fettuccine (1lb)",
+      "description": "Classic egg fettuccine, hand-rolled and cut. Cooks in 3 minutes.",
+      "price": 800,
+      "category": "pasta",
+      "allergens": [
+        "wheat",
+        "eggs"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-02-26T01:18:07.071Z"
+    },
+    {
+      "id": "prod_seed_009_2",
+      "sellerId": "user_seed_009",
+      "sellerName": "Pasta Fresca LA",
+      "name": "Pappardelle (1lb)",
+      "description": "Wide ribbon pasta, perfect for ragù or brown butter sage.",
+      "price": 900,
+      "category": "pasta",
+      "allergens": [
+        "wheat",
+        "eggs"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-24T07:45:13.589Z"
+    },
+    {
+      "id": "prod_seed_009_3",
+      "sellerId": "user_seed_009",
+      "sellerName": "Pasta Fresca LA",
+      "name": "Pasta Sampler Box",
+      "description": "1/2 lb each of fettuccine, pappardelle, tagliatelle, and orecchiette.",
+      "price": 2200,
+      "category": "pasta",
+      "allergens": [
+        "wheat",
+        "eggs"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-24T11:06:14.031Z"
+    },
+    {
+      "id": "prod_seed_010_1",
+      "sellerId": "user_seed_010",
+      "sellerName": "Nutty Professor",
+      "name": "Almond Butter (10oz)",
+      "description": "Stone-ground roasted almond butter. Creamy, unsweetened, single-ingredient.",
+      "price": 1200,
+      "category": "snack",
+      "allergens": [
+        "tree nuts"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-23T02:16:20.156Z"
+    },
+    {
+      "id": "prod_seed_010_2",
+      "sellerId": "user_seed_010",
+      "sellerName": "Nutty Professor",
+      "name": "Cashew Butter (10oz)",
+      "description": "Velvety cashew butter with a hint of sea salt.",
+      "price": 1400,
+      "category": "snack",
+      "allergens": [
+        "tree nuts"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-03-02T01:55:16.740Z"
+    },
+    {
+      "id": "prod_seed_010_3",
+      "sellerId": "user_seed_010",
+      "sellerName": "Nutty Professor",
+      "name": "Spiced Mixed Nuts (8oz)",
+      "description": "Almonds, cashews, and pecans with smoked paprika and rosemary.",
+      "price": 1000,
+      "category": "snack",
+      "allergens": [
+        "tree nuts"
+      ],
+      "madeInHomeKitchen": true,
+      "photos": [],
+      "available": true,
+      "createdAt": "2026-02-27T21:30:43.310Z"
+    }
+  ]
+}

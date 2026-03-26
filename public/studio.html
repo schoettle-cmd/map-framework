@@ -235,8 +235,7 @@
   </div>
 
 <script>
-// Detect base path
-const BASE = window.location.pathname.replace(/\/studio\.html$/, '').replace(/\/studio\/?$/, '').replace(/\/+$/, '');
+const BASE = window.__BASE || '';
 const STORAGE_KEY = 'kinseb_chat';
 let sessionId = null;
 let sending = false;

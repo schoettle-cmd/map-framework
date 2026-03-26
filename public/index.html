@@ -801,11 +801,7 @@
   <div id="google-btn-hidden"></div>
 
 <script>
-const BASE = window.location.pathname.replace(/\/(map|profile|join|seller|admin|studio)(\/.*)?$/, '').replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
-// Rewrite all hardcoded links to use BASE prefix
-document.querySelectorAll('a[href^="/"]').forEach(a => {
-  if (!a.getAttribute('href').startsWith('/#')) a.href = BASE + a.getAttribute('href');
-});
+const BASE = window.__BASE || '';
 let CFG = {};
 let sentPhone = '';
 
@@ -843,7 +839,7 @@ async function loadFeaturedChefs() {
     if (!chefs.length) { showPlaceholderChefs(); return; }
 
     grid.innerHTML = chefs.map(c => `
-      <a href="/profile/${c.metadata?.userId || c.id}" class="chef-card">
+      <a href="${BASE}/profile/${c.metadata?.userId || c.id}" class="chef-card">
         <img class="chef-card-img"
           src="${c.imageUrl || 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80'}"
           alt="${esc(c.title)}"
@@ -876,7 +872,7 @@ function showPlaceholderChefs() {
   ];
   const grid = document.getElementById('chefs-grid');
   grid.innerHTML = names.map((c, i) => `
-    <a href="/map" class="chef-card">
+    <a href="${BASE}/map" class="chef-card">
       <img class="chef-card-img" src="${imgs[i]}" alt="${c.name}" loading="lazy" onerror="this.style.background='#ddd8ce'">
       <div class="chef-card-body">
         <div class="chef-card-name">${c.name}</div>

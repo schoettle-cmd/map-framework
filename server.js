@@ -58,6 +58,23 @@ const upload = multer({
   }
 });
 
+// ── Base Path (for reverse-proxy sub-path deployments like /cottage/) ───────
+const BASE_PATH = (process.env.BASE_PATH || '').replace(/\/+$/, '');
+
+function baseScript() {
+  if (!BASE_PATH) return '';
+  return `<script>(function(){var B='${BASE_PATH}';window.__BASE=B;window.__href=function(p){return p.startsWith('/')?B+p:p};var _f=window.fetch;window.fetch=function(u){if(typeof u==='string'&&u.startsWith('/')&&!u.startsWith(B+'/'))u=B+u;var a=[u];for(var i=1;i<arguments.length;i++)a.push(arguments[i]);return _f.apply(this,a)};document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[href]').forEach(function(a){var h=a.getAttribute('href');if(h&&h.startsWith('/')&&!h.startsWith('#')&&!h.startsWith(B+'/'))a.href=B+h})})})();</script>\n`;
+}
+
+function serveHtml(filePath) {
+  return (req, res) => {
+    let html = fs.readFileSync(filePath, 'utf-8');
+    if (BASE_PATH) html = html.replace('</head>', baseScript() + '</head>');
+    res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.type('html').send(html);
+  };
+}
+
 // ── Middleware ───────────────────────────────────────────────────────────────
 app.use(express.json({ limit: '1mb' }));
 
@@ -71,9 +88,10 @@ app.use((req, res, next) => {
 
 // Clean URL routes (before static)
 const noCache = (req, res, next) => { res.set('Cache-Control', 'no-cache, no-store, must-revalidate'); next(); };
-app.get('/studio', noCache, (req, res) => res.sendFile(path.join(__dirname, 'public/studio.html')));
-app.get('/map', noCache, (req, res) => res.sendFile(path.join(__dirname, 'public/map.html')));
-app.get('/profile', (req, res) => res.redirect('/map.html'));
+app.get('/', serveHtml(path.join(__dirname, 'public/index.html')));
+app.get('/studio', serveHtml(path.join(__dirname, 'public/studio.html')));
+app.get('/map', serveHtml(path.join(__dirname, 'public/map.html')));
+app.get('/profile', (req, res) => res.redirect(BASE_PATH + '/map'));
 app.get('/profile/:id', (req, res) => {
   const id = req.params.id;
   let el = elements.elements.find(e => e.ownerId === id && e.active !== false);
@@ -123,7 +141,7 @@ ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
+${baseScript()}<style>
 :root {
   --cream: #F5F1E8;
   --ink: #1A1A1A;
@@ -507,11 +525,11 @@ body {
 
   res.send(html);
 });
-app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public/terms.html')));
-app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public/privacy.html')));
-app.get('/seller', (req, res) => res.sendFile(path.join(__dirname, 'public/seller.html')));
-app.get('/join', (req, res) => res.sendFile(path.join(__dirname, 'public/join.html')));
-app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'public/admin.html')));
+app.get('/terms', serveHtml(path.join(__dirname, 'public/terms.html')));
+app.get('/privacy', serveHtml(path.join(__dirname, 'public/privacy.html')));
+app.get('/seller', serveHtml(path.join(__dirname, 'public/seller.html')));
+app.get('/join', serveHtml(path.join(__dirname, 'public/join.html')));
+app.get('/admin', serveHtml(path.join(__dirname, 'public/admin.html')));
 
 app.use(express.static(path.join(__dirname, 'public'), {
   setHeaders: (res, filePath) => {

@@ -1024,8 +1024,7 @@
    COTTAGE ADMIN — Client-side Logic
    ══════════════════════════════════════════ */
 
-// Auto-detect base path
-const BASE = window.location.pathname.replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
+const BASE = window.__BASE || '';
 const API = BASE;
 let sellersData = [];
 let buyersData = [];

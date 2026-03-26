@@ -82,11 +82,20 @@ async function deepScrape(url) {
     const phones = bodyText.match(/\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g) || [];
     const phone = phones[0] || '';
 
-    const emails = bodyText.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g) || [];
-    const email = (emails.find(e =>
-      !e.includes('sentry') && !e.includes('wixpress') && !e.includes('example') &&
-      !e.includes('email.com') && !e.includes('squarespace') && !e.includes('godaddy')
-    ) || '');
+    // Prefer mailto: links in raw HTML (cleanest source)
+    const mailtoMatches = html.match(/mailto:([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})/g) || [];
+    const mailtoEmails = mailtoMatches.map(m => m.replace('mailto:', ''));
+
+    // Fallback: extract from body text with word-boundary anchoring
+    const textEmails = bodyText.match(/(?:^|[\s,;:(>])([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})(?:[\s,;:)<]|$)/g) || [];
+    const cleanedTextEmails = textEmails.map(m => {
+      const match = m.match(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})/);
+      return match ? match[1] : '';
+    }).filter(Boolean);
+
+    const allEmails = [...new Set([...mailtoEmails, ...cleanedTextEmails])];
+    const junkDomains = ['sentry', 'wixpress', 'example', 'email.com', 'squarespace', 'godaddy', 'cloudflare', 'googleapis'];
+    const email = allEmails.find(e => !junkDomains.some(j => e.includes(j))) || '';
 
     const igMatches = html.match(/(?:instagram\.com|instagr\.am)\/([a-zA-Z0-9_.]{2,30})/g) || [];
     const igHandle = igMatches.length > 0 ? '@' + igMatches[0].replace(/.*(?:instagram\.com|instagr\.am)\//, '').replace(/[/?].*/, '') : '';

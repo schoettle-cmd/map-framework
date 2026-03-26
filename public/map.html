@@ -432,6 +432,9 @@
 let CFG = {};
 let currentUser = null;
 let map = null;
+// Auto-detect base path (e.g. /cottage when served under /cottage/)
+const BASE = window.location.pathname.replace(/\/[^/]*\.html.*$/, '').replace(/\/+$/, '');
+
 let mapMarkers = [];
 let mapElements = [];
 let activeElement = null;
@@ -442,7 +445,7 @@ let loadDebounce = null;
 // ── Init ────────────────────────────────────────────────────────────────────
 async function init() {
   try {
-    const r = await fetch('/api/config');
+    const r = await fetch(BASE + '/api/config');
     CFG = await r.json();
   } catch (e) {
     CFG = { name: 'MapApp', accent: '#7c3aed', defaultLat: 40.758, defaultLng: -73.9855, freeViews: 5 };
@@ -500,7 +503,7 @@ function locateUser() {
 
       // Seed demo elements near user if needed
       try {
-        const r = await fetch('/api/elements/seed-nearby', {
+        const r = await fetch(BASE + '/api/elements/seed-nearby', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ lat, lng })
@@ -518,7 +521,7 @@ function locateUser() {
 async function loadElements() {
   if (!map) return;
   const bounds = map.getBounds();
-  const url = `/api/elements?sw_lat=${bounds.getSouth()}&sw_lng=${bounds.getWest()}&ne_lat=${bounds.getNorth()}&ne_lng=${bounds.getEast()}`;
+  const url = `${BASE}/api/elements?sw_lat=${bounds.getSouth()}&sw_lng=${bounds.getWest()}&ne_lat=${bounds.getNorth()}&ne_lng=${bounds.getEast()}`;
 
   try {
     const r = await fetch(url);
@@ -599,7 +602,7 @@ function openElement(el) {
   let btns = '';
 
   if (hasProfile) {
-    btns += `<a href="/profile/${el.metadata.userId}" class="sheet-btn primary" style="text-decoration:none">
+    btns += `<a href="${BASE}/profile/${el.metadata.userId}" class="sheet-btn primary" style="text-decoration:none">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       View Profile</a>`;
     // Load product previews
@@ -651,7 +654,7 @@ function showViewToast(count, max) {
 // ── Auth ────────────────────────────────────────────────────────────────────
 async function checkAuth() {
   try {
-    const r = await fetch('/api/auth/me');
+    const r = await fetch(BASE + '/api/auth/me');
     const d = await r.json();
     if (d.ok && d.user) {
       currentUser = d.user;
@@ -712,7 +715,7 @@ async function authSendOtp() {
   document.getElementById('auth-error').style.display = 'none';
 
   try {
-    const r = await fetch('/api/auth/start', {
+    const r = await fetch(BASE + '/api/auth/start', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phone })
     });
@@ -747,7 +750,7 @@ async function authVerify() {
   document.getElementById('auth-error-otp').style.display = 'none';
 
   try {
-    const r = await fetch('/api/auth/verify', {
+    const r = await fetch(BASE + '/api/auth/verify', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phone: sentPhone, code })
     });
@@ -777,7 +780,7 @@ async function authComplete() {
   if (!name) return showAuthError('auth-error-name', 'Name is required.');
 
   try {
-    const r = await fetch('/api/auth/complete', {
+    const r = await fetch(BASE + '/api/auth/complete', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ phone: sentPhone, name })
     });
@@ -805,7 +808,7 @@ function closeUserMenu() {
 
 async function doLogout() {
   closeUserMenu();
-  await fetch('/api/auth/logout', { method: 'POST' });
+  await fetch(BASE + '/api/auth/logout', { method: 'POST' });
   currentUser = null;
   updateAuthUI();
 }
@@ -871,7 +874,7 @@ async function sendMessage() {
   list.scrollTop = list.scrollHeight;
 
   try {
-    await fetch('/api/messages', {
+    await fetch(BASE + '/api/messages', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ to: msgPeerId, text })
     });

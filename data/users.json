@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": "user_71cd23772e660688",
+      "id": "user_728ac3de83ad868e",
       "name": "3 Up Burgers",
       "email": null,
       "phone": null,
@@ -24,10 +24,10 @@
         "permitNumber": "PR0365044"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_1851575f884ea331",
+      "id": "user_3b439cf30939c536",
       "name": "Absolute Sweetness Cafe",
       "email": null,
       "phone": null,
@@ -50,10 +50,10 @@
         "permitNumber": "PR0318812"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_9c823525485d6e47",
+      "id": "user_bef9fe85ab80e8d2",
       "name": "Ada Deliciosa Comida Guat",
       "email": null,
       "phone": null,
@@ -76,10 +76,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_bef6a1e08c74df0b",
+      "id": "user_0456f9e30f05fc91",
       "name": "Alejandra'S Cocina",
       "email": null,
       "phone": null,
@@ -102,10 +102,10 @@
         "permitNumber": "PR0317643"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_6b32bb77d6969bf8",
+      "id": "user_20eed6cddeab91e0",
       "name": "Alena'S Lab Kitchen",
       "email": null,
       "phone": "(909) 782-1636",
@@ -128,10 +128,10 @@
         "permitNumber": "PR0318623"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_4e2bfcc3d0a2cf9c",
+      "id": "user_99dd0291ea746b6d",
       "name": "Allen'S Baliwag Special Chi",
       "email": null,
       "phone": null,
@@ -154,10 +154,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_b8214fdad76f1b41",
+      "id": "user_be91a234ea0d3927",
       "name": "Almuerzo Casero",
       "email": null,
       "phone": null,
@@ -180,10 +180,10 @@
         "permitNumber": "PR0327486"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.246Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_a356c1c9a7ce1b83",
+      "id": "user_5afda509f2a4d4bb",
       "name": "Amber Kitchen",
       "email": null,
       "phone": null,
@@ -206,10 +206,10 @@
         "permitNumber": "PR0317584"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_40e1f4851180773f",
+      "id": "user_18e36638ff5fcb4d",
       "name": "Andres S Fernandez Llc",
       "email": null,
       "phone": null,
@@ -232,10 +232,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_d39ca9b589d5d81b",
+      "id": "user_22b7326c07fe0bff",
       "name": "Angel City Dumpling Co.",
       "email": null,
       "phone": null,
@@ -258,10 +258,10 @@
         "permitNumber": "PR0313266"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_71810295362c4057",
+      "id": "user_193eb37c820c5f7e",
       "name": "Angry Bull Bbq",
       "email": "david@angrybullbbq.com",
       "phone": "(818) 237-4651",
@@ -284,10 +284,10 @@
         "permitNumber": "PR0314712"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_12ee62b48d32cb32",
+      "id": "user_21a32fcb5cddfa67",
       "name": "Anita Bakery",
       "email": null,
       "phone": null,
@@ -310,10 +310,10 @@
         "permitNumber": "PR0314216"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_d023a72f972d5213",
+      "id": "user_fe8339a90797bcc0",
       "name": "Antojitos M.x. Y Mas",
       "email": null,
       "phone": null,
@@ -336,10 +336,10 @@
         "permitNumber": "PR0319654"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_2951c56a189db548",
+      "id": "user_43df96591e75000a",
       "name": "Arusuvai Indian Cuisine",
       "email": null,
       "phone": null,
@@ -362,10 +362,10 @@
         "permitNumber": "PR0317587"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_04728ae79094ad8b",
+      "id": "user_1c5c9a2f4e8f3eb3",
       "name": "Asados To Go",
       "email": null,
       "phone": null,
@@ -388,10 +388,10 @@
         "permitNumber": "PR0326542"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_29c5ebec57f0229a",
+      "id": "user_5f8b7c6837c59eb2",
       "name": "Baileys N' More",
       "email": null,
       "phone": null,
@@ -414,10 +414,10 @@
         "permitNumber": "PR0327696"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_33b028b6497313f3",
+      "id": "user_5156859b49d770df",
       "name": "Bake N' Bloom",
       "email": null,
       "phone": null,
@@ -440,10 +440,10 @@
         "permitNumber": "PR0365318"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_fdab87caf251aa49",
+      "id": "user_65af7df883b15c64",
       "name": "Baobao Bread",
       "email": null,
       "phone": null,
@@ -466,10 +466,10 @@
         "permitNumber": "PR0317102"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_fa6c83464160b703",
+      "id": "user_6879d9f96999b85e",
       "name": "Barrio Bites Llc",
       "email": null,
       "phone": null,
@@ -492,10 +492,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_53eb9b4fc896aa63",
+      "id": "user_eed85d69cb359757",
       "name": "Baylei'S Comfort Kitchen",
       "email": null,
       "phone": null,
@@ -518,10 +518,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_1b8b5dd2edc16df7",
+      "id": "user_a4fa3147b29d3d40",
       "name": "Bender'S Eat Well",
       "email": null,
       "phone": null,
@@ -544,10 +544,10 @@
         "permitNumber": "PR0318807"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_08624598d9d4e891",
+      "id": "user_4d8e46941e3e75dc",
       "name": "Big Market Lamb Soup",
       "email": null,
       "phone": null,
@@ -570,10 +570,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_162d09271bd9169a",
+      "id": "user_357df112ddfb78e7",
       "name": "Bodegacat La",
       "email": null,
       "phone": null,
@@ -596,10 +596,10 @@
         "permitNumber": "PR0319424"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_f0e4cf65e5ca36ad",
+      "id": "user_1b1dd74c2c6b9f09",
       "name": "Bond Appetito",
       "email": "eat@bondappetito.com",
       "phone": "(424) 666-4557",
@@ -622,10 +622,10 @@
         "permitNumber": "PR0318346"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_ea33f967d2412239",
+      "id": "user_cf04397e97d7642c",
       "name": "Bougie Boards La",
       "email": null,
       "phone": null,
@@ -648,10 +648,10 @@
         "permitNumber": "PR0314665"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_572dbf1e717ff8ae",
+      "id": "user_81b2c72050b6ebd0",
       "name": "Bubbas Bites",
       "email": null,
       "phone": null,
@@ -674,10 +674,10 @@
         "permitNumber": "PR0327553"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_e939dfbc6382bb88",
+      "id": "user_9053c30957856663",
       "name": "Cafe Tumbado",
       "email": null,
       "phone": null,
@@ -700,10 +700,10 @@
         "permitNumber": "PR0318817"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_b21e3b954b8ace89",
+      "id": "user_f8af424ad828edf5",
       "name": "Cajun Flare",
       "email": null,
       "phone": null,
@@ -726,10 +726,10 @@
         "permitNumber": "PR0327711"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_18d633e8d2b535ed",
+      "id": "user_b8d7e31e84c405c4",
       "name": "Carnitas El Bigoton Becerr",
       "email": null,
       "phone": null,
@@ -752,10 +752,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_5b548951153045ab",
+      "id": "user_78c1522cb4ebe3c6",
       "name": "Carol C Events",
       "email": null,
       "phone": null,
@@ -778,10 +778,10 @@
         "permitNumber": "PR0319571"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_bb9a5ab006324f3f",
+      "id": "user_e64ef314ceadc57d",
       "name": "Cat'S Out The Bag",
       "email": null,
       "phone": null,
@@ -804,10 +804,10 @@
         "permitNumber": "PR0324948"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_f7ded8d44cc1d608",
+      "id": "user_0bbc6075d1e36bcc",
       "name": "Charcuterie Art Cart Llc",
       "email": null,
       "phone": null,
@@ -830,10 +830,10 @@
         "permitNumber": "PR0314217"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_c4c9a8051ff295e8",
+      "id": "user_13bf58d774a91ba0",
       "name": "Cheesecake De Granger",
       "email": null,
       "phone": null,
@@ -856,10 +856,10 @@
         "permitNumber": "PR0317343"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_35865866925f1a58",
+      "id": "user_36694f5241f55b33",
       "name": "Chef C-Notes Creations",
       "email": null,
       "phone": null,
@@ -882,10 +882,10 @@
         "permitNumber": "PR0326863"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_950a485ae91b1671",
+      "id": "user_6661e0b50419026c",
       "name": "Chef Glenda Goodness",
       "email": null,
       "phone": null,
@@ -908,10 +908,10 @@
         "permitNumber": "PR0317380"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_c33ca3391ce33875",
+      "id": "user_46d1c7502cd5e08a",
       "name": "Chef Tobin'S Plant Based Ki",
       "email": null,
       "phone": null,
@@ -934,10 +934,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_ee42c3d18881bc04",
+      "id": "user_0476abeff6f0e590",
       "name": "Chez Fatoumata",
       "email": null,
       "phone": null,
@@ -960,10 +960,10 @@
         "permitNumber": "PR0325230"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_b58b1a1a1b288309",
+      "id": "user_08d7e3b27fc42d61",
       "name": "Chi Town Pizza",
       "email": "chitownpizzas@gmail.com",
       "phone": "1626905837",
@@ -986,10 +986,10 @@
         "permitNumber": "PR0314581"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_f7bd614e950599b7",
+      "id": "user_03514759faa18119",
       "name": "Chicago Meats La",
       "email": null,
       "phone": null,
@@ -1012,10 +1012,10 @@
         "permitNumber": "PR0313417"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_b231d7bc786efe14",
+      "id": "user_561ef6d8ce4a2832",
       "name": "Chuchu Dessert Lab",
       "email": null,
       "phone": null,
@@ -1038,10 +1038,10 @@
         "permitNumber": "PR0314599"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_08a059726ce56689",
+      "id": "user_f3123e7e0359af87",
       "name": "Cinema Chow",
       "email": null,
       "phone": null,
@@ -1064,10 +1064,10 @@
         "permitNumber": "PR0324608"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_3dddc965a5852702",
+      "id": "user_656dee05c2d7ae60",
       "name": "Club 051",
       "email": null,
       "phone": null,
@@ -1090,10 +1090,10 @@
         "permitNumber": "PR0324489"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_91408655bf456fa5",
+      "id": "user_638c9165f13a5689",
       "name": "Coach'S",
       "email": null,
       "phone": null,
@@ -1116,10 +1116,10 @@
         "permitNumber": "PR0325423"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_1264c05f60bb47cf",
+      "id": "user_9960c4d724fa3337",
       "name": "Coffee And Toast",
       "email": null,
       "phone": null,
@@ -1142,10 +1142,10 @@
         "permitNumber": "PR0365112"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_d018740950f570e5",
+      "id": "user_ce5567c7deec3b46",
       "name": "Corazon Coffee And Pastri",
       "email": null,
       "phone": null,
@@ -1168,10 +1168,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_3e29480db87b4472",
+      "id": "user_a04811a06aa612ec",
       "name": "Crazy Tasty",
       "email": null,
       "phone": null,
@@ -1194,10 +1194,10 @@
         "permitNumber": "PR0324337"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_011a802dcfc680d0",
+      "id": "user_d073747d6842ae5d",
       "name": "Creole Delight Haitian",
       "email": null,
       "phone": null,
@@ -1220,10 +1220,10 @@
         "permitNumber": "PR0314589"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_3b23e76905725787",
+      "id": "user_49b6994c9449ddd1",
       "name": "Cubamexico",
       "email": null,
       "phone": null,
@@ -1246,10 +1246,10 @@
         "permitNumber": "PR0318499"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_e76105939e8e839a",
+      "id": "user_e8d50d2ec8ca99d7",
       "name": "Da Barbara",
       "email": "dabarbarap@gmail.com",
       "phone": null,
@@ -1272,10 +1272,10 @@
         "permitNumber": "PR0314220"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_607c93c56ee3578d",
+      "id": "user_9532412ec3a1068e",
       "name": "Daria Poddubniak",
       "email": null,
       "phone": null,
@@ -1298,10 +1298,10 @@
         "permitNumber": "PR0314512"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_afac8fc154ce8da7",
+      "id": "user_4d7d3f65e3335160",
       "name": "Deddy'S Vibe",
       "email": null,
       "phone": null,
@@ -1324,10 +1324,10 @@
         "permitNumber": "PR0324336"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_0a461401f8c924ea",
+      "id": "user_d343e2dd50944a42",
       "name": "Delicia Pura",
       "email": null,
       "phone": null,
@@ -1350,10 +1350,10 @@
         "permitNumber": "PR0328301"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_51beaa21209071ac",
+      "id": "user_e88e6ba343824792",
       "name": "Delicias Sarita Food",
       "email": null,
       "phone": null,
@@ -1376,10 +1376,10 @@
         "permitNumber": "PR0327035"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_90165dea29c39b6b",
+      "id": "user_4fb6942faced7ecc",
       "name": "Devon Eats",
       "email": "info@devoneats.com",
       "phone": "323-413-9000",
@@ -1402,10 +1402,10 @@
         "permitNumber": "PR0314711"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_8d0ab1e10ca3c14c",
+      "id": "user_16f924ebb8c2fb57",
       "name": "Dolce Tesori",
       "email": null,
       "phone": null,
@@ -1428,10 +1428,10 @@
         "permitNumber": "PR0324490"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_174c7c0962d59886",
+      "id": "user_a7a4648db03572f4",
       "name": "Don'T You Dairy",
       "email": null,
       "phone": "3109538009",
@@ -1454,10 +1454,10 @@
         "permitNumber": "PR0317585"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_26827fc5f99e8518",
+      "id": "user_29b61f7ebe69841b",
       "name": "Dulce Sorpresa Y Mas",
       "email": null,
       "phone": null,
@@ -1480,10 +1480,10 @@
         "permitNumber": "PR0327672"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_6ef4b6fae9c288a0",
+      "id": "user_456a718e9de53508",
       "name": "East British Curry Compan",
       "email": null,
       "phone": null,
@@ -1506,10 +1506,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_c547b34ce6ec6ac6",
+      "id": "user_4b8c543ec5379359",
       "name": "Edible Kids Art",
       "email": null,
       "phone": null,
@@ -1532,10 +1532,10 @@
         "permitNumber": "PR0327554"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_efc6dc1466289d72",
+      "id": "user_e67c7b2a8232faf1",
       "name": "El Patio Cafe",
       "email": null,
       "phone": null,
@@ -1558,10 +1558,10 @@
         "permitNumber": "PR0324330"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_5f67edcbba70f90e",
+      "id": "user_b400db05bbdfec9d",
       "name": "Erkitchen.com",
       "email": null,
       "phone": null,
@@ -1584,10 +1584,10 @@
         "permitNumber": "PR0314325"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_fc7e490218661ef0",
+      "id": "user_a596edf7f6ec8d06",
       "name": "Fat Dog Social",
       "email": null,
       "phone": null,
@@ -1610,10 +1610,10 @@
         "permitNumber": "PR0327136"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_39a4bc38f70f145b",
+      "id": "user_b93cce605de75a38",
       "name": "Favor&flavor Afriq Llc",
       "email": null,
       "phone": null,
@@ -1636,10 +1636,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_49d48d3c7edf0460",
+      "id": "user_17911a9f5e06aff6",
       "name": "Fawzai Bakes",
       "email": null,
       "phone": null,
@@ -1662,10 +1662,10 @@
         "permitNumber": "PR0314072"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_d11f97b325d3fde0",
+      "id": "user_ece9783b79b0caf7",
       "name": "Feng Ming Delicious, Inc",
       "email": null,
       "phone": null,
@@ -1688,10 +1688,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_ec34af615a54a6d1",
+      "id": "user_9b5fce0841310fa3",
       "name": "Flocal Kitchen",
       "email": null,
       "phone": null,
@@ -1714,10 +1714,10 @@
         "permitNumber": "PR0326275"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_1aabfabfebb1288b",
+      "id": "user_7e5ac09ed1299db4",
       "name": "Francesca Mallus Chef",
       "email": null,
       "phone": null,
@@ -1740,10 +1740,10 @@
         "permitNumber": "PR0314860"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_afb800ec56212f02",
+      "id": "user_fb178e273bbdfaa0",
       "name": "Free To Chat Fizzy",
       "email": null,
       "phone": null,
@@ -1766,10 +1766,10 @@
         "permitNumber": "PR0326866"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.007Z"
     },
     {
-      "id": "user_8157b5386d29f761",
+      "id": "user_6249cb4acb16724d",
       "name": "Fresh Fruit By Ruth",
       "email": null,
       "phone": null,
@@ -1792,10 +1792,10 @@
         "permitNumber": "PR0326509"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_2d0388c3b72a1018",
+      "id": "user_7023efb0fa095f13",
       "name": "Fried Taco Co",
       "email": null,
       "phone": null,
@@ -1818,10 +1818,10 @@
         "permitNumber": "PR0326510"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b0b4ef74f9009165",
+      "id": "user_b64763eff5c84b25",
       "name": "Frizzles",
       "email": null,
       "phone": null,
@@ -1844,10 +1844,10 @@
         "permitNumber": "PR0328427"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_8684a2337cc0cdb8",
+      "id": "user_7e48ffe0b016278b",
       "name": "Full Tilt Bbq",
       "email": null,
       "phone": null,
@@ -1870,10 +1870,10 @@
         "permitNumber": "PR0324334"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5d1bcbc77732debd",
+      "id": "user_c0e56904edbb34eb",
       "name": "Fundacion Sonrias Latinas",
       "email": null,
       "phone": null,
@@ -1896,10 +1896,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a1da6e871939c7ce",
+      "id": "user_b797045b0d9087c7",
       "name": "Gamma Tamales",
       "email": null,
       "phone": null,
@@ -1922,10 +1922,10 @@
         "permitNumber": "PR0327682"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b7cba53744790b7a",
+      "id": "user_03e10abc70c1bb28",
       "name": "Gancia'S Craft Kitchen",
       "email": null,
       "phone": null,
@@ -1948,10 +1948,10 @@
         "permitNumber": "PR0318390"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a335925f603bacf9",
+      "id": "user_b3d70c8edf906324",
       "name": "Garden Of Edendale",
       "email": null,
       "phone": null,
@@ -1974,10 +1974,10 @@
         "permitNumber": "PR0315401"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_80a812d64a068fbb",
+      "id": "user_c9f0fb58aaf4c258",
       "name": "Geras_kocina",
       "email": null,
       "phone": null,
@@ -2000,10 +2000,10 @@
         "permitNumber": "PR0317383"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_30f6b708211f681f",
+      "id": "user_2ac068d208e100fa",
       "name": "Gertie'S Sweet Delights",
       "email": null,
       "phone": null,
@@ -2026,10 +2026,10 @@
         "permitNumber": "PR0318377"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_93457174a1cceaec",
+      "id": "user_eecc9bdbcceb9e06",
       "name": "Gezhong Geyang De Tiandia",
       "email": null,
       "phone": null,
@@ -2052,10 +2052,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f89891bfa0e5795c",
+      "id": "user_d336c2280de661e2",
       "name": "Gm Coffee Co",
       "email": "info@gmcoffeeco.com",
       "phone": null,
@@ -2078,10 +2078,10 @@
         "permitNumber": "PR0325253"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_bddad3ec0050476e",
+      "id": "user_91bb5cc700fd77b1",
       "name": "Golden Gastronome",
       "email": null,
       "phone": null,
@@ -2104,10 +2104,10 @@
         "permitNumber": "PR0327688"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_3e7d291ee5333cce",
+      "id": "user_ba823cbd757ad6ef",
       "name": "Gorditas Laguneras",
       "email": null,
       "phone": null,
@@ -2130,10 +2130,10 @@
         "permitNumber": "PR0328298"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_df18f1de43242df2",
+      "id": "user_1e20c4f27fd9f4aa",
       "name": "Gpc",
       "email": null,
       "phone": null,
@@ -2156,10 +2156,10 @@
         "permitNumber": "PR0325425"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_573334e1263ce9d3",
+      "id": "user_6d38d5a428d66c24",
       "name": "Granada",
       "email": null,
       "phone": null,
@@ -2182,10 +2182,10 @@
         "permitNumber": "PR0324400"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_d490579303e2736b",
+      "id": "user_183bfa0f33a84f80",
       "name": "Guille'S Kitchen",
       "email": null,
       "phone": null,
@@ -2208,10 +2208,10 @@
         "permitNumber": "PR0326884"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_591404a55ce25df5",
+      "id": "user_b287553e248f11b7",
       "name": "Guojie Jia Wei Xuan",
       "email": null,
       "phone": null,
@@ -2234,10 +2234,10 @@
         "permitNumber": "PR0318343"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_42ad5fb7d924c882",
+      "id": "user_2d3ff01b8af0f942",
       "name": "Hampy Bread",
       "email": null,
       "phone": null,
@@ -2260,10 +2260,10 @@
         "permitNumber": "PR0327872"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_52fc20c5ea1672ac",
+      "id": "user_9402e637fb7ddb9b",
       "name": "Happy Couple Kitchen",
       "email": "happycoupleco@gmail.com",
       "phone": null,
@@ -2286,10 +2286,10 @@
         "permitNumber": "PR0314514"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5c2202ff93087366",
+      "id": "user_0bcd8b88266ab29a",
       "name": "Hefan Home Kitchen",
       "email": null,
       "phone": null,
@@ -2312,10 +2312,10 @@
         "permitNumber": "PR0317447"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b6b6a8d4633a0f90",
+      "id": "user_14100d129ec927b2",
       "name": "Hevn & Rth Purpose Kchn",
       "email": null,
       "phone": null,
@@ -2338,10 +2338,10 @@
         "permitNumber": "PR0315815"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_7eca50ed2655db2f",
+      "id": "user_ede57d4761adca30",
       "name": "Hibiscus & Watermelon",
       "email": null,
       "phone": null,
@@ -2364,10 +2364,10 @@
         "permitNumber": "PR0365713"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_eaed7107c7b8fa01",
+      "id": "user_dd218b49c2bd2de3",
       "name": "Hollywood Nosh",
       "email": "hollywoodnosh@gmail.com",
       "phone": "805.300.8050",
@@ -2390,10 +2390,10 @@
         "permitNumber": "PR0313413"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_9c68d21dbafa5248",
+      "id": "user_3d375c38f162a9c2",
       "name": "Home Kitchen",
       "email": null,
       "phone": null,
@@ -2416,10 +2416,10 @@
         "permitNumber": "PR0327680"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_0eb3e6b83a22de6c",
+      "id": "user_04f07cdb31ea3f60",
       "name": "Home Table",
       "email": null,
       "phone": null,
@@ -2442,10 +2442,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_88c67640eade6f76",
+      "id": "user_75020ec7b2a5d50f",
       "name": "Homecooked By Kp",
       "email": null,
       "phone": null,
@@ -2468,10 +2468,10 @@
         "permitNumber": "PR0317644"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b6628c58381ce99b",
+      "id": "user_a948101900544c90",
       "name": "Homestyle Bites",
       "email": null,
       "phone": null,
@@ -2494,10 +2494,10 @@
         "permitNumber": "PR0314583"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_e3ee8fbecebb1858",
+      "id": "user_503eabeb902237e2",
       "name": "Hui'S Exquisitely Hand Mad",
       "email": null,
       "phone": null,
@@ -2520,10 +2520,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5589202176eba2e1",
+      "id": "user_9c00eb5507658218",
       "name": "Ibing Bing",
       "email": null,
       "phone": null,
@@ -2546,10 +2546,10 @@
         "permitNumber": "PR0317439"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a195d81d2ae36ddc",
+      "id": "user_5626fde2415396b9",
       "name": "J Tan Home Kitchen",
       "email": null,
       "phone": null,
@@ -2572,10 +2572,10 @@
         "permitNumber": "PR0325401"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_319ca8adbaca601d",
+      "id": "user_7d83c98193210ad9",
       "name": "Jackrabbit'S Lair",
       "email": null,
       "phone": null,
@@ -2598,10 +2598,10 @@
         "permitNumber": "PR0317908"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_8444f5fc4636bde4",
+      "id": "user_3d9121e185b8ea0f",
       "name": "Jajah Omah",
       "email": null,
       "phone": null,
@@ -2624,10 +2624,10 @@
         "permitNumber": "PR0318806"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_dd453c313eca971c",
+      "id": "user_e851aa9e14e611c4",
       "name": "Janet'S Home Cooking",
       "email": null,
       "phone": null,
@@ -2650,10 +2650,10 @@
         "permitNumber": "PR0318558"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a0fefc7e43242df1",
+      "id": "user_5883720967b7ce53",
       "name": "Janzen'S Hillside Table",
       "email": null,
       "phone": null,
@@ -2676,10 +2676,10 @@
         "permitNumber": "PR0327714"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f9ebd6541b0a82ef",
+      "id": "user_d1bddc50c9182438",
       "name": "Jdawgz Eatz Llc",
       "email": null,
       "phone": null,
@@ -2702,10 +2702,10 @@
         "permitNumber": "PR0314219"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_434513585ccaee2a",
+      "id": "user_c448656cc3073ebb",
       "name": "Jennifer Silbert",
       "email": null,
       "phone": null,
@@ -2728,10 +2728,10 @@
         "permitNumber": "PR0314587"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f0f39d24de0fe7ab",
+      "id": "user_41b0432abe31aecd",
       "name": "Jero'S Antojitos Mexicanos",
       "email": null,
       "phone": null,
@@ -2754,10 +2754,10 @@
         "permitNumber": "PR0326865"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f2f68bf7467432e6",
+      "id": "user_0cdec7863e323b80",
       "name": "Jp Bbq Inc",
       "email": null,
       "phone": null,
@@ -2780,10 +2780,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_490deb242524b8d5",
+      "id": "user_2eccbd2288852a77",
       "name": "Jus Brisket",
       "email": null,
       "phone": "747-356-2606",
@@ -2806,10 +2806,10 @@
         "permitNumber": "PR0327259"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_dde58819551b6648",
+      "id": "user_34f0a6144ab986c9",
       "name": "Kafou Alkaline Foods",
       "email": null,
       "phone": null,
@@ -2832,10 +2832,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_23baac2ab9865b2f",
+      "id": "user_1cdefde3b826a69e",
       "name": "Karak Corner",
       "email": null,
       "phone": null,
@@ -2858,10 +2858,10 @@
         "permitNumber": "PR0326192"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_7bd01a85553c29a6",
+      "id": "user_9bd42bb6cb979ab6",
       "name": "Kdc Hospitality Group Llc",
       "email": null,
       "phone": null,
@@ -2884,10 +2884,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_228e486def13f98f",
+      "id": "user_09596ea3e2dfd248",
       "name": "Kerala",
       "email": null,
       "phone": null,
@@ -2910,10 +2910,10 @@
         "permitNumber": "PR0313863"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_3c1828ca03d195d7",
+      "id": "user_2aaabd3e42c315da",
       "name": "Keren 504 Fruits",
       "email": null,
       "phone": null,
@@ -2936,10 +2936,10 @@
         "permitNumber": "PR0327260"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_1a1b3ecade8f4cf2",
+      "id": "user_c2d5b4dae02f2c80",
       "name": "Krishnaveni Bholanath",
       "email": null,
       "phone": null,
@@ -2962,10 +2962,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_df5f0582a6ae51d6",
+      "id": "user_c00e0a42a914908e",
       "name": "Krybaby Cakes & Cards",
       "email": null,
       "phone": null,
@@ -2988,10 +2988,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5b81ca069a319238",
+      "id": "user_108a07feaee57037",
       "name": "La Belle Baguette",
       "email": null,
       "phone": null,
@@ -3014,10 +3014,10 @@
         "permitNumber": "PR0318863"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_ea5967f2502cf222",
+      "id": "user_311a9fd8269d8c14",
       "name": "La La Happy Kitchen",
       "email": null,
       "phone": null,
@@ -3040,10 +3040,10 @@
         "permitNumber": "PR0327461"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_57cfb084cd951572",
+      "id": "user_eab7affb0e492a5c",
       "name": "La Shunxing",
       "email": null,
       "phone": null,
@@ -3066,10 +3066,10 @@
         "permitNumber": "PR0326191"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_95f346dc167a2054",
+      "id": "user_ecf07c865ac18b17",
       "name": "Lakay Flavors",
       "email": null,
       "phone": null,
@@ -3092,10 +3092,10 @@
         "permitNumber": "PR0327266"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_dd077bad9782dc4c",
+      "id": "user_ced3c3434dbf6beb",
       "name": "Lamb House Grill",
       "email": null,
       "phone": "(661)418-7932",
@@ -3118,10 +3118,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.247Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_3e83bd84c2ba123b",
+      "id": "user_d6917048338323c6",
       "name": "Las Changas",
       "email": null,
       "phone": null,
@@ -3144,10 +3144,10 @@
         "permitNumber": "PR0314225"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_1380a7a64e6c22af",
+      "id": "user_e20197aba3be83a4",
       "name": "Lasagne Di Catania",
       "email": null,
       "phone": null,
@@ -3170,10 +3170,10 @@
         "permitNumber": "PR0318852"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_4c2543dbd688a9ae",
+      "id": "user_c82fbb2e81ae2cf7",
       "name": "Layered Ice Cream Pies",
       "email": null,
       "phone": null,
@@ -3196,10 +3196,10 @@
         "permitNumber": "PR0365043"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5934d4e2f7f3a5c7",
+      "id": "user_ee48f560885b787c",
       "name": "Lemme Smash Burger",
       "email": null,
       "phone": null,
@@ -3222,10 +3222,10 @@
         "permitNumber": "PR0315750"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_d785b5c006e8aad4",
+      "id": "user_6c13ffca31879bc6",
       "name": "Leza",
       "email": "Elizabeth@cafeleza.com",
       "phone": "(818) 621-0149",
@@ -3248,10 +3248,10 @@
         "permitNumber": "PR0314594"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f1be7da9d6709b9a",
+      "id": "user_cc1590a1e39eed3a",
       "name": "Liangpi House",
       "email": null,
       "phone": null,
@@ -3274,10 +3274,10 @@
         "permitNumber": "PR0326241"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_613ed8be313c4d21",
+      "id": "user_4e6296240f90e828",
       "name": "Little City Farm",
       "email": null,
       "phone": null,
@@ -3300,10 +3300,10 @@
         "permitNumber": "PR0314585"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_849978f0f7b0a7e1",
+      "id": "user_3cb32521e050d3f1",
       "name": "Litucho'S Grill",
       "email": null,
       "phone": null,
@@ -3326,10 +3326,10 @@
         "permitNumber": "PR0316974"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b18cc95f387c7e52",
+      "id": "user_89074b3a143c60dc",
       "name": "Liv'S Lumpias",
       "email": null,
       "phone": "650) 333-5834",
@@ -3352,10 +3352,10 @@
         "permitNumber": "PR0317648"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_c6a1d08f24003d82",
+      "id": "user_23527a55c5aab9d9",
       "name": "Lomo Fuego-Peruvian Food",
       "email": null,
       "phone": null,
@@ -3378,10 +3378,10 @@
         "permitNumber": "PR0317646"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_58c48d0db065635d",
+      "id": "user_36d3f80bb0d657a9",
       "name": "Long' Style",
       "email": null,
       "phone": null,
@@ -3404,10 +3404,10 @@
         "permitNumber": "PR0317340"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_58b0ee22f7e72ba1",
+      "id": "user_d98440341cd3804d",
       "name": "Losnooyado",
       "email": null,
       "phone": null,
@@ -3430,10 +3430,10 @@
         "permitNumber": "PR0314227"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_d285235d76aa1b3a",
+      "id": "user_250f02b4cf26b47f",
       "name": "Lucky'S Place",
       "email": null,
       "phone": null,
@@ -3456,10 +3456,10 @@
         "permitNumber": "PR0327172"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_743d1e44483efe2a",
+      "id": "user_944dcb34a149cfed",
       "name": "Luscious Tierra",
       "email": null,
       "phone": null,
@@ -3482,10 +3482,10 @@
         "permitNumber": "PR0313960"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_0944a2d3d4dfab72",
+      "id": "user_4f39c183bc1701fe",
       "name": "Luvmi Charcuterie",
       "email": "luvmicharcuterie@gmail.com",
       "phone": null,
@@ -3508,10 +3508,10 @@
         "permitNumber": "PR0314862"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_31e6bdf9d073e6a1",
+      "id": "user_5599e6975ea78309",
       "name": "Ma'S Oasis",
       "email": "info@masoasis.com",
       "phone": null,
@@ -3534,10 +3534,10 @@
         "permitNumber": "PR0324491"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a613786492a8deb1",
+      "id": "user_47462711a004edc5",
       "name": "Mam'S Kitchen",
       "email": null,
       "phone": null,
@@ -3560,10 +3560,10 @@
         "permitNumber": "PR0324286"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_c9df7f6822dd0deb",
+      "id": "user_e743f027df0c2706",
       "name": "Mama Chila",
       "email": null,
       "phone": null,
@@ -3586,10 +3586,10 @@
         "permitNumber": "PR0317640"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_18dd4a07dfa71306",
+      "id": "user_8d9b8b93593745ae",
       "name": "Mama Glendas",
       "email": null,
       "phone": null,
@@ -3612,10 +3612,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_932d27f22adce512",
+      "id": "user_f70dad0e678468c1",
       "name": "Mama'S Cooking",
       "email": null,
       "phone": null,
@@ -3638,10 +3638,10 @@
         "permitNumber": "PR0326273"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_c1ea4bd7b2b4a555",
+      "id": "user_b8af2106728fae77",
       "name": "Mamma Nicole'S Garden Goo",
       "email": null,
       "phone": null,
@@ -3664,10 +3664,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_ee3e4d9555eb7d11",
+      "id": "user_c494ca300e33833d",
       "name": "Manfu Snack",
       "email": null,
       "phone": null,
@@ -3690,10 +3690,10 @@
         "permitNumber": "PR0315496"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_df85ae436b61a38e",
+      "id": "user_4e3c928f13b2ea55",
       "name": "Mangia At Home Llc",
       "email": null,
       "phone": null,
@@ -3716,10 +3716,10 @@
         "permitNumber": "PR0314223"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_47a53220d5829c57",
+      "id": "user_b5fb2e7c0a83bd24",
       "name": "Mannge Chix",
       "email": null,
       "phone": null,
@@ -3742,10 +3742,10 @@
         "permitNumber": "PR0313637"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_72ebbdc56a42097b",
+      "id": "user_e74f046bafee989c",
       "name": "Mardirosian Production In",
       "email": null,
       "phone": null,
@@ -3768,10 +3768,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_39cc4e3e504ad52c",
+      "id": "user_381c1f47d231f232",
       "name": "Maria And Claudio Jimenez",
       "email": null,
       "phone": null,
@@ -3794,10 +3794,10 @@
         "permitNumber": "PR0324641"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f4893a049230c707",
+      "id": "user_5bc571f8ce6e54ab",
       "name": "Marjan Cookery",
       "email": null,
       "phone": null,
@@ -3820,10 +3820,10 @@
         "permitNumber": "PR0323367"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_2dfe73d719282b7c",
+      "id": "user_157c9febdc8c10e8",
       "name": "Martha'S Tacos And Mexica",
       "email": null,
       "phone": null,
@@ -3846,10 +3846,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f5e712ddcd035e3c",
+      "id": "user_ad1f24adc0726ecc",
       "name": "Masterpiece Kitchen",
       "email": null,
       "phone": null,
@@ -3872,10 +3872,10 @@
         "permitNumber": "PR0315538"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_7c7254f7de625e61",
+      "id": "user_dd0e44b283305fa8",
       "name": "Mauritian Street Food",
       "email": null,
       "phone": null,
@@ -3898,10 +3898,10 @@
         "permitNumber": "PR0327262"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_93c746af421e60db",
+      "id": "user_c1a152192cc3dc2a",
       "name": "Meat District",
       "email": null,
       "phone": null,
@@ -3924,10 +3924,10 @@
         "permitNumber": "PR0318815"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_12960aea44786733",
+      "id": "user_b5c6d38de0396369",
       "name": "Mediterranean Home Kitch",
       "email": null,
       "phone": null,
@@ -3950,10 +3950,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_18f8416b7a1505a6",
+      "id": "user_d47770a585fd31be",
       "name": "Mehko Kitchen",
       "email": "Customerservice@mehkokitchen.org",
       "phone": "(424) 227-2586",
@@ -3976,10 +3976,10 @@
         "permitNumber": "PR0327700"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_eb4d5af2bacb3b4c",
+      "id": "user_488bd61ed0fa5ea0",
       "name": "Mei Lin'S Kitchen",
       "email": null,
       "phone": null,
@@ -4002,10 +4002,10 @@
         "permitNumber": "PR0327261"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_40963741bcd19038",
+      "id": "user_4a5c291f2b814879",
       "name": "Mexiq",
       "email": null,
       "phone": null,
@@ -4028,10 +4028,10 @@
         "permitNumber": "PR0314061"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_767a73a81668cf37",
+      "id": "user_0a80fe98dea1fdc6",
       "name": "Mi-Ri Yvonne",
       "email": null,
       "phone": null,
@@ -4054,10 +4054,10 @@
         "permitNumber": "PR0326093"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_293cb14650060b65",
+      "id": "user_f035cd45131be3a8",
       "name": "Michis Lemonade Companyl",
       "email": null,
       "phone": null,
@@ -4080,10 +4080,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b5cda824c02e8d2c",
+      "id": "user_1afdb140d1e0208f",
       "name": "Mideast Eats",
       "email": null,
       "phone": null,
@@ -4106,10 +4106,10 @@
         "permitNumber": "PR0313864"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_74f1e690292d0b1f",
+      "id": "user_8b9e4811fe66a41c",
       "name": "Milkshake",
       "email": null,
       "phone": null,
@@ -4132,10 +4132,10 @@
         "permitNumber": "PR0325245"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_cd5fdd8fc0b00874",
+      "id": "user_e8e04f321c8936d2",
       "name": "Minon Cake",
       "email": null,
       "phone": null,
@@ -4158,10 +4158,10 @@
         "permitNumber": "PR0328299"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a989065a60e6eac0",
+      "id": "user_33c83f2ec9454c1f",
       "name": "Misti'S House (peruvian Sty",
       "email": null,
       "phone": null,
@@ -4184,10 +4184,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_6d1bcee4dc32ca91",
+      "id": "user_e0c2d3527f459314",
       "name": "Montero Yogurt",
       "email": null,
       "phone": null,
@@ -4210,10 +4210,10 @@
         "permitNumber": "PR0326071"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_86dee986da3a0e1d",
+      "id": "user_4100b9b485946ba4",
       "name": "Mr Ryong'S Artist'S Rice",
       "email": null,
       "phone": null,
@@ -4236,10 +4236,10 @@
         "permitNumber": "PR0313838"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_852314238b568035",
+      "id": "user_bbccbe0c05c5b3a0",
       "name": "My Kuzna",
       "email": null,
       "phone": null,
@@ -4262,10 +4262,10 @@
         "permitNumber": "PR0313421"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_941a9a00020a312b",
+      "id": "user_786516f910148d78",
       "name": "N. Diet",
       "email": null,
       "phone": null,
@@ -4288,10 +4288,10 @@
         "permitNumber": "PR0319426"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5fbc9f06848ef678",
+      "id": "user_86dd015d9e8870f6",
       "name": "Napo Pizza, Llc",
       "email": null,
       "phone": null,
@@ -4314,10 +4314,10 @@
         "permitNumber": "PR0313409"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_e03f3a6e188fa8e1",
+      "id": "user_7294785b110c8d20",
       "name": "Nawal",
       "email": null,
       "phone": null,
@@ -4340,10 +4340,10 @@
         "permitNumber": "PR0326543"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_8b30cae1ad7e3b60",
+      "id": "user_4eacaa3bb1165a13",
       "name": "Neighborhood Coffee",
       "email": null,
       "phone": null,
@@ -4366,10 +4366,10 @@
         "permitNumber": "PR0324492"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_7f1f1a3e9ea4a3bb",
+      "id": "user_5761b881ed919b3f",
       "name": "Nia'S Table",
       "email": null,
       "phone": null,
@@ -4392,10 +4392,10 @@
         "permitNumber": "PR0325244"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b83bf51f08a10d73",
+      "id": "user_9ee87d59c2a2427f",
       "name": "Nicolasa'S Kitchen",
       "email": null,
       "phone": null,
@@ -4418,10 +4418,10 @@
         "permitNumber": "PR0327037"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_c36047e709ebcc56",
+      "id": "user_ebcc1e371462e58d",
       "name": "Nikkimomo",
       "email": null,
       "phone": null,
@@ -4444,10 +4444,10 @@
         "permitNumber": "PR0314321"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_7ff5c945d80671e0",
+      "id": "user_a82d7a7dd19b3b8b",
       "name": "No Brand",
       "email": null,
       "phone": null,
@@ -4470,10 +4470,10 @@
         "permitNumber": "PR0318622"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_dd8e18c88d803e1f",
+      "id": "user_7280b45d3758bc0c",
       "name": "Noodle Girl",
       "email": null,
       "phone": null,
@@ -4496,10 +4496,10 @@
         "permitNumber": "PR0324487"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_703c324ef6631039",
+      "id": "user_388930c6e283ea01",
       "name": "Not Yo Mama'S Tacos",
       "email": null,
       "phone": null,
@@ -4522,10 +4522,10 @@
         "permitNumber": "PR0326236"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_c9bf40cad3cfa965",
+      "id": "user_eb4e3999b5a8452d",
       "name": "Not Your Mom'S Pies",
       "email": null,
       "phone": null,
@@ -4548,10 +4548,10 @@
         "permitNumber": "PR0317467"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_2924a9a7c4565815",
+      "id": "user_5c07db2e276fe546",
       "name": "Nourished Roots",
       "email": null,
       "phone": null,
@@ -4574,10 +4574,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_061ea24ba0d8737b",
+      "id": "user_aaf2abedf8aa146a",
       "name": "Nourisoup",
       "email": "nourisoup@gmail.com",
       "phone": null,
@@ -4600,10 +4600,10 @@
         "permitNumber": "PR0365050"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_3904434645299cd1",
+      "id": "user_e961517c4916f307",
       "name": "Ok Duck",
       "email": null,
       "phone": null,
@@ -4626,10 +4626,10 @@
         "permitNumber": "PR0319906"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5f61dc573c284691",
+      "id": "user_65202466b6c397e4",
       "name": "Omar'S Tacos",
       "email": null,
       "phone": null,
@@ -4652,10 +4652,10 @@
         "permitNumber": "PR0315755"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_9835842b89846ca7",
+      "id": "user_c7a14cfa45c1ce50",
       "name": "Onggi Jonggi",
       "email": null,
       "phone": null,
@@ -4678,10 +4678,10 @@
         "permitNumber": "PR0319580"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_c79b5274954bbbd2",
+      "id": "user_93d31bed21f7b91b",
       "name": "Our Lady Of Shallot",
       "email": null,
       "phone": null,
@@ -4704,10 +4704,10 @@
         "permitNumber": "PR0313415"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_0e34f6f9ed86d5b2",
+      "id": "user_adfd17c65af84359",
       "name": "Pacaeli Services",
       "email": null,
       "phone": null,
@@ -4730,10 +4730,10 @@
         "permitNumber": "PR0315243"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_761a09d9c9f13ac1",
+      "id": "user_d637c11013914b51",
       "name": "Parker House Delights",
       "email": null,
       "phone": null,
@@ -4756,10 +4756,10 @@
         "permitNumber": "PR0315414"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_2c8af0eff0ea4b66",
+      "id": "user_7c14a09f35b60ecc",
       "name": "Pies In The Sky",
       "email": null,
       "phone": null,
@@ -4782,10 +4782,10 @@
         "permitNumber": "PR0326031"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a2ec01b80503d99f",
+      "id": "user_e399a2d202d042da",
       "name": "Pili Pili De Congo",
       "email": "lumumbarevolution@gmail.com",
       "phone": null,
@@ -4808,10 +4808,10 @@
         "permitNumber": "PR0314062"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_5f78ed46fa85d57c",
+      "id": "user_c5cc50673afd4c00",
       "name": "Pinkelicious By Chef Mylen",
       "email": null,
       "phone": null,
@@ -4834,10 +4834,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_a3b80421dadf1207",
+      "id": "user_e5e3110daa22d24a",
       "name": "Pop Jerk",
       "email": null,
       "phone": null,
@@ -4860,10 +4860,10 @@
         "permitNumber": "PR0327263"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_2c24dbb4b7901336",
+      "id": "user_91ad9098e6729f1e",
       "name": "Qudsia'S",
       "email": null,
       "phone": null,
@@ -4886,10 +4886,10 @@
         "permitNumber": "PR0328443"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f16dc16a7542629b",
+      "id": "user_bedfb69bf042e569",
       "name": "Rafnroll",
       "email": null,
       "phone": null,
@@ -4912,10 +4912,10 @@
         "permitNumber": "PR0324965"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f22f3744a6cfa5fc",
+      "id": "user_0de60ca92654071b",
       "name": "Railroad Restaurant",
       "email": null,
       "phone": null,
@@ -4938,10 +4938,10 @@
         "permitNumber": "PR0326029"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_9eb11c32b27c4c85",
+      "id": "user_9717000c4de29fd6",
       "name": "Raspados Estilo Tonala, Ja",
       "email": null,
       "phone": null,
@@ -4964,10 +4964,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_aa37134783ee7c03",
+      "id": "user_173bf95734014350",
       "name": "Raspados Naturales",
       "email": null,
       "phone": null,
@@ -4990,10 +4990,10 @@
         "permitNumber": "PR0315802"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_36ea0dfd03528fc5",
+      "id": "user_3f296a8d19006a51",
       "name": "Red Dragon Lounge",
       "email": "tonics@reddragonlounge.com",
       "phone": "310-401-1260",
@@ -5016,10 +5016,10 @@
         "permitNumber": "PR0314733"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_f70c353736f332c0",
+      "id": "user_de5b1498fd2e4875",
       "name": "Red Eye Cafe",
       "email": null,
       "phone": null,
@@ -5042,10 +5042,10 @@
         "permitNumber": "PR0327460"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_7abfc1be2144e319",
+      "id": "user_770f4989358c993f",
       "name": "Renaissance South La Inc",
       "email": null,
       "phone": null,
@@ -5068,10 +5068,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.008Z"
     },
     {
-      "id": "user_b02080f50a35872b",
+      "id": "user_1d182c8c1fae7e37",
       "name": "Reni Coffee",
       "email": null,
       "phone": null,
@@ -5094,10 +5094,10 @@
         "permitNumber": "PR0327487"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_7d86981afac9b457",
+      "id": "user_f1846b529ab6f520",
       "name": "Rolli Bakehouse",
       "email": "Contactrollibakehouse@gmail.com",
       "phone": null,
@@ -5120,10 +5120,10 @@
         "permitNumber": "PR0316838"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_3cf2d9465e1f4552",
+      "id": "user_544e9c2cfbe8cd2d",
       "name": "Royal Home Deli",
       "email": null,
       "phone": null,
@@ -5146,10 +5146,10 @@
         "permitNumber": "PR0315764"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_c5a66957ae1d555f",
+      "id": "user_217984d8e5772ee0",
       "name": "Rubie",
       "email": "rubielosangeles@gmail.com",
       "phone": null,
@@ -5172,10 +5172,10 @@
         "permitNumber": "PR0314710"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_83d81fccb7c49957",
+      "id": "user_16fbd9f59647e8c9",
       "name": "Sabor De Mi Tierra",
       "email": null,
       "phone": null,
@@ -5198,10 +5198,10 @@
         "permitNumber": "PR0327265"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_08b8e3971ab91803",
+      "id": "user_e5ab06d1d2ba0731",
       "name": "Sabor Mexico Homemade",
       "email": null,
       "phone": null,
@@ -5224,10 +5224,10 @@
         "permitNumber": "PR0327161"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_bcd484d0a3c7a286",
+      "id": "user_1acf6f9dd9bbd056",
       "name": "Sabor Peruano",
       "email": null,
       "phone": null,
@@ -5250,10 +5250,10 @@
         "permitNumber": "PR0318686"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_e2f8ad6f1a1985d2",
+      "id": "user_08a9d0b4d3f68d7a",
       "name": "Sahani Delight Kitchen",
       "email": null,
       "phone": "310-897-9475",
@@ -5276,10 +5276,10 @@
         "permitNumber": "PR0314731"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_5b73c83bf1f36409",
+      "id": "user_e0b12856167fc5b3",
       "name": "Savie Bake Shop",
       "email": null,
       "phone": null,
@@ -5302,10 +5302,10 @@
         "permitNumber": "PR0315242"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_60222f649f0c60b4",
+      "id": "user_67af7a270268065a",
       "name": "Serve Coffee + Pastries",
       "email": null,
       "phone": null,
@@ -5328,10 +5328,10 @@
         "permitNumber": "PR0326239"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_27a05ede7289344b",
+      "id": "user_134dacd78e51753b",
       "name": "Seven Plates La",
       "email": null,
       "phone": null,
@@ -5354,10 +5354,10 @@
         "permitNumber": "PR0328442"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_fc24bd6d27e49f50",
+      "id": "user_671229abbed20039",
       "name": "Simply Tastefull",
       "email": null,
       "phone": null,
@@ -5380,10 +5380,10 @@
         "permitNumber": "PR0326864"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_b4095566413bab92",
+      "id": "user_0b4c7ed048f65831",
       "name": "Smiling Islander",
       "email": "info@smilingislander.com",
       "phone": null,
@@ -5406,10 +5406,10 @@
         "permitNumber": "PR0314070"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_223aa66e777afa7d",
+      "id": "user_7300d128c841dad2",
       "name": "Smoke City Bbq La",
       "email": null,
       "phone": null,
@@ -5432,10 +5432,10 @@
         "permitNumber": "PR0313451"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_a3a5437f7aeea432",
+      "id": "user_f672f6e5e8470450",
       "name": "Smoke Mo'S La",
       "email": null,
       "phone": null,
@@ -5458,10 +5458,10 @@
         "permitNumber": "PR0323555"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_d5f793728d8762a4",
+      "id": "user_c486187a9614690f",
       "name": "Smoked Out Sliders",
       "email": null,
       "phone": null,
@@ -5484,10 +5484,10 @@
         "permitNumber": "PR0316908"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_5ca87a3a464b42ff",
+      "id": "user_0a6e5f192f2b380b",
       "name": "Socal Pie Co",
       "email": null,
       "phone": null,
@@ -5510,10 +5510,10 @@
         "permitNumber": "PR0314615"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_53557fd7d3047691",
+      "id": "user_b5769a0ee7e77cfd",
       "name": "Song'S Studio",
       "email": null,
       "phone": null,
@@ -5536,10 +5536,10 @@
         "permitNumber": "PR0319979"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_55e9a51e232dbff5",
+      "id": "user_b3df4556c1cc763a",
       "name": "Soul & Spice",
       "email": null,
       "phone": null,
@@ -5562,10 +5562,10 @@
         "permitNumber": "PR0318349"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_12cc5767902f7111",
+      "id": "user_f9aba80b3865f8c9",
       "name": "Squat Fox Meal",
       "email": "10AM-5PMSquatfox2021@gmail.com",
       "phone": null,
@@ -5588,10 +5588,10 @@
         "permitNumber": "PR0317111"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_3ccaa84a3f7e045a",
+      "id": "user_349fde34fb1606b0",
       "name": "Ssal&",
       "email": null,
       "phone": null,
@@ -5614,10 +5614,10 @@
         "permitNumber": "PR0365687"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_7166e8ea493ab1c8",
+      "id": "user_9dff6025cf448436",
       "name": "Sumth' N Delicious",
       "email": null,
       "phone": null,
@@ -5640,10 +5640,10 @@
         "permitNumber": "PR0314063"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_bde9deb504213b8f",
+      "id": "user_b6f525e1cfd46b52",
       "name": "Sup",
       "email": null,
       "phone": null,
@@ -5666,10 +5666,10 @@
         "permitNumber": "PR0327257"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_d9f0f909cad2f7c5",
+      "id": "user_71b44c53efb4a24b",
       "name": "Sweet Sticky Thangs",
       "email": null,
       "phone": null,
@@ -5692,10 +5692,10 @@
         "permitNumber": "PR0314734"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_b9d9de133aacab6a",
+      "id": "user_149bcf2629de72ac",
       "name": "Taco Legendz",
       "email": null,
       "phone": null,
@@ -5718,10 +5718,10 @@
         "permitNumber": "PR0326079"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_9bc4f320c4a44532",
+      "id": "user_74eae5e0d076d06f",
       "name": "Tacos El Arbitro",
       "email": null,
       "phone": "(747) 321-5950",
@@ -5744,10 +5744,10 @@
         "permitNumber": "PR0317582"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_82e5a6f519131596",
+      "id": "user_8ec1becc76d807c9",
       "name": "Tacos El Chino",
       "email": null,
       "phone": null,
@@ -5770,10 +5770,10 @@
         "permitNumber": "PR0326072"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_fda0afbae73ba4f4",
+      "id": "user_9ad781a2fd8865bc",
       "name": "Tacos El Pariente De Maza",
       "email": null,
       "phone": null,
@@ -5796,10 +5796,10 @@
         "permitNumber": "PR0328452"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_f424a72057dbc7b0",
+      "id": "user_5fb7e0bf993b18cb",
       "name": "Tao'S Kitchen",
       "email": null,
       "phone": null,
@@ -5822,10 +5822,10 @@
         "permitNumber": "PR0318387"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_3c448e4c959bff6f",
+      "id": "user_9506c7ce84c67421",
       "name": "Taurouxs Smash Burgers",
       "email": null,
       "phone": null,
@@ -5848,10 +5848,10 @@
         "permitNumber": "PR0318032"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_cae8b76897e5fd5d",
+      "id": "user_f26b624349e55c1c",
       "name": "Tequetable",
       "email": null,
       "phone": null,
@@ -5874,10 +5874,10 @@
         "permitNumber": "PR0313959"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_9d566d265552dfbe",
+      "id": "user_34cef6d562f91982",
       "name": "Terra Table",
       "email": null,
       "phone": null,
@@ -5900,10 +5900,10 @@
         "permitNumber": "PR0365327"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_b19512a431fa14d8",
+      "id": "user_6dbc67b91a0a47cb",
       "name": "Thai Rama Kitchen",
       "email": null,
       "phone": null,
@@ -5926,10 +5926,10 @@
         "permitNumber": "PR0315545"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_ff43a7ef47c55d6c",
+      "id": "user_294ec3dfda5f77c0",
       "name": "The Apron Guild",
       "email": null,
       "phone": null,
@@ -5952,10 +5952,10 @@
         "permitNumber": "PR0315845"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_26865bd2542af50c",
+      "id": "user_d3a0f586ac0545b4",
       "name": "The Best Kosher Burger",
       "email": null,
       "phone": null,
@@ -5978,10 +5978,10 @@
         "permitNumber": "PR0319570"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_bba19931cc45bc22",
+      "id": "user_6c5feb539d37c3b9",
       "name": "The Ernest Elixirs Corpora",
       "email": null,
       "phone": null,
@@ -6004,10 +6004,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_4c4c1ba1a5e3bf4b",
+      "id": "user_bd43241d30ce96b0",
       "name": "The Hearty Home Company",
       "email": null,
       "phone": null,
@@ -6030,10 +6030,10 @@
         "permitNumber": "PR0327551"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_c4abb8f08d76bfd1",
+      "id": "user_43d36af3e608e0eb",
       "name": "The Herbitage Table",
       "email": null,
       "phone": null,
@@ -6056,10 +6056,10 @@
         "permitNumber": "PR0327781"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_ce33e48c457e4c07",
+      "id": "user_9dfc249b689bb296",
       "name": "The Kebab Mob",
       "email": "info@thekebabmob.com",
       "phone": "(661) 234-4900",
@@ -6082,10 +6082,10 @@
         "permitNumber": "PR0314515"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_e8176a52e95c21b7",
+      "id": "user_eaece702e7f3241b",
       "name": "The Mini Bites Company",
       "email": null,
       "phone": null,
@@ -6108,10 +6108,10 @@
         "permitNumber": "PR0324287"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_0dd6575fe5b8525d",
+      "id": "user_1543f3e02e06a27b",
       "name": "The Ocean'S Table",
       "email": null,
       "phone": null,
@@ -6134,10 +6134,10 @@
         "permitNumber": "PR0317082"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_0eb6fccd3377a987",
+      "id": "user_f63394071906c232",
       "name": "The Pastry Song",
       "email": null,
       "phone": null,
@@ -6160,10 +6160,10 @@
         "permitNumber": "PR0314608"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_cfc5378b681defbe",
+      "id": "user_21eabf881f62ea9a",
       "name": "The Patio",
       "email": null,
       "phone": null,
@@ -6186,10 +6186,10 @@
         "permitNumber": "PR0324321"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_b8de1a1dcc9d86f0",
+      "id": "user_7b75fd0061d4ca8e",
       "name": "The Smokey Sermon",
       "email": null,
       "phone": null,
@@ -6212,10 +6212,10 @@
         "permitNumber": "PR0327264"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_3464632361fcc217",
+      "id": "user_fffe248f2fcf9882",
       "name": "The Sweet Mexicraft",
       "email": null,
       "phone": null,
@@ -6238,10 +6238,10 @@
         "permitNumber": "PR0327583"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_d0c670bbf1807d5f",
+      "id": "user_eb986db3e2d310df",
       "name": "The Tamale Shoppe",
       "email": null,
       "phone": null,
@@ -6264,10 +6264,10 @@
         "permitNumber": "PR0317086"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_bad0b5171d81d3e2",
+      "id": "user_6356959add91e758",
       "name": "Three Monsters Kitchen &",
       "email": null,
       "phone": null,
@@ -6290,10 +6290,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_dccd1170f5f6139d",
+      "id": "user_d0c0b4b879911514",
       "name": "Ting'S Kitchen",
       "email": null,
       "phone": null,
@@ -6316,10 +6316,10 @@
         "permitNumber": "PR0323969"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_d1f968113a11eb5a",
+      "id": "user_682a7a536b89a18e",
       "name": "Tl Tiny Treats",
       "email": null,
       "phone": null,
@@ -6342,10 +6342,10 @@
         "permitNumber": "PR0314858"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_8442600bc04b3c49",
+      "id": "user_e2ca78e157c5cedc",
       "name": "Toasted Sugar Bakery",
       "email": null,
       "phone": null,
@@ -6368,10 +6368,10 @@
         "permitNumber": "PR0326887"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_652685d7be7a1345",
+      "id": "user_aa00ce86d69697f3",
       "name": "True Form",
       "email": null,
       "phone": null,
@@ -6394,10 +6394,10 @@
         "permitNumber": "PR0313525"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_1d39cc5ec9b7c328",
+      "id": "user_2881c1fd57bca11b",
       "name": "U.s. Xiafei Tiandi Education",
       "email": null,
       "phone": null,
@@ -6420,10 +6420,10 @@
         "permitNumber": null
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_854dda36e4edc250",
+      "id": "user_7cd327555487811a",
       "name": "Vegan Got Soul!",
       "email": "vegangotsoul@gmail.com",
       "phone": "(323) 8476635",
@@ -6446,10 +6446,10 @@
         "permitNumber": "PR0365710"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_b516999a733f43ad",
+      "id": "user_2f0765ae483d410e",
       "name": "Veggie Y Que",
       "email": null,
       "phone": null,
@@ -6472,10 +6472,10 @@
         "permitNumber": "PR0315822"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_46c46f7ef1dd929e",
+      "id": "user_e7fd5fe52450a269",
       "name": "Vendittis Pizza",
       "email": null,
       "phone": null,
@@ -6498,10 +6498,10 @@
         "permitNumber": "PR0313244"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_43acf8e21069a6ad",
+      "id": "user_ab6cbaec28259a83",
       "name": "Vida Kitchen",
       "email": null,
       "phone": "(310) 987-7340",
@@ -6524,10 +6524,10 @@
         "permitNumber": "PR0314864"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.248Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_fa7e0d57234e44ec",
+      "id": "user_42037c419e7e9fe6",
       "name": "Village Gate",
       "email": null,
       "phone": null,
@@ -6550,10 +6550,10 @@
         "permitNumber": "PR0324634"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_55bbf90436e6c61b",
+      "id": "user_2aa92a5cbe20ee01",
       "name": "Voodi'S Kitchen",
       "email": null,
       "phone": null,
@@ -6576,10 +6576,10 @@
         "permitNumber": "PR0324968"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_eeb82e0b0373b4e9",
+      "id": "user_8c6a8daa399786d3",
       "name": "Wait Wait Wait",
       "email": null,
       "phone": null,
@@ -6602,10 +6602,10 @@
         "permitNumber": "PR0318347"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_e04f9c2575029b5b",
+      "id": "user_9ce0d26d30647172",
       "name": "Wraps-To-Gomeztrejo",
       "email": null,
       "phone": null,
@@ -6628,10 +6628,10 @@
         "permitNumber": "PR0313636"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_43f551b1a7fe88c8",
+      "id": "user_67c3e4f0c3bd1e15",
       "name": "Wurst Barbeque",
       "email": null,
       "phone": null,
@@ -6654,10 +6654,10 @@
         "permitNumber": "PR0319981"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_4321c1faa7770353",
+      "id": "user_2bdd7f5861e15a0b",
       "name": "Yana'S Ladas",
       "email": null,
       "phone": null,
@@ -6680,10 +6680,10 @@
         "permitNumber": "PR0317314"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_ed0a81983af9afe2",
+      "id": "user_eb4bc9b2f55e2fd6",
       "name": "Yang'S Family Kitchen",
       "email": null,
       "phone": null,
@@ -6706,10 +6706,10 @@
         "permitNumber": "PR0314592"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_6f104b4856d48c35",
+      "id": "user_50a9d0add23349ac",
       "name": "Yu'S Kitchen",
       "email": null,
       "phone": null,
@@ -6732,10 +6732,10 @@
         "permitNumber": "PR0325227"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
     },
     {
-      "id": "user_8b3fc2760e65a79e",
+      "id": "user_c5d987ba5ea04e19",
       "name": "Yue Yummy Kitchen",
       "email": null,
       "phone": null,
@@ -6758,7 +6758,1541 @@
         "permitNumber": "PR0314854"
       },
       "sessions": [],
-      "createdAt": "2026-03-26T05:35:22.249Z"
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_2cbdda9d9077a90d",
+      "name": "Ada Deliciosa Comida Guatemalteca",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Ada Deliciosa Comida Guatemalteca",
+        "bio": "Permitted MEHKO since 2025-10-31. LA County Record: PR0326085",
+        "photos": [],
+        "location": {
+          "lat": 34.2345615,
+          "lng": -118.5369316,
+          "address": "Northridge, CA 91324"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0326085"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_f9705a7dc5ece9cf",
+      "name": "Allen'S Balliwag Special Chicharon",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Allen'S Balliwag Special Chicharon",
+        "bio": "Permitted MEHKO since 2025-02-06. LA County Record: PR0314735",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90042"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0314735"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_bfc0a873f0b5a486",
+      "name": "Andres S Fernandez",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Andres S Fernandez",
+        "bio": "Permitted MEHKO since 2025-08-22. LA County Record: PR0320019",
+        "photos": [],
+        "location": {
+          "lat": 34.4888822,
+          "lng": -118.6228656,
+          "address": "Castaic, CA 91384"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0320019"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_4c426dbce3c969e1",
+      "name": "Barrio Bites",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Barrio Bites",
+        "bio": "Permitted MEHKO since 2025-07-15. LA County Record: PR0318819",
+        "photos": [],
+        "location": {
+          "lat": 34.2625025,
+          "lng": -118.427027,
+          "address": "Pacoima, CA 91331"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0318819"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_487f326efc41b4d6",
+      "name": "Baylie'S Comfort Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Baylie'S Comfort Kitchen",
+        "bio": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317642",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90015"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317642"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_d6792865677d0054",
+      "name": "Birrieria Los Yaquis",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Birrieria Los Yaquis",
+        "bio": "Permitted MEHKO since 2025-04-30. LA County Record: PR0317085",
+        "photos": [],
+        "location": {
+          "lat": 33.9092802,
+          "lng": -118.0849169,
+          "address": "Norwalk, CA 90650"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317085"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_7e1fee4256c3c309",
+      "name": "Black Couch Leather Chair Cafe",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Black Couch Leather Chair Cafe",
+        "bio": "Permitted MEHKO since 2026-03-25. LA County Record: PR0366548",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90015"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366548"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_ce2eeeba8c4a4c70",
+      "name": "Bnb Bbq Services (brisket & Bones",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Bnb Bbq Services (brisket & Bones",
+        "bio": "Permitted MEHKO since 2025-04-01. LA County Record: PR0315821",
+        "photos": [],
+        "location": {
+          "lat": 34.2064181,
+          "lng": -118.2288887,
+          "address": "Montrose, CA 91020"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0315821"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_b1aba10db364edbf",
+      "name": "By May",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "By May",
+        "bio": "Permitted MEHKO since 2026-03-06. LA County Record: PR0365914",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90005"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0365914"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_ca7952522424f76c",
+      "name": "Cals Fire Bbq",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Cals Fire Bbq",
+        "bio": "Permitted MEHKO since 2026-03-13. LA County Record: PR0366293",
+        "photos": [],
+        "location": {
+          "lat": 33.7358518,
+          "lng": -118.2922934,
+          "address": "San Pedro, CA 90731"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366293"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_db8157f8e029da8e",
+      "name": "Carnitas El Bigoton Becerra",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Carnitas El Bigoton Becerra",
+        "bio": "Permitted MEHKO since 2025-07-15. LA County Record: PR0318810",
+        "photos": [],
+        "location": {
+          "lat": 33.9092802,
+          "lng": -118.0849169,
+          "address": "Norwalk, CA 90650"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0318810"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_fb8a99246d0e2c8f",
+      "name": "Chef G French Cuisine",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Chef G French Cuisine",
+        "bio": "Permitted MEHKO since 2026-03-13. LA County Record: PR0366294",
+        "photos": [],
+        "location": {
+          "lat": 34.0990995,
+          "lng": -118.1085554,
+          "address": "San Gabriel, CA 91775"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366294"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_94a07f9f7ea995a9",
+      "name": "Chef Tobin'S Plant Based Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Chef Tobin'S Plant Based Kitchen",
+        "bio": "Permitted MEHKO since 2025-09-26. LA County Record: PR0324637",
+        "photos": [],
+        "location": {
+          "lat": 34.2661558,
+          "lng": -118.5174342,
+          "address": "Granada Hills, CA 91344"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0324637"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_873cafa3a09bd87e",
+      "name": "Cold Brew Coffee Crew",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Cold Brew Coffee Crew",
+        "bio": "Permitted MEHKO since 2026-03-10. LA County Record: PR0366241",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90028"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366241"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_15941e49531ce536",
+      "name": "Corazon Coffee And Pastries",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Corazon Coffee And Pastries",
+        "bio": "Permitted MEHKO since 2025-12-26. LA County Record: PR0327496",
+        "photos": [],
+        "location": {
+          "lat": 33.9463456,
+          "lng": -118.200981,
+          "address": "South Gate, CA 90280"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0327496"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_d94ce58ec7f8eebb",
+      "name": "Cudahy Home Flavor",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Cudahy Home Flavor",
+        "bio": "Permitted MEHKO since 2025-05-12. LA County Record: PR0317456",
+        "photos": [],
+        "location": {
+          "lat": 33.9620584,
+          "lng": -118.1835395,
+          "address": "Cudahy, CA 90201"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317456"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_bd1e71bf65b00506",
+      "name": "Dear Artist, Coffee",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Dear Artist, Coffee",
+        "bio": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366455",
+        "photos": [],
+        "location": {
+          "lat": 34.1866193,
+          "lng": -118.4486675,
+          "address": "Van Nuys, CA 91405"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366455"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_2e8589e66ac852c0",
+      "name": "East British Curry Company",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "East British Curry Company",
+        "bio": "Permitted MEHKO since 2025-04-30. LA County Record: PR0317088",
+        "photos": [],
+        "location": {
+          "lat": 34.1649502,
+          "lng": -118.374752,
+          "address": "North Hollywood, CA 91606"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317088"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_e2512d83845badab",
+      "name": "Favor&flavor Afriq",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Favor&flavor Afriq",
+        "bio": "Permitted MEHKO since 2025-07-10. LA County Record: PR0318687",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90043"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0318687"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_d9971fcd53a2de2a",
+      "name": "Feng Ming Delicious",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Feng Ming Delicious",
+        "bio": "Permitted MEHKO since 2025-01-30. LA County Record: PR0314597",
+        "photos": [],
+        "location": {
+          "lat": 34.0203253,
+          "lng": -117.8659441,
+          "address": "Walnut, CA 9178-"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0314597"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_576475c30c78ef7d",
+      "name": "Frenican Bakes",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Frenican Bakes",
+        "bio": "Permitted MEHKO since 2025-04-01. LA County Record: PR0315817",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 91402"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0315817"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_1a8b72ddd5076de3",
+      "name": "Fundacion Sonrias Latinas Usa",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Fundacion Sonrias Latinas Usa",
+        "bio": "Permitted MEHKO since 2025-06-06. LA County Record: PR0317954",
+        "photos": [],
+        "location": {
+          "lat": 34.2242902,
+          "lng": -118.4453745,
+          "address": "Panorama City, CA 91402"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317954"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_3c144de2054e1561",
+      "name": "Gezhong Geyang De Tiandian",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Gezhong Geyang De Tiandian",
+        "bio": "Permitted MEHKO since 2025-09-24. LA County Record: PR0324515",
+        "photos": [],
+        "location": {
+          "lat": 33.8371392,
+          "lng": -118.3413606,
+          "address": "Torrance, CA 90504"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0324515"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_b4deae864e4b611e",
+      "name": "Happy Return Dumplings And Buns",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Happy Return Dumplings And Buns",
+        "bio": "Permitted MEHKO since 2025-07-17. LA County Record: PR0318904",
+        "photos": [],
+        "location": {
+          "lat": 34.0203253,
+          "lng": -117.8659441,
+          "address": "Walnut, CA 91789"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0318904"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_054a76c3e6739ad2",
+      "name": "Home Table Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Home Table Kitchen",
+        "bio": "Permitted MEHKO since 2026-02-05. LA County Record: PR0365051",
+        "photos": [],
+        "location": {
+          "lat": 33.9761238,
+          "lng": -117.905339,
+          "address": "Rowland Heights, CA 91748"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0365051"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_e111d9275f4c4524",
+      "name": "Hui'S Exquisitely Hand Made",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Hui'S Exquisitely Hand Made",
+        "bio": "Permitted MEHKO since 2025-12-24. LA County Record: PR0327484",
+        "photos": [],
+        "location": {
+          "lat": 34.0751571,
+          "lng": -118.036849,
+          "address": "El Monte, CA 91731"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0327484"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_0e458a3f330cdd71",
+      "name": "Jp Bbq",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Jp Bbq",
+        "bio": "Permitted MEHKO since 2025-04-17. LA County Record: PR0316831",
+        "photos": [],
+        "location": {
+          "lat": 33.7358518,
+          "lng": -118.2922934,
+          "address": "San Pedro, CA 90731"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0316831"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_6f00781683312e5f",
+      "name": "Kafou Plant Based Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Kafou Plant Based Kitchen",
+        "bio": "Permitted MEHKO since 2025-12-16. LA County Record: PR0327267",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90018"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0327267"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_a1d3643a1e1dcd67",
+      "name": "Kdc Hospitality Group",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Kdc Hospitality Group",
+        "bio": "Permitted MEHKO since 2025-08-01. LA County Record: PR0319422",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90042"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0319422"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_7223871268e0eb9a",
+      "name": "Kindred Toffee X Gsoul Mini Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Kindred Toffee X Gsoul Mini Kitchen",
+        "bio": "Permitted MEHKO since 2025-08-29. LA County Record: PR0323547",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90014"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0323547"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_7e6a5a007ae30d01",
+      "name": "Krybaby Cakes And Cards",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Krybaby Cakes And Cards",
+        "bio": "Permitted MEHKO since 2025-06-27. LA County Record: PR0318389",
+        "photos": [],
+        "location": {
+          "lat": 34.1483499,
+          "lng": -118.0014517,
+          "address": "Monrovia, CA 91016"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0318389"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_0135ce53e29772e4",
+      "name": "La Sinaloense Cabeza De Res",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "La Sinaloense Cabeza De Res",
+        "bio": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317641",
+        "photos": [],
+        "location": {
+          "lat": 34.0553813,
+          "lng": -117.7517496,
+          "address": "Pomona, CA 91766"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317641"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_6cf2f9379f472a1f",
+      "name": "Lamb Hous Grill",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Lamb Hous Grill",
+        "bio": "Permitted MEHKO since 2025-05-12. LA County Record: PR0317460",
+        "photos": [],
+        "location": {
+          "lat": 34.5793131,
+          "lng": -118.11711,
+          "address": "Palmdale, CA 93551"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317460"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_9a9ae5901f37b3ef",
+      "name": "Madhura'S Specials",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Madhura'S Specials",
+        "bio": "Permitted MEHKO since 2026-03-06. LA County Record: PR0365923",
+        "photos": [],
+        "location": {
+          "lat": 33.7483311,
+          "lng": -118.3707683,
+          "address": "Rancho Palos Verdes, CA 90275"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0365923"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_8e8c352d93732206",
+      "name": "Mama Glendas Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Mama Glendas Kitchen",
+        "bio": "Permitted MEHKO since 2025-03-17. LA County Record: PR0315495",
+        "photos": [],
+        "location": {
+          "lat": 33.894927,
+          "lng": -118.226624,
+          "address": "Compton, CA 90220"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0315495"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_43182f7400ee70eb",
+      "name": "Mamma Nicole'S Garden Goodies",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Mamma Nicole'S Garden Goodies",
+        "bio": "Permitted MEHKO since 2025-05-12. LA County Record: PR0317442",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90065"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317442"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_9c2c362054c5a671",
+      "name": "Mardirosian Production",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Mardirosian Production",
+        "bio": "Permitted MEHKO since 2026-01-06. LA County Record: PR0327726",
+        "photos": [],
+        "location": {
+          "lat": 34.1469416,
+          "lng": -118.2478471,
+          "address": "Glendale, CA 91208"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0327726"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_2b5ac059f732a708",
+      "name": "Martha'S Tacos And Mexican Food And Martha'S Tamales",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Martha'S Tacos And Mexican Food And Martha'S Tamales",
+        "bio": "Permitted MEHKO since 2025-08-21. LA County Record: PR0319980",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90062"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0319980"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_d03fa232210e210b",
+      "name": "Mediterranean Home Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Mediterranean Home Kitchen",
+        "bio": "Permitted MEHKO since 2025-03-03. LA County Record: PR0315241",
+        "photos": [],
+        "location": {
+          "lat": 33.8398289,
+          "lng": -118.3845942,
+          "address": "Redondo Beach, CA 90277"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0315241"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_ef76c37b5db330bd",
+      "name": "Michis Lemonade Company",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Michis Lemonade Company",
+        "bio": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317650",
+        "photos": [],
+        "location": {
+          "lat": 33.9092802,
+          "lng": -118.0849169,
+          "address": "Norwalk, CA 90650"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317650"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_1af79fb7d35c0458",
+      "name": "Misti'S House (peruvian Style)",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Misti'S House (peruvian Style)",
+        "bio": "Permitted MEHKO since 2025-09-19. LA County Record: PR0324398",
+        "photos": [],
+        "location": {
+          "lat": 34.1866193,
+          "lng": -118.4486675,
+          "address": "Van Nuys, CA 91406"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0324398"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_69cb197085ce363c",
+      "name": "Nightbloom Bakery",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Nightbloom Bakery",
+        "bio": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366457",
+        "photos": [],
+        "location": {
+          "lat": 34.1362075,
+          "lng": -118.0401497,
+          "address": "Arcadia, CA 91006"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366457"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_4c499518729b316e",
+      "name": "Nourished Foods",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Nourished Foods",
+        "bio": "Permitted MEHKO since 2025-04-01. LA County Record: PR0315819",
+        "photos": [],
+        "location": {
+          "lat": 34.1361187,
+          "lng": -117.865339,
+          "address": "Glendora, CA 91740"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0315819"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_74bb9cddb7b52f8d",
+      "name": "Otti'S",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Otti'S",
+        "bio": "Permitted MEHKO since 2025-11-06. LA County Record: PR0326177",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90048"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0326177"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_709c1fd3649657ac",
+      "name": "Party Rock Cafe",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Party Rock Cafe",
+        "bio": "Permitted MEHKO since 2026-03-13. LA County Record: PR0366291",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90046"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366291"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_a4d8f9b15c07adff",
+      "name": "Pinkelicious By Chef Mylene",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Pinkelicious By Chef Mylene",
+        "bio": "Permitted MEHKO since 2025-10-29. LA County Record: PR0326026",
+        "photos": [],
+        "location": {
+          "lat": 34.1812089,
+          "lng": -118.307201,
+          "address": "Burbank, CA 91505"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0326026"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_159842d74afca873",
+      "name": "Raspados Estilo Tonala, Jalisco",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Raspados Estilo Tonala, Jalisco",
+        "bio": "Permitted MEHKO since 2025-10-29. LA County Record: PR0326027",
+        "photos": [],
+        "location": {
+          "lat": 34.0854739,
+          "lng": -117.9611761,
+          "address": "Baldwin Park, CA 91706"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0326027"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_d9fc48c2a0e71df6",
+      "name": "Reddoor3",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Reddoor3",
+        "bio": "Permitted MEHKO since 2026-03-10. LA County Record: PR0366245",
+        "photos": [],
+        "location": {
+          "lat": 34.1649502,
+          "lng": -118.374752,
+          "address": "North Hollywood, CA 91602"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366245"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_2002c90b9d63f8ee",
+      "name": "Renaissance South La",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Renaissance South La",
+        "bio": "Permitted MEHKO since 2025-11-06. LA County Record: PR0326176",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90016"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0326176"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_b89242d62575093b",
+      "name": "Spice Island Supper",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Spice Island Supper",
+        "bio": "Permitted MEHKO since 2026-03-06. LA County Record: PR0365917",
+        "photos": [],
+        "location": {
+          "lat": 34.2429575,
+          "lng": -118.4854081,
+          "address": "North Hills, CA 91343"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0365917"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_0fb39ca39a96d71f",
+      "name": "Sunday Salt",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Sunday Salt",
+        "bio": "Permitted MEHKO since 2025-04-30. LA County Record: PR0317081",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90020"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317081"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_43ae2cfca57214f5",
+      "name": "Tamales Dona Guera",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Tamales Dona Guera",
+        "bio": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366458",
+        "photos": [],
+        "location": {
+          "lat": 34.0280619,
+          "lng": -117.953097,
+          "address": "La Puente, CA 91744"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366458"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_41544cb78554f6fd",
+      "name": "The Ernest Elixirs Corporation",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "The Ernest Elixirs Corporation",
+        "bio": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317649",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90027"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317649"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_6c78b5031c5898b9",
+      "name": "Three Monsters Kitchen & Sweet",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Three Monsters Kitchen & Sweet",
+        "bio": "Permitted MEHKO since 2025-01-06. LA County Record: PR0314228",
+        "photos": [],
+        "location": {
+          "lat": 33.8371392,
+          "lng": -118.3413606,
+          "address": "Torrance, CA 90501"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0314228"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_956fc0585ffd015c",
+      "name": "Tom'S Burgers And Bowls",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Tom'S Burgers And Bowls",
+        "bio": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366463",
+        "photos": [],
+        "location": {
+          "lat": 34.1362075,
+          "lng": -118.0401497,
+          "address": "Arcadia, CA 91006"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0366463"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_63ddb4771dc4674a",
+      "name": "U.s. Xiafei Tiandi Education Group",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "U.s. Xiafei Tiandi Education Group",
+        "bio": "Permitted MEHKO since 2025-07-15. LA County Record: PR0318805",
+        "photos": [],
+        "location": {
+          "lat": 33.9930677,
+          "lng": -117.968675,
+          "address": "Hacienda Heights, CA 91745"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0318805"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_d494b874afdd3989",
+      "name": "Umé Coffee",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Umé Coffee",
+        "bio": "Permitted MEHKO since 2026-03-06. LA County Record: PR0365924",
+        "photos": [],
+        "location": {
+          "lat": 34.0536909,
+          "lng": -118.242766,
+          "address": "Los Angeles, CA 90039"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0365924"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_c08282f6218f1e8c",
+      "name": "Uyghur Home Kitchen",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Uyghur Home Kitchen",
+        "bio": "Permitted MEHKO since 2025-05-08. LA County Record: PR0317357",
+        "photos": [],
+        "location": {
+          "lat": 34.4127963,
+          "lng": -118.5538088,
+          "address": "Santa Clarita, CA 91387"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0317357"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
+    },
+    {
+      "id": "user_e518b236fd98f638",
+      "name": "Watts Q",
+      "email": null,
+      "phone": null,
+      "googleId": null,
+      "phoneVerified": false,
+      "status": "active",
+      "commissionOverride": null,
+      "emailOptIn": true,
+      "neighborhood": "",
+      "profile": {
+        "displayName": "Watts Q",
+        "bio": "Permitted MEHKO since 2025-10-15. LA County Record: PR0325421",
+        "photos": [],
+        "location": {
+          "lat": 33.8815601,
+          "lng": -118.2935879,
+          "address": "Gardena, CA 90247"
+        },
+        "permitType": "MEHKO",
+        "permitNumber": "PR0325421"
+      },
+      "sessions": [],
+      "createdAt": "2026-03-27T03:55:39.009Z"
     }
   ]
 }

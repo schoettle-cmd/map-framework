@@ -322,6 +322,48 @@ async function scrapeWebpage(url) {
   return [makeProspect({ name: bizName, businessName: bizName, website: url, ...details }, 'webpage', url)];
 }
 
+// ── Geocoding — resolve addresses to lat/lng via Nominatim ──────────────────
+
+async function geocodeAddress(address) {
+  const url = `https://nominatim.openstreetmap.org/search?` +
+    `q=${encodeURIComponent(address)}&format=json&limit=1&countrycodes=us`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': 'Kinseb/1.0 (home-chef-discovery)' },
+    signal: AbortSignal.timeout(8000)
+  });
+  if (!res.ok) return null;
+  const data = await res.json();
+  if (data.length > 0) {
+    return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+  }
+  return null;
+}
+
+async function geocodeMissing(prospects) {
+  const missing = prospects.filter(p => (p.lat == null || p.lng == null) && p.address);
+  const log = { attempted: missing.length, success: 0, failed: 0 };
+
+  // One at a time — Nominatim rate limit is 1 req/sec
+  for (const p of missing) {
+    try {
+      const coords = await geocodeAddress(p.address);
+      if (coords) {
+        p.lat = coords.lat;
+        p.lng = coords.lng;
+        log.success++;
+      } else {
+        log.failed++;
+      }
+    } catch (_) {
+      log.failed++;
+    }
+    // Respect Nominatim 1 req/sec rate limit
+    await new Promise(r => setTimeout(r, 1100));
+  }
+
+  return log;
+}
+
 // ── Main Orchestrator ────────────────────────────────────────────────────────
 
 async function scrapeAll(options = {}) {
@@ -403,7 +445,14 @@ async function scrapeAll(options = {}) {
   let allProspects = [...merged.values()];
   log.push({ source: 'merge', status: 'done', count: allProspects.length, note: `${mapProspects.length} from map + ${regProspects.length} from registry = ${allProspects.length} unique` });
 
-  // Step 3: Enrich — deep-scrape websites for phone/email
+  // Step 3: Geocode prospects missing coordinates
+  const needGeo = allProspects.filter(p => (p.lat == null || p.lng == null) && p.address);
+  if (needGeo.length > 0) {
+    const geoLog = await geocodeMissing(allProspects);
+    log.push({ source: 'geocode', status: 'done', ...geoLog, note: `${needGeo.length} prospects needed geocoding` });
+  }
+
+  // Step 4: Enrich — deep-scrape websites for phone/email
   if (!skipEnrich) {
     const enrichLog = await enrichWithWebsites(allProspects);
     log.push({ source: 'deep-scrape', status: 'done', ...enrichLog });
@@ -412,4 +461,4 @@ async function scrapeAll(options = {}) {
   return { prospects: allProspects, log, total: allProspects.length };
 }
 
-module.exports = { scrapeAll, scrapeMEHKOMap, scrapeMEHKORegistry, enrichWithWebsites, scrapeWebpage, deepScrape };
+module.exports = { scrapeAll, scrapeMEHKOMap, scrapeMEHKORegistry, enrichWithWebsites, geocodeMissing, geocodeAddress, scrapeWebpage, deepScrape };

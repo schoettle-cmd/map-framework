@@ -2236,16 +2236,8 @@ app.post('/api/admin/logout', (req, res) => {
 app.get('/api/admin/dashboard', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
 
-  // Total chefs vs sellers (live only)
-  let totalChefs = 0;
-  let totalSellersCount = 0;
-  prospects.prospects.forEach(p => {
-    if (p.status === 'live' || (p.convertedUserId && elements.elements.find(e => e.metadata && e.metadata.prospectId === p.id && e.active !== false))) {
-      if (p.type === 'chef') totalChefs++;
-      else totalSellersCount++;
-    }
-  });
-  const totalSellers = totalChefs + totalSellersCount;
+  // Total chefs = all prospects in the system
+  const totalChefs = prospects.prospects.length;
 
   // Total buyers = users who placed at least 1 order
   const buyerIds = new Set(orders.orders.map(o => o.buyerId));
@@ -2274,9 +2266,7 @@ app.get('/api/admin/dashboard', (req, res) => {
 
   res.json({
     ok: true,
-    totalSellers,
     totalChefs,
-    totalSellersOnly: totalSellersCount,
     totalBuyers,
     totalOrders,
     totalRevenue,

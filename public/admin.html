@@ -519,9 +519,6 @@
       <button class="nav-item" data-section="chefs" onclick="showSection('chefs')">
         <span class="nav-icon">&#129491;</span> Chefs
       </button>
-      <button class="nav-item" data-section="sellers" onclick="showSection('sellers')">
-        <span class="nav-icon">&#127978;</span> Sellers
-      </button>
       <button class="nav-item" data-section="buyers" onclick="showSection('buyers')">
         <span class="nav-icon">&#128101;</span> Diners
       </button>
@@ -639,63 +636,12 @@
       <!-- CHEF DETAIL -->
       <div class="section" id="sec-chef-detail"></div>
 
-      <!-- SELLERS LIST -->
-      <div class="section" id="sec-sellers">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
-          <div>
-            <div style="font-size:16px;font-weight:700;">Sellers</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">MEHKO permit holders, cottage food producers, and prepared food sellers</div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <button class="btn-make-all-live" onclick="bulkMakeAllLive('seller')" title="Convert all sellers with coordinates to live map listings">Make All Live</button>
-            <button class="btn btn-accent" onclick="openProspectModal(null, 'seller')">Add Seller</button>
-            <button class="btn btn-outline" onclick="openImportModal('seller')">Import CSV</button>
-            <button class="btn btn-outline" onclick="openScrapeModal('seller')">Scrape Now</button>
-          </div>
-        </div>
-        <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center;" id="sellerFilterTabs">
-          <button class="btn btn-accent unified-filter-btn active-filter" data-type="seller" data-filter="all" onclick="filterUnifiedList('seller','all')">All <span id="seller-count-all" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline unified-filter-btn" data-type="seller" data-filter="prospect" onclick="filterUnifiedList('seller','prospect')">Prospect <span id="seller-count-prospect" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline unified-filter-btn" data-type="seller" data-filter="contacted" onclick="filterUnifiedList('seller','contacted')">Contacted <span id="seller-count-contacted" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline unified-filter-btn" data-type="seller" data-filter="live" onclick="filterUnifiedList('seller','live')">Live <span id="seller-count-live" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline unified-filter-btn" data-type="seller" data-filter="paused" onclick="filterUnifiedList('seller','paused')">Paused <span id="seller-count-paused" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline unified-filter-btn" data-type="seller" data-filter="rejected" onclick="filterUnifiedList('seller','rejected')">Rejected <span id="seller-count-rejected" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <select class="filter-select" id="sellerCuisineFilter" onchange="searchUnifiedList('seller')" style="margin-left:8px;">
-            <option value="">All Cuisines</option>
-          </select>
-        </div>
-        <div class="table-wrapper">
-          <div class="table-header">
-            <div class="table-title">Sellers</div>
-            <input type="text" class="search-input" id="sellerSearch" placeholder="Search name, cuisine, tags..." oninput="searchUnifiedList('seller')">
-          </div>
-          <div class="table-scroll">
-            <table>
-              <thead><tr>
-                <th style="width:36px"><input type="checkbox" class="row-checkbox" id="sellerSelectAll" onchange="toggleSelectAll('seller')"></th>
-                <th>Photo</th><th>Name</th><th>Business</th><th>Location</th><th>Cuisine</th><th>Contact</th><th>Status</th><th>Actions</th>
-              </tr></thead>
-              <tbody id="sellersBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- SELLER DETAIL -->
-      <div class="section" id="sec-seller-detail"></div>
-
       <!-- BULK ACTION BARS -->
       <div class="bulk-bar" id="chefBulkBar">
         <div class="bulk-bar-count"><span id="chefBulkCount">0</span> selected</div>
         <button class="btn btn-success" onclick="bulkMakeLive('chef')">Make Live</button>
         <button class="btn btn-outline" onclick="bulkRejectItems('chef')">Reject</button>
         <button class="btn btn-danger" onclick="bulkRemoveItems('chef')">Remove Selected</button>
-      </div>
-      <div class="bulk-bar" id="sellerBulkBar">
-        <div class="bulk-bar-count"><span id="sellerBulkCount">0</span> selected</div>
-        <button class="btn btn-success" onclick="bulkMakeLive('seller')">Make Live</button>
-        <button class="btn btn-outline" onclick="bulkRejectItems('seller')">Reject</button>
-        <button class="btn btn-danger" onclick="bulkRemoveItems('seller')">Remove Selected</button>
       </div>
 
       <!-- Prospect Add/Edit Modal -->
@@ -1178,7 +1124,6 @@ async function checkAuth() {
       const data = await res.json();
       renderDashboard(data);
       loadUnifiedList('chef');
-      loadUnifiedList('seller');
       loadBuyers();
       loadOrders();
       loadSettings();
@@ -1238,8 +1183,7 @@ async function doLogout() {
 
 const sectionTitles = {
   dashboard: ['Platform Command Center', 'Overview of your marketplace'],
-  chefs:     ['Chefs', 'Personal chefs who come to your home and cook'],
-  sellers:   ['Sellers', 'MEHKO permit holders, cottage food, prepared food sellers'],
+  chefs:     ['Chefs', 'Private chefs, home kitchens, and leads'],
   buyers:    ['Buyers', 'Browse and search buyer accounts'],
   orders:    ['Orders', 'Track every transaction'],
   settings:  ['Settings', 'Core Configuration'],
@@ -1247,7 +1191,6 @@ const sectionTitles = {
   ratings:   ['Ratings & Reviews', 'Monitor buyer feedback'],
   cronjobs:  ['Scheduled Cron Jobs', 'Automated scraping and data collection'],
   'chef-detail': ['Chef Details', 'View and manage chef profile'],
-  'seller-detail': ['Seller Details', 'View and manage seller profile']
 };
 
 function showSection(name) {
@@ -1335,6 +1278,7 @@ function populateCuisineDropdown(type) {
   const cuisines = new Set();
   listData[type].forEach(s => { if (s.cuisineType) cuisines.add(s.cuisineType); });
   const select = document.getElementById(type + 'CuisineFilter');
+  if (!select) return;
   const current = select.value;
   select.innerHTML = '<option value="">All Cuisines</option>';
   Array.from(cuisines).sort().forEach(c => {
@@ -2203,7 +2147,6 @@ async function triggerCronJob(jobId) {
       showToast('Job completed: ' + (data.newRecords || 0) + ' new records', 'success');
       loadCronJobs();
       loadUnifiedList('chef');
-      loadUnifiedList('seller');
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Job failed', 'error');

@@ -827,7 +827,7 @@ function normalizePhone(raw) {
 }
 
 // ── OTP System ──────────────────────────────────────────────────────────────
-const TEST_PHONES = { '+15555555555': '555555', '+11111111111': '111111' };
+const TEST_PHONES = { '+15555555555': '555555', '+11111111111': '111111', '+11234567890': '123456' };
 
 function generateOtp() {
   return String(Math.floor(100000 + Math.random() * 900000));

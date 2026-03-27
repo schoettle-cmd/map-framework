@@ -2629,7 +2629,7 @@
       "description": "Creative home kitchen offering eclectic dishes in Los Angeles. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314587",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.05186856435,
+      "lat": 34.05328009885583,
       "lng": -118.325843180675,
       "ownerId": "user_c448656cc3073ebb",
       "metadata": {
@@ -3185,7 +3185,7 @@
       "description": "Organic urban farm offering sustainable, zero-waste food and recipes. | Permitted MEHKO since 2025-01-30. LA County Record: PR0314585",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.051607446522,
+      "lat": 34.04950834579772,
       "lng": -118.325986546475,
       "ownerId": "user_4e6296240f90e828",
       "metadata": {
@@ -6590,7 +6590,7 @@
       "description": "Permitted MEHKO since 2025-02-06. LA County Record: PR0314735",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
+      "lat": 34.05557387356387,
       "lng": -118.242766,
       "ownerId": "user_f9705a7dc5ece9cf",
       "metadata": {
@@ -6665,8 +6665,8 @@
       "description": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317642",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05626641045806,
+      "lng": -118.24182859085523,
       "ownerId": "user_487f326efc41b4d6",
       "metadata": {
         "userId": "user_487f326efc41b4d6",
@@ -6690,7 +6690,7 @@
       "description": "Permitted MEHKO since 2025-04-30. LA County Record: PR0317085",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.9092802,
+      "lat": 33.911992851255555,
       "lng": -118.0849169,
       "ownerId": "user_d6792865677d0054",
       "metadata": {
@@ -6715,8 +6715,8 @@
       "description": "Permitted MEHKO since 2026-03-25. LA County Record: PR0366548",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05466920853229,
+      "lng": -118.24194510167138,
       "ownerId": "user_7e1fee4256c3c309",
       "metadata": {
         "userId": "user_7e1fee4256c3c309",
@@ -6765,8 +6765,8 @@
       "description": "Permitted MEHKO since 2026-03-06. LA County Record: PR0365914",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05479525359319,
+      "lng": -118.24085320346707,
       "ownerId": "user_b1aba10db364edbf",
       "metadata": {
         "userId": "user_b1aba10db364edbf",
@@ -6790,7 +6790,7 @@
       "description": "Permitted MEHKO since 2026-03-13. LA County Record: PR0366293",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.7358518,
+      "lat": 33.73771250013918,
       "lng": -118.2922934,
       "ownerId": "user_ca7952522424f76c",
       "metadata": {
@@ -6815,8 +6815,8 @@
       "description": "Permitted MEHKO since 2025-07-15. LA County Record: PR0318810",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.9092802,
-      "lng": -118.0849169,
+      "lat": 33.90836204206216,
+      "lng": -118.08332660380228,
       "ownerId": "user_db8157f8e029da8e",
       "metadata": {
         "userId": "user_db8157f8e029da8e",
@@ -6890,8 +6890,8 @@
       "description": "Permitted MEHKO since 2026-03-10. LA County Record: PR0366241",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.053872376657644,
+      "lng": -118.24173679473081,
       "ownerId": "user_873cafa3a09bd87e",
       "metadata": {
         "userId": "user_873cafa3a09bd87e",
@@ -6965,7 +6965,7 @@
       "description": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366455",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.1866193,
+      "lat": 34.18793333563631,
       "lng": -118.4486675,
       "ownerId": "user_bd1e71bf65b00506",
       "metadata": {
@@ -6990,7 +6990,7 @@
       "description": "Permitted MEHKO since 2025-04-30. LA County Record: PR0317088",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.1649502,
+      "lat": 34.167481917513186,
       "lng": -118.374752,
       "ownerId": "user_2e8589e66ac852c0",
       "metadata": {
@@ -7015,8 +7015,8 @@
       "description": "Permitted MEHKO since 2025-07-10. LA County Record: PR0318687",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.053192316449426,
+      "lng": -118.23993839217408,
       "ownerId": "user_e2512d83845badab",
       "metadata": {
         "userId": "user_e2512d83845badab",
@@ -7040,7 +7040,7 @@
       "description": "Permitted MEHKO since 2025-01-30. LA County Record: PR0314597",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0203253,
+      "lat": 34.022571125730735,
       "lng": -117.8659441,
       "ownerId": "user_d9971fcd53a2de2a",
       "metadata": {
@@ -7065,8 +7065,8 @@
       "description": "Permitted MEHKO since 2025-04-01. LA County Record: PR0315817",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.053032903313685,
+      "lng": -118.2416263163081,
       "ownerId": "user_576475c30c78ef7d",
       "metadata": {
         "userId": "user_576475c30c78ef7d",
@@ -7115,7 +7115,7 @@
       "description": "Permitted MEHKO since 2025-09-24. LA County Record: PR0324515",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.8371392,
+      "lat": 33.838535738834,
       "lng": -118.3413606,
       "ownerId": "user_3c144de2054e1561",
       "metadata": {
@@ -7140,7 +7140,7 @@
       "description": "Permitted MEHKO since 2025-07-17. LA County Record: PR0318904",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0203253,
+      "lat": 34.01913242486132,
       "lng": -117.8659441,
       "ownerId": "user_b4deae864e4b611e",
       "metadata": {
@@ -7215,7 +7215,7 @@
       "description": "Permitted MEHKO since 2025-04-17. LA County Record: PR0316831",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.7358518,
+      "lat": 33.733317183326314,
       "lng": -118.2922934,
       "ownerId": "user_0e458a3f330cdd71",
       "metadata": {
@@ -7240,8 +7240,8 @@
       "description": "Permitted MEHKO since 2025-12-16. LA County Record: PR0327267",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05253140455165,
+      "lng": -118.24179306779693,
       "ownerId": "user_6f00781683312e5f",
       "metadata": {
         "userId": "user_6f00781683312e5f",
@@ -7265,8 +7265,8 @@
       "description": "Permitted MEHKO since 2025-08-01. LA County Record: PR0319422",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05252827687439,
+      "lng": -118.24234283978862,
       "ownerId": "user_a1d3643a1e1dcd67",
       "metadata": {
         "userId": "user_a1d3643a1e1dcd67",
@@ -7290,7 +7290,7 @@
       "description": "Permitted MEHKO since 2025-08-29. LA County Record: PR0323547",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
+      "lat": 34.05083426053616,
       "lng": -118.242766,
       "ownerId": "user_7223871268e0eb9a",
       "metadata": {
@@ -7440,8 +7440,8 @@
       "description": "Permitted MEHKO since 2025-05-12. LA County Record: PR0317442",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05197105531595,
+      "lng": -118.24339197227256,
       "ownerId": "user_43182f7400ee70eb",
       "metadata": {
         "userId": "user_43182f7400ee70eb",
@@ -7490,8 +7490,8 @@
       "description": "Permitted MEHKO since 2025-08-21. LA County Record: PR0319980",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05253155848629,
+      "lng": -118.24373880303656,
       "ownerId": "user_2b5ac059f732a708",
       "metadata": {
         "userId": "user_2b5ac059f732a708",
@@ -7540,8 +7540,8 @@
       "description": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317650",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.9092802,
-      "lng": -118.0849169,
+      "lat": 33.90779860842364,
+      "lng": -118.08748309188631,
       "ownerId": "user_ef76c37b5db330bd",
       "metadata": {
         "userId": "user_ef76c37b5db330bd",
@@ -7565,7 +7565,7 @@
       "description": "Permitted MEHKO since 2025-09-19. LA County Record: PR0324398",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.1866193,
+      "lat": 34.184314548797985,
       "lng": -118.4486675,
       "ownerId": "user_1af79fb7d35c0458",
       "metadata": {
@@ -7590,7 +7590,7 @@
       "description": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366457",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.1362075,
+      "lat": 34.13831971708763,
       "lng": -118.0401497,
       "ownerId": "user_69cb197085ce363c",
       "metadata": {
@@ -7640,8 +7640,8 @@
       "description": "Permitted MEHKO since 2025-11-06. LA County Record: PR0326177",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05242539389462,
+      "lng": -118.2449579208718,
       "ownerId": "user_74bb9cddb7b52f8d",
       "metadata": {
         "userId": "user_74bb9cddb7b52f8d",
@@ -7665,8 +7665,8 @@
       "description": "Permitted MEHKO since 2026-03-13. LA County Record: PR0366291",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05323143026998,
+      "lng": -118.2453717823265,
       "ownerId": "user_709c1fd3649657ac",
       "metadata": {
         "userId": "user_709c1fd3649657ac",
@@ -7740,7 +7740,7 @@
       "description": "Permitted MEHKO since 2026-03-10. LA County Record: PR0366245",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.1649502,
+      "lat": 34.16351298438969,
       "lng": -118.374752,
       "ownerId": "user_d9fc48c2a0e71df6",
       "metadata": {
@@ -7765,8 +7765,8 @@
       "description": "Permitted MEHKO since 2025-11-06. LA County Record: PR0326176",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.054077679974704,
+      "lng": -118.24495953823873,
       "ownerId": "user_2002c90b9d63f8ee",
       "metadata": {
         "userId": "user_2002c90b9d63f8ee",
@@ -7815,8 +7815,8 @@
       "description": "Permitted MEHKO since 2025-04-30. LA County Record: PR0317081",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.055124712437674,
+      "lng": -118.24524943599057,
       "ownerId": "user_0fb39ca39a96d71f",
       "metadata": {
         "userId": "user_0fb39ca39a96d71f",
@@ -7865,8 +7865,8 @@
       "description": "Permitted MEHKO since 2025-05-28. LA County Record: PR0317649",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.055325728015575,
+      "lng": -118.2441377835849,
       "ownerId": "user_41544cb78554f6fd",
       "metadata": {
         "userId": "user_41544cb78554f6fd",
@@ -7890,7 +7890,7 @@
       "description": "Permitted MEHKO since 2025-01-06. LA County Record: PR0314228",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 33.8371392,
+      "lat": 33.834239430450154,
       "lng": -118.3413606,
       "ownerId": "user_6c78b5031c5898b9",
       "metadata": {
@@ -7915,7 +7915,7 @@
       "description": "Permitted MEHKO since 2026-03-20. LA County Record: PR0366463",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.1362075,
+      "lat": 34.133854276948476,
       "lng": -118.0401497,
       "ownerId": "user_956fc0585ffd015c",
       "metadata": {
@@ -7965,8 +7965,8 @@
       "description": "Permitted MEHKO since 2026-03-06. LA County Record: PR0365924",
       "imageUrl": "",
       "icon": "🏪",
-      "lat": 34.0536909,
-      "lng": -118.242766,
+      "lat": 34.05571275946547,
+      "lng": -118.2435018966633,
       "ownerId": "user_d494b874afdd3989",
       "metadata": {
         "userId": "user_d494b874afdd3989",

@@ -108,6 +108,16 @@ app.get('/profile/:id', (req, res) => {
   const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const tags = el.tags ? (Array.isArray(el.tags) ? el.tags : String(el.tags).split(',').map(t => t.trim()).filter(Boolean)) : [];
 
+  // Prev/Next navigation (alphabetical by title)
+  const sortedChefs = elements.elements
+    .filter(e => e.active !== false)
+    .sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+  const currentIdx = sortedChefs.findIndex(e => e.id === el.id);
+  const prevChef = currentIdx > 0 ? sortedChefs[currentIdx - 1] : sortedChefs[sortedChefs.length - 1];
+  const nextChef = currentIdx < sortedChefs.length - 1 ? sortedChefs[currentIdx + 1] : sortedChefs[0];
+  const prevUrl = `${BASE_PATH}/profile/${(prevChef.metadata && prevChef.metadata.userId) || prevChef.ownerId || prevChef.id}`;
+  const nextUrl = `${BASE_PATH}/profile/${(nextChef.metadata && nextChef.metadata.userId) || nextChef.ownerId || nextChef.id}`;
+
   const menuHtml = elProducts.map(p => `
     <div class="meal-card">
       ${p.photos && p.photos.length ? `<img src="${esc(p.photos[0])}" class="meal-img" alt="${esc(p.name)}">` : ''}
@@ -418,6 +428,61 @@ body {
   font-weight: 600;
 }
 
+/* Prev/Next Nav — overlaid on hero */
+.profile-nav {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  pointer-events: none;
+}
+.profile-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 100px;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--sans);
+  transition: all 0.2s;
+  max-width: 45%;
+  pointer-events: all;
+}
+.profile-nav-btn:hover {
+  background: rgba(0,0,0,0.65);
+  border-color: rgba(255,255,255,0.35);
+  transform: translateY(-1px);
+}
+.profile-nav-btn svg { flex-shrink: 0; color: rgba(255,255,255,0.7); }
+.profile-nav-btn:hover svg { color: #fff; }
+.nav-btn-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.6);
+}
+.nav-btn-name {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Footer */
 .profile-footer {
   padding: 40px 28px;
@@ -447,14 +512,46 @@ body {
   .nav { padding: 14px 20px; }
   .nav-links { display: none; }
   .profile-hero {
-    height: 50vh; min-height: 300px;
+    height: 50vh; min-height: 280px;
     margin-top: 54px;
   }
-  .hero-overlay-content { padding: 0 20px; bottom: 28px; }
+  .hero-overlay-content { padding: 0 20px; bottom: 24px; }
   .hero-name { font-size: clamp(28px, 8vw, 42px); }
   .profile-content { padding: 32px 20px 60px; }
   .meal-card { flex-direction: column; }
   .meal-img { width: 100%; height: 180px; }
+  .profile-nav { padding: 0 10px; top: 12px; }
+  .profile-nav-btn { padding: 8px 12px; gap: 6px; }
+  .nav-btn-label { display: none; }
+  .nav-btn-name { font-size: 12px; }
+}
+@media (max-width: 480px) {
+  .profile-hero {
+    height: 40vh; min-height: 220px;
+    margin-top: 50px;
+  }
+  .hero-overlay-content { padding: 0 16px; bottom: 16px; }
+  .hero-cuisine { font-size: 10px; margin-bottom: 6px; }
+  .hero-name { font-size: clamp(22px, 7vw, 32px); margin-bottom: 4px; }
+  .hero-location { font-size: 13px; }
+  .hero-rating { font-size: 12px; margin-top: 6px; }
+  .profile-nav { padding: 0 8px; top: 8px; }
+  .profile-nav-btn {
+    padding: 6px 10px; gap: 5px;
+    border-radius: 80px;
+  }
+  .nav-btn-name { font-size: 11px; max-width: 90px; }
+  .profile-nav-btn svg { width: 14px; height: 14px; }
+  .profile-content { padding: 24px 16px 48px; }
+  .profile-story { font-size: 15px; }
+  .section-label { font-size: 10px; }
+  .sidebar-card { padding: 24px 20px; }
+}
+@media (max-width: 360px) {
+  .profile-hero { height: 35vh; min-height: 180px; }
+  .hero-name { font-size: 22px; }
+  .nav-btn-name { font-size: 10px; max-width: 70px; }
+  .profile-nav-btn { padding: 5px 8px; }
 }
 </style>
 </head>
@@ -473,6 +570,22 @@ body {
     ? `<img src="${esc(el.imageUrl)}" alt="${esc(el.title)}">`
     : `<div class="profile-hero-placeholder">${el.icon || '&#127860;'}</div>`}
   <div class="hero-gradient"></div>
+  <nav class="profile-nav">
+    <a href="${prevUrl}" class="profile-nav-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <div>
+        <div class="nav-btn-label">Previous</div>
+        <div class="nav-btn-name">${esc(prevChef.title)}</div>
+      </div>
+    </a>
+    <a href="${nextUrl}" class="profile-nav-btn" style="text-align:right;flex-direction:row-reverse">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      <div>
+        <div class="nav-btn-label">Next</div>
+        <div class="nav-btn-name">${esc(nextChef.title)}</div>
+      </div>
+    </a>
+  </nav>
   <div class="hero-overlay-content">
     ${el.cuisineType ? `<div class="hero-cuisine">${esc(el.cuisineType)}</div>` : ''}
     <h1 class="hero-name">${esc(el.title)}</h1>
@@ -498,8 +611,12 @@ body {
     </div>
     <aside class="profile-sidebar">
       <div class="sidebar-card">
-        ${el.externalOrderUrl ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" rel="noopener" class="order-btn">Order Now</a>` : `<a href="/map" class="order-btn">View on Map</a>`}
-        <a href="/map" class="message-btn">Message Chef</a>
+        ${el.externalOrderUrl
+          ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" rel="noopener" class="order-btn">Visit Website</a>`
+          : el.instagram
+            ? `<a href="https://instagram.com/${esc(el.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener" class="order-btn">View on Instagram</a>`
+            : `<a href="${BASE_PATH}/map" class="order-btn">View on Map</a>`}
+        <a href="${BASE_PATH}/map" class="message-btn">Message Chef</a>
         <div class="sidebar-divider"></div>
         <div class="sidebar-section-title">Availability</div>
         <div class="availability-info">

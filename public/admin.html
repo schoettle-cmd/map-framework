@@ -595,16 +595,26 @@
       <div class="section" id="sec-chefs">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
           <div>
-            <div style="font-size:16px;font-weight:700;">Chefs</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Personal chefs who come to your home and cook</div>
+            <div style="font-size:16px;font-weight:700;">Marketplace Sellers</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Chefs host events at home &middot; Sellers offer products for delivery/pickup</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <button class="btn-make-all-live" onclick="bulkMakeAllLive('chef')" title="Convert all chefs with coordinates to live map listings">Make All Live</button>
-            <button class="btn btn-accent" onclick="openProspectModal(null, 'chef')">Add Chef</button>
+            <button class="btn-make-all-live" onclick="bulkMakeAllLive('chef')" title="Convert all with coordinates to live map listings">Make All Live</button>
+            <button class="btn btn-accent" onclick="openProspectModal(null, 'chef')">Add Lead</button>
             <button class="btn btn-outline" onclick="openImportModal('chef')">Import CSV</button>
             <button class="btn btn-outline" onclick="openScrapeModal('chef')">Scrape Now</button>
           </div>
         </div>
+
+        <!-- Type Filter -->
+        <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
+          <span style="font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;">Type:</span>
+          <button class="btn btn-accent type-filter-btn active-filter" data-typefilter="all" onclick="filterByType('all')">All</button>
+          <button class="btn btn-outline type-filter-btn" data-typefilter="chef" onclick="filterByType('chef')">Chefs</button>
+          <button class="btn btn-outline type-filter-btn" data-typefilter="seller" onclick="filterByType('seller')">Sellers</button>
+        </div>
+
+        <!-- Status Filter -->
         <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center;" id="chefFilterTabs">
           <button class="btn btn-accent unified-filter-btn active-filter" data-type="chef" data-filter="all" onclick="filterUnifiedList('chef','all')">All <span id="chef-count-all" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline unified-filter-btn" data-type="chef" data-filter="prospect" onclick="filterUnifiedList('chef','prospect')">Prospect <span id="chef-count-prospect" style="margin-left:4px;opacity:0.7;">0</span></button>
@@ -618,14 +628,14 @@
         </div>
         <div class="table-wrapper">
           <div class="table-header">
-            <div class="table-title">Chefs</div>
+            <div class="table-title">Chefs &amp; Sellers</div>
             <input type="text" class="search-input" id="chefSearch" placeholder="Search name, cuisine, tags..." oninput="searchUnifiedList('chef')">
           </div>
           <div class="table-scroll">
             <table>
               <thead><tr>
                 <th style="width:36px"><input type="checkbox" class="row-checkbox" id="chefSelectAll" onchange="toggleSelectAll('chef')"></th>
-                <th>Photo</th><th>Name</th><th>Business</th><th>Location</th><th>Cuisine</th><th>Contact</th><th>Status</th><th>Actions</th>
+                <th>Photo</th><th>Name</th><th>Business</th><th>Location</th><th>Cuisine</th><th>Contact</th><th>Type</th><th>Status</th><th>Actions</th>
               </tr></thead>
               <tbody id="chefsBody"></tbody>
             </table>
@@ -1032,6 +1042,7 @@ const API = BASE;
 const listData = { chef: [], seller: [] };
 const listFilter = { chef: 'all', seller: 'all' };
 const selectedItems = { chef: new Set(), seller: new Set() };
+let activeTypeFilter = 'all'; // 'all', 'chef', or 'seller'
 
 let buyersData = [];
 let ordersData = [];
@@ -1297,6 +1308,23 @@ function updateUnifiedCounts(type, counts) {
   });
 }
 
+function applyTypeFilter(list) {
+  if (activeTypeFilter === 'all') return list;
+  return list.filter(s => (s.sellerType || 'seller') === activeTypeFilter);
+}
+
+function filterByType(typeVal) {
+  activeTypeFilter = typeVal;
+  document.querySelectorAll('.type-filter-btn').forEach(btn => {
+    if (btn.dataset.typefilter === typeVal) {
+      btn.className = 'btn btn-accent type-filter-btn active-filter';
+    } else {
+      btn.className = 'btn btn-outline type-filter-btn';
+    }
+  });
+  filterUnifiedList('chef', listFilter['chef']);
+}
+
 function filterUnifiedList(type, status) {
   listFilter[type] = status;
   document.querySelectorAll('.unified-filter-btn[data-type="' + type + '"]').forEach(btn => {
@@ -1306,14 +1334,17 @@ function filterUnifiedList(type, status) {
       btn.className = 'btn btn-outline unified-filter-btn';
     }
   });
-  const filtered = status === 'all' ? listData[type] : listData[type].filter(s => s.status === status);
+  let filtered = status === 'all' ? listData[type] : listData[type].filter(s => s.status === status);
+  filtered = applyTypeFilter(filtered);
   renderUnifiedList(type, filtered);
 }
 
 function searchUnifiedList(type) {
   const q = document.getElementById(type + 'Search').value.toLowerCase().trim();
-  const cuisineVal = document.getElementById(type + 'CuisineFilter').value.toLowerCase();
+  const cuisineEl = document.getElementById(type + 'CuisineFilter');
+  const cuisineVal = cuisineEl ? cuisineEl.value.toLowerCase() : '';
   let list = listFilter[type] === 'all' ? listData[type] : listData[type].filter(s => s.status === listFilter[type]);
+  list = applyTypeFilter(list);
   if (cuisineVal) {
     list = list.filter(s => (s.cuisineType || '').toLowerCase() === cuisineVal);
   }
@@ -1330,12 +1361,31 @@ function searchUnifiedList(type) {
   renderUnifiedList(type, list);
 }
 
+async function toggleSellerType(type, id) {
+  const s = listData[type].find(x => x.id === id);
+  if (!s) return;
+  const newType = (s.sellerType || 'seller') === 'chef' ? 'seller' : 'chef';
+  try {
+    const res = await apiFetch('/api/admin/sellers/' + id + '/type', {
+      method: 'PUT', body: { sellerType: newType }
+    });
+    if (res.ok) {
+      s.sellerType = newType;
+      showToast('Changed to ' + newType, 'success');
+      filterUnifiedList(type, listFilter[type]);
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed', 'error');
+    }
+  } catch(e) { showToast('Connection error', 'error'); }
+}
+
 function renderUnifiedList(type, list) {
   const bodyId = type === 'chef' ? 'chefsBody' : 'sellersBody';
   const body = document.getElementById(bodyId);
   const icon = type === 'chef' ? '&#129491;' : '&#127978;';
   if (!list || !list.length) {
-    body.innerHTML = '<tr><td colspan="9" class="empty-state"><span class="empty-state-icon">' + icon + '</span><div class="empty-state-text">No ' + type + 's found</div></td></tr>';
+    body.innerHTML = '<tr><td colspan="10" class="empty-state"><span class="empty-state-icon">' + icon + '</span><div class="empty-state-text">No records found</div></td></tr>';
     return;
   }
   body.innerHTML = list.map(s => {
@@ -1363,6 +1413,7 @@ function renderUnifiedList(type, list) {
       '<td>' + esc(s.neighborhood || (s.address || '').split(',')[0] || '--') + '</td>' +
       '<td>' + esc(s.cuisineType || '--') + '</td>' +
       '<td class="contact-cell" onclick="event.stopPropagation()">' + contactHtml + '</td>' +
+      '<td onclick="event.stopPropagation()"><button class="badge ' + (s.sellerType === 'chef' ? 'badge-live' : 'badge-contacted') + '" style="cursor:pointer;border:none;" onclick="toggleSellerType(\'' + type + '\',\'' + s.id + '\')" title="Click to toggle">' + esc(s.sellerType || 'seller') + '</button></td>' +
       '<td>' + statusBadge(s.status) + '</td>' +
       '<td style="white-space:nowrap" onclick="event.stopPropagation()">' +
         (canMakeLive ? '<button class="btn btn-success" onclick="openMakeLiveModal(\'' + s.id + '\',\'' + type + '\')" style="margin-right:4px;">Make Live</button>' : '') +

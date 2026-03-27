@@ -2548,12 +2548,8 @@ app.get('/api/admin/sellers-unified', (req, res) => {
     ordersBySellerId[o.sellerId].push(o);
   });
 
-  // Filter by type if provided
-  const typeFilter = req.query.type; // 'chef' or 'seller'
-
-  // Start with all prospects as the base
+  // Return all prospects (client-side filters by type)
   const allSellers = prospects.prospects
-    .filter(p => !typeFilter || (p.type || 'seller') === typeFilter)
     .map(p => {
     const el = elementByProspectId[p.id];
     const userId = p.convertedUserId;

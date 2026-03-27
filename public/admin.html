@@ -398,6 +398,82 @@
     }
     .sidebar-overlay.active { display: block; }
 
+    /* ── Seller Thumbnail ── */
+    .seller-thumb {
+      width: 40px; height: 40px; border-radius: 8px; object-fit: cover;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .seller-thumb-placeholder {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--muted); flex-shrink: 0;
+    }
+    .badge-live { background: rgba(16,185,129,0.15); color: #34d399; }
+    .seller-filter-btn.active-filter { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ── Seller Drawer ── */
+    .drawer-hero {
+      width: 100%; height: 220px; object-fit: cover; display: block;
+    }
+    .drawer-hero-placeholder {
+      width: 100%; height: 140px;
+      background: linear-gradient(135deg, rgba(234,88,12,0.15) 0%, rgba(251,146,60,0.08) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 60px; color: rgba(255,255,255,0.08);
+    }
+    .drawer-header {
+      padding: 24px 24px 0;
+    }
+    .drawer-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(0,0,0,0.5); border: none; color: #fff;
+      width: 36px; height: 36px; border-radius: 50%;
+      font-size: 16px; cursor: pointer; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(8px); transition: background 0.2s;
+    }
+    .drawer-close:hover { background: rgba(0,0,0,0.7); }
+    .drawer-section {
+      padding: 0 24px; margin-bottom: 20px;
+    }
+    .drawer-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent-light); margin-bottom: 10px;
+    }
+    .drawer-field {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 6px 0; font-size: 13px;
+    }
+    .drawer-field-label { color: var(--muted); font-weight: 500; min-width: 100px; }
+    .drawer-field-value { color: var(--text); font-weight: 600; text-align: right; word-break: break-word; }
+    .drawer-field-value a { color: var(--accent-light); text-decoration: none; }
+    .drawer-field-value a:hover { text-decoration: underline; }
+    .drawer-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .drawer-tag {
+      padding: 3px 10px; border-radius: 6px;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      font-size: 11px; font-weight: 600; color: var(--dim);
+    }
+    .drawer-status-bar {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px;
+    }
+    .drawer-divider {
+      height: 1px; background: var(--border); margin: 0 24px 20px;
+    }
+    .drawer-stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px;
+    }
+    .drawer-stat {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px; text-align: center;
+    }
+    .drawer-stat-value { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .drawer-stat-label { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+    .clickable-row { cursor: pointer; }
+    .clickable-row:hover { background: rgba(255,255,255,0.03) !important; }
+
     /* ── Empty State ── */
     .empty-state {
       text-align: center; padding: 48px 20px; color: var(--muted);
@@ -457,13 +533,7 @@
         <span class="nav-icon">&#128202;</span> Dashboard
       </button>
       <button class="nav-item" data-section="sellers" onclick="showSection('sellers')">
-        <span class="nav-icon">&#127978;</span> Chefs
-      </button>
-      <button class="nav-item" data-section="listings" onclick="showSection('listings')">
-        <span class="nav-icon">&#128205;</span> Map Chefs
-      </button>
-      <button class="nav-item" data-section="prospects" onclick="showSection('prospects')">
-        <span class="nav-icon">&#127793;</span> Pipeline
+        <span class="nav-icon">&#127859;</span> Chefs
       </button>
       <button class="nav-item" data-section="buyers" onclick="showSection('buyers')">
         <span class="nav-icon">&#128101;</span> Diners
@@ -479,6 +549,9 @@
       </button>
       <button class="nav-item" data-section="ratings" onclick="showSection('ratings')">
         <span class="nav-icon">&#11088;</span> Ratings
+      </button>
+      <button class="nav-item" data-section="cronjobs" onclick="showSection('cronjobs')">
+        <span class="nav-icon">&#128338;</span> Cron Jobs
       </button>
     </nav>
     <div class="sidebar-footer">
@@ -503,7 +576,7 @@
       <!-- ═══════ DASHBOARD ═══════ -->
       <div class="section active" id="sec-dashboard">
         <div class="stat-grid" id="statGrid">
-          <div class="stat-card clickable" onclick="showSection('sellers')"><div class="stat-label">Total Sellers</div><div class="stat-value" id="statSellers">--</div></div>
+          <div class="stat-card clickable" onclick="showSection('sellers')"><div class="stat-label">Total Chefs</div><div class="stat-value" id="statSellers">--</div></div>
           <div class="stat-card clickable" onclick="showSection('buyers')"><div class="stat-label">Total Buyers</div><div class="stat-value" id="statBuyers">--</div></div>
           <div class="stat-card clickable" onclick="showSection('orders')"><div class="stat-label">Total Orders</div><div class="stat-value" id="statOrders">--</div></div>
           <div class="stat-card"><div class="stat-label">Total Revenue</div><div class="stat-value revenue" id="statRevenue">--</div></div>
@@ -534,67 +607,12 @@
         </div>
       </div>
 
-      <!-- ═══════ SELLERS ═══════ -->
+      <!-- ═══════ CHEFS ═══════ -->
       <div class="section" id="sec-sellers">
-        <div class="table-wrapper">
-          <div class="table-header">
-            <div class="table-title">Manage your seller community</div>
-            <input type="text" class="search-input" id="sellerSearch" placeholder="Search sellers..." oninput="filterSellers()">
-          </div>
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th>Name</th><th>Email / Phone</th><th>Products</th><th>Orders</th><th>Revenue</th><th>Rating</th><th>Status</th><th>Actions</th></tr></thead>
-              <tbody id="sellersBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- ═══════ LISTINGS ═══════ -->
-      <div class="section" id="sec-listings">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
           <div>
-            <div style="font-size:16px;font-weight:700;">Map Chefs</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">All live chefs on the map</div>
-          </div>
-        </div>
-        <div class="table-wrapper">
-          <div class="table-header">
-            <div class="table-title">Chefs</div>
-            <div style="display:flex;gap:8px;align-items:center;">
-              <select class="filter-select" id="listingStatusFilter" onchange="searchListings()">
-                <option value="">All Status</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-              </select>
-              <select class="filter-select" id="listingCuisineFilter" onchange="searchListings()">
-                <option value="">All Cuisines</option>
-              </select>
-              <input type="text" class="search-input" id="listingSearch" placeholder="Search chefs..." oninput="searchListings()">
-            </div>
-          </div>
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th style="width:36px"><input type="checkbox" class="row-checkbox" id="listingSelectAll" onchange="toggleSelectAll('listings')"></th><th>Name</th><th>Neighborhood</th><th>Cuisine</th><th>Email / Contact</th><th>Website</th><th>Active</th><th>Actions</th></tr></thead>
-              <tbody id="listingsBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- Listing Bulk Action Bar -->
-      <div class="bulk-bar" id="listingBulkBar">
-        <div class="bulk-bar-count"><span id="listingBulkCount">0</span> selected</div>
-        <button class="btn btn-danger" onclick="bulkRemoveListings()">Remove Selected</button>
-        <button class="btn btn-success" onclick="bulkRestoreListings()">Restore Selected</button>
-      </div>
-
-      <!-- ═══════ PROSPECTS ═══════ -->
-      <div class="section" id="sec-prospects">
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
-          <div>
-            <div style="font-size:16px;font-weight:700;">Chef Pipeline</div>
-            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Imported and scraped chef leads</div>
+            <div style="font-size:16px;font-weight:700;">All Chefs</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Private chefs, home kitchens, and leads</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
             <button class="btn-make-all-live" onclick="bulkMakeAllLive()" title="Convert all leads with coordinates to live map chefs">Make All Live</button>
@@ -605,40 +623,58 @@
         </div>
 
         <!-- Filter Tabs -->
-        <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center;" id="prospectFilterTabs">
-          <button class="btn btn-accent prospect-filter-btn" data-filter="all" onclick="filterProspects('all')">All <span id="prospect-count-all" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline prospect-filter-btn" data-filter="prospect" onclick="filterProspects('prospect')">Prospects <span id="prospect-count-prospect" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline prospect-filter-btn" data-filter="approved" onclick="filterProspects('approved')">Approved <span id="prospect-count-approved" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline prospect-filter-btn" data-filter="contacted" onclick="filterProspects('contacted')">Contacted <span id="prospect-count-contacted" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline prospect-filter-btn" data-filter="rejected" onclick="filterProspects('rejected')">Rejected <span id="prospect-count-rejected" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <button class="btn btn-outline prospect-filter-btn" data-filter="converted" onclick="filterProspects('converted')">Converted <span id="prospect-count-converted" style="margin-left:4px;opacity:0.7;">0</span></button>
-          <select class="filter-select" id="prospectCuisineFilter" onchange="searchProspects()" style="margin-left:8px;">
+        <div style="display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center;" id="sellerFilterTabs">
+          <button class="btn btn-accent seller-filter-btn active-filter" data-filter="all" onclick="filterSellers('all')">All <span id="seller-count-all" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline seller-filter-btn" data-filter="prospect" onclick="filterSellers('prospect')">Prospect <span id="seller-count-prospect" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline seller-filter-btn" data-filter="approved" onclick="filterSellers('approved')">Approved <span id="seller-count-approved" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline seller-filter-btn" data-filter="contacted" onclick="filterSellers('contacted')">Contacted <span id="seller-count-contacted" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline seller-filter-btn" data-filter="live" onclick="filterSellers('live')">Live <span id="seller-count-live" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline seller-filter-btn" data-filter="rejected" onclick="filterSellers('rejected')">Rejected <span id="seller-count-rejected" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <select class="filter-select" id="sellerCuisineFilter" onchange="searchSellers()" style="margin-left:8px;">
             <option value="">All Cuisines</option>
           </select>
         </div>
 
-        <!-- Prospects Table -->
+        <!-- Sellers Table -->
         <div class="table-wrapper">
           <div class="table-header">
-            <div class="table-title">Seller Leads</div>
-            <input type="text" class="search-input" id="prospectSearch" placeholder="Search name, cuisine, tags..." oninput="searchProspects()">
+            <div class="table-title">Chefs</div>
+            <input type="text" class="search-input" id="sellerSearch" placeholder="Search name, cuisine, tags..." oninput="searchSellers()">
           </div>
           <div class="table-scroll">
             <table>
-              <thead><tr><th style="width:36px"><input type="checkbox" class="row-checkbox" id="prospectSelectAll" onchange="toggleSelectAll('prospects')"></th><th>Name</th><th>Business</th><th>Email / Contact</th><th>Location</th><th>Products</th><th>Source</th><th>Status</th><th>Actions</th></tr></thead>
-              <tbody id="prospectsBody"></tbody>
+              <thead><tr>
+                <th style="width:36px"><input type="checkbox" class="row-checkbox" id="sellerSelectAll" onchange="toggleSelectAll('sellers')"></th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Business</th>
+                <th>Location</th>
+                <th>Cuisine</th>
+                <th>Contact</th>
+                <th>Products</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr></thead>
+              <tbody id="sellersBody"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- Prospect Bulk Action Bar -->
-      <div class="bulk-bar" id="prospectBulkBar">
-        <div class="bulk-bar-count"><span id="prospectBulkCount">0</span> selected</div>
+      <!-- Seller Bulk Action Bar -->
+      <div class="bulk-bar" id="sellerBulkBar">
+        <div class="bulk-bar-count"><span id="sellerBulkCount">0</span> selected</div>
         <button class="btn btn-success" onclick="bulkMakeLive()">Make Live</button>
         <button class="btn btn-accent" onclick="bulkApproveProspects()">Approve</button>
         <button class="btn btn-outline" onclick="bulkRejectProspects()">Reject</button>
         <button class="btn btn-danger" onclick="bulkRemoveProspects()">Remove Selected</button>
+      </div>
+
+      <!-- Seller Detail Drawer -->
+      <div id="sellerDrawerOverlay" style="display:none;position:fixed;inset:0;z-index:190;background:rgba(0,0,0,0.6);transition:opacity 0.3s;" onclick="closeSellerDrawer()"></div>
+      <div id="sellerDrawer" style="display:none;position:fixed;top:0;right:0;bottom:0;width:480px;max-width:100vw;z-index:195;background:var(--card);border-left:1px solid var(--border);overflow-y:auto;transform:translateX(100%);transition:transform 0.3s ease;box-shadow:-8px 0 40px rgba(0,0,0,0.5);">
+        <div id="sellerDrawerContent" style="padding:0;"></div>
       </div>
 
       <!-- ── Prospect Add/Edit Modal ── -->
@@ -1015,6 +1051,39 @@
         </div>
       </div>
 
+      <!-- ═══════ CRON JOBS ═══════ -->
+      <div class="section" id="sec-cronjobs">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+          <div>
+            <div style="font-size:16px;font-weight:700;">Scheduled Cron Jobs</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">Automated scraping and data collection tasks</div>
+          </div>
+          <button class="btn btn-accent" onclick="triggerCronJob('all')">Run All Now</button>
+        </div>
+        <div class="table-wrapper">
+          <div class="table-header">
+            <div class="table-title">Active Jobs</div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Job</th><th>Source</th><th>Schedule</th><th>Last Run</th><th>Last Result</th><th>Actions</th></tr></thead>
+              <tbody id="cronJobsBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="table-wrapper" style="margin-top:20px;">
+          <div class="table-header">
+            <div class="table-title">Run History</div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Job</th><th>Started</th><th>Duration</th><th>New Records</th><th>Status</th></tr></thead>
+              <tbody id="cronHistoryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /app -->
@@ -1032,9 +1101,8 @@ const API = BASE;
 let sellersData = [];
 let buyersData = [];
 let ordersData = [];
-let listingsData = [];
-const selectedProspects = new Set();
-const selectedListings = new Set();
+let sellerFilter = 'all';
+const selectedSellers = new Set();
 
 // ── Helpers ──
 
@@ -1125,13 +1193,12 @@ async function checkAuth() {
       const data = await res.json();
       renderDashboard(data);
       loadSellers();
-      loadListings();
-      loadProspects();
       loadBuyers();
       loadOrders();
       loadSettings();
       loadPayouts();
       loadRatings();
+      loadCronJobs();
     } else {
       showLogin();
     }
@@ -1185,14 +1252,13 @@ async function doLogout() {
 
 const sectionTitles = {
   dashboard: ['Platform Command Center', 'Overview of your marketplace'],
-  sellers:   ['Sellers', 'Manage your seller community'],
-  listings:  ['Map Listings', 'All live map elements'],
-  prospects: ['Prospect Pipeline', 'Scraped and imported seller leads'],
+  sellers:   ['Chefs', 'Private chefs, home kitchens, and leads'],
   buyers:    ['Buyers', 'Browse and search buyer accounts'],
   orders:    ['Orders', 'Track every transaction'],
   settings:  ['Settings', 'Core Configuration'],
   payouts:   ['Payouts', 'Seller Payouts'],
-  ratings:   ['Ratings & Reviews', 'Monitor buyer feedback']
+  ratings:   ['Ratings & Reviews', 'Monitor buyer feedback'],
+  cronjobs:  ['Scheduled Cron Jobs', 'Automated scraping and data collection']
 };
 
 function showSection(name) {
@@ -1252,112 +1318,29 @@ function renderDashboard(data) {
   }
 }
 
-// ── Sellers ──
+// ── Sellers (Unified) ──
 
 async function loadSellers() {
   try {
-    const res = await apiFetch('/api/admin/sellers');
-    if (res.ok) {
-      sellersData = await res.json();
-      renderSellers(sellersData);
-    }
-  } catch(e) {}
-}
-
-function renderSellers(list) {
-  const body = document.getElementById('sellersBody');
-  if (!list.length) {
-    body.innerHTML = '<tr><td colspan="8" class="empty-state"><span class="empty-state-icon">&#127978;</span><div class="empty-state-text">No sellers yet</div></td></tr>';
-    return;
-  }
-  body.innerHTML = list.map((s, i) => {
-    const id = s.id || s._id || i;
-    const isActive = (s.status || 'active').toLowerCase() === 'active';
-    return '<tr class="seller-row" data-idx="' + i + '" onclick="toggleSellerExpand(' + i + ')" style="cursor:pointer">' +
-      '<td style="font-weight:600;color:var(--text)">' + esc(s.name) + '</td>' +
-      '<td>' + esc(s.email || s.phone || '--') + '</td>' +
-      '<td>' + (s.productCount != null ? s.productCount : (s.products || 0)) + '</td>' +
-      '<td>' + (s.orderCount != null ? s.orderCount : (s.orders || 0)) + '</td>' +
-      '<td>' + money(s.revenue || s.totalRevenue || 0) + '</td>' +
-      '<td>' + starsHtml(s.rating || s.avgRating) + '</td>' +
-      '<td>' + statusBadge(s.status || 'active') + '</td>' +
-      '<td onclick="event.stopPropagation()">' +
-        (isActive
-          ? '<button class="btn btn-danger" onclick="toggleSellerStatus(\'' + id + '\',\'suspended\')">Suspend</button>'
-          : '<button class="btn btn-success" onclick="toggleSellerStatus(\'' + id + '\',\'active\')">Activate</button>'
-        ) +
-      '</td>' +
-    '</tr>' +
-    '<tr class="expand-row" id="seller-expand-' + i + '"><td colspan="8"><div class="expand-content">' +
-      '<h4>Products</h4>' +
-      '<div class="expand-products">' +
-        ((s.productList || s.productNames || []).map(p => '<span class="expand-product-tag">' + esc(typeof p === 'string' ? p : p.name) + '</span>').join('') || '<span style="font-size:12px;color:var(--muted)">No products</span>') +
-      '</div>' +
-      '<h4>Recent Orders</h4>' +
-      (s.recentOrders && s.recentOrders.length
-        ? '<table class="mini-orders-table"><thead><tr><th>Order</th><th>Buyer</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>' +
-          s.recentOrders.map(o => '<tr><td>' + esc(o.id || o.orderId) + '</td><td>' + esc(o.buyerName || o.buyer) + '</td><td>' + money(o.amount || o.total) + '</td><td>' + statusBadge(o.status) + '</td><td>' + fmtDate(o.createdAt || o.date) + '</td></tr>').join('') +
-          '</tbody></table>'
-        : '<span style="font-size:12px;color:var(--muted)">No recent orders</span>'
-      ) +
-    '</div></td></tr>';
-  }).join('');
-}
-
-function toggleSellerExpand(idx) {
-  const row = document.getElementById('seller-expand-' + idx);
-  if (row) row.classList.toggle('open');
-}
-
-async function toggleSellerStatus(id, newStatus) {
-  try {
-    const res = await apiFetch('/api/admin/sellers/' + id + '/status', {
-      method: 'PUT', body: { status: newStatus }
-    });
-    if (res.ok) {
-      showToast('Seller ' + newStatus, 'success');
-      loadSellers();
-    } else {
-      const d = await res.json().catch(() => ({}));
-      showToast(d.error || 'Failed to update seller', 'error');
-    }
-  } catch(e) {
-    showToast('Connection error', 'error');
-  }
-}
-
-function filterSellers() {
-  const q = document.getElementById('sellerSearch').value.toLowerCase().trim();
-  if (!q) { renderSellers(sellersData); return; }
-  renderSellers(sellersData.filter(s => (s.name || '').toLowerCase().includes(q)));
-}
-
-// ── Prospects ──
-
-let prospectsData = [];
-let prospectFilter = 'all';
-
-async function loadProspects() {
-  try {
-    const res = await apiFetch('/api/admin/prospects');
+    const res = await apiFetch('/api/admin/sellers-unified');
     if (res.ok) {
       const data = await res.json();
-      prospectsData = data.prospects || [];
-      selectedProspects.clear();
-      updateBulkBar('prospects');
-      updateProspectCounts();
-      populateCuisineDropdown();
-      filterProspects(prospectFilter);
+      sellersData = data.sellers || [];
+      selectedSellers.clear();
+      updateBulkBar('sellers');
+      updateSellerCounts(data.counts);
+      populateSellerCuisineDropdown();
+      filterSellers(sellerFilter);
     }
   } catch(e) {}
 }
 
-function populateCuisineDropdown() {
+function populateSellerCuisineDropdown() {
   const cuisines = new Set();
-  prospectsData.forEach(p => {
-    if (p.cuisineType) cuisines.add(p.cuisineType);
+  sellersData.forEach(s => {
+    if (s.cuisineType) cuisines.add(s.cuisineType);
   });
-  const select = document.getElementById('prospectCuisineFilter');
+  const select = document.getElementById('sellerCuisineFilter');
   const current = select.value;
   select.innerHTML = '<option value="">All Cuisines</option>';
   Array.from(cuisines).sort().forEach(c => {
@@ -1365,101 +1348,245 @@ function populateCuisineDropdown() {
   });
 }
 
-function updateProspectCounts() {
-  const counts = { all: prospectsData.length, prospect: 0, approved: 0, contacted: 0, rejected: 0, converted: 0 };
-  prospectsData.forEach(p => { if (counts[p.status] !== undefined) counts[p.status]++; });
+function updateSellerCounts(counts) {
+  if (!counts) {
+    counts = { all: sellersData.length, prospect: 0, approved: 0, contacted: 0, live: 0, rejected: 0 };
+    sellersData.forEach(s => { if (counts[s.status] !== undefined) counts[s.status]++; });
+  }
   Object.keys(counts).forEach(k => {
-    const el = document.getElementById('prospect-count-' + k);
+    const el = document.getElementById('seller-count-' + k);
     if (el) el.textContent = counts[k];
   });
 }
 
-function filterProspects(status) {
-  prospectFilter = status;
-  // Update filter button styles
-  document.querySelectorAll('.prospect-filter-btn').forEach(btn => {
+function filterSellers(status) {
+  sellerFilter = status;
+  document.querySelectorAll('.seller-filter-btn').forEach(btn => {
     if (btn.dataset.filter === status) {
-      btn.className = 'btn btn-accent prospect-filter-btn active-filter';
+      btn.className = 'btn btn-accent seller-filter-btn active-filter';
     } else {
-      btn.className = 'btn btn-outline prospect-filter-btn';
+      btn.className = 'btn btn-outline seller-filter-btn';
     }
   });
-  const filtered = status === 'all' ? prospectsData : prospectsData.filter(p => p.status === status);
-  renderProspects(filtered);
+  const filtered = status === 'all' ? sellersData : sellersData.filter(s => s.status === status);
+  renderSellers(filtered);
 }
 
-function searchProspects() {
-  const q = document.getElementById('prospectSearch').value.toLowerCase().trim();
-  const cuisineVal = document.getElementById('prospectCuisineFilter').value.toLowerCase();
-  let list = prospectFilter === 'all' ? prospectsData : prospectsData.filter(p => p.status === prospectFilter);
+function searchSellers() {
+  const q = document.getElementById('sellerSearch').value.toLowerCase().trim();
+  const cuisineVal = document.getElementById('sellerCuisineFilter').value.toLowerCase();
+  let list = sellerFilter === 'all' ? sellersData : sellersData.filter(s => s.status === sellerFilter);
   if (cuisineVal) {
-    list = list.filter(p => (p.cuisineType || '').toLowerCase() === cuisineVal);
+    list = list.filter(s => (s.cuisineType || '').toLowerCase() === cuisineVal);
   }
   if (q) {
-    list = list.filter(p =>
-      (p.name || '').toLowerCase().includes(q) ||
-      (p.businessName || '').toLowerCase().includes(q) ||
-      (p.address || '').toLowerCase().includes(q) ||
-      (p.neighborhood || '').toLowerCase().includes(q) ||
-      (p.cuisineType || '').toLowerCase().includes(q) ||
-      (p.tags || []).some(t => t.toLowerCase().includes(q))
+    list = list.filter(s =>
+      (s.name || '').toLowerCase().includes(q) ||
+      (s.businessName || '').toLowerCase().includes(q) ||
+      (s.address || '').toLowerCase().includes(q) ||
+      (s.neighborhood || '').toLowerCase().includes(q) ||
+      (s.cuisineType || '').toLowerCase().includes(q) ||
+      (s.tags || []).some ? ((Array.isArray(s.tags) ? s.tags : String(s.tags || '').split(',').map(t => t.trim())).some(t => t.toLowerCase().includes(q))) : false
     );
   }
-  renderProspects(list);
+  renderSellers(list);
 }
 
-function prospectStatusBadge(status) {
+function sellerStatusBadge(status) {
   const s = (status || 'prospect').toLowerCase();
   const cls = {
     prospect: 'badge-prospect', approved: 'badge-approved',
     contacted: 'badge-contacted', rejected: 'badge-rejected',
-    converted: 'badge-converted'
+    live: 'badge-live', converted: 'badge-converted'
   }[s] || 'badge-prospect';
-  const label = s === 'converted' ? '&#10003; ' + s : s;
-  return '<span class="badge ' + cls + '">' + label + '</span>';
+  return '<span class="badge ' + cls + '">' + esc(s) + '</span>';
 }
 
-function renderProspects(list) {
-  const body = document.getElementById('prospectsBody');
+function renderSellers(list) {
+  const body = document.getElementById('sellersBody');
   if (!list || !list.length) {
-    body.innerHTML = '<tr><td colspan="9" class="empty-state"><span class="empty-state-icon">&#127793;</span><div class="empty-state-text">No prospects found</div></td></tr>';
+    body.innerHTML = '<tr><td colspan="11" class="empty-state"><span class="empty-state-icon">&#127859;</span><div class="empty-state-text">No chefs found</div></td></tr>';
     return;
   }
-  body.innerHTML = list.map(p => {
-    const prodTags = (p.products || []).slice(0, 3).map(pr => '<span class="prospect-product-tag">' + esc(pr) + '</span>').join('');
-    const moreTag = (p.products || []).length > 3 ? '<span class="prospect-product-tag">+' + ((p.products || []).length - 3) + ' more</span>' : '';
-    const canMakeLive = ['prospect', 'approved', 'contacted'].includes(p.status);
-    const websiteIcon = p.website ? '<a href="' + esc(p.website) + '" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none;font-size:14px;" title="Visit website">&#128279;</a>' : '';
-    const checked = selectedProspects.has(p.id) ? 'checked' : '';
+  body.innerHTML = list.map(s => {
+    const checked = selectedSellers.has(s.id) ? 'checked' : '';
+    const canMakeLive = ['prospect', 'approved', 'contacted'].includes(s.status);
 
-    // Build contact cell
+    // Photo
+    const photoHtml = s.imageUrl
+      ? '<img src="' + esc(s.imageUrl) + '" class="seller-thumb" alt="" onerror="this.outerHTML=\'<div class=seller-thumb-placeholder>&#127978;</div>\'">'
+      : '<div class="seller-thumb-placeholder">&#127978;</div>';
+
+    // Contact
     let contactHtml = '';
-    if (p.email) contactHtml += '<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + '</a>';
-    if (p.phone) contactHtml += '<a href="tel:' + esc(p.phone) + '">' + esc(p.phone) + '</a>';
-    if (p.instagram) {
-      const igHandle = p.instagram.replace(/^@/, '');
-      contactHtml += '<a href="https://instagram.com/' + esc(igHandle) + '" target="_blank" rel="noopener">@' + esc(igHandle) + '</a>';
+    if (s.email) contactHtml += '<a href="mailto:' + esc(s.email) + '">' + esc(s.email) + '</a>';
+    if (s.phone) contactHtml += '<a href="tel:' + esc(s.phone) + '">' + esc(s.phone) + '</a>';
+    if (s.instagram) {
+      const igHandle = (s.instagram || '').replace(/^@/, '');
+      contactHtml += '<a href="https://instagram.com/' + esc(igHandle) + '" target="_blank">@' + esc(igHandle) + '</a>';
     }
     if (!contactHtml) contactHtml = '<span style="color:var(--muted)">--</span>';
 
-    return '<tr>' +
-      '<td onclick="event.stopPropagation()"><input type="checkbox" class="row-checkbox" ' + checked + ' onchange="toggleProspectSelect(\'' + p.id + '\')"></td>' +
-      '<td style="font-weight:600;color:var(--text)">' + esc(p.name || '--') + '</td>' +
-      '<td>' + esc(p.businessName || '--') + '</td>' +
-      '<td class="contact-cell">' + contactHtml + '</td>' +
-      '<td>' + esc(p.neighborhood || p.address || '--') + '</td>' +
+    // Products
+    const prodCount = s.productCount || (s.products || []).length;
+    const prodTags = (s.products || []).slice(0, 2).map(pr => '<span class="prospect-product-tag">' + esc(pr) + '</span>').join('');
+    const moreTag = (s.products || []).length > 2 ? '<span class="prospect-product-tag">+' + ((s.products || []).length - 2) + '</span>' : '';
+
+    return '<tr class="clickable-row" onclick="openSellerDrawer(\'' + s.id + '\')">' +
+      '<td onclick="event.stopPropagation()"><input type="checkbox" class="row-checkbox" ' + checked + ' onchange="toggleSellerSelect(\'' + s.id + '\')"></td>' +
+      '<td>' + photoHtml + '</td>' +
+      '<td style="font-weight:600;color:var(--text)">' + esc(s.name || '--') + '</td>' +
+      '<td>' + esc(s.businessName || '--') + '</td>' +
+      '<td>' + esc(s.neighborhood || (s.address || '').split(',')[0] || '--') + '</td>' +
+      '<td>' + esc(s.cuisineType || '--') + '</td>' +
+      '<td class="contact-cell" onclick="event.stopPropagation()">' + contactHtml + '</td>' +
       '<td>' + prodTags + moreTag + '</td>' +
-      '<td>' + esc(p.source || '--') + '</td>' +
-      '<td>' + prospectStatusBadge(p.status) + '</td>' +
-      '<td style="white-space:nowrap">' +
-        (canMakeLive ? '<button class="btn btn-success" onclick="openMakeLiveModal(\'' + p.id + '\')" style="margin-right:4px;">Make Live</button>' : '') +
-        '<button class="btn btn-outline" onclick="editProspect(\'' + p.id + '\')" style="margin-right:4px;">Edit</button>' +
-        (p.status !== 'approved' && p.status !== 'converted' ? '<button class="btn btn-success" onclick="setProspectStatus(\'' + p.id + '\',\'approved\')" style="margin-right:4px;padding:8px 10px;" title="Approve">&#10003;</button>' : '') +
-        (p.status !== 'rejected' && p.status !== 'converted' ? '<button class="btn btn-danger" onclick="setProspectStatus(\'' + p.id + '\',\'rejected\')" style="margin-right:4px;padding:8px 10px;" title="Reject">&#10007;</button>' : '') +
-        websiteIcon +
+      '<td onclick="event.stopPropagation()"><button class="badge ' + (s.sellerType === 'chef' ? 'badge-live' : 'badge-prospect') + '" style="cursor:pointer;border:none;" onclick="toggleSellerType(\'' + s.id + '\')" title="Click to toggle">' + esc(s.sellerType || 'seller') + '</button></td>' +
+      '<td>' + sellerStatusBadge(s.status) + '</td>' +
+      '<td style="white-space:nowrap" onclick="event.stopPropagation()">' +
+        '<button class="btn btn-outline" onclick="openSellerDrawer(\'' + s.id + '\')" style="margin-right:4px;">View</button>' +
+        (canMakeLive ? '<button class="btn btn-success" onclick="openMakeLiveModal(\'' + s.id + '\')" style="margin-right:4px;">Make Live</button>' : '') +
+        '<button class="btn btn-outline" onclick="editProspect(\'' + s.id + '\')" style="margin-right:4px;">Edit</button>' +
       '</td>' +
     '</tr>';
   }).join('');
+}
+
+// ── Seller Detail Drawer ──
+
+function openSellerDrawer(id) {
+  const s = sellersData.find(x => x.id === id);
+  if (!s) return;
+
+  const overlay = document.getElementById('sellerDrawerOverlay');
+  const drawer = document.getElementById('sellerDrawer');
+  const content = document.getElementById('sellerDrawerContent');
+
+  // Hero image
+  const heroHtml = s.imageUrl
+    ? '<div style="position:relative;"><img src="' + esc(s.imageUrl) + '" class="drawer-hero" alt="" onerror="this.parentElement.innerHTML=\'<div class=drawer-hero-placeholder>&#127978;</div>\'"><button class="drawer-close" onclick="closeSellerDrawer()">&#10005;</button></div>'
+    : '<div style="position:relative;"><div class="drawer-hero-placeholder">&#127978;</div><button class="drawer-close" onclick="closeSellerDrawer()">&#10005;</button></div>';
+
+  // Contact links
+  let contactHtml = '';
+  if (s.email) contactHtml += '<div class="drawer-field"><span class="drawer-field-label">Email</span><span class="drawer-field-value"><a href="mailto:' + esc(s.email) + '">' + esc(s.email) + '</a></span></div>';
+  if (s.phone) contactHtml += '<div class="drawer-field"><span class="drawer-field-label">Phone</span><span class="drawer-field-value"><a href="tel:' + esc(s.phone) + '">' + esc(s.phone) + '</a></span></div>';
+  if (s.instagram) {
+    const ig = (s.instagram || '').replace(/^@/, '');
+    contactHtml += '<div class="drawer-field"><span class="drawer-field-label">Instagram</span><span class="drawer-field-value"><a href="https://instagram.com/' + esc(ig) + '" target="_blank">@' + esc(ig) + '</a></span></div>';
+  }
+  if (s.website) contactHtml += '<div class="drawer-field"><span class="drawer-field-label">Website</span><span class="drawer-field-value"><a href="' + esc(s.website) + '" target="_blank">' + esc(s.website.replace(/^https?:\/\//, '').slice(0, 40)) + '</a></span></div>';
+
+  // Tags
+  const tags = Array.isArray(s.tags) ? s.tags : String(s.tags || '').split(',').map(t => t.trim()).filter(Boolean);
+  const tagsHtml = tags.length ? '<div class="drawer-tags">' + tags.map(t => '<span class="drawer-tag">' + esc(t) + '</span>').join('') + '</div>' : '';
+
+  // Products
+  const productsHtml = (s.products || []).length
+    ? '<div class="drawer-tags">' + s.products.map(p => '<span class="drawer-tag">' + esc(p) + '</span>').join('') + '</div>'
+    : '<div style="font-size:12px;color:var(--muted);">No products listed</div>';
+
+  // Stats
+  const statsHtml = '<div class="drawer-stat-grid">' +
+    '<div class="drawer-stat"><div class="drawer-stat-value">' + (s.productCount || (s.products || []).length) + '</div><div class="drawer-stat-label">Products</div></div>' +
+    '<div class="drawer-stat"><div class="drawer-stat-value">' + (s.orderCount || 0) + '</div><div class="drawer-stat-label">Orders</div></div>' +
+    '<div class="drawer-stat"><div class="drawer-stat-value" style="color:var(--accent-light)">' + money(s.revenue || 0) + '</div><div class="drawer-stat-label">Revenue</div></div>' +
+  '</div>';
+
+  // Status actions
+  const canMakeLive = ['prospect', 'approved', 'contacted'].includes(s.status);
+  let statusActions = '<div class="drawer-status-bar">';
+  if (canMakeLive) statusActions += '<button class="btn btn-success" onclick="openMakeLiveModal(\'' + s.id + '\');closeSellerDrawer()">Make Live</button>';
+  if (s.status !== 'approved' && s.status !== 'live') statusActions += '<button class="btn btn-accent" onclick="setProspectStatus(\'' + s.id + '\',\'approved\')">Approve</button>';
+  if (s.status !== 'contacted' && s.status !== 'live') statusActions += '<button class="btn btn-outline" onclick="setProspectStatus(\'' + s.id + '\',\'contacted\')">Mark Contacted</button>';
+  if (s.status !== 'rejected' && s.status !== 'live') statusActions += '<button class="btn btn-danger" onclick="setProspectStatus(\'' + s.id + '\',\'rejected\')">Reject</button>';
+  statusActions += '</div>';
+
+  // Profile link
+  const profileLink = s.status === 'live' && s.convertedUserId
+    ? '<div class="drawer-field"><span class="drawer-field-label">Profile</span><span class="drawer-field-value"><a href="/profile/' + esc(s.convertedUserId) + '" target="_blank">View Public Profile</a></span></div>'
+    : '';
+
+  content.innerHTML = heroHtml +
+    '<div class="drawer-header">' +
+      '<div style="font-size:22px;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;">' + esc(s.name || s.businessName || 'Unknown') + '</div>' +
+      (s.businessName && s.name !== s.businessName ? '<div style="font-size:14px;color:var(--dim);margin-bottom:4px;">' + esc(s.businessName) + '</div>' : '') +
+      '<div style="margin-bottom:12px;">' + sellerStatusBadge(s.status) + '</div>' +
+      statusActions +
+    '</div>' +
+
+    '<div style="height:20px;"></div>' +
+    '<div class="drawer-section">' + statsHtml + '</div>' +
+
+    '<div class="drawer-divider"></div>' +
+
+    '<div class="drawer-section">' +
+      '<div class="drawer-section-title">Contact</div>' +
+      contactHtml +
+      profileLink +
+    '</div>' +
+
+    '<div class="drawer-divider"></div>' +
+
+    '<div class="drawer-section">' +
+      '<div class="drawer-section-title">Location</div>' +
+      '<div class="drawer-field"><span class="drawer-field-label">Address</span><span class="drawer-field-value">' +
+        (s.address ? '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.address) + '" target="_blank">' + esc(s.address) + '</a>' : '<span style="color:var(--muted)">--</span>') +
+      '</span></div>' +
+      (s.neighborhood ? '<div class="drawer-field"><span class="drawer-field-label">Neighborhood</span><span class="drawer-field-value">' + esc(s.neighborhood) + '</span></div>' : '') +
+      (s.lat && s.lng ? '<div class="drawer-field"><span class="drawer-field-label">Coordinates</span><span class="drawer-field-value">' + s.lat.toFixed(4) + ', ' + s.lng.toFixed(4) + '</span></div>' : '') +
+    '</div>' +
+
+    '<div class="drawer-divider"></div>' +
+
+    '<div class="drawer-section">' +
+      '<div class="drawer-section-title">Cuisine & Products</div>' +
+      (s.cuisineType ? '<div class="drawer-field"><span class="drawer-field-label">Cuisine</span><span class="drawer-field-value">' + esc(s.cuisineType) + '</span></div>' : '') +
+      tagsHtml +
+      '<div style="margin-top:8px;">' + productsHtml + '</div>' +
+    '</div>' +
+
+    (s.permitType || s.permitNumber ? '<div class="drawer-divider"></div><div class="drawer-section"><div class="drawer-section-title">Permits</div>' +
+      (s.permitType ? '<div class="drawer-field"><span class="drawer-field-label">Type</span><span class="drawer-field-value">' + esc(s.permitType) + '</span></div>' : '') +
+      (s.permitNumber ? '<div class="drawer-field"><span class="drawer-field-label">Number</span><span class="drawer-field-value">' + esc(s.permitNumber) + '</span></div>' : '') +
+    '</div>' : '') +
+
+    (s.source || s.sourceUrl ? '<div class="drawer-divider"></div><div class="drawer-section"><div class="drawer-section-title">Source</div>' +
+      (s.source ? '<div class="drawer-field"><span class="drawer-field-label">Source</span><span class="drawer-field-value">' + esc(s.source) + '</span></div>' : '') +
+      (s.sourceUrl ? '<div class="drawer-field"><span class="drawer-field-label">URL</span><span class="drawer-field-value"><a href="' + esc(s.sourceUrl) + '" target="_blank">' + esc(s.sourceUrl.replace(/^https?:\/\//, '').slice(0, 40)) + '</a></span></div>' : '') +
+    '</div>' : '') +
+
+    (s.notes ? '<div class="drawer-divider"></div><div class="drawer-section"><div class="drawer-section-title">Notes</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">' + esc(s.notes) + '</div></div>' : '') +
+
+    '<div class="drawer-divider"></div>' +
+    '<div class="drawer-section">' +
+      '<div class="drawer-section-title">Timestamps</div>' +
+      '<div class="drawer-field"><span class="drawer-field-label">Created</span><span class="drawer-field-value">' + fmtDate(s.createdAt) + '</span></div>' +
+      (s.convertedAt ? '<div class="drawer-field"><span class="drawer-field-label">Converted</span><span class="drawer-field-value">' + fmtDate(s.convertedAt) + '</span></div>' : '') +
+      (s.scrapedAt ? '<div class="drawer-field"><span class="drawer-field-label">Scraped</span><span class="drawer-field-value">' + fmtDate(s.scrapedAt) + '</span></div>' : '') +
+    '</div>' +
+
+    '<div style="padding:0 24px 28px;"><button class="btn btn-outline" onclick="editProspect(\'' + s.id + '\');closeSellerDrawer()" style="width:100%;padding:12px;text-align:center;">Edit Details</button></div>';
+
+  overlay.style.display = 'block';
+  drawer.style.display = 'block';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      drawer.style.transform = 'translateX(0)';
+      overlay.style.opacity = '1';
+    });
+  });
+}
+
+function closeSellerDrawer() {
+  const overlay = document.getElementById('sellerDrawerOverlay');
+  const drawer = document.getElementById('sellerDrawer');
+  drawer.style.transform = 'translateX(100%)';
+  overlay.style.opacity = '0';
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    drawer.style.display = 'none';
+  }, 300);
 }
 
 function openProspectModal(prospect) {
@@ -1485,7 +1612,7 @@ function closeProspectModal() {
 }
 
 function editProspect(id) {
-  const prospect = prospectsData.find(p => p.id === id);
+  const prospect = sellersData.find(p => p.id === id);
   if (prospect) openProspectModal(prospect);
 }
 
@@ -1508,7 +1635,7 @@ async function saveProspect() {
     if (res.ok) {
       showToast(editId ? 'Prospect updated' : 'Prospect added', 'success');
       closeProspectModal();
-      loadProspects();
+      loadSellers();
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Failed to save prospect', 'error');
@@ -1525,7 +1652,7 @@ async function setProspectStatus(id, status) {
     const res = await apiFetch('/api/admin/prospects/' + id + '/status', { method: 'PUT', body: { status } });
     if (res.ok) {
       showToast('Status changed to ' + status, 'success');
-      loadProspects();
+      loadSellers();
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Failed to change status', 'error');
@@ -1536,7 +1663,7 @@ async function setProspectStatus(id, status) {
 }
 
 function openMakeLiveModal(id) {
-  const prospect = prospectsData.find(p => p.id === id);
+  const prospect = sellersData.find(p => p.id === id);
   if (!prospect) return;
   document.getElementById('makeLiveId').value = id;
   document.getElementById('makeLiveLat').value = '';
@@ -1578,7 +1705,6 @@ async function confirmMakeLive() {
     if (res.ok) {
       showToast('Prospect is now live on the map!', 'success');
       closeMakeLiveModal();
-      loadProspects();
       loadSellers();
     } else {
       const d = await res.json().catch(() => ({}));
@@ -1638,7 +1764,7 @@ async function doImport() {
       const data = await res.json();
       showToast('Imported ' + data.imported + ' prospects', 'success');
       closeImportModal();
-      loadProspects();
+      loadSellers();
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Import failed', 'error');
@@ -1686,81 +1812,45 @@ async function doScrape() {
   btn.textContent = 'Run Scraper';
 }
 
-// ── Bulk Selection (Prospects) ──
+// ── Bulk Selection (Sellers) ──
 
 function toggleSelectAll(type) {
-  if (type === 'prospects') {
-    const cb = document.getElementById('prospectSelectAll');
-    const checkboxes = document.querySelectorAll('#prospectsBody .row-checkbox');
+  if (type === 'sellers') {
+    const cb = document.getElementById('sellerSelectAll');
+    const checkboxes = document.querySelectorAll('#sellersBody .row-checkbox');
     if (cb.checked) {
-      // Select all visible rows
       checkboxes.forEach(c => {
         c.checked = true;
         const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
-        selectedProspects.add(id);
+        selectedSellers.add(id);
       });
     } else {
       checkboxes.forEach(c => {
         c.checked = false;
         const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
-        selectedProspects.delete(id);
+        selectedSellers.delete(id);
       });
     }
-    updateBulkBar('prospects');
-  } else if (type === 'listings') {
-    const cb = document.getElementById('listingSelectAll');
-    const checkboxes = document.querySelectorAll('#listingsBody .row-checkbox');
-    if (cb.checked) {
-      checkboxes.forEach(c => {
-        c.checked = true;
-        const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
-        selectedListings.add(id);
-      });
-    } else {
-      checkboxes.forEach(c => {
-        c.checked = false;
-        const id = c.getAttribute('onchange').match(/'([^']+)'/)[1];
-        selectedListings.delete(id);
-      });
-    }
-    updateBulkBar('listings');
+    updateBulkBar('sellers');
   }
 }
 
-function toggleProspectSelect(id) {
-  if (selectedProspects.has(id)) {
-    selectedProspects.delete(id);
+function toggleSellerSelect(id) {
+  if (selectedSellers.has(id)) {
+    selectedSellers.delete(id);
   } else {
-    selectedProspects.add(id);
+    selectedSellers.add(id);
   }
-  updateBulkBar('prospects');
-}
-
-function toggleListingSelect(id) {
-  if (selectedListings.has(id)) {
-    selectedListings.delete(id);
-  } else {
-    selectedListings.add(id);
-  }
-  updateBulkBar('listings');
+  updateBulkBar('sellers');
 }
 
 function updateBulkBar(type) {
-  if (type === 'prospects') {
-    const bar = document.getElementById('prospectBulkBar');
-    const count = document.getElementById('prospectBulkCount');
-    if (selectedProspects.size > 0) {
+  if (type === 'sellers') {
+    const bar = document.getElementById('sellerBulkBar');
+    const count = document.getElementById('sellerBulkCount');
+    if (selectedSellers.size > 0) {
       bar.classList.add('visible');
-      count.textContent = selectedProspects.size;
-    } else {
-      bar.classList.remove('visible');
-    }
-  } else if (type === 'listings') {
-    const bar = document.getElementById('listingBulkBar');
-    const count = document.getElementById('listingBulkCount');
-    if (selectedListings.size > 0) {
-      bar.classList.add('visible');
-      count.textContent = selectedListings.size;
+      count.textContent = selectedSellers.size;
     } else {
       bar.classList.remove('visible');
     }
@@ -1768,19 +1858,18 @@ function updateBulkBar(type) {
 }
 
 async function bulkMakeLive() {
-  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
-  if (!confirm('Make ' + selectedProspects.size + ' selected prospects live on the map?')) return;
+  if (selectedSellers.size === 0) { showToast('No sellers selected', 'error'); return; }
+  if (!confirm('Make ' + selectedSellers.size + ' selected sellers live on the map?')) return;
   try {
     const res = await apiFetch('/api/admin/prospects/bulk-make-live', {
-      method: 'POST', body: { ids: Array.from(selectedProspects) }
+      method: 'POST', body: { ids: Array.from(selectedSellers) }
     });
     if (res.ok) {
       const data = await res.json();
-      showToast((data.converted || selectedProspects.size) + ' prospects made live', 'success');
-      selectedProspects.clear();
-      updateBulkBar('prospects');
-      loadProspects();
-      loadListings();
+      showToast((data.converted || selectedSellers.size) + ' sellers made live', 'success');
+      selectedSellers.clear();
+      updateBulkBar('sellers');
+      loadSellers();
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Failed to bulk make live', 'error');
@@ -1791,16 +1880,15 @@ async function bulkMakeLive() {
 }
 
 async function bulkMakeAllLive() {
-  if (!confirm('Convert ALL prospects with coordinates to live map listings?')) return;
+  if (!confirm('Convert ALL sellers with coordinates to live map listings?')) return;
   try {
     const res = await apiFetch('/api/admin/prospects/bulk-make-live', {
       method: 'POST', body: {}
     });
     if (res.ok) {
       const data = await res.json();
-      showToast((data.converted || 0) + ' prospects made live', 'success');
-      loadProspects();
-      loadListings();
+      showToast((data.converted || 0) + ' sellers made live', 'success');
+      loadSellers();
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Failed to bulk make live', 'error');
@@ -1811,236 +1899,64 @@ async function bulkMakeAllLive() {
 }
 
 async function bulkRemoveProspects() {
-  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
-  if (!confirm('Delete ' + selectedProspects.size + ' selected prospects? This cannot be undone.')) return;
+  if (selectedSellers.size === 0) { showToast('No sellers selected', 'error'); return; }
+  if (!confirm('Delete ' + selectedSellers.size + ' selected sellers? This cannot be undone.')) return;
   try {
-    const ids = Array.from(selectedProspects);
+    const ids = Array.from(selectedSellers);
     let successCount = 0;
     for (const id of ids) {
       const res = await apiFetch('/api/admin/prospects/' + id, { method: 'DELETE' });
       if (res.ok) successCount++;
     }
-    showToast(successCount + ' prospects removed', 'success');
-    selectedProspects.clear();
-    updateBulkBar('prospects');
-    loadProspects();
+    showToast(successCount + ' sellers removed', 'success');
+    selectedSellers.clear();
+    updateBulkBar('sellers');
+    loadSellers();
   } catch(e) {
     showToast('Connection error', 'error');
   }
 }
 
 async function bulkApproveProspects() {
-  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
+  if (selectedSellers.size === 0) { showToast('No sellers selected', 'error'); return; }
   try {
-    const ids = Array.from(selectedProspects);
+    const ids = Array.from(selectedSellers);
     let successCount = 0;
     for (const id of ids) {
       const res = await apiFetch('/api/admin/prospects/' + id + '/status', { method: 'PUT', body: { status: 'approved' } });
       if (res.ok) successCount++;
     }
-    showToast(successCount + ' prospects approved', 'success');
-    selectedProspects.clear();
-    updateBulkBar('prospects');
-    loadProspects();
+    showToast(successCount + ' sellers approved', 'success');
+    selectedSellers.clear();
+    updateBulkBar('sellers');
+    loadSellers();
   } catch(e) {
     showToast('Connection error', 'error');
   }
 }
 
 async function bulkRejectProspects() {
-  if (selectedProspects.size === 0) { showToast('No prospects selected', 'error'); return; }
-  if (!confirm('Reject ' + selectedProspects.size + ' selected prospects?')) return;
+  if (selectedSellers.size === 0) { showToast('No sellers selected', 'error'); return; }
+  if (!confirm('Reject ' + selectedSellers.size + ' selected sellers?')) return;
   try {
-    const ids = Array.from(selectedProspects);
+    const ids = Array.from(selectedSellers);
     let successCount = 0;
     for (const id of ids) {
       const res = await apiFetch('/api/admin/prospects/' + id + '/status', { method: 'PUT', body: { status: 'rejected' } });
       if (res.ok) successCount++;
     }
-    showToast(successCount + ' prospects rejected', 'success');
-    selectedProspects.clear();
-    updateBulkBar('prospects');
-    loadProspects();
+    showToast(successCount + ' sellers rejected', 'success');
+    selectedSellers.clear();
+    updateBulkBar('sellers');
+    loadSellers();
   } catch(e) {
     showToast('Connection error', 'error');
   }
 }
 
-// ── Listings ──
+// (Listings section removed - unified into Sellers)
 
-async function loadListings() {
-  try {
-    const res = await apiFetch('/api/admin/listings');
-    if (res.ok) {
-      const data = await res.json();
-      listingsData = data.listings || data || [];
-      if (!Array.isArray(listingsData)) listingsData = [];
-      selectedListings.clear();
-      updateBulkBar('listings');
-      populateListingCuisineDropdown();
-      renderListings(listingsData);
-    }
-  } catch(e) {}
-}
-
-function populateListingCuisineDropdown() {
-  const cuisines = new Set();
-  listingsData.forEach(l => {
-    if (l.cuisineType) cuisines.add(l.cuisineType);
-  });
-  const select = document.getElementById('listingCuisineFilter');
-  const current = select.value;
-  select.innerHTML = '<option value="">All Cuisines</option>';
-  Array.from(cuisines).sort().forEach(c => {
-    select.innerHTML += '<option value="' + esc(c) + '"' + (current === c ? ' selected' : '') + '>' + esc(c) + '</option>';
-  });
-}
-
-function searchListings() {
-  const q = document.getElementById('listingSearch').value.toLowerCase().trim();
-  const statusVal = document.getElementById('listingStatusFilter').value;
-  const cuisineVal = document.getElementById('listingCuisineFilter').value.toLowerCase();
-  let list = listingsData;
-  if (statusVal === 'active') {
-    list = list.filter(l => l.active !== false);
-  } else if (statusVal === 'inactive') {
-    list = list.filter(l => l.active === false);
-  }
-  if (cuisineVal) {
-    list = list.filter(l => (l.cuisineType || '').toLowerCase() === cuisineVal);
-  }
-  if (q) {
-    list = list.filter(l =>
-      (l.name || '').toLowerCase().includes(q) ||
-      (l.businessName || '').toLowerCase().includes(q) ||
-      (l.neighborhood || '').toLowerCase().includes(q) ||
-      (l.cuisineType || '').toLowerCase().includes(q) ||
-      (l.email || '').toLowerCase().includes(q)
-    );
-  }
-  renderListings(list);
-}
-
-function renderListings(list) {
-  const body = document.getElementById('listingsBody');
-  if (!list || !list.length) {
-    body.innerHTML = '<tr><td colspan="8" class="empty-state"><span class="empty-state-icon">&#128205;</span><div class="empty-state-text">No listings found</div></td></tr>';
-    return;
-  }
-  body.innerHTML = list.map(l => {
-    const id = l.id || l._id;
-    const checked = selectedListings.has(id) ? 'checked' : '';
-    const isActive = l.active !== false;
-
-    // Contact cell
-    let contactHtml = '';
-    if (l.email) contactHtml += '<a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a>';
-    if (l.instagram) {
-      const igHandle = (l.instagram || '').replace(/^@/, '');
-      contactHtml += '<a href="https://instagram.com/' + esc(igHandle) + '" target="_blank" rel="noopener">@' + esc(igHandle) + '</a>';
-    }
-    if (!contactHtml) contactHtml = '<span style="color:var(--muted)">--</span>';
-
-    // Website
-    const websiteHtml = l.website
-      ? '<a href="' + esc(l.website) + '" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none;font-size:12px;word-break:break-all;">' + esc(l.website.replace(/^https?:\/\//, '').slice(0, 30)) + '</a>'
-      : '<span style="color:var(--muted)">--</span>';
-
-    return '<tr>' +
-      '<td onclick="event.stopPropagation()"><input type="checkbox" class="row-checkbox" ' + checked + ' onchange="toggleListingSelect(\'' + id + '\')"></td>' +
-      '<td style="font-weight:600;color:var(--text)">' + esc(l.name || l.businessName || '--') + '</td>' +
-      '<td>' + esc(l.neighborhood || '--') + '</td>' +
-      '<td>' + esc(l.cuisineType || '--') + '</td>' +
-      '<td class="contact-cell">' + contactHtml + '</td>' +
-      '<td>' + websiteHtml + '</td>' +
-      '<td>' + (isActive ? '<span class="badge badge-active">active</span>' : '<span class="badge badge-suspended">inactive</span>') + '</td>' +
-      '<td style="white-space:nowrap">' +
-        (isActive
-          ? '<button class="btn btn-danger" onclick="toggleListingActive(\'' + id + '\', false)" style="margin-right:4px;">Deactivate</button>'
-          : '<button class="btn btn-success" onclick="toggleListingActive(\'' + id + '\', true)" style="margin-right:4px;">Activate</button>'
-        ) +
-      '</td>' +
-    '</tr>';
-  }).join('');
-}
-
-async function toggleListingActive(id, active) {
-  try {
-    const res = await apiFetch('/api/admin/listings/' + id, {
-      method: 'PUT', body: { active }
-    });
-    if (res.ok) {
-      showToast('Listing ' + (active ? 'activated' : 'deactivated'), 'success');
-      loadListings();
-    } else {
-      const d = await res.json().catch(() => ({}));
-      showToast(d.error || 'Failed to update listing', 'error');
-    }
-  } catch(e) {
-    showToast('Connection error', 'error');
-  }
-}
-
-async function bulkRemoveListings() {
-  if (selectedListings.size === 0) { showToast('No listings selected', 'error'); return; }
-  if (!confirm('Deactivate ' + selectedListings.size + ' selected listings?')) return;
-  try {
-    const res = await apiFetch('/api/admin/listings/bulk-remove', {
-      method: 'POST', body: { ids: Array.from(selectedListings) }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      showToast((data.removed || selectedListings.size) + ' listings deactivated', 'success');
-      selectedListings.clear();
-      updateBulkBar('listings');
-      loadListings();
-    } else {
-      // Fallback: individual updates
-      const ids = Array.from(selectedListings);
-      let successCount = 0;
-      for (const id of ids) {
-        const r = await apiFetch('/api/admin/listings/' + id, { method: 'PUT', body: { active: false } });
-        if (r.ok) successCount++;
-      }
-      showToast(successCount + ' listings deactivated', 'success');
-      selectedListings.clear();
-      updateBulkBar('listings');
-      loadListings();
-    }
-  } catch(e) {
-    showToast('Connection error', 'error');
-  }
-}
-
-async function bulkRestoreListings() {
-  if (selectedListings.size === 0) { showToast('No listings selected', 'error'); return; }
-  try {
-    const res = await apiFetch('/api/admin/listings/bulk-restore', {
-      method: 'POST', body: { ids: Array.from(selectedListings) }
-    });
-    if (res.ok) {
-      const data = await res.json();
-      showToast((data.restored || selectedListings.size) + ' listings restored', 'success');
-      selectedListings.clear();
-      updateBulkBar('listings');
-      loadListings();
-    } else {
-      // Fallback: individual updates
-      const ids = Array.from(selectedListings);
-      let successCount = 0;
-      for (const id of ids) {
-        const r = await apiFetch('/api/admin/listings/' + id, { method: 'PUT', body: { active: true } });
-        if (r.ok) successCount++;
-      }
-      showToast(successCount + ' listings restored', 'success');
-      selectedListings.clear();
-      updateBulkBar('listings');
-      loadListings();
-    }
-  } catch(e) {
-    showToast('Connection error', 'error');
-  }
-}
+// (Old listing functions removed - unified into Sellers)
 
 // ── Buyers ──
 
@@ -2296,6 +2212,98 @@ async function deleteRating(id) {
     } else {
       const d = await res.json().catch(() => ({}));
       showToast(d.error || 'Failed to delete rating', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+// ── Seller Type Toggle ──
+
+async function toggleSellerType(id) {
+  const s = sellersData.find(x => x.id === id);
+  if (!s) return;
+  const newType = s.sellerType === 'chef' ? 'seller' : 'chef';
+  try {
+    const res = await apiFetch('/api/admin/sellers/' + id + '/type', {
+      method: 'PUT', body: { sellerType: newType }
+    });
+    if (res.ok) {
+      s.sellerType = newType;
+      showToast('Type changed to ' + newType, 'success');
+      filterSellers(sellerFilter);
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Failed to update type', 'error');
+    }
+  } catch(e) {
+    showToast('Connection error', 'error');
+  }
+}
+
+// ── Cron Jobs ──
+
+async function loadCronJobs() {
+  try {
+    const res = await apiFetch('/api/admin/cronjobs');
+    if (!res.ok) return;
+    const data = await res.json();
+    renderCronJobs(data.jobs || []);
+    renderCronHistory(data.history || []);
+  } catch(e) {}
+}
+
+function renderCronJobs(jobs) {
+  const body = document.getElementById('cronJobsBody');
+  if (!jobs.length) {
+    body.innerHTML = '<tr><td colspan="6" class="empty-state"><span class="empty-state-icon">&#128338;</span><div class="empty-state-text">No cron jobs configured</div></td></tr>';
+    return;
+  }
+  body.innerHTML = jobs.map(j => {
+    const lastRun = j.lastRun ? fmtDate(j.lastRun) : '<span style="color:var(--muted)">Never</span>';
+    const lastResult = j.lastResult
+      ? '<span class="badge ' + (j.lastResult.ok ? 'badge-live' : 'badge-rejected') + '">' + (j.lastResult.ok ? j.lastResult.count + ' found' : 'Error') + '</span>'
+      : '<span style="color:var(--muted)">--</span>';
+    return '<tr>' +
+      '<td style="font-weight:600;color:var(--text)">' + esc(j.name) + '</td>' +
+      '<td>' + esc(j.source) + '</td>' +
+      '<td><code style="font-size:12px;background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:4px;">' + esc(j.schedule) + '</code></td>' +
+      '<td>' + lastRun + '</td>' +
+      '<td>' + lastResult + '</td>' +
+      '<td><button class="btn btn-accent" onclick="triggerCronJob(\'' + esc(j.id) + '\')">Run Now</button></td>' +
+    '</tr>';
+  }).join('');
+}
+
+function renderCronHistory(history) {
+  const body = document.getElementById('cronHistoryBody');
+  if (!history.length) {
+    body.innerHTML = '<tr><td colspan="5" class="empty-state"><span class="empty-state-icon">&#128203;</span><div class="empty-state-text">No run history yet</div></td></tr>';
+    return;
+  }
+  body.innerHTML = history.slice(0, 50).map(h => {
+    return '<tr>' +
+      '<td style="font-weight:600;color:var(--text)">' + esc(h.jobName) + '</td>' +
+      '<td>' + fmtDate(h.startedAt) + '</td>' +
+      '<td>' + esc(h.duration || '--') + '</td>' +
+      '<td>' + (h.newRecords || 0) + '</td>' +
+      '<td><span class="badge ' + (h.ok ? 'badge-live' : 'badge-rejected') + '">' + (h.ok ? 'Success' : 'Failed') + '</span></td>' +
+    '</tr>';
+  }).join('');
+}
+
+async function triggerCronJob(jobId) {
+  try {
+    showToast('Running job...', 'success');
+    const res = await apiFetch('/api/admin/cronjobs/' + jobId + '/run', { method: 'POST' });
+    if (res.ok) {
+      const data = await res.json();
+      showToast('Job completed: ' + (data.newRecords || 0) + ' new records', 'success');
+      loadCronJobs();
+      loadSellers();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      showToast(d.error || 'Job failed', 'error');
     }
   } catch(e) {
     showToast('Connection error', 'error');

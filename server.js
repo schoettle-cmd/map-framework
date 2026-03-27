@@ -914,14 +914,27 @@ function makeUser(fields) {
 // Pending phone verifications
 const pendingVerifications = {};
 
-// ── Admin Authentication ────────────────────────────────────────────────────
-const adminTokens = new Set();
+// ── Admin Authentication (persistent tokens survive restarts) ────────────────
+const adminTokenFile = path.join(DATA_DIR, 'admin_tokens.json');
+let adminTokens;
+try {
+  const raw = JSON.parse(fs.readFileSync(adminTokenFile, 'utf-8'));
+  // Prune expired tokens on load
+  const now = Date.now();
+  adminTokens = new Map(Object.entries(raw).filter(([, exp]) => exp > now));
+} catch { adminTokens = new Map(); }
+
+function saveAdminTokens() {
+  fs.writeFileSync(adminTokenFile, JSON.stringify(Object.fromEntries(adminTokens), null, 2));
+}
 
 function getAdminSession(req) {
   const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('kinseb_admin='));
   if (!cookie) return false;
   const token = cookie.split('=')[1].trim();
-  return adminTokens.has(token);
+  if (!adminTokens.has(token)) return false;
+  if (adminTokens.get(token) < Date.now()) { adminTokens.delete(token); saveAdminTokens(); return false; }
+  return true;
 }
 
 // ── Email System ────────────────────────────────────────────────────────────
@@ -2169,15 +2182,17 @@ app.post('/api/admin/login', (req, res) => {
     return res.status(401).json({ ok: false, error: 'Invalid credentials.' });
   }
   const token = 'adm_' + crypto.randomBytes(24).toString('hex');
-  adminTokens.add(token);
-  const expires = new Date(Date.now() + 7 * 86400000).toUTCString();
+  const expiresMs = Date.now() + 5 * 86400000; // 5 days
+  adminTokens.set(token, expiresMs);
+  saveAdminTokens();
+  const expires = new Date(expiresMs).toUTCString();
   res.setHeader('Set-Cookie', `kinseb_admin=${token}; Path=/; Expires=${expires}; HttpOnly; SameSite=Lax`);
   res.json({ ok: true });
 });
 
 app.post('/api/admin/logout', (req, res) => {
   const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('kinseb_admin='));
-  if (cookie) adminTokens.delete(cookie.split('=')[1].trim());
+  if (cookie) { adminTokens.delete(cookie.split('=')[1].trim()); saveAdminTokens(); }
   res.setHeader('Set-Cookie', 'kinseb_admin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax');
   res.json({ ok: true });
 });
@@ -2190,9 +2205,15 @@ app.post('/api/admin/logout', (req, res) => {
 app.get('/api/admin/dashboard', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
 
-  // Total sellers = users with at least 1 product
-  const sellerIds = new Set(products.products.map(p => p.sellerId));
-  const totalSellers = sellerIds.size;
+  // Total sellers = prospects that are live (have active element on map)
+  const liveProspectIds = new Set();
+  prospects.prospects.forEach(p => {
+    if (p.convertedUserId) {
+      const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === p.id && e.active !== false);
+      if (el) liveProspectIds.add(p.id);
+    }
+  });
+  const totalSellers = liveProspectIds.size;
 
   // Total buyers = users who placed at least 1 order
   const buyerIds = new Set(orders.orders.map(o => o.buyerId));
@@ -2349,6 +2370,28 @@ app.put('/api/admin/sellers/:id/commission', (req, res) => {
   res.json({ ok: true, id: user.id, commissionOverride: user.commissionOverride });
 });
 
+// PUT /api/admin/sellers/:id/type — toggle seller type (chef/seller)
+app.put('/api/admin/sellers/:id/type', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  const { sellerType } = req.body;
+  if (!['chef', 'seller'].includes(sellerType)) return res.status(400).json({ ok: false, error: 'Type must be chef or seller.' });
+
+  // Update on prospect
+  const prospect = prospects.prospects.find(p => p.id === req.params.id);
+  if (prospect) {
+    prospect.sellerType = sellerType;
+    saveData('prospects', prospects);
+  }
+  // Update on element if it exists
+  const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === req.params.id);
+  if (el) {
+    el.sellerType = sellerType;
+    saveData('elements', elements);
+  }
+  if (!prospect && !el) return res.status(404).json({ ok: false, error: 'Not found.' });
+  res.json({ ok: true, id: req.params.id, sellerType });
+});
+
 // GET /api/admin/settings
 app.get('/api/admin/settings', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
@@ -2450,6 +2493,101 @@ app.delete('/api/admin/ratings/:id', (req, res) => {
 app.get('/api/admin/elements', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
   res.json({ ok: true, elements: elements.elements });
+});
+
+// GET /api/admin/sellers-unified — merged view of all prospects + elements + products
+app.get('/api/admin/sellers-unified', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  // Build lookup maps
+  const elementByProspectId = {};
+  const elementsByOwnerId = {};
+  elements.elements.forEach(el => {
+    if (el.metadata && el.metadata.prospectId) {
+      elementByProspectId[el.metadata.prospectId] = el;
+    }
+    if (el.ownerId) {
+      if (!elementsByOwnerId[el.ownerId]) elementsByOwnerId[el.ownerId] = [];
+      elementsByOwnerId[el.ownerId].push(el);
+    }
+  });
+
+  const productsBySellerId = {};
+  products.products.forEach(p => {
+    if (!productsBySellerId[p.sellerId]) productsBySellerId[p.sellerId] = [];
+    productsBySellerId[p.sellerId].push(p);
+  });
+
+  const ordersBySellerId = {};
+  orders.orders.forEach(o => {
+    if (!ordersBySellerId[o.sellerId]) ordersBySellerId[o.sellerId] = [];
+    ordersBySellerId[o.sellerId].push(o);
+  });
+
+  // Start with all prospects as the base
+  const sellers = prospects.prospects.map(p => {
+    const el = elementByProspectId[p.id];
+    const userId = p.convertedUserId;
+    const userProducts = userId ? (productsBySellerId[userId] || []) : [];
+    const userOrders = userId ? (ordersBySellerId[userId] || []) : [];
+    const completedOrders = userOrders.filter(o => ['completed', 'paid', 'confirmed'].includes(o.status));
+    const revenue = completedOrders.reduce((sum, o) => sum + (o.amount || 0), 0);
+
+    // Compute unified status
+    let unifiedStatus = p.status || 'prospect';
+    if (el && el.active !== false && (p.convertedUserId || p.status === 'approved')) {
+      unifiedStatus = 'live';
+    } else if (p.status === 'approved' && (!el || el.active === false)) {
+      unifiedStatus = 'approved';
+    }
+
+    return {
+      id: p.id,
+      name: p.name,
+      businessName: p.businessName,
+      address: p.address,
+      neighborhood: p.neighborhood,
+      phone: p.phone,
+      email: p.email,
+      website: p.website,
+      instagram: p.instagram,
+      imageUrl: p.imageUrl || (el ? el.imageUrl : '') || '',
+      products: p.products || [],
+      productCount: userProducts.length || (p.products || []).length,
+      orderCount: userOrders.length,
+      revenue,
+      cuisineType: p.cuisineType || (el ? el.cuisineType : '') || '',
+      tags: p.tags || (el ? el.tags : '') || '',
+      permitType: p.permitType,
+      permitNumber: p.permitNumber,
+      source: p.source,
+      sourceUrl: p.sourceUrl,
+      notes: p.notes,
+      lat: p.lat || (el ? el.lat : null),
+      lng: p.lng || (el ? el.lng : null),
+      status: unifiedStatus,
+      originalStatus: p.status,
+      featured: p.featured,
+      scrapedAt: p.scrapedAt,
+      createdAt: p.createdAt,
+      convertedAt: p.convertedAt,
+      convertedUserId: p.convertedUserId,
+      sellerType: p.sellerType || (el ? el.sellerType : null) || 'seller',
+      elementId: el ? el.id : null,
+      elementActive: el ? (el.active !== false) : false,
+      hasElement: !!el
+    };
+  });
+
+  // Count stats
+  const counts = { all: sellers.length, prospect: 0, approved: 0, contacted: 0, live: 0, rejected: 0 };
+  sellers.forEach(s => {
+    if (counts[s.status] !== undefined) counts[s.status]++;
+  });
+
+  sellers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  res.json({ ok: true, sellers, counts });
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -3344,6 +3482,249 @@ app.get('/api/chat/:sessionId', (req, res) => {
   if (!session) return res.status(404).json({ ok: false, error: 'Session not found' });
   res.json({ ok: true, session });
 });
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  CRON JOBS — Scheduled Scraping System
+// ═════════════════════════════════════════════════════════════════════════════
+
+let cronData = loadData('cronjobs', {
+  jobs: [
+    { id: 'mehko-registry', name: 'MEHKO Registry', source: 'mehko-registry', schedule: 'Daily 3:00 AM', lastRun: null, lastResult: null },
+    { id: 'mehko-map', name: 'MEHKO Map', source: 'mehko-map', schedule: 'Daily 3:15 AM', lastRun: null, lastResult: null },
+    { id: 'takeachef', name: 'Take a Chef — LA', source: 'takeachef', schedule: 'Daily 4:00 AM', lastRun: null, lastResult: null },
+    { id: 'hireachef', name: 'HireAChef — LA', source: 'hireachef', schedule: 'Daily 4:15 AM', lastRun: null, lastResult: null },
+    { id: 'thumbtack', name: 'Thumbtack — LA Private Chefs', source: 'thumbtack', schedule: 'Daily 4:30 AM', lastRun: null, lastResult: null }
+  ],
+  history: []
+});
+
+// ── Private Chef Scrapers ──
+
+async function scrapeTakeAChef() {
+  const cheerio = require('cheerio');
+  const url = 'https://www.takeachef.com/en/personal-chef/united-states/los-angeles/';
+  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }, signal: AbortSignal.timeout(20000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const html = await res.text();
+  const $ = cheerio.load(html);
+  const chefs = [];
+  $('[class*="chef"], [class*="card"], .chef-card, .chef-item, article').each((_, el) => {
+    const name = $(el).find('h2, h3, .name, [class*="name"]').first().text().trim();
+    const bio = $(el).find('p, .description, [class*="desc"]').first().text().trim();
+    const img = $(el).find('img').first().attr('src') || '';
+    const cuisine = $(el).find('[class*="cuisine"], [class*="specialty"]').text().trim();
+    if (name && name.length > 1 && name.length < 100) {
+      chefs.push({ name, bio, imageUrl: img, cuisineType: cuisine || 'Private Chef', source: 'takeachef', sellerType: 'chef' });
+    }
+  });
+  return chefs;
+}
+
+async function scrapeHireAChef() {
+  const cheerio = require('cheerio');
+  const url = 'https://www.hireachef.com/personal-chefs/california/los-angeles';
+  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }, signal: AbortSignal.timeout(20000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const html = await res.text();
+  const $ = cheerio.load(html);
+  const chefs = [];
+  $('[class*="chef"], [class*="listing"], .member, .profile-card, article, .result').each((_, el) => {
+    const name = $(el).find('h2, h3, h4, .name, [class*="name"], a').first().text().trim();
+    const bio = $(el).find('p, .bio, .description, [class*="desc"]').first().text().trim();
+    const img = $(el).find('img').first().attr('src') || '';
+    const cuisine = $(el).find('[class*="cuisine"], [class*="specialty"], [class*="service"]').text().trim();
+    if (name && name.length > 1 && name.length < 100) {
+      chefs.push({ name, bio, imageUrl: img, cuisineType: cuisine || 'Private Chef', source: 'hireachef', sellerType: 'chef' });
+    }
+  });
+  return chefs;
+}
+
+async function scrapeThumbTack() {
+  const cheerio = require('cheerio');
+  const url = 'https://www.thumbtack.com/ca/los-angeles/personal-chefs/';
+  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }, signal: AbortSignal.timeout(20000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const html = await res.text();
+  const $ = cheerio.load(html);
+  const chefs = [];
+  // Thumbtack embeds data in JSON-LD
+  $('script[type="application/ld+json"]').each((_, el) => {
+    try {
+      const ld = JSON.parse($(el).html());
+      const items = Array.isArray(ld) ? ld : [ld];
+      for (const item of items) {
+        if (item['@type'] === 'LocalBusiness' || item['@type'] === 'Service') {
+          if (item.name) chefs.push({ name: item.name, bio: item.description || '', imageUrl: item.image || '', cuisineType: 'Private Chef', source: 'thumbtack', sellerType: 'chef' });
+        }
+        if (item['@type'] === 'ItemList' && Array.isArray(item.itemListElement)) {
+          for (const li of item.itemListElement) {
+            const it = li.item || li;
+            if (it.name) chefs.push({ name: it.name, bio: it.description || '', imageUrl: it.image || '', cuisineType: 'Private Chef', source: 'thumbtack', sellerType: 'chef' });
+          }
+        }
+      }
+    } catch {}
+  });
+  // Fallback: parse HTML cards
+  if (chefs.length === 0) {
+    $('[class*="result"], [class*="pro-card"], [class*="professional"], article').each((_, el) => {
+      const name = $(el).find('h2, h3, [class*="name"], [class*="title"]').first().text().trim();
+      const bio = $(el).find('p, [class*="desc"]').first().text().trim();
+      if (name && name.length > 1 && name.length < 100) {
+        chefs.push({ name, bio, imageUrl: '', cuisineType: 'Private Chef', source: 'thumbtack', sellerType: 'chef' });
+      }
+    });
+  }
+  return chefs;
+}
+
+const cronScrapers = {
+  'mehko-registry': async () => {
+    const result = await scrapeAll({ source: 'mehko-registry' });
+    return result.prospects || [];
+  },
+  'mehko-map': async () => {
+    const result = await scrapeAll({ source: 'mehko-map' });
+    return result.prospects || [];
+  },
+  'takeachef': scrapeTakeAChef,
+  'hireachef': scrapeHireAChef,
+  'thumbtack': scrapeThumbTack
+};
+
+async function runCronJob(jobId) {
+  const job = cronData.jobs.find(j => j.id === jobId);
+  if (!job) throw new Error('Job not found: ' + jobId);
+
+  const startedAt = new Date().toISOString();
+  const start = Date.now();
+  let newRecords = 0;
+
+  try {
+    const scraper = cronScrapers[job.source];
+    if (!scraper) throw new Error('No scraper for source: ' + job.source);
+
+    const results = await scraper();
+    const existingNames = new Set(prospects.prospects.map(p => (p.name || p.businessName || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
+
+    for (const r of results) {
+      const key = (r.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (key.length < 2 || existingNames.has(key)) continue;
+      existingNames.add(key);
+
+      const prospect = {
+        id: 'pros_' + crypto.randomBytes(8).toString('hex'),
+        name: (r.name || '').slice(0, 200),
+        businessName: (r.businessName || r.name || '').slice(0, 200),
+        address: (r.address || '').slice(0, 500),
+        neighborhood: (r.neighborhood || 'Los Angeles').slice(0, 100),
+        phone: (r.phone || '').slice(0, 30),
+        email: (r.email || '').slice(0, 200),
+        website: (r.website || '').slice(0, 500),
+        instagram: (r.instagram || '').slice(0, 100),
+        products: Array.isArray(r.products) ? r.products : [],
+        imageUrl: (r.imageUrl || '').slice(0, 1000),
+        permitType: (r.permitType || '').slice(0, 50),
+        permitNumber: (r.permitNumber || '').slice(0, 100),
+        source: r.source || job.source,
+        sourceUrl: (r.sourceUrl || '').slice(0, 500),
+        notes: (r.bio || r.notes || '').slice(0, 2000),
+        lat: r.lat || null,
+        lng: r.lng || null,
+        cuisineType: (r.cuisineType || '').slice(0, 100),
+        tags: (r.tags || '').slice(0, 500),
+        sellerType: r.sellerType || 'seller',
+        status: 'prospect',
+        featured: false,
+        scrapedAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        convertedAt: null,
+        convertedUserId: null
+      };
+
+      prospects.prospects.push(prospect);
+      newRecords++;
+    }
+
+    if (newRecords > 0) saveData('prospects', prospects);
+
+    const elapsed = Date.now() - start;
+    const duration = elapsed < 1000 ? elapsed + 'ms' : (elapsed / 1000).toFixed(1) + 's';
+    job.lastRun = startedAt;
+    job.lastResult = { ok: true, count: results.length, newRecords, duration };
+
+    cronData.history.unshift({ jobId: job.id, jobName: job.name, startedAt, duration, newRecords, total: results.length, ok: true });
+    if (cronData.history.length > 200) cronData.history.length = 200;
+    saveData('cronjobs', cronData);
+
+    console.log(`[cron] ${job.name}: found ${results.length}, ${newRecords} new (${duration})`);
+    return { ok: true, total: results.length, newRecords, duration };
+
+  } catch (e) {
+    const elapsed = Date.now() - start;
+    const duration = elapsed < 1000 ? elapsed + 'ms' : (elapsed / 1000).toFixed(1) + 's';
+    job.lastRun = startedAt;
+    job.lastResult = { ok: false, error: e.message, duration };
+
+    cronData.history.unshift({ jobId: job.id, jobName: job.name, startedAt, duration, newRecords: 0, ok: false, error: e.message });
+    if (cronData.history.length > 200) cronData.history.length = 200;
+    saveData('cronjobs', cronData);
+
+    console.error(`[cron] ${job.name} failed: ${e.message}`);
+    return { ok: false, error: e.message };
+  }
+}
+
+// ── Daily Schedule (runs at configured times) ──
+function scheduleDailyCrons() {
+  const schedules = {
+    'mehko-registry': 3 * 60,       // 3:00 AM
+    'mehko-map': 3 * 60 + 15,       // 3:15 AM
+    'takeachef': 4 * 60,            // 4:00 AM
+    'hireachef': 4 * 60 + 15,       // 4:15 AM
+    'thumbtack': 4 * 60 + 30        // 4:30 AM
+  };
+
+  setInterval(() => {
+    const now = new Date();
+    const minuteOfDay = now.getHours() * 60 + now.getMinutes();
+    for (const [jobId, targetMinute] of Object.entries(schedules)) {
+      if (minuteOfDay === targetMinute) {
+        console.log(`[cron] Triggering scheduled job: ${jobId}`);
+        runCronJob(jobId).catch(e => console.error(`[cron] ${jobId} error:`, e.message));
+      }
+    }
+  }, 60000); // Check every minute
+}
+
+// ── Cron API Endpoints ──
+
+app.get('/api/admin/cronjobs', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  res.json({ ok: true, jobs: cronData.jobs, history: cronData.history.slice(0, 50) });
+});
+
+app.post('/api/admin/cronjobs/:id/run', async (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const jobId = req.params.id;
+  if (jobId === 'all') {
+    const results = [];
+    for (const job of cronData.jobs) {
+      const result = await runCronJob(job.id);
+      results.push({ id: job.id, name: job.name, ...result });
+    }
+    const totalNew = results.reduce((sum, r) => sum + (r.newRecords || 0), 0);
+    return res.json({ ok: true, results, newRecords: totalNew });
+  }
+
+  const result = await runCronJob(jobId);
+  res.json({ ok: true, ...result });
+});
+
+scheduleDailyCrons();
+console.log('[cron] Daily scraping scheduled (MEHKO 3AM, Private Chefs 4AM)');
 
 app.listen(PORT, () => {
   console.log(`\n  🍽  Cuisine running at http://localhost:${PORT}`);

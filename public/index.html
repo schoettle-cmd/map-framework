@@ -817,8 +817,24 @@ async function init() {
   }
   const me = await fetch(BASE + '/api/auth/me').then(r=>r.json()).catch(()=>({}));
   if (me.ok && me.user) {
-    document.getElementById('nav-signin').textContent = 'Go to map';
-    document.getElementById('nav-signin').onclick = () => window.location.href = BASE + '/map';
+    const navLinks = document.querySelector('.nav-links');
+    const signinBtn = document.getElementById('nav-signin');
+    if (me.user.role === 'seller' || me.user.onboardingComplete) {
+      // Seller/Chef: show mode toggle
+      signinBtn.textContent = 'Go to map';
+      signinBtn.onclick = () => window.location.href = BASE + '/map';
+      // Add chef mode link before the sign-in button
+      const chefLink = document.createElement('a');
+      chefLink.href = BASE + '/seller';
+      chefLink.className = 'nav-link';
+      chefLink.style.cssText = 'color:var(--terracotta);font-weight:600';
+      chefLink.textContent = me.user.isChef ? 'Chef dashboard' : 'Seller dashboard';
+      navLinks.insertBefore(chefLink, signinBtn);
+    } else {
+      // Buyer: show "Go to map" and "Become a Chef" link
+      signinBtn.textContent = 'Go to map';
+      signinBtn.onclick = () => window.location.href = BASE + '/map';
+    }
   }
   loadFeaturedChefs();
   loadSpotlight();
@@ -919,9 +935,9 @@ function handleEmail(e) {
 async function handleGoogleCredential(r) {
   try { const d = await(await fetch(BASE + '/api/auth/google',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({credential:r.credential})})).json(); if(d.ok) window.location.href=BASE+'/map'; else alert(d.error); } catch(e) { alert('Network error.'); }
 }
-function openPhoneAuth() { document.getElementById('auth-backdrop').classList.add('open'); setTimeout(()=>document.getElementById('auth-phone').focus(),100); }
+function openPhoneAuth() { document.getElementById('auth-backdrop').classList.add('open'); setTimeout(()=>{const p=document.getElementById('auth-phone');if(p)p.focus();},100); }
 function closeAuth() { document.getElementById('auth-backdrop').classList.remove('open'); authReset(); }
-function authReset() { ['auth-step-phone','auth-step-otp','auth-step-name'].forEach((id,i)=>{document.getElementById(id).style.display=i===0?'block':'none';}); ['auth-error','auth-error-otp','auth-error-name','auth-success-otp'].forEach(id=>{document.getElementById(id).style.display='none';}); document.getElementById('auth-send-btn').disabled=false; document.getElementById('auth-send-btn').textContent='Continue'; document.getElementById('auth-verify-btn').disabled=false; document.getElementById('auth-verify-btn').textContent='Verify'; }
+function authReset() { try{['auth-step-phone','auth-step-otp','auth-step-name'].forEach((id,i)=>{const el=document.getElementById(id);if(el)el.style.display=i===0?'block':'none';}); ['auth-error','auth-error-otp','auth-error-name','auth-success-otp'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';}); const sb=document.getElementById('auth-send-btn');if(sb){sb.disabled=false;sb.textContent='Continue';} const vb=document.getElementById('auth-verify-btn');if(vb){vb.disabled=false;vb.textContent='Verify';}}catch(e){} }
 function showErr(id,msg) { const el=document.getElementById(id); el.textContent=msg; el.style.display='block'; }
 async function authSendOtp() {
   const phone=document.getElementById('auth-phone').value.trim(); if(!phone) return showErr('auth-error','Phone number is required.');
@@ -935,14 +951,24 @@ async function authVerify() {
   const code=document.getElementById('auth-otp').value.trim(); if(!code||code.length!==6) return showErr('auth-error-otp','Enter the 6-digit code.');
   const btn=document.getElementById('auth-verify-btn'); btn.disabled=true; btn.textContent='Verifying...'; document.getElementById('auth-error-otp').style.display='none';
   try { const d=await(await fetch(BASE+'/api/auth/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,code})})).json();
-    if(d.ok) { if(d.needsName) { document.getElementById('auth-step-otp').style.display='none'; document.getElementById('auth-step-name').style.display='block'; setTimeout(()=>document.getElementById('auth-name').focus(),100); } else window.location.href=BASE+'/map'; }
+    if(d.ok) { if(d.needsName) { document.getElementById('auth-step-otp').style.display='none'; document.getElementById('auth-step-name').style.display='block'; setTimeout(()=>document.getElementById('auth-name').focus(),100); } else { showPostLoginOptions(d.user); } }
     else { showErr('auth-error-otp',d.error); btn.disabled=false; btn.textContent='Verify'; }
   } catch(e) { showErr('auth-error-otp','Network error.'); btn.disabled=false; btn.textContent='Verify'; }
 }
 async function authComplete() {
   const name=document.getElementById('auth-name').value.trim(); if(!name) return showErr('auth-error-name','Name is required.');
   const email=document.getElementById('auth-email').value.trim(); if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr('auth-error-name','Valid email required.');
-  try { const d=await(await fetch(BASE+'/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name,email})})).json(); if(d.ok) window.location.href=BASE+'/map'; else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
+  try { const d=await(await fetch(BASE+'/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name,email})})).json(); if(d.ok) showPostLoginOptions(d.user); else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
+}
+function showPostLoginOptions(user) {
+  const card=document.querySelector('.auth-card');
+  const isSeller=user && (user.role==='seller');
+  card.innerHTML='<button class="auth-close" onclick="closeAuth()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>'+
+    '<h2 class="auth-title">Welcome back'+(user&&user.name?', '+esc(user.name):'')+'</h2>'+
+    '<p class="auth-sub">Where would you like to go?</p>'+
+    '<a href="'+BASE+'/map" style="display:block;width:100%;padding:16px;border-radius:100px;background:var(--terracotta);color:#fff;font-size:15px;font-weight:600;text-align:center;text-decoration:none;margin-bottom:10px;font-family:var(--sans)">Browse the map</a>'+
+    (isSeller?'<a href="'+BASE+'/seller" style="display:block;width:100%;padding:16px;border-radius:100px;background:var(--olive);color:#fff;font-size:15px;font-weight:600;text-align:center;text-decoration:none;margin-bottom:10px;font-family:var(--sans)">'+(user.isChef?'Chef':'Seller')+' dashboard</a>':'')+
+    '<a href="'+BASE+'/join" style="display:block;width:100%;padding:16px;border-radius:100px;background:transparent;border:1.5px solid var(--light-border);color:var(--ink);font-size:15px;font-weight:600;text-align:center;text-decoration:none;font-family:var(--sans)">'+(isSeller?'Update my chef profile':'Become a Chef')+' &rarr;</a>';
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAuth(); if(e.key==='Enter') { if(document.getElementById('auth-step-name').style.display!=='none') authComplete(); else if(document.getElementById('auth-step-otp').style.display!=='none') authVerify(); else if(document.getElementById('auth-backdrop').classList.contains('open')) authSendOtp(); }});
 

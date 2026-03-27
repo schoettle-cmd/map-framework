@@ -1234,6 +1234,10 @@ app.get('/api/auth/me', (req, res) => {
     user: {
       id: user.id, name: user.name, email: user.email, phone: user.phone,
       role: user.role || 'buyer',
+      sellerType: user.sellerType || null,
+      deliveryOptions: user.deliveryOptions || null,
+      isChef: user.sellerType === 'chef',
+      onboardingComplete: !!user.onboardingComplete,
       profile: user.profile || { displayName: '', bio: '', photos: [], location: null }
     }
   });
@@ -1297,10 +1301,11 @@ app.put('/api/profiles', (req, res) => {
 
   if (!user.profile) user.profile = { displayName: '', bio: '', photos: [], location: null };
 
-  const { displayName, bio, location } = req.body;
+  const { displayName, bio, location, cuisineType } = req.body;
   if (displayName !== undefined) user.profile.displayName = String(displayName).slice(0, 100);
   if (bio !== undefined) user.profile.bio = String(bio).slice(0, 1000);
   if (location !== undefined) user.profile.location = location;
+  if (cuisineType !== undefined) user.profile.cuisineType = String(cuisineType).slice(0, 100);
 
   // Auto-create/update map element when location is set
   if (user.profile.location && user.profile.location.lat && user.profile.location.lng) {
@@ -1310,14 +1315,15 @@ app.put('/api/profiles', (req, res) => {
       elements.elements.push(el);
     }
     el.title = user.profile.displayName || user.name;
-    el.subtitle = '';
+    el.subtitle = user.profile.cuisineType || '';
     el.description = user.profile.bio;
     el.imageUrl = (user.profile.photos && user.profile.photos[0]) || '';
-    el.icon = '🏪';
+    el.icon = user.sellerType === 'chef' ? '👨‍🍳' : '🏪';
     el.lat = user.profile.location.lat;
     el.lng = user.profile.location.lng;
     el.online = true;
-    el.metadata = { userId: user.id };
+    el.metadata = { userId: user.id, sellerType: user.sellerType || 'seller' };
+    el.cuisineType = user.profile.cuisineType || '';
     saveData('elements', elements);
   }
 
@@ -1692,6 +1698,121 @@ app.put('/api/seller/onboarding', (req, res) => {
   saveData('users', users);
 
   res.json({ ok: true, user: { id: user.id, name: user.name, role: user.role, orderContactEmail: user.orderContactEmail, feeAcknowledged: user.feeAcknowledged } });
+});
+
+// PUT /api/auth/upgrade-role — upgrade a buyer to seller/chef role
+app.put('/api/auth/upgrade-role', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const sellerType = (req.body.sellerType || '').toLowerCase();
+  if (!['chef', 'seller'].includes(sellerType))
+    return res.status(400).json({ ok: false, error: 'sellerType must be chef or seller.' });
+
+  user.role = 'seller';
+  user.sellerType = sellerType;
+
+  // Create element if location is known
+  if (user.profile && user.profile.location && user.profile.location.lat && user.profile.location.lng) {
+    let el = elements.elements.find(e => e.ownerId === user.id && e.type === 'seller');
+    if (!el) {
+      el = { id: 'el_' + crypto.randomBytes(8).toString('hex'), type: 'seller', ownerId: user.id, active: true, createdAt: new Date().toISOString() };
+      elements.elements.push(el);
+    }
+    el.title = (user.profile && user.profile.displayName) || user.name;
+    el.subtitle = '';
+    el.description = (user.profile && user.profile.bio) || '';
+    el.imageUrl = (user.profile && user.profile.photos && user.profile.photos[0]) || '';
+    el.icon = sellerType === 'chef' ? '👨‍🍳' : '🏪';
+    el.lat = user.profile.location.lat;
+    el.lng = user.profile.location.lng;
+    el.online = true;
+    el.metadata = { userId: user.id, sellerType };
+    saveData('elements', elements);
+  }
+
+  // Create prospect record
+  let prospect = prospects.prospects.find(p => p.convertedUserId === user.id);
+  if (!prospect) {
+    prospect = {
+      id: 'pros_' + crypto.randomBytes(8).toString('hex'),
+      name: user.name,
+      phone: user.phone,
+      email: user.email,
+      sellerType,
+      status: 'prospect',
+      convertedUserId: user.id,
+      createdAt: new Date().toISOString()
+    };
+    prospects.prospects.push(prospect);
+    saveData('prospects', prospects);
+  } else {
+    prospect.sellerType = sellerType;
+    saveData('prospects', prospects);
+  }
+
+  saveData('users', users);
+  res.json({ ok: true, user: { id: user.id, name: user.name, role: user.role, sellerType: user.sellerType } });
+});
+
+// PUT /api/seller/delivery-options — save delivery/pickup preferences
+app.put('/api/seller/delivery-options', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const { pickup, delivery, hostAtHome, deliveryRadius, deliveryFee, minimumOrder } = req.body;
+  user.deliveryOptions = {
+    pickup: !!pickup,
+    delivery: !!delivery,
+    hostAtHome: !!hostAtHome,
+    deliveryRadius: parseFloat(deliveryRadius) || 0,
+    deliveryFee: Math.round(Math.abs(parseFloat(deliveryFee) || 0) * 100),
+    minimumOrder: Math.round(Math.abs(parseFloat(minimumOrder) || 0) * 100)
+  };
+
+  saveData('users', users);
+  res.json({ ok: true, deliveryOptions: user.deliveryOptions });
+});
+
+// POST /api/seller/onboard-complete — final onboarding completion
+app.post('/api/seller/onboard-complete', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  user.role = 'seller';
+  user.onboardingComplete = true;
+  user.sellerOnboardedAt = user.sellerOnboardedAt || new Date().toISOString();
+
+  // Create/update map element
+  if (user.profile && user.profile.location && user.profile.location.lat && user.profile.location.lng) {
+    let el = elements.elements.find(e => e.ownerId === user.id && e.type === 'seller');
+    if (!el) {
+      el = { id: 'el_' + crypto.randomBytes(8).toString('hex'), type: 'seller', ownerId: user.id, active: true, createdAt: new Date().toISOString() };
+      elements.elements.push(el);
+    }
+    el.title = (user.profile && user.profile.displayName) || user.name;
+    el.subtitle = user.profile.cuisineType || '';
+    el.description = (user.profile && user.profile.bio) || '';
+    el.imageUrl = (user.profile && user.profile.photos && user.profile.photos[0]) || '';
+    el.icon = user.sellerType === 'chef' ? '👨‍🍳' : '🏪';
+    el.lat = user.profile.location.lat;
+    el.lng = user.profile.location.lng;
+    el.online = true;
+    el.active = true;
+    el.metadata = { userId: user.id, sellerType: user.sellerType || 'seller' };
+    el.cuisineType = user.profile.cuisineType || '';
+    saveData('elements', elements);
+  }
+
+  // Update prospect status to live
+  const prospect = prospects.prospects.find(p => p.convertedUserId === user.id);
+  if (prospect) {
+    prospect.status = 'live';
+    saveData('prospects', prospects);
+  }
+
+  saveData('users', users);
+  res.json({ ok: true, profileUrl: `/profile/${user.id}` });
 });
 
 // Stripe webhook

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Become a Chef — Cuisine</title>
+  <title>Start Selling on Cuisine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,8 @@
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── Nav ── */
@@ -35,6 +37,9 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 32px;
       border-bottom: 1px solid var(--light-border);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(245,241,232,0.96);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     }
     .nav-logo {
       font-family: var(--serif);
@@ -49,52 +54,113 @@
     }
     .nav-link:hover { color: var(--ink); }
 
-    /* ── Hero ── */
-    .hero {
-      text-align: center;
-      padding: 80px 24px 60px;
-      max-width: 640px;
-      margin: 0 auto;
+    /* ── Progress Bar ── */
+    .progress-bar {
+      height: 3px;
+      background: var(--light-border);
+      position: relative;
     }
-    .hero-label {
+    .progress-fill {
+      height: 100%;
+      background: var(--terracotta);
+      transition: width 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+      border-radius: 0 2px 2px 0;
+    }
+    .progress-steps {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 24px 0;
+    }
+    .progress-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--light-border);
+      transition: all 0.3s;
+    }
+    .progress-dot.active { background: var(--terracotta); transform: scale(1.3); }
+    .progress-dot.done { background: var(--olive); }
+
+    /* ── Wizard Container ── */
+    .wizard {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      max-width: 640px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .step {
+      display: none;
+      flex: 1;
+      padding: 48px 0 120px;
+      animation: fadeUp 0.4s ease;
+    }
+    .step.active { display: flex; flex-direction: column; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Step Header ── */
+    .step-label {
       font-size: 12px; font-weight: 600;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--terracotta);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
-    .hero h1 {
+    .step-title {
       font-family: var(--serif);
-      font-size: clamp(36px, 5vw, 52px);
+      font-size: clamp(28px, 4vw, 40px);
       font-weight: 600;
       line-height: 1.15;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
-    .hero p {
-      font-size: 17px;
+    .step-desc {
+      font-size: 16px;
       color: var(--warm-gray);
       line-height: 1.7;
+      margin-bottom: 36px;
       max-width: 480px;
-      margin: 0 auto;
     }
 
-    /* ── Form ── */
-    .form-section {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 0 24px 100px;
+    /* ── Type Cards (Step 1) ── */
+    .type-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
     }
-    .form-card {
+    .type-card {
       background: var(--card-bg);
-      border: 1px solid var(--light-border);
-      border-radius: 24px;
-      padding: 40px 36px;
+      border: 2px solid var(--light-border);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
     }
+    .type-card:hover { border-color: var(--warm-gray); transform: translateY(-2px); }
+    .type-card.selected { border-color: var(--terracotta); background: rgba(196,106,60,0.04); }
+    .type-card-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+    .type-card-title {
+      font-family: var(--serif);
+      font-size: 20px; font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .type-card-desc {
+      font-size: 13px;
+      color: var(--warm-gray);
+      line-height: 1.6;
+    }
+
+    /* ── Form Elements ── */
     .form-group { margin-bottom: 24px; }
     .form-label {
       display: block;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 13px; font-weight: 600;
       color: var(--ink);
       margin-bottom: 8px;
     }
@@ -126,6 +192,7 @@
       padding-right: 44px;
     }
 
+    /* ── Photo Upload ── */
     .photo-upload-area {
       width: 100%;
       padding: 48px 24px;
@@ -135,87 +202,391 @@
       text-align: center;
       cursor: pointer;
       transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
     }
     .photo-upload-area:hover {
       border-color: var(--terracotta);
       background: rgba(196,106,60,0.03);
     }
+    .photo-upload-area.has-photo {
+      padding: 0;
+      border-style: solid;
+      border-color: var(--olive);
+    }
+    .photo-upload-area.has-photo img {
+      width: 100%; height: 240px;
+      object-fit: cover; display: block;
+      border-radius: 16px;
+    }
     .photo-upload-area svg { color: var(--warm-gray); margin-bottom: 12px; }
     .photo-upload-area p { font-size: 14px; color: var(--warm-gray); }
     .photo-upload-area span { font-size: 12px; color: #b5b0a5; display: block; margin-top: 4px; }
 
-    .form-submit {
+    /* ── OTP ── */
+    .otp-input {
       width: 100%;
       padding: 18px;
-      border-radius: 100px;
-      background: var(--terracotta);
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
+      border-radius: 14px;
+      border: 1.5px solid var(--light-border);
+      background: #fff;
+      color: var(--ink);
+      font-size: 28px;
       font-family: var(--sans);
-      transition: background 0.2s;
-      margin-top: 8px;
-    }
-    .form-submit:hover { background: var(--terracotta-light); }
-    .form-submit:disabled { opacity: 0.5; cursor: default; }
-
-    .form-success {
-      text-align: center;
-      padding: 60px 24px;
-    }
-    .form-success h2 {
-      font-family: var(--serif);
-      font-size: 32px;
       font-weight: 600;
+      text-align: center;
+      letter-spacing: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .otp-input:focus { border-color: var(--terracotta); }
+    .otp-sent {
+      text-align: center;
+      font-size: 14px;
+      color: var(--olive);
+      margin-bottom: 16px;
+      padding: 10px;
+      background: rgba(47,58,47,0.06);
+      border-radius: 12px;
+    }
+
+    /* ── Toggle ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--light-border);
+    }
+    .toggle-row:first-child { border-top: 1px solid var(--light-border); }
+    .toggle-info h4 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .toggle-info p { font-size: 13px; color: var(--warm-gray); }
+    .toggle {
+      position: relative;
+      width: 52px; height: 30px;
+      background: var(--light-border);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.3s;
+      flex-shrink: 0;
+    }
+    .toggle.on { background: var(--terracotta); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.3s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .toggle.on::after { transform: translateX(22px); }
+    .toggle-sub-fields {
+      padding: 16px 0 0;
+      display: none;
+    }
+    .toggle-sub-fields.visible { display: block; }
+
+    /* ── Product Cards ── */
+    .product-list { margin-bottom: 24px; }
+    .product-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 16px;
       margin-bottom: 12px;
+      transition: all 0.2s;
     }
-    .form-success p {
-      font-size: 16px;
+    .product-card-img {
+      width: 72px; height: 72px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #e8e4db;
+      flex-shrink: 0;
+    }
+    .product-card-info { flex: 1; min-width: 0; }
+    .product-card-name {
+      font-family: var(--serif);
+      font-size: 16px; font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .product-card-desc {
+      font-size: 13px; color: var(--warm-gray);
+      overflow: hidden; text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .product-card-price {
+      font-size: 16px; font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .product-card-remove {
+      background: none; border: none;
       color: var(--warm-gray);
-      line-height: 1.7;
-      margin-bottom: 32px;
+      cursor: pointer; padding: 4px;
+      transition: color 0.2s;
     }
-    .form-success a {
+    .product-card-remove:hover { color: #c43c3c; }
+    .add-product-form {
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 20px;
+      padding: 28px 24px;
+    }
+    .add-product-form .form-group:last-of-type { margin-bottom: 16px; }
+    .add-btn {
       display: inline-flex;
-      padding: 14px 32px;
+      align-items: center; gap: 8px;
+      padding: 14px 28px;
       border-radius: 100px;
       background: var(--olive);
       color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s;
+      font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
     }
-    .form-success a:hover { background: #3a4a3a; }
+    .add-btn:hover { background: #3a4a3a; }
+    .add-another-btn {
+      display: inline-flex;
+      align-items: center; gap: 8px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      background: transparent;
+      color: var(--terracotta);
+      font-size: 14px; font-weight: 600;
+      border: 1.5px solid var(--terracotta);
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+      margin-top: 16px;
+    }
+    .add-another-btn:hover { background: var(--terracotta); color: #fff; }
 
-    /* ── Benefits ── */
-    .benefits {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 60px 24px 80px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      text-align: center;
+    /* ── Fee Acknowledgment ── */
+    .fee-card {
+      background: rgba(47,58,47,0.04);
+      border: 1px solid var(--light-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
     }
-    .benefit h3 {
+    .fee-card h4 {
       font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 18px; font-weight: 600;
       margin-bottom: 8px;
     }
-    .benefit p {
+    .fee-card p { font-size: 14px; color: var(--warm-gray); line-height: 1.7; }
+    .fee-card .fee-rate {
+      font-size: 36px; font-weight: 700;
+      color: var(--terracotta);
+      margin: 12px 0 8px;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 2px;
+      width: 20px; height: 20px;
+      accent-color: var(--terracotta);
+    }
+    .checkbox-row label {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    /* ── Preview (Step 7) ── */
+    .preview-container {
+      margin: 0 -24px;
+    }
+    .preview-hero {
+      width: 100%;
+      height: 300px;
+      background: #e8e4db;
+      overflow: hidden;
+      border-radius: 20px;
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .preview-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .preview-hero-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px; color: rgba(47,58,47,0.15);
+    }
+    .preview-section {
+      padding: 0 24px;
+    }
+    .preview-cuisine {
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .preview-name {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+    .preview-location {
       font-size: 14px;
       color: var(--warm-gray);
-      line-height: 1.7;
+      margin-bottom: 16px;
     }
-    .benefit-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-      display: block;
+    .preview-bio {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #4a4a42;
+      margin-bottom: 32px;
     }
+    .preview-divider {
+      width: 40px; height: 1px;
+      background: var(--terracotta);
+      margin-bottom: 32px;
+    }
+    .preview-menu-label {
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+    }
+    .preview-meal {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--light-border);
+    }
+    .preview-meal:first-child { border-top: 1px solid var(--light-border); }
+    .preview-meal-img {
+      width: 80px; height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #e8e4db;
+      flex-shrink: 0;
+    }
+    .preview-meal-info { flex: 1; }
+    .preview-meal-name {
+      font-family: var(--serif);
+      font-size: 17px; font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .preview-meal-desc {
+      font-size: 13px; color: var(--warm-gray);
+      line-height: 1.5; margin-bottom: 6px;
+    }
+    .preview-meal-price {
+      font-size: 16px; font-weight: 700;
+    }
+    .preview-delivery {
+      background: var(--card-bg);
+      border: 1px solid var(--light-border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .preview-delivery-row {
+      display: flex; justify-content: space-between;
+      padding: 8px 0;
+      font-size: 14px;
+    }
+    .preview-delivery-row span:first-child { font-weight: 600; }
+    .preview-delivery-row span:last-child { color: var(--warm-gray); }
+
+    /* ── Inline Editable ── */
+    .editable {
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 2px 6px;
+      margin: -2px -6px;
+      transition: background 0.2s;
+    }
+    .editable:hover { background: rgba(196,106,60,0.08); }
+    .editable-active {
+      background: #fff;
+      border: 1.5px solid var(--terracotta);
+      padding: 8px 12px;
+      margin: -8px -12px;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    /* ── Bottom Nav ── */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(245,241,232,0.96);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--light-border);
+      z-index: 50;
+    }
+    .btn-back {
+      padding: 14px 28px;
+      border-radius: 100px;
+      background: transparent;
+      border: 1.5px solid var(--light-border);
+      color: var(--ink);
+      font-size: 15px; font-weight: 600;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--ink); }
+    .btn-back:disabled { opacity: 0.3; cursor: default; }
+    .btn-next {
+      padding: 14px 32px;
+      border-radius: 100px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 15px; font-weight: 600;
+      border: none; cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+    }
+    .btn-next:hover { background: var(--terracotta-light); }
+    .btn-next:disabled { opacity: 0.5; cursor: default; }
+    .btn-publish {
+      padding: 14px 36px;
+      border-radius: 100px;
+      background: var(--olive);
+      color: #fff;
+      font-size: 15px; font-weight: 600;
+      border: none; cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.2s;
+    }
+    .btn-publish:hover { background: #3a4a3a; transform: translateY(-1px); }
+
+    /* ── Error / Success ── */
+    .form-error {
+      background: rgba(196,60,60,0.08);
+      border: 1px solid rgba(196,60,60,0.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #c43c3c;
+      margin-bottom: 16px;
+      display: none;
+    }
+    .form-error.visible { display: block; }
+
+    .hidden { display: none !important; }
 
     /* ── Footer ── */
     .footer {
@@ -226,54 +597,118 @@
       color: var(--warm-gray);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       .nav { padding: 16px 20px; }
-      .hero { padding: 48px 20px 40px; }
-      .form-card { padding: 28px 24px; }
-      .benefits { grid-template-columns: 1fr; gap: 40px; }
+      .step { padding: 32px 0 120px; }
+      .type-cards { grid-template-columns: 1fr; }
+      .bottom-nav { padding: 14px 20px; }
+      .btn-next, .btn-back { padding: 12px 24px; font-size: 14px; }
+      .add-product-form { padding: 20px 16px; }
     }
   </style>
 </head>
 <body>
 
   <nav class="nav">
-    <a href="/" class="nav-logo">Cuisine</a>
-    <a href="/" class="nav-link">&larr; Back to home</a>
+    <a href="/" class="nav-logo" id="nav-logo-link">Cuisine</a>
+    <a href="/" class="nav-link" id="nav-back-link">&larr; Back to home</a>
   </nav>
 
-  <section class="hero">
-    <div class="hero-label">For Home Chefs</div>
-    <h1>Share your kitchen<br>with the world</h1>
-    <p>Join a curated community of home chefs. Set your menu, tell your story, and connect with people who appreciate real food made with real care.</p>
-  </section>
-
-  <div class="benefits">
-    <div class="benefit">
-      <span class="benefit-icon">&#127860;</span>
-      <h3>Your menu, your rules</h3>
-      <p>Set your own prices, choose your schedule, and cook what you love. No algorithms, no pressure.</p>
-    </div>
-    <div class="benefit">
-      <span class="benefit-icon">&#128249;</span>
-      <h3>Beautiful profile</h3>
-      <p>Your own editorial-style page to showcase your cooking, your story, and what makes your kitchen special.</p>
-    </div>
-    <div class="benefit">
-      <span class="benefit-icon">&#129309;</span>
-      <h3>Direct connection</h3>
-      <p>Message your customers directly. Build real relationships. Keep 90% of every sale.</p>
-    </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width: 14.28%"></div>
+  </div>
+  <div class="progress-steps" id="progress-steps">
+    <div class="progress-dot active"></div>
+    <div class="progress-dot"></div>
+    <div class="progress-dot"></div>
+    <div class="progress-dot"></div>
+    <div class="progress-dot"></div>
+    <div class="progress-dot"></div>
+    <div class="progress-dot"></div>
   </div>
 
-  <section class="form-section">
-    <div class="form-card" id="form-card">
+  <div class="wizard">
+
+    <!-- ═══ Step 1: Welcome ═══ -->
+    <div class="step active" id="step-1">
+      <div class="step-label">Get Started</div>
+      <h1 class="step-title">Start selling on Cuisine</h1>
+      <p class="step-desc">Join a curated community of home cooks. Set your menu, tell your story, and connect with people who appreciate real food.</p>
+      <div class="type-cards">
+        <div class="type-card" onclick="selectType('chef', this)">
+          <span class="type-card-icon">&#128104;&#8205;&#127859;</span>
+          <div class="type-card-title">I'm a Chef</div>
+          <div class="type-card-desc">Host dining experiences at your home. Cook for guests who come to you.</div>
+        </div>
+        <div class="type-card" onclick="selectType('seller', this)">
+          <span class="type-card-icon">&#127858;</span>
+          <div class="type-card-title">I'm a Seller</div>
+          <div class="type-card-desc">Sell meals for delivery or pickup. Customers order and you fulfill.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Step 2: Phone Auth ═══ -->
+    <div class="step" id="step-2">
+      <div class="step-label">Verify Identity</div>
+      <h1 class="step-title">Verify your phone</h1>
+      <p class="step-desc">We'll send a 6-digit code to confirm it's you. This will be your login for Cuisine.</p>
+
+      <div id="phone-stage">
+        <div class="form-error" id="phone-error"></div>
+        <div class="form-group">
+          <label class="form-label">Phone number</label>
+          <input class="form-input" id="auth-phone" type="tel" placeholder="+1 (555) 123-4567" autocomplete="tel">
+        </div>
+        <button class="btn-next" style="width:100%" id="send-otp-btn" onclick="sendOtp()">Send verification code</button>
+      </div>
+
+      <div id="otp-stage" class="hidden">
+        <div class="otp-sent" id="otp-sent-msg"></div>
+        <div class="form-error" id="otp-error"></div>
+        <div class="form-group">
+          <label class="form-label">6-digit code</label>
+          <input class="otp-input" id="auth-otp" type="text" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="000000">
+        </div>
+        <button class="btn-next" style="width:100%" id="verify-otp-btn" onclick="verifyOtp()">Verify code</button>
+        <div style="text-align:center;margin-top:12px">
+          <button style="background:none;border:none;color:var(--terracotta);font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sans)" onclick="showPhoneStage()">Use a different number</button>
+        </div>
+      </div>
+
+      <div id="name-stage" class="hidden">
+        <div class="form-error" id="name-error"></div>
+        <div class="form-group">
+          <label class="form-label">Your name</label>
+          <input class="form-input" id="auth-name" placeholder="Full name" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" id="auth-email" placeholder="you@email.com" type="email" autocomplete="email">
+        </div>
+        <button class="btn-next" style="width:100%" onclick="completeAuth()">Create account</button>
+      </div>
+    </div>
+
+    <!-- ═══ Step 3: Basic Info ═══ -->
+    <div class="step" id="step-3">
+      <div class="step-label">Your Profile</div>
+      <h1 class="step-title">Tell us about yourself</h1>
+      <p class="step-desc">This information will appear on your public chef profile.</p>
+
+      <div class="form-error" id="info-error"></div>
+
       <div class="form-group">
-        <label class="form-label">Your name</label>
-        <input class="form-input" id="chef-name" placeholder="Full name" autocomplete="name">
+        <label class="form-label">Display name</label>
+        <input class="form-input" id="info-name" placeholder="Your name or kitchen name" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="info-email" placeholder="you@email.com" type="email" autocomplete="email">
       </div>
       <div class="form-group">
         <label class="form-label">Cuisine type</label>
-        <select class="form-input" id="chef-cuisine">
+        <select class="form-input" id="info-cuisine">
           <option value="">Select your specialty</option>
           <option value="Mexican">Mexican</option>
           <option value="Mediterranean">Mediterranean</option>
@@ -286,95 +721,871 @@
           <option value="Vegan">Vegan</option>
           <option value="Caribbean">Caribbean</option>
           <option value="Middle Eastern">Middle Eastern</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Thai">Thai</option>
+          <option value="Korean">Korean</option>
+          <option value="Southern">Southern</option>
+          <option value="BBQ">BBQ / Grill</option>
           <option value="Other">Other</option>
         </select>
       </div>
       <div class="form-group">
         <label class="form-label">Your story</label>
-        <div class="form-hint">What inspires your cooking? This will appear on your chef profile.</div>
-        <textarea class="form-input" id="chef-bio" placeholder="I've been cooking since I was a child, learning from my grandmother's kitchen in Oaxaca..."></textarea>
+        <div class="form-hint">What inspires your cooking? This will appear on your profile.</div>
+        <textarea class="form-input" id="info-bio" placeholder="I've been cooking since I was a child, learning from my grandmother's kitchen..."></textarea>
       </div>
       <div class="form-group">
-        <label class="form-label">Photo</label>
-        <div class="form-hint">A portrait photo of you in your kitchen works best.</div>
-        <div class="photo-upload-area" onclick="document.getElementById('photo-input').click()">
+        <label class="form-label">Profile photo</label>
+        <div class="form-hint">A portrait of you in your kitchen works best.</div>
+        <div class="photo-upload-area" id="profile-photo-area" onclick="document.getElementById('profile-photo-input').click()">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <p id="photo-label">Click to upload a photo</p>
+          <p id="profile-photo-label">Click to upload a photo</p>
           <span>JPG or PNG, max 5MB</span>
         </div>
-        <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="handlePhoto(this)">
+        <input type="file" id="profile-photo-input" accept="image/*" style="display:none">
       </div>
       <div class="form-group">
-        <label class="form-label">Phone number</label>
-        <div class="form-hint">We'll use this to set up your account.</div>
-        <input class="form-input" id="chef-phone" placeholder="+1 (555) 123-4567" type="tel" autocomplete="tel">
+        <label class="form-label">Location</label>
+        <div class="form-hint">Your neighborhood or address. Customers will see your general area.</div>
+        <input class="form-input" id="info-address" placeholder="e.g. Silver Lake, Los Angeles">
+      </div>
+    </div>
+
+    <!-- ═══ Step 4: Menu ═══ -->
+    <div class="step" id="step-4">
+      <div class="step-label">Your Menu</div>
+      <h1 class="step-title">Add your first items</h1>
+      <p class="step-desc">What will you be selling? Add at least one product to get started. You can always add more later.</p>
+
+      <div class="product-list" id="product-list"></div>
+
+      <div class="add-product-form" id="add-product-form">
+        <div class="form-group">
+          <label class="form-label">Dish name</label>
+          <input class="form-input" id="prod-name" placeholder="e.g. Homemade Tamales (dozen)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-input" id="prod-desc" placeholder="What makes this dish special?" style="min-height:80px"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Price ($)</label>
+          <input class="form-input" id="prod-price" placeholder="24.00" type="number" step="0.01" min="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-input" id="prod-category">
+            <option value="entree">Entree</option>
+            <option value="appetizer">Appetizer</option>
+            <option value="dessert">Dessert</option>
+            <option value="bakery">Bakery</option>
+            <option value="beverage">Beverage</option>
+            <option value="sides">Sides</option>
+            <option value="meal-prep">Meal Prep</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Photo (optional)</label>
+          <div class="photo-upload-area" id="prod-photo-area" onclick="document.getElementById('prod-photo-input').click()" style="padding:24px">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <p id="prod-photo-label" style="font-size:13px">Add a photo</p>
+          </div>
+          <input type="file" id="prod-photo-input" accept="image/*" style="display:none">
+        </div>
+        <button class="add-btn" onclick="addProduct()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Add to menu
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══ Step 5: Delivery & Pickup ═══ -->
+    <div class="step" id="step-5">
+      <div class="step-label">Fulfillment</div>
+      <h1 class="step-title">Delivery & pickup</h1>
+      <p class="step-desc">How will customers get your food? Choose all that apply.</p>
+
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <h4>Customers pick up</h4>
+          <p>Customers come to your location to collect their order.</p>
+        </div>
+        <div class="toggle" id="toggle-pickup" onclick="toggleSwitch(this)"></div>
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <h4>I deliver</h4>
+          <p>You bring the food to your customers.</p>
+        </div>
+        <div class="toggle" id="toggle-delivery" onclick="toggleSwitch(this)"></div>
+      </div>
+
+      <div class="toggle-sub-fields" id="delivery-fields">
+        <div class="form-group">
+          <label class="form-label">Delivery radius (miles)</label>
+          <input class="form-input" id="delivery-radius" type="number" placeholder="5" min="1" max="50">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Delivery fee ($)</label>
+          <input class="form-input" id="delivery-fee" type="number" placeholder="5.00" step="0.01" min="0">
+        </div>
+      </div>
+
+      <div class="toggle-row" id="host-row">
+        <div class="toggle-info">
+          <h4>I host at my home</h4>
+          <p>Guests come to your kitchen for a dining experience.</p>
+        </div>
+        <div class="toggle" id="toggle-host" onclick="toggleSwitch(this)"></div>
+      </div>
+
+      <div class="form-group" style="margin-top:24px">
+        <label class="form-label">Minimum order amount (optional)</label>
+        <div class="form-hint">Set a minimum so small orders don't cost you money.</div>
+        <input class="form-input" id="min-order" type="number" placeholder="15.00" step="0.01" min="0">
+      </div>
+    </div>
+
+    <!-- ═══ Step 6: Tax & Payout ═══ -->
+    <div class="step" id="step-6">
+      <div class="step-label">Tax & Payout</div>
+      <h1 class="step-title">Tax information</h1>
+      <p class="step-desc">We need this to pay you and comply with tax regulations. Your info is securely stored.</p>
+
+      <div class="form-error" id="tax-error"></div>
+
+      <div class="form-group">
+        <label class="form-label">Business or personal name</label>
+        <div class="form-hint">The name used for tax reporting (1099).</div>
+        <input class="form-input" id="tax-business" placeholder="Your name or business name">
       </div>
       <div class="form-group">
-        <label class="form-label">Email (optional)</label>
-        <input class="form-input" id="chef-email" placeholder="you@email.com" type="email" autocomplete="email">
+        <label class="form-label">EIN or SSN last 4 digits</label>
+        <div class="form-hint">Used for tax identification. We only store the last 4 digits of SSN.</div>
+        <input class="form-input" id="tax-ein" placeholder="EIN or last 4 of SSN" maxlength="20">
       </div>
-      <button class="form-submit" id="submit-btn" onclick="submitApplication()">Apply to join Cuisine</button>
+      <div class="form-group">
+        <label class="form-label">Address</label>
+        <input class="form-input" id="tax-address" placeholder="123 Main Street">
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px">
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <input class="form-input" id="tax-city" placeholder="City">
+        </div>
+        <div class="form-group">
+          <label class="form-label">State</label>
+          <input class="form-input" id="tax-state" placeholder="CA" maxlength="2">
+        </div>
+        <div class="form-group">
+          <label class="form-label">ZIP</label>
+          <input class="form-input" id="tax-zip" placeholder="90001" maxlength="10">
+        </div>
+      </div>
+
+      <div class="fee-card">
+        <h4>Platform Commission</h4>
+        <div class="fee-rate">10%</div>
+        <p>Cuisine takes a 10% commission on each sale. You keep 90% of every order. No monthly fees, no hidden charges.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="fee-ack">
+          <label for="fee-ack">I understand and agree to the 10% platform commission on all sales.</label>
+        </div>
+      </div>
     </div>
 
-    <div class="form-success hidden" id="form-success">
-      <h2>Application received</h2>
-      <p>Thank you for your interest in joining Cuisine. We'll review your application and reach out within a few days to get you set up.</p>
-      <a href="/">Back to home</a>
-    </div>
-  </section>
+    <!-- ═══ Step 7: Preview & Publish ═══ -->
+    <div class="step" id="step-7">
+      <div class="step-label">Preview</div>
+      <h1 class="step-title">Your profile preview</h1>
+      <p class="step-desc">Here's how customers will see you. Click any section to edit it inline.</p>
 
-  <footer class="footer">&copy; 2026 Cuisine. All rights reserved.</footer>
+      <div class="preview-container" id="preview-container">
+        <div class="preview-hero" id="preview-hero">
+          <div class="preview-hero-placeholder" id="preview-hero-placeholder">&#128104;&#8205;&#127859;</div>
+        </div>
+        <div class="preview-section">
+          <div class="preview-cuisine editable" id="preview-cuisine" onclick="inlineEdit(this, 'info-cuisine')"></div>
+          <div class="preview-name editable" id="preview-name" onclick="inlineEdit(this, 'info-name')"></div>
+          <div class="preview-location" id="preview-location"></div>
+          <div class="preview-bio editable" id="preview-bio" onclick="inlineEdit(this, 'info-bio')"></div>
+          <div class="preview-divider"></div>
+          <div class="preview-menu-label">The Menu</div>
+          <div id="preview-meals"></div>
+          <div class="preview-delivery" id="preview-delivery"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav" id="bottom-nav">
+    <button class="btn-back" id="btn-back" onclick="prevStep()" disabled>Back</button>
+    <button class="btn-next" id="btn-next" onclick="nextStep()">Continue</button>
+  </div>
 
 <script>
-let selectedFile = null;
+(function() {
+  // ── Base Path ──
+  const BASE = window.__BASE || window.location.pathname.replace(/\/join\/?$/, '') || '';
 
-function handlePhoto(input) {
-  const file = input.files[0];
-  if (!file) return;
-  if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); return; }
-  selectedFile = file;
-  document.getElementById('photo-label').textContent = file.name;
-}
+  // ── State ──
+  let currentStep = 1;
+  const TOTAL_STEPS = 7;
+  let sellerType = '';
+  let sentPhone = '';
+  let isLoggedIn = false;
+  let currentUser = null;
+  let addedProducts = [];
+  let profilePhotoFile = null;
+  let profilePhotoUrl = '';
+  let productPhotoFile = null;
 
-async function submitApplication() {
-  const name = document.getElementById('chef-name').value.trim();
-  const cuisine = document.getElementById('chef-cuisine').value;
-  const bio = document.getElementById('chef-bio').value.trim();
-  const phone = document.getElementById('chef-phone').value.trim();
-  const email = document.getElementById('chef-email').value.trim();
+  // ── Init ──
+  async function init() {
+    try {
+      const me = await apiFetch('/api/auth/me');
+      if (me.ok && me.user) {
+        isLoggedIn = true;
+        currentUser = me.user;
+        // Pre-fill from existing user data
+        if (currentUser.name) {
+          document.getElementById('info-name').value = currentUser.profile.displayName || currentUser.name;
+        }
+        if (currentUser.email) {
+          document.getElementById('info-email').value = currentUser.email;
+        }
+        if (currentUser.profile && currentUser.profile.bio) {
+          document.getElementById('info-bio').value = currentUser.profile.bio;
+        }
+        if (currentUser.profile && currentUser.profile.location && currentUser.profile.location.address) {
+          document.getElementById('info-address').value = currentUser.profile.location.address;
+        }
+      }
+    } catch(e) {}
 
-  if (!name) return alert('Please enter your name.');
-  if (!cuisine) return alert('Please select a cuisine type.');
-  if (!phone) return alert('Please enter your phone number.');
+    // Set up file input listeners
+    document.getElementById('profile-photo-input').addEventListener('change', handleProfilePhoto);
+    document.getElementById('prod-photo-input').addEventListener('change', handleProductPhoto);
 
-  const btn = document.getElementById('submit-btn');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-
-  try {
-    // Start auth flow to create account
-    const startRes = await fetch('/api/auth/start', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ phone })
-    });
-    const startData = await startRes.json();
-
-    if (startData.ok) {
-      // For now, show success — full verification flow handled elsewhere
-      document.getElementById('form-card').classList.add('hidden');
-      document.getElementById('form-success').classList.remove('hidden');
-    } else {
-      // Still show success since we captured their info
-      document.getElementById('form-card').classList.add('hidden');
-      document.getElementById('form-success').classList.remove('hidden');
-    }
-  } catch (e) {
-    // Show success anyway — we'll follow up manually
-    document.getElementById('form-card').classList.add('hidden');
-    document.getElementById('form-success').classList.remove('hidden');
+    // Show/hide host row based on type
+    updateHostRowVisibility();
+    updateUI();
   }
-}
+
+  // ── API Helper ──
+  async function apiFetch(path, opts) {
+    const url = path.startsWith('http') ? path : BASE + path;
+    const res = await fetch(url, opts);
+    return res.json();
+  }
+
+  // ── Navigation ──
+  function updateUI() {
+    // Steps
+    document.querySelectorAll('.step').forEach((s, i) => {
+      s.classList.toggle('active', i + 1 === currentStep);
+    });
+
+    // Progress
+    const pct = (currentStep / TOTAL_STEPS * 100).toFixed(1);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+      dot.classList.remove('active', 'done');
+      if (i + 1 === currentStep) dot.classList.add('active');
+      else if (i + 1 < currentStep) dot.classList.add('done');
+    });
+
+    // Back button
+    document.getElementById('btn-back').disabled = currentStep === 1;
+
+    // Next button text
+    const nextBtn = document.getElementById('btn-next');
+    if (currentStep === TOTAL_STEPS) {
+      nextBtn.textContent = 'Publish my profile';
+      nextBtn.className = 'btn-publish';
+    } else if (currentStep === 2) {
+      nextBtn.style.display = 'none';
+    } else {
+      nextBtn.textContent = 'Continue';
+      nextBtn.className = 'btn-next';
+      nextBtn.style.display = '';
+    }
+
+    // Hide host row for sellers
+    updateHostRowVisibility();
+
+    // Render preview on step 7
+    if (currentStep === 7) renderPreview();
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateHostRowVisibility() {
+    const hostRow = document.getElementById('host-row');
+    if (hostRow) {
+      hostRow.style.display = sellerType === 'chef' ? '' : 'none';
+    }
+  }
+
+  window.nextStep = async function() {
+    if (currentStep === 1 && !validateStep1()) return;
+    if (currentStep === 2) return; // handled by auth flow
+    if (currentStep === 3 && !(await validateStep3())) return;
+    if (currentStep === 4 && !validateStep4()) return;
+    if (currentStep === 5) await saveDeliveryOptions();
+    if (currentStep === 6 && !(await validateStep6())) return;
+    if (currentStep === 7) { await publishProfile(); return; }
+
+    currentStep++;
+    updateUI();
+  };
+
+  window.prevStep = function() {
+    if (currentStep <= 1) return;
+    // Skip step 2 if already logged in
+    if (currentStep === 3 && isLoggedIn) {
+      currentStep = 1;
+    } else {
+      currentStep--;
+    }
+    updateUI();
+  };
+
+  // ── Step 1: Type Selection ──
+  window.selectType = function(type, el) {
+    sellerType = type;
+    document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+  };
+
+  function validateStep1() {
+    if (!sellerType) {
+      alert('Please choose whether you\'re a Chef or a Seller.');
+      return false;
+    }
+    // If already logged in, skip step 2
+    if (isLoggedIn) {
+      currentStep = 2; // will be incremented to 3
+    }
+    return true;
+  }
+
+  // ── Step 2: Phone Auth ──
+  window.showPhoneStage = function() {
+    document.getElementById('phone-stage').classList.remove('hidden');
+    document.getElementById('otp-stage').classList.add('hidden');
+    document.getElementById('name-stage').classList.add('hidden');
+    document.getElementById('btn-next').style.display = 'none';
+  };
+
+  window.sendOtp = async function() {
+    const phone = document.getElementById('auth-phone').value.trim();
+    if (!phone) { showError('phone-error', 'Phone number is required.'); return; }
+
+    const btn = document.getElementById('send-otp-btn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+    hideError('phone-error');
+
+    try {
+      const d = await apiFetch('/api/auth/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone })
+      });
+
+      if (d.ok) {
+        sentPhone = phone;
+        const msg = d.devCode ? 'Code sent! (Dev: ' + d.devCode + ')' : 'Code sent to ' + phone;
+        document.getElementById('otp-sent-msg').textContent = msg;
+        document.getElementById('phone-stage').classList.add('hidden');
+        document.getElementById('otp-stage').classList.remove('hidden');
+        setTimeout(() => document.getElementById('auth-otp').focus(), 100);
+      } else {
+        showError('phone-error', d.error || 'Failed to send code.');
+      }
+    } catch(e) {
+      showError('phone-error', 'Network error. Please try again.');
+    }
+    btn.disabled = false; btn.textContent = 'Send verification code';
+  };
+
+  window.verifyOtp = async function() {
+    const code = document.getElementById('auth-otp').value.trim();
+    if (!code || code.length !== 6) { showError('otp-error', 'Enter the 6-digit code.'); return; }
+
+    const btn = document.getElementById('verify-otp-btn');
+    btn.disabled = true; btn.textContent = 'Verifying...';
+    hideError('otp-error');
+
+    try {
+      const d = await apiFetch('/api/auth/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: sentPhone, code })
+      });
+
+      if (d.ok) {
+        if (d.needsName) {
+          // New user -- collect name + email
+          document.getElementById('otp-stage').classList.add('hidden');
+          document.getElementById('name-stage').classList.remove('hidden');
+          setTimeout(() => document.getElementById('auth-name').focus(), 100);
+        } else {
+          // Existing user logged in
+          isLoggedIn = true;
+          currentUser = d.user;
+          // Pre-fill step 3
+          if (currentUser.name) document.getElementById('info-name').value = currentUser.name;
+          if (currentUser.email) document.getElementById('info-email').value = currentUser.email;
+          currentStep = 3;
+          updateUI();
+        }
+      } else {
+        showError('otp-error', d.error || 'Invalid code.');
+      }
+    } catch(e) {
+      showError('otp-error', 'Network error. Please try again.');
+    }
+    btn.disabled = false; btn.textContent = 'Verify code';
+  };
+
+  window.completeAuth = async function() {
+    const name = document.getElementById('auth-name').value.trim();
+    const email = document.getElementById('auth-email').value.trim();
+    if (!name) { showError('name-error', 'Name is required.'); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('name-error', 'Valid email is required.'); return; }
+
+    try {
+      const d = await apiFetch('/api/auth/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: sentPhone, name, email, role: 'seller' })
+      });
+
+      if (d.ok) {
+        isLoggedIn = true;
+        currentUser = d.user;
+        document.getElementById('info-name').value = name;
+        document.getElementById('info-email').value = email;
+        currentStep = 3;
+        updateUI();
+      } else {
+        showError('name-error', d.error || 'Failed to create account.');
+      }
+    } catch(e) {
+      showError('name-error', 'Network error. Please try again.');
+    }
+  };
+
+  // OTP auto-submit on 6 digits
+  document.getElementById('auth-otp').addEventListener('input', function() {
+    if (this.value.length === 6) verifyOtp();
+  });
+
+  // ── Step 3: Basic Info ──
+  function handleProfilePhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); return; }
+    profilePhotoFile = file;
+    const area = document.getElementById('profile-photo-area');
+    area.classList.add('has-photo');
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      area.innerHTML = '<img src="' + ev.target.result + '" alt="Profile photo">';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  async function validateStep3() {
+    const name = document.getElementById('info-name').value.trim();
+    const email = document.getElementById('info-email').value.trim();
+    const cuisine = document.getElementById('info-cuisine').value;
+    const bio = document.getElementById('info-bio').value.trim();
+    const address = document.getElementById('info-address').value.trim();
+
+    if (!name) { showError('info-error', 'Display name is required.'); return false; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('info-error', 'Valid email is required.'); return false; }
+    if (!cuisine) { showError('info-error', 'Please select a cuisine type.'); return false; }
+    hideError('info-error');
+
+    // Upload profile photo if selected
+    if (profilePhotoFile) {
+      const fd = new FormData();
+      fd.append('photo', profilePhotoFile);
+      try {
+        const d = await apiFetch('/api/profiles/photos', { method: 'POST', body: fd });
+        if (d.ok && d.url) {
+          profilePhotoUrl = d.url;
+          profilePhotoFile = null; // don't re-upload
+        }
+      } catch(e) {}
+    }
+
+    // Save profile info
+    try {
+      // Update email
+      await apiFetch('/api/auth/email', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      // Upgrade role
+      await apiFetch('/api/auth/upgrade-role', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sellerType })
+      });
+
+      // Geocode the address (simple approach using lat/lng from a common geocoding)
+      let location = { address, lat: null, lng: null };
+      try {
+        const geoRes = await fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address) + '&limit=1');
+        const geoData = await geoRes.json();
+        if (geoData.length > 0) {
+          location.lat = parseFloat(geoData[0].lat);
+          location.lng = parseFloat(geoData[0].lon);
+        }
+      } catch(e) {}
+
+      // Save profile
+      await apiFetch('/api/profiles', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          displayName: name,
+          bio,
+          location,
+          cuisineType: cuisine
+        })
+      });
+
+      // Store cuisineType on the profile for preview
+      currentUser = currentUser || {};
+      currentUser.profile = currentUser.profile || {};
+      currentUser.profile.displayName = name;
+      currentUser.profile.bio = bio;
+      currentUser.profile.cuisineType = cuisine;
+      currentUser.profile.location = location;
+
+    } catch(e) {
+      showError('info-error', 'Failed to save profile. Please try again.');
+      return false;
+    }
+
+    return true;
+  }
+
+  // ── Step 4: Menu ──
+  function handleProductPhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); return; }
+    productPhotoFile = file;
+    const area = document.getElementById('prod-photo-area');
+    area.classList.add('has-photo');
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      area.innerHTML = '<img src="' + ev.target.result + '" alt="Product photo" style="height:120px">';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  window.addProduct = async function() {
+    const name = document.getElementById('prod-name').value.trim();
+    const desc = document.getElementById('prod-desc').value.trim();
+    const price = document.getElementById('prod-price').value;
+    const category = document.getElementById('prod-category').value;
+
+    if (!name) { alert('Dish name is required.'); return; }
+    if (!price || parseFloat(price) <= 0) { alert('Price is required.'); return; }
+
+    try {
+      // Create product via API
+      const d = await apiFetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, description: desc, price: parseFloat(price), category })
+      });
+
+      if (!d.ok) { alert(d.error || 'Failed to add product.'); return; }
+
+      const product = d.product;
+
+      // Upload photo if selected
+      if (productPhotoFile && product.id) {
+        const fd = new FormData();
+        fd.append('photo', productPhotoFile);
+        try {
+          const photoRes = await apiFetch('/api/products/' + product.id + '/photos', {
+            method: 'POST',
+            body: fd
+          });
+          if (photoRes.ok && photoRes.url) {
+            product.photos = [photoRes.url];
+          }
+        } catch(e) {}
+      }
+
+      addedProducts.push(product);
+      renderProductList();
+
+      // Clear form
+      document.getElementById('prod-name').value = '';
+      document.getElementById('prod-desc').value = '';
+      document.getElementById('prod-price').value = '';
+      document.getElementById('prod-category').value = 'entree';
+      productPhotoFile = null;
+      const area = document.getElementById('prod-photo-area');
+      area.classList.remove('has-photo');
+      area.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><p id="prod-photo-label" style="font-size:13px">Add a photo</p>';
+
+    } catch(e) {
+      alert('Network error adding product.');
+    }
+  };
+
+  window.removeProduct = async function(index) {
+    const product = addedProducts[index];
+    if (product && product.id) {
+      try {
+        await apiFetch('/api/products/' + product.id, { method: 'DELETE' });
+      } catch(e) {}
+    }
+    addedProducts.splice(index, 1);
+    renderProductList();
+  };
+
+  function renderProductList() {
+    const list = document.getElementById('product-list');
+    if (addedProducts.length === 0) {
+      list.innerHTML = '';
+      return;
+    }
+    list.innerHTML = addedProducts.map((p, i) => {
+      const photoSrc = (p.photos && p.photos[0]) ? (BASE + p.photos[0]) : '';
+      const priceDisplay = '$' + (p.price / 100).toFixed(2);
+      return '<div class="product-card">' +
+        (photoSrc ? '<img class="product-card-img" src="' + esc(photoSrc) + '" alt="">' : '<div class="product-card-img" style="display:flex;align-items:center;justify-content:center;font-size:24px">&#127858;</div>') +
+        '<div class="product-card-info"><div class="product-card-name">' + esc(p.name) + '</div><div class="product-card-desc">' + esc(p.description || '') + '</div></div>' +
+        '<div class="product-card-price">' + priceDisplay + '</div>' +
+        '<button class="product-card-remove" onclick="removeProduct(' + i + ')" title="Remove">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>' +
+        '</div>';
+    }).join('');
+  }
+
+  function validateStep4() {
+    if (addedProducts.length === 0) {
+      alert('Please add at least one menu item.');
+      return false;
+    }
+    return true;
+  }
+
+  // ── Step 5: Delivery/Pickup ──
+  window.toggleSwitch = function(el) {
+    el.classList.toggle('on');
+    // Show/hide delivery sub-fields
+    if (el.id === 'toggle-delivery') {
+      document.getElementById('delivery-fields').classList.toggle('visible', el.classList.contains('on'));
+    }
+  };
+
+  async function saveDeliveryOptions() {
+    const pickup = document.getElementById('toggle-pickup').classList.contains('on');
+    const delivery = document.getElementById('toggle-delivery').classList.contains('on');
+    const hostAtHome = document.getElementById('toggle-host').classList.contains('on');
+    const deliveryRadius = document.getElementById('delivery-radius').value || 0;
+    const deliveryFee = document.getElementById('delivery-fee').value || 0;
+    const minimumOrder = document.getElementById('min-order').value || 0;
+
+    try {
+      await apiFetch('/api/seller/delivery-options', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pickup, delivery, hostAtHome, deliveryRadius, deliveryFee, minimumOrder })
+      });
+    } catch(e) {}
+  }
+
+  // ── Step 6: Tax & Payout ──
+  async function validateStep6() {
+    const businessName = document.getElementById('tax-business').value.trim();
+    const ein = document.getElementById('tax-ein').value.trim();
+    const address = document.getElementById('tax-address').value.trim();
+    const city = document.getElementById('tax-city').value.trim();
+    const state = document.getElementById('tax-state').value.trim();
+    const zip = document.getElementById('tax-zip').value.trim();
+    const feeAck = document.getElementById('fee-ack').checked;
+
+    if (!businessName) { showError('tax-error', 'Business or personal name is required.'); return false; }
+    if (!ein) { showError('tax-error', 'EIN or SSN last 4 is required.'); return false; }
+    if (!feeAck) { showError('tax-error', 'Please acknowledge the platform commission.'); return false; }
+    hideError('tax-error');
+
+    try {
+      await apiFetch('/api/seller/onboarding', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessName,
+          ein,
+          ssnLast4: ein.length <= 4 ? ein : '',
+          taxAddress: address,
+          taxCity: city,
+          taxState: state,
+          taxZip: zip,
+          feeAcknowledged: true
+        })
+      });
+    } catch(e) {
+      showError('tax-error', 'Failed to save tax information.');
+      return false;
+    }
+
+    return true;
+  }
+
+  // ── Step 7: Preview & Publish ──
+  function renderPreview() {
+    const name = document.getElementById('info-name').value.trim();
+    const cuisine = document.getElementById('info-cuisine').value;
+    const bio = document.getElementById('info-bio').value.trim();
+    const address = document.getElementById('info-address').value.trim();
+
+    // Hero photo
+    const heroEl = document.getElementById('preview-hero');
+    if (profilePhotoUrl) {
+      heroEl.innerHTML = '<img src="' + BASE + profilePhotoUrl + '" alt="Profile">';
+    }
+
+    // Info
+    document.getElementById('preview-cuisine').textContent = cuisine || 'Home Chef';
+    document.getElementById('preview-name').textContent = name || 'Your Name';
+    document.getElementById('preview-location').textContent = address ? '\u{1F4CD} ' + address : '';
+    document.getElementById('preview-bio').textContent = bio || 'Your story will appear here...';
+
+    // Menu
+    const mealsEl = document.getElementById('preview-meals');
+    if (addedProducts.length === 0) {
+      mealsEl.innerHTML = '<p style="color:var(--warm-gray);font-size:14px;padding:20px 0">No menu items added yet.</p>';
+    } else {
+      mealsEl.innerHTML = addedProducts.map(p => {
+        const photoSrc = (p.photos && p.photos[0]) ? (BASE + p.photos[0]) : '';
+        const priceStr = '$' + (p.price / 100).toFixed(2);
+        return '<div class="preview-meal">' +
+          (photoSrc ? '<img class="preview-meal-img" src="' + esc(photoSrc) + '" alt="">' : '<div class="preview-meal-img" style="display:flex;align-items:center;justify-content:center;font-size:28px">&#127858;</div>') +
+          '<div class="preview-meal-info"><div class="preview-meal-name">' + esc(p.name) + '</div>' +
+          '<div class="preview-meal-desc">' + esc(p.description || '') + '</div>' +
+          '<div class="preview-meal-price">' + priceStr + '</div></div></div>';
+      }).join('');
+    }
+
+    // Delivery info
+    const pickup = document.getElementById('toggle-pickup').classList.contains('on');
+    const delivery = document.getElementById('toggle-delivery').classList.contains('on');
+    const hostAtHome = document.getElementById('toggle-host').classList.contains('on');
+    const deliveryRadius = document.getElementById('delivery-radius').value;
+    const deliveryFee = document.getElementById('delivery-fee').value;
+    const minOrder = document.getElementById('min-order').value;
+
+    let deliveryHtml = '';
+    if (pickup) deliveryHtml += '<div class="preview-delivery-row"><span>Pickup</span><span>Available</span></div>';
+    if (delivery) {
+      deliveryHtml += '<div class="preview-delivery-row"><span>Delivery</span><span>Within ' + (deliveryRadius || '?') + ' miles</span></div>';
+      if (deliveryFee) deliveryHtml += '<div class="preview-delivery-row"><span>Delivery fee</span><span>$' + parseFloat(deliveryFee).toFixed(2) + '</span></div>';
+    }
+    if (hostAtHome && sellerType === 'chef') deliveryHtml += '<div class="preview-delivery-row"><span>Dine-in</span><span>Available at chef\'s home</span></div>';
+    if (minOrder) deliveryHtml += '<div class="preview-delivery-row"><span>Minimum order</span><span>$' + parseFloat(minOrder).toFixed(2) + '</span></div>';
+
+    const deliveryEl = document.getElementById('preview-delivery');
+    deliveryEl.innerHTML = deliveryHtml || '<div class="preview-delivery-row"><span>Fulfillment</span><span>Contact to arrange</span></div>';
+  }
+
+  // ── Inline Edit ──
+  window.inlineEdit = function(previewEl, sourceId) {
+    const sourceEl = document.getElementById(sourceId);
+    if (!sourceEl) return;
+
+    // If it's a select, cycle through by going back to step 3
+    if (sourceEl.tagName === 'SELECT' || sourceEl.tagName === 'TEXTAREA' || sourceId === 'info-name') {
+      // Go back to step 3 for editing
+      currentStep = 3;
+      updateUI();
+      setTimeout(() => sourceEl.focus(), 200);
+      return;
+    }
+  };
+
+  // ── Publish ──
+  async function publishProfile() {
+    const btn = document.querySelector('.btn-publish') || document.getElementById('btn-next');
+    btn.disabled = true;
+    btn.textContent = 'Publishing...';
+
+    try {
+      const d = await apiFetch('/api/seller/onboard-complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({})
+      });
+
+      if (d.ok) {
+        // Show success
+        document.querySelector('.wizard').innerHTML = '<div style="text-align:center;padding:80px 24px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">' +
+          '<div style="font-size:64px;margin-bottom:24px">&#127881;</div>' +
+          '<h1 style="font-family:var(--serif);font-size:36px;font-weight:600;margin-bottom:12px">You\'re live!</h1>' +
+          '<p style="font-size:17px;color:var(--warm-gray);line-height:1.7;max-width:400px;margin-bottom:36px">Your profile is now visible to customers. Welcome to the Cuisine community.</p>' +
+          '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">' +
+          '<a href="' + BASE + (d.profileUrl || '/seller') + '" style="display:inline-flex;align-items:center;padding:16px 32px;border-radius:100px;background:var(--terracotta);color:#fff;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.2s">View my profile</a>' +
+          '<a href="' + BASE + '/seller" style="display:inline-flex;align-items:center;padding:16px 32px;border-radius:100px;background:var(--olive);color:#fff;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.2s">Go to dashboard</a>' +
+          '</div></div>';
+        document.getElementById('bottom-nav').style.display = 'none';
+        document.querySelector('.progress-bar').style.display = 'none';
+        document.querySelector('.progress-steps').style.display = 'none';
+      } else {
+        alert(d.error || 'Failed to publish. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Publish my profile';
+      }
+    } catch(e) {
+      alert('Network error. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Publish my profile';
+    }
+  }
+
+  // ── Helpers ──
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg; el.classList.add('visible'); el.style.display = 'block'; }
+  }
+  function hideError(id) {
+    const el = document.getElementById(id);
+    if (el) { el.classList.remove('visible'); el.style.display = 'none'; }
+  }
+  function esc(s) {
+    if (!s) return '';
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  // Enter key listeners for auth steps
+  document.getElementById('auth-phone').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') sendOtp();
+  });
+
+  // ── Start ──
+  init();
+})();
 </script>
 </body>
 </html>

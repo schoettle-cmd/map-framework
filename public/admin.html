@@ -185,6 +185,7 @@
     .badge-rejected { background: rgba(239,68,68,0.12); color: #f87171; }
     .badge-live { background: rgba(16,185,129,0.15); color: #34d399; }
     .badge-paused { background: rgba(251,191,36,0.12); color: #fbbf24; }
+    .badge-no_contact { background: rgba(156,163,175,0.15); color: #9ca3af; }
     .badge-chef { background: rgba(168,85,247,0.12); color: #c084fc; }
     .badge-seller { background: rgba(96,165,250,0.12); color: #60a5fa; }
     .prospect-product-tag {
@@ -622,6 +623,7 @@
           <button class="btn btn-outline unified-filter-btn" data-type="chef" data-filter="live" onclick="filterUnifiedList('chef','live')">Live <span id="chef-count-live" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline unified-filter-btn" data-type="chef" data-filter="paused" onclick="filterUnifiedList('chef','paused')">Paused <span id="chef-count-paused" style="margin-left:4px;opacity:0.7;">0</span></button>
           <button class="btn btn-outline unified-filter-btn" data-type="chef" data-filter="rejected" onclick="filterUnifiedList('chef','rejected')">Rejected <span id="chef-count-rejected" style="margin-left:4px;opacity:0.7;">0</span></button>
+          <button class="btn btn-outline unified-filter-btn" data-type="chef" data-filter="no_contact" onclick="filterUnifiedList('chef','no_contact')">No Contact <span id="chef-count-no_contact" style="margin-left:4px;opacity:0.7;">0</span></button>
           <select class="filter-select" id="chefCuisineFilter" onchange="searchUnifiedList('chef')" style="margin-left:8px;">
             <option value="">All Cuisines</option>
           </select>
@@ -1074,7 +1076,8 @@ function statusBadge(status) {
     pending: 'badge-pending', paid: 'badge-paid',
     confirmed: 'badge-confirmed', processed: 'badge-processed',
     prospect: 'badge-prospect', contacted: 'badge-contacted',
-    rejected: 'badge-rejected', live: 'badge-live', paused: 'badge-paused'
+    rejected: 'badge-rejected', live: 'badge-live', paused: 'badge-paused',
+    no_contact: 'badge-no_contact'
   }[s] || 'badge-pending';
   return '<span class="badge ' + cls + '">' + esc(s) + '</span>';
 }

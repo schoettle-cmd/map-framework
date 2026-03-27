@@ -2736,7 +2736,7 @@ app.get('/api/admin/sellers-unified', (req, res) => {
   });
 
   // Count stats
-  const counts = { all: allSellers.length, prospect: 0, contacted: 0, live: 0, paused: 0, rejected: 0 };
+  const counts = { all: allSellers.length, prospect: 0, contacted: 0, live: 0, paused: 0, rejected: 0, no_contact: 0 };
   allSellers.forEach(s => {
     if (counts[s.status] !== undefined) counts[s.status]++;
   });
@@ -2908,7 +2908,7 @@ app.put('/api/admin/prospects/:id/status', (req, res) => {
   if (!prospect) return res.status(404).json({ ok: false, error: 'Prospect not found.' });
 
   const { status } = req.body;
-  const validStatuses = ['prospect', 'contacted', 'live', 'paused', 'rejected'];
+  const validStatuses = ['prospect', 'contacted', 'live', 'paused', 'rejected', 'no_contact'];
   if (!validStatuses.includes(status)) {
     return res.status(400).json({ ok: false, error: 'Invalid status. Must be one of: ' + validStatuses.join(', ') });
   }

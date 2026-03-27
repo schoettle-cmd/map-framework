@@ -137,6 +137,8 @@
       background: var(--card); border: 1px solid var(--border); border-radius: 16px;
       padding: 22px 20px;
     }
+    .stat-card.clickable { cursor: pointer; transition: border-color 0.2s, transform 0.15s; }
+    .stat-card.clickable:hover { border-color: var(--accent-light); transform: translateY(-2px); }
     .stat-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
     .stat-value { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; }
     .stat-value.revenue { color: var(--accent-light); }
@@ -501,9 +503,9 @@
       <!-- ═══════ DASHBOARD ═══════ -->
       <div class="section active" id="sec-dashboard">
         <div class="stat-grid" id="statGrid">
-          <div class="stat-card"><div class="stat-label">Total Sellers</div><div class="stat-value" id="statSellers">--</div></div>
-          <div class="stat-card"><div class="stat-label">Total Buyers</div><div class="stat-value" id="statBuyers">--</div></div>
-          <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-value" id="statOrders">--</div></div>
+          <div class="stat-card clickable" onclick="showSection('sellers')"><div class="stat-label">Total Sellers</div><div class="stat-value" id="statSellers">--</div></div>
+          <div class="stat-card clickable" onclick="showSection('buyers')"><div class="stat-label">Total Buyers</div><div class="stat-value" id="statBuyers">--</div></div>
+          <div class="stat-card clickable" onclick="showSection('orders')"><div class="stat-label">Total Orders</div><div class="stat-value" id="statOrders">--</div></div>
           <div class="stat-card"><div class="stat-label">Total Revenue</div><div class="stat-value revenue" id="statRevenue">--</div></div>
         </div>
 

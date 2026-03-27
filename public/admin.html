@@ -561,7 +561,7 @@
       <div class="section active" id="sec-dashboard">
         <div class="stat-grid" id="statGrid">
           <div class="stat-card clickable" onclick="showSection('chefs')"><div class="stat-label">Total Chefs</div><div class="stat-value" id="statChefs">--</div></div>
-          <div class="stat-card clickable" onclick="showSection('sellers')"><div class="stat-label">Total Sellers</div><div class="stat-value" id="statSellers">--</div></div>
+          <div class="stat-card clickable" onclick="showSection('buyers')"><div class="stat-label">Total Buyers</div><div class="stat-value" id="statBuyers">--</div></div>
           <div class="stat-card clickable" onclick="showSection('orders')"><div class="stat-label">Total Orders</div><div class="stat-value" id="statOrders">--</div></div>
           <div class="stat-card"><div class="stat-label">Total Revenue</div><div class="stat-value revenue" id="statRevenue">--</div></div>
         </div>
@@ -1225,8 +1225,8 @@ function closeSidebar() {
 // -- Dashboard --
 
 function renderDashboard(data) {
-  document.getElementById('statChefs').textContent = data.totalChefs != null ? data.totalChefs.toLocaleString() : '0';
-  document.getElementById('statSellers').textContent = data.totalSellersOnly != null ? data.totalSellersOnly.toLocaleString() : '0';
+  document.getElementById('statChefs').textContent = data.totalChefs != null ? data.totalChefs.toLocaleString() : (data.totalSellers != null ? data.totalSellers.toLocaleString() : '0');
+  document.getElementById('statBuyers').textContent = data.totalBuyers != null ? data.totalBuyers.toLocaleString() : '0';
   document.getElementById('statOrders').textContent = data.totalOrders != null ? data.totalOrders.toLocaleString() : '0';
   document.getElementById('statRevenue').textContent = data.totalRevenue != null ? money(data.totalRevenue) : '$0.00';
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kinseb Admin</title>
+  <title>Cuisine Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -430,9 +430,10 @@
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
     <span class="login-icon">&#127838;</span>
-    <div class="login-title">Kinseb Admin</div>
+    <div class="login-title">Cuisine Admin</div>
     <div class="login-sub">Platform Command Center</div>
-    <input type="password" class="login-input" id="loginPassword" placeholder="Admin password" autocomplete="current-password">
+    <input type="text" class="login-input" id="loginUsername" placeholder="Username" autocomplete="username" style="margin-bottom:10px">
+    <input type="password" class="login-input" id="loginPassword" placeholder="Password" autocomplete="current-password">
     <button class="login-btn" id="loginBtn" onclick="doLogin()">Sign In</button>
     <div class="login-error" id="loginError">Invalid password</div>
   </div>
@@ -446,7 +447,7 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo">&#127838; <span>Kinseb</span> Admin</div>
+      <div class="sidebar-logo">&#127838; <span>Cuisine</span> Admin</div>
       <button class="sidebar-close" onclick="closeSidebar()">&#10005;</button>
     </div>
     <nav class="sidebar-nav">
@@ -844,7 +845,7 @@
             <div class="settings-section-body">
               <div class="setting-row">
                 <div class="setting-label-group"><div class="setting-label">Platform Name</div><div class="setting-hint">Displayed across the marketplace</div></div>
-                <input type="text" class="setting-input" id="set-platformName" placeholder="Kinseb">
+                <input type="text" class="setting-input" id="set-platformName" placeholder="Cuisine">
               </div>
               <div class="setting-row">
                 <div class="setting-label-group"><div class="setting-label">Tagline</div><div class="setting-hint">Shown on the landing page</div></div>
@@ -1138,9 +1139,10 @@ async function checkAuth() {
 }
 
 async function doLogin() {
+  const un = document.getElementById('loginUsername').value;
   const pw = document.getElementById('loginPassword').value;
   const errEl = document.getElementById('loginError');
-  if (!pw) { errEl.style.display = 'block'; errEl.textContent = 'Enter a password'; return; }
+  if (!un || !pw) { errEl.style.display = 'block'; errEl.textContent = 'Enter username and password'; return; }
   const btn = document.getElementById('loginBtn');
   btn.disabled = true;
   btn.textContent = 'Signing in...';
@@ -1148,7 +1150,7 @@ async function doLogin() {
     const res = await fetch(API + '/api/admin/login', {
       method: 'POST', credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: pw })
+      body: JSON.stringify({ username: un, password: pw })
     });
     if (res.ok) {
       errEl.style.display = 'none';

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kinseb — Eat beautifully.</title>
+  <title>Cuisine — Eat beautifully.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -626,13 +626,13 @@
 
   <!-- Navigation -->
   <nav class="nav" id="main-nav">
-    <a href="/" class="nav-logo">Kinseb</a>
+    <a href="/" class="nav-logo">Cuisine</a>
     <div class="nav-links">
       <a href="#chefs" class="nav-link">Chefs</a>
       <a href="#explore" class="nav-link">Explore</a>
       <a href="#how" class="nav-link">How it works</a>
       <a href="/join" class="nav-link">Become a chef</a>
-      <button class="nav-cta" id="nav-signin" onclick="openPhoneAuth()">Sign in</button>
+      <button class="nav-cta" id="nav-signin" onclick="openPhoneAuth()">Sign in & up</button>
     </div>
     <button class="nav-mobile-btn" onclick="openPhoneAuth()" aria-label="Menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -648,7 +648,7 @@
       <p class="hero-sub">Discover extraordinary meals from home chefs in your neighborhood. Crafted with care, served with story.</p>
       <div class="hero-actions">
         <a href="/map" class="btn btn-primary">Discover chefs</a>
-        <button class="btn btn-ghost" onclick="openPhoneAuth()">Sign in</button>
+        <button class="btn btn-ghost" onclick="openPhoneAuth()">Sign in & up</button>
       </div>
     </div>
     <div class="hero-scroll">
@@ -677,7 +677,7 @@
     <div class="section-header">
       <div class="section-label">Featured Chefs</div>
       <h2 class="section-title">Meet the people behind<br>your next favorite meal</h2>
-      <p class="section-desc">Home kitchens with heart. Every chef on Kinseb is hand-selected for quality, creativity, and care.</p>
+      <p class="section-desc">Home kitchens with heart. Every chef on Cuisine is hand-selected for quality, creativity, and care.</p>
     </div>
     <div class="chefs-grid" id="chefs-grid">
       <!-- Populated by JS -->
@@ -755,14 +755,14 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand">Kinseb</div>
+      <div class="footer-brand">Cuisine</div>
       <div class="footer-links">
         <a href="/map" class="footer-link">Explore</a>
         <a href="/join" class="footer-link">Become a chef</a>
         <a href="/terms" class="footer-link">Terms</a>
         <a href="/privacy" class="footer-link">Privacy</a>
       </div>
-      <div class="footer-copy">&copy; 2026 Kinseb. All rights reserved.</div>
+      <div class="footer-copy">&copy; 2026 Cuisine. All rights reserved.</div>
     </div>
   </footer>
 
@@ -773,7 +773,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
       <div id="auth-step-phone">
-        <h2 class="auth-title">Welcome to Kinseb</h2>
+        <h2 class="auth-title">Welcome to Cuisine</h2>
         <p class="auth-sub">Enter your phone number to sign in or create an account.</p>
         <div id="auth-error" class="auth-error"></div>
         <input type="tel" class="auth-input" id="auth-phone" placeholder="+1 (555) 123-4567" autocomplete="tel">
@@ -790,9 +790,10 @@
       </div>
       <div id="auth-step-name" style="display:none">
         <h2 class="auth-title">Almost there</h2>
-        <p class="auth-sub">What should we call you?</p>
+        <p class="auth-sub">Your name and email to get started</p>
         <div id="auth-error-name" class="auth-error"></div>
-        <input type="text" class="auth-input" id="auth-name" placeholder="Your name" autocomplete="name">
+        <input type="text" class="auth-input" id="auth-name" placeholder="Your name" autocomplete="name" style="margin-bottom:10px">
+        <input type="email" class="auth-input" id="auth-email" placeholder="Email address" autocomplete="email">
         <button class="auth-btn" onclick="authComplete()">Get started</button>
       </div>
     </div>
@@ -940,7 +941,8 @@ async function authVerify() {
 }
 async function authComplete() {
   const name=document.getElementById('auth-name').value.trim(); if(!name) return showErr('auth-error-name','Name is required.');
-  try { const d=await(await fetch(BASE+'/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name})})).json(); if(d.ok) window.location.href=BASE+'/map'; else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
+  const email=document.getElementById('auth-email').value.trim(); if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr('auth-error-name','Valid email required.');
+  try { const d=await(await fetch(BASE+'/api/auth/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:sentPhone,name,email})})).json(); if(d.ok) window.location.href=BASE+'/map'; else showErr('auth-error-name',d.error); } catch(e) { showErr('auth-error-name','Network error.'); }
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeAuth(); if(e.key==='Enter') { if(document.getElementById('auth-step-name').style.display!=='none') authComplete(); else if(document.getElementById('auth-step-otp').style.display!=='none') authVerify(); else if(document.getElementById('auth-backdrop').classList.contains('open')) authSendOtp(); }});
 

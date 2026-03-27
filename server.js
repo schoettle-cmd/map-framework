@@ -91,6 +91,79 @@ const noCache = (req, res, next) => { res.set('Cache-Control', 'no-cache, no-sto
 app.get('/', serveHtml(path.join(__dirname, 'public/index.html')));
 app.get('/studio', serveHtml(path.join(__dirname, 'public/studio.html')));
 app.get('/map', serveHtml(path.join(__dirname, 'public/map.html')));
+app.get('/order/:id', (req, res) => {
+  const order = orders.orders.find(o => o.id === req.params.id);
+  if (!order) return res.status(404).send('<h1>Order not found</h1>');
+
+  const statusSteps = [
+    { key: 'pending', label: 'Order Placed' },
+    { key: 'confirmed', label: 'Confirmed' },
+    { key: 'out_for_delivery', label: 'Out for Delivery' },
+    { key: 'delivered', label: 'Delivered' },
+    { key: 'completed', label: 'Complete' }
+  ];
+  const cancelled = order.status === 'cancelled';
+  const currentStepIdx = statusSteps.findIndex(s => s.key === order.status);
+
+  const stepsHtml = statusSteps.map((step, i) => {
+    const done = i <= currentStepIdx && !cancelled;
+    const active = i === currentStepIdx && !cancelled;
+    return `<div class="step ${done ? 'done' : ''} ${active ? 'active' : ''}">
+      <div class="step-dot">${done ? '&#10003;' : i + 1}</div>
+      <div class="step-label">${step.label}</div>
+    </div>`;
+  }).join('<div class="step-line"></div>');
+
+  const html = `<!DOCTYPE html><html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order Tracking — ${platformSettings.platformName || 'Cuisine'}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+${baseScript()}<style>
+:root{--cream:#F5F1E8;--ink:#1A1A1A;--terracotta:#C46A3C;--warm-gray:#8A8577;--sans:'Inter',sans-serif;--serif:'Playfair Display',serif;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh;}
+.nav{padding:20px 28px;border-bottom:1px solid rgba(47,58,47,0.12);}
+.nav a{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--ink);text-decoration:none;}
+.container{max-width:600px;margin:40px auto;padding:0 20px;}
+h1{font-family:var(--serif);font-size:28px;margin-bottom:8px;}
+.order-id{color:var(--warm-gray);font-size:14px;margin-bottom:32px;}
+.tracker{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;position:relative;}
+.step{display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;flex:0 0 auto;}
+.step-dot{width:36px;height:36px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#aaa;background:#fff;transition:all 0.3s;}
+.step.done .step-dot{background:var(--terracotta);border-color:var(--terracotta);color:#fff;}
+.step.active .step-dot{box-shadow:0 0 0 4px rgba(196,106,60,0.2);}
+.step-label{font-size:11px;font-weight:600;color:var(--warm-gray);text-align:center;max-width:80px;}
+.step.done .step-label{color:var(--ink);}
+.step-line{flex:1;height:2px;background:#ddd;margin:0 -4px;margin-bottom:24px;}
+.cancelled-badge{display:inline-block;padding:8px 20px;border-radius:100px;background:#fef2f2;color:#dc2626;font-weight:700;font-size:14px;margin-bottom:32px;}
+.detail-card{background:#fff;border-radius:16px;border:1px solid rgba(47,58,47,0.1);padding:24px;margin-bottom:20px;}
+.detail-card h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--terracotta);margin-bottom:12px;}
+.detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(47,58,47,0.06);font-size:14px;}
+.detail-row:last-child{border:none;}
+.detail-label{color:var(--warm-gray);font-weight:500;}
+.detail-value{font-weight:600;}
+.delivered-time{text-align:center;color:var(--warm-gray);font-size:13px;margin-top:-20px;margin-bottom:32px;}
+</style></head><body>
+<div class="nav"><a href="/">${platformSettings.platformName || 'Cuisine'}</a></div>
+<div class="container">
+<h1>Order Tracking</h1>
+<div class="order-id">${order.id}</div>
+${cancelled ? '<div class="cancelled-badge">Order Cancelled</div>' : `<div class="tracker">${stepsHtml}</div>`}
+${order.deliveredAt ? `<div class="delivered-time">Delivered ${new Date(order.deliveredAt).toLocaleString()}</div>` : ''}
+<div class="detail-card">
+  <h3>Order Details</h3>
+  <div class="detail-row"><span class="detail-label">Item</span><span class="detail-value">${order.productName}</span></div>
+  <div class="detail-row"><span class="detail-label">Total</span><span class="detail-value">$${(order.amount / 100).toFixed(2)}</span></div>
+  <div class="detail-row"><span class="detail-label">Ordered</span><span class="detail-value">${new Date(order.createdAt).toLocaleDateString()}</span></div>
+</div>
+<div class="detail-card">
+  <h3>Delivery Address</h3>
+  <p style="font-size:14px;line-height:1.6;">${order.deliveryAddress}<br>${order.deliveryCity || ''} ${order.deliveryState || ''} ${order.deliveryZip || ''}</p>
+</div>
+</div></body></html>`;
+  res.send(html);
+});
+
 app.get('/profile', (req, res) => res.redirect(BASE_PATH + '/map'));
 app.get('/profile/:id', (req, res) => {
   const id = req.params.id;
@@ -143,9 +216,9 @@ app.get('/profile/:id', (req, res) => {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(el.title)} | Kinseb</title>
+<title>${esc(el.title)} | Cuisine</title>
 <meta name="description" content="${esc(el.description || el.subtitle || '')}">
-<meta property="og:title" content="${esc(el.title)} — Kinseb">
+<meta property="og:title" content="${esc(el.title)} — Cuisine">
 <meta property="og:description" content="${esc(el.description || el.subtitle || '')}">
 ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -557,7 +630,7 @@ body {
 </head>
 <body>
 <nav class="nav">
-  <a href="/" class="nav-logo">Kinseb</a>
+  <a href="/" class="nav-logo">Cuisine</a>
   <div class="nav-links">
     <a href="/map" class="nav-link">Explore</a>
     <a href="/join" class="nav-link">Become a chef</a>
@@ -567,8 +640,8 @@ body {
 
 <section class="profile-hero">
   ${el.imageUrl
-    ? `<img src="${esc(el.imageUrl)}" alt="${esc(el.title)}">`
-    : `<div class="profile-hero-placeholder">${el.icon || '&#127860;'}</div>`}
+    ? `<img src="${esc(el.imageUrl)}" alt="${esc(el.title)}" onerror="this.onerror=null;this.src='${BASE_PATH}/placeholder-chef.svg';">`
+    : `<img src="${BASE_PATH}/placeholder-chef.svg" alt="${esc(el.title)}" style="object-fit:cover;width:100%;height:100%">`}
   <div class="hero-gradient"></div>
   <nav class="profile-nav">
     <a href="${prevUrl}" class="profile-nav-btn">
@@ -634,7 +707,7 @@ body {
 </div>
 
 <footer class="profile-footer">
-  <div class="profile-footer-brand">Kinseb</div>
+  <div class="profile-footer-brand">Cuisine</div>
   <div class="profile-footer-tagline">Eat beautifully.</div>
 </footer>
 </body>
@@ -682,7 +755,7 @@ let payouts = loadData('payouts', { payouts: [] });
 let prospects = loadData('prospects', { prospects: [] });
 let campaigns = loadData('campaigns', { campaigns: [] });
 let platformSettings = loadData('platform_settings', {
-  platformName: 'Kinseb',
+  platformName: 'Cuisine',
   tagline: 'Eat beautifully.',
   accentColor: '#C46A3C',
   commissionRate: 20,
@@ -695,8 +768,9 @@ let platformSettings = loadData('platform_settings', {
   smtpPort: 587,
   smtpUser: '',
   smtpPass: '',
-  smtpFrom: 'noreply@kinseb.com',
-  adminPassword: 'kinseb-admin-2026',
+  smtpFrom: 'noreply@cuisine.app',
+  adminUsername: 'admin',
+  adminPassword: 'admin',
   maxProductPhotos: 4,
   maxProfilePhotos: 6,
   locationFuzzyRadius: 0.005,
@@ -707,7 +781,7 @@ let platformSettings = loadData('platform_settings', {
   igShareDiscount: 10,
   igShareDefaultRate: 20,
   igShareVerifyRequired: true,
-  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @Kinseb! 🍽 Eat beautifully. #Kinseb #HomeChef #EatLocal",
+  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @Cuisine! 🍽 Eat beautifully. #Cuisine #HomeChef #EatLocal",
   igShareImageUrl: ""
 });
 
@@ -877,7 +951,7 @@ async function sendEmail(to, subject, html) {
 
 function emailWrap(title, body) {
   const accent = platformSettings.accentColor || '#ea580c';
-  const name = platformSettings.platformName || 'Kinseb';
+  const name = platformSettings.platformName || 'Cuisine';
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="margin:0;padding:0;background:#f5f5f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
 <div style="max-width:560px;margin:24px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
@@ -894,18 +968,51 @@ ${name} &mdash; ${platformSettings.tagline || ''}
 
 function sendOrderNotificationToSeller(order) {
   const seller = users.users.find(u => u.id === order.sellerId);
-  if (!seller || !seller.email) return;
+  const sellerEmail = (seller && seller.email) || (seller && seller.orderContactEmail);
+  if (!sellerEmail) return;
+  const commRate = (seller && seller.commissionOverride !== null && seller.commissionOverride !== undefined) ? seller.commissionOverride : platformSettings.commissionRate;
+  const fee = Math.round(order.amount * (commRate / 100));
+  const payout = order.amount - fee;
   const html = emailWrap('New Order Received', `
-    <p style="color:#44403c;line-height:1.6;">You have a new order from <strong>${order.buyerName}</strong>!</p>
+    <p style="color:#44403c;line-height:1.6;">You have a new order!</p>
     <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
       <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
-      <p style="margin:0 0 8px;"><strong>Amount:</strong> $${(order.amount / 100).toFixed(2)}</p>
-      <p style="margin:0;"><strong>Order ID:</strong> ${order.id}</p>
+      <p style="margin:0 0 8px;"><strong>Order Total:</strong> $${(order.amount / 100).toFixed(2)}</p>
+      <p style="margin:0 0 8px;"><strong>Platform Fee (${commRate}%):</strong> -$${(fee / 100).toFixed(2)}</p>
+      <p style="margin:0 0 8px;"><strong>Your Payout:</strong> $${(payout / 100).toFixed(2)}</p>
+      <p style="margin:0 0 8px;"><strong>Order ID:</strong> ${order.id}</p>
       ${order.note ? `<p style="margin:8px 0 0;"><strong>Note:</strong> ${order.note}</p>` : ''}
     </div>
-    <p style="color:#44403c;">Log in to your seller dashboard to confirm or manage this order.</p>
+    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:16px;margin:16px 0;">
+      <p style="margin:0 0 4px;font-weight:700;color:#9a3412;">Delivery Information</p>
+      <p style="margin:0 0 4px;color:#44403c;">${order.deliveryAddress}</p>
+      <p style="margin:0 0 4px;color:#44403c;">${order.deliveryCity || ''} ${order.deliveryState || ''} ${order.deliveryZip || ''}</p>
+      ${order.deliveryInstructions ? `<p style="margin:8px 0 0;color:#44403c;"><em>Instructions: ${order.deliveryInstructions}</em></p>` : ''}
+    </div>
+    <p style="color:#44403c;">Log in to your seller dashboard to confirm this order.</p>
+    <p style="margin-top:12px;"><a href="${BASE_PATH}/api/orders/${order.id}/confirm-delivery?token=${order.deliveryToken}" style="display:inline-block;padding:12px 28px;background:${platformSettings.accentColor || '#ea580c'};color:#fff;border-radius:100px;font-weight:700;text-decoration:none;">Confirm Delivery Complete</a></p>
+    <p style="color:#a8a29e;font-size:12px;margin-top:8px;">Use this link once the order has been delivered.</p>
   `);
-  sendEmail(seller.email, `New Order: ${order.productName}`, html);
+  sendEmail(sellerEmail, `New Order: ${order.productName}`, html);
+}
+
+function sendOrderReceiptToBuyer(order) {
+  const buyer = users.users.find(u => u.id === order.buyerId);
+  if (!buyer || !buyer.email) return;
+  const html = emailWrap('Order Receipt', `
+    <p style="color:#44403c;line-height:1.6;">Thank you for your order!</p>
+    <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
+      <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
+      <p style="margin:0 0 8px;"><strong>Amount Charged:</strong> $${(order.amount / 100).toFixed(2)}</p>
+      <p style="margin:0 0 8px;"><strong>Order ID:</strong> ${order.id}</p>
+      <p style="margin:0 0 8px;"><strong>Delivery Address:</strong> ${order.deliveryAddress}, ${order.deliveryCity || ''} ${order.deliveryState || ''} ${order.deliveryZip || ''}</p>
+      <p style="margin:0;"><strong>Status:</strong> ${order.status}</p>
+    </div>
+    <p style="color:#44403c;">You can track your order status anytime:</p>
+    <p style="margin-top:12px;"><a href="${BASE_PATH}/order/${order.id}" style="display:inline-block;padding:12px 28px;background:${platformSettings.accentColor || '#ea580c'};color:#fff;border-radius:100px;font-weight:700;text-decoration:none;">Track Your Order</a></p>
+    <p style="color:#a8a29e;font-size:12px;margin-top:16px;">This receipt was sent by ${platformSettings.platformName || 'Cuisine'}. The seller does not have your contact information.</p>
+  `);
+  sendEmail(buyer.email, `Order Receipt: ${order.productName}`, html);
 }
 
 function sendOrderConfirmationToBuyer(order) {
@@ -997,11 +1104,14 @@ app.post('/api/auth/verify', async (req, res) => {
   res.json({ ok: true, needsName: true });
 });
 
-// POST /api/auth/complete — finish registration
+// POST /api/auth/complete — finish registration (with email capture)
 app.post('/api/auth/complete', (req, res) => {
   const phone = normalizePhone(req.body.phone);
   const name = (req.body.name || '').trim();
+  const email = (req.body.email || '').trim().toLowerCase();
   if (!phone || !name) return res.status(400).json({ ok: false, error: 'Phone and name required.' });
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    return res.status(400).json({ ok: false, error: 'Valid email required.' });
 
   const pending = pendingVerifications[phone];
   if (!pending || Date.now() - pending.verifiedAt > 600000)
@@ -1009,14 +1119,26 @@ app.post('/api/auth/complete', (req, res) => {
   delete pendingVerifications[phone];
 
   const role = (req.body.role || 'buyer').toLowerCase() === 'seller' ? 'seller' : 'buyer';
-  const user = makeUser({ name, phone, phoneVerified: true, role });
+  const user = makeUser({ name, phone, email, phoneVerified: true, role });
   users.users.push(user);
 
   const token = createSession(user);
   setSessionCookie(res, token);
   saveData('users', users);
 
-  res.json({ ok: true, user: { id: user.id, name: user.name, phone: user.phone, role: user.role } });
+  res.json({ ok: true, user: { id: user.id, name: user.name, phone: user.phone, email: user.email, role: user.role } });
+});
+
+// PUT /api/auth/email — add/update email for existing users
+app.put('/api/auth/email', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+  const email = (req.body.email || '').trim().toLowerCase();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    return res.status(400).json({ ok: false, error: 'Valid email required.' });
+  user.email = email;
+  saveData('users', users);
+  res.json({ ok: true });
 });
 
 // POST /api/auth/google — verify Google credential JWT
@@ -1301,23 +1423,37 @@ app.post('/api/orders', async (req, res) => {
   const user = getSession(req);
   if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
 
-  const { productId, note } = req.body;
+  const { productId, note, deliveryAddress, deliveryCity, deliveryState, deliveryZip, deliveryInstructions } = req.body;
   const product = products.products.find(p => p.id === productId && p.available !== false);
   if (!product) return res.status(404).json({ ok: false, error: 'Product not available.' });
   if (product.sellerId === user.id) return res.status(400).json({ ok: false, error: "Can't order your own product." });
+  if (!deliveryAddress) return res.status(400).json({ ok: false, error: 'Delivery address required.' });
 
   // Check if seller is suspended
   const seller = users.users.find(u => u.id === product.sellerId);
   if (seller && seller.status === 'suspended') return res.status(400).json({ ok: false, error: 'This seller is currently unavailable.' });
 
+  const platformFee = Math.round(product.price * (platformSettings.commissionRate / 100));
+  const sellerPayout = product.price - platformFee;
+  const deliveryToken = crypto.randomBytes(16).toString('hex');
+
   const order = {
     id: 'ord_' + crypto.randomBytes(8).toString('hex'),
-    buyerId: user.id, buyerName: user.name,
+    buyerId: user.id, buyerName: user.name, buyerEmail: user.email || null,
     sellerId: product.sellerId, sellerName: product.sellerName,
     productId: product.id, productName: product.name,
     amount: product.price,
+    platformFee,
+    sellerPayout,
     note: String(note || '').slice(0, 500),
+    deliveryAddress: String(deliveryAddress || '').slice(0, 300),
+    deliveryCity: String(deliveryCity || '').slice(0, 100),
+    deliveryState: String(deliveryState || '').slice(0, 2),
+    deliveryZip: String(deliveryZip || '').slice(0, 10),
+    deliveryInstructions: String(deliveryInstructions || '').slice(0, 500),
     status: 'pending',
+    deliveryToken,
+    deliveredAt: null,
     stripeSessionId: null,
     paidOut: false,
     igShareStatus: null,
@@ -1351,6 +1487,7 @@ app.post('/api/orders', async (req, res) => {
       orders.orders.push(order);
       saveData('orders', orders);
       sendOrderNotificationToSeller(order);
+      sendOrderReceiptToBuyer(order);
       return res.json({ ok: true, order, checkoutUrl: session.url });
     } catch (e) {
       console.error('Stripe error:', e.message);
@@ -1361,6 +1498,7 @@ app.post('/api/orders', async (req, res) => {
   orders.orders.push(order);
   saveData('orders', orders);
   sendOrderNotificationToSeller(order);
+  sendOrderReceiptToBuyer(order);
   res.json({ ok: true, order, checkoutUrl: null });
 });
 
@@ -1393,7 +1531,9 @@ app.put('/api/orders/:id/status', (req, res) => {
     pending: ['confirmed', 'cancelled'],
     awaiting_payment: ['cancelled'],
     paid: ['confirmed', 'cancelled'],
-    confirmed: ['completed', 'cancelled']
+    confirmed: ['out_for_delivery', 'completed', 'cancelled'],
+    out_for_delivery: ['delivered', 'completed', 'cancelled'],
+    delivered: ['completed']
   };
 
   if (!validTransitions[order.status] || !validTransitions[order.status].includes(status)) {
@@ -1413,6 +1553,97 @@ app.put('/api/orders/:id/status', (req, res) => {
   }
 
   res.json({ ok: true, order });
+});
+
+// GET /api/orders/:id/confirm-delivery — seller confirms delivery via email link (no login needed)
+app.get('/api/orders/:id/confirm-delivery', (req, res) => {
+  const order = orders.orders.find(o => o.id === req.params.id);
+  if (!order) return res.status(404).send('<h1>Order not found</h1>');
+  if (order.deliveryToken !== req.query.token) return res.status(403).send('<h1>Invalid token</h1>');
+
+  if (order.status === 'delivered' || order.status === 'completed') {
+    return res.send(`<html><body style="font-family:sans-serif;text-align:center;padding:60px;"><h1>Already Confirmed</h1><p>This order was already marked as delivered.</p></body></html>`);
+  }
+
+  order.status = 'delivered';
+  order.deliveredAt = new Date().toISOString();
+  saveData('orders', orders);
+
+  // Notify buyer that order is delivered
+  const buyer = users.users.find(u => u.id === order.buyerId);
+  if (buyer && buyer.email) {
+    const html = emailWrap('Order Delivered', `
+      <p style="color:#44403c;line-height:1.6;">Your order has been delivered!</p>
+      <div style="background:#fafaf9;border-radius:8px;padding:16px;margin:16px 0;">
+        <p style="margin:0 0 8px;"><strong>Product:</strong> ${order.productName}</p>
+        <p style="margin:0;"><strong>Order ID:</strong> ${order.id}</p>
+      </div>
+      <p style="color:#44403c;">Enjoy your meal! If you have any issues, you can reach us through the platform.</p>
+    `);
+    sendEmail(buyer.email, `Order Delivered: ${order.productName}`, html);
+  }
+
+  res.send(`<html><body style="font-family:sans-serif;text-align:center;padding:60px;">
+    <div style="max-width:400px;margin:0 auto;">
+      <div style="font-size:48px;margin-bottom:16px;">&#9989;</div>
+      <h1 style="color:#1a1a1a;margin-bottom:8px;">Delivery Confirmed</h1>
+      <p style="color:#6b6b6b;">${order.productName} — Order ${order.id}</p>
+      <p style="color:#6b6b6b;margin-top:16px;">The buyer has been notified. Thank you!</p>
+    </div>
+  </body></html>`);
+});
+
+// GET /api/orders/:id/track — public order tracking (buyer uses order ID)
+app.get('/api/orders/:id/track', (req, res) => {
+  const order = orders.orders.find(o => o.id === req.params.id);
+  if (!order) return res.status(404).json({ ok: false, error: 'Order not found.' });
+
+  // Only return safe fields — no seller contact, no buyer contact
+  res.json({
+    ok: true,
+    order: {
+      id: order.id,
+      productName: order.productName,
+      amount: order.amount,
+      status: order.status,
+      deliveryAddress: order.deliveryAddress,
+      deliveryCity: order.deliveryCity,
+      deliveryState: order.deliveryState,
+      deliveryZip: order.deliveryZip,
+      deliveredAt: order.deliveredAt,
+      createdAt: order.createdAt
+    }
+  });
+});
+
+// PUT /api/seller/onboarding — seller sets order contact, tax info, acknowledges fee
+app.put('/api/seller/onboarding', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const { orderContactEmail, orderContactPhone, businessName, ein, ssnLast4, taxAddress, taxCity, taxState, taxZip, feeAcknowledged } = req.body;
+
+  if (orderContactEmail) user.orderContactEmail = String(orderContactEmail).trim().toLowerCase().slice(0, 200);
+  if (orderContactPhone) user.orderContactPhone = String(orderContactPhone).trim().slice(0, 20);
+  if (businessName !== undefined) {
+    user.taxInfo = {
+      ...(user.taxInfo || {}),
+      businessName: String(businessName || '').slice(0, 200),
+      ein: String(ein || '').slice(0, 20),
+      ssnLast4: String(ssnLast4 || '').slice(0, 4),
+      address: String(taxAddress || '').slice(0, 300),
+      city: String(taxCity || '').slice(0, 100),
+      state: String(taxState || '').slice(0, 2),
+      zip: String(taxZip || '').slice(0, 10)
+    };
+  }
+  if (feeAcknowledged) user.feeAcknowledged = true;
+
+  user.role = 'seller';
+  user.sellerOnboardedAt = user.sellerOnboardedAt || new Date().toISOString();
+  saveData('users', users);
+
+  res.json({ ok: true, user: { id: user.id, name: user.name, role: user.role, orderContactEmail: user.orderContactEmail, feeAcknowledged: user.feeAcknowledged } });
 });
 
 // Stripe webhook
@@ -1933,9 +2164,9 @@ app.get('/api/seller/tax-info', (req, res) => {
 // ═════════════════════════════════════════════════════════════════════════════
 
 app.post('/api/admin/login', (req, res) => {
-  const { password } = req.body;
-  if (password !== platformSettings.adminPassword) {
-    return res.status(401).json({ ok: false, error: 'Invalid password.' });
+  const { username, password } = req.body;
+  if (username !== platformSettings.adminUsername || password !== platformSettings.adminPassword) {
+    return res.status(401).json({ ok: false, error: 'Invalid credentials.' });
   }
   const token = 'adm_' + crypto.randomBytes(24).toString('hex');
   adminTokens.add(token);
@@ -2976,9 +3207,9 @@ function executeTool(name, input) {
   }
 }
 
-const CHAT_SYSTEM_PROMPT = `You are a coding assistant embedded in the Kinseb website. You can read, edit, and create files in this project to modify the website in real time.
+const CHAT_SYSTEM_PROMPT = `You are a coding assistant embedded in the Cuisine website. You can read, edit, and create files in this project to modify the website in real time.
 
-The project is a Node.js/Express app with MapLibre GL JS frontend — Kinseb is a curated platform for discovering and ordering meals from home chefs.
+The project is a Node.js/Express app with MapLibre GL JS frontend — Cuisine is a curated platform for discovering and ordering meals from home chefs.
 Key files:
 - server.js — Express backend (API routes, auth, data management)
 - public/map.html — Main map page (full SPA with markers, profiles, messaging)
@@ -3115,7 +3346,7 @@ app.get('/api/chat/:sessionId', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`\n  🍽  Kinseb running at http://localhost:${PORT}`);
+  console.log(`\n  🍽  Cuisine running at http://localhost:${PORT}`);
   console.log(`  Service: ${config.name}`);
   console.log(`  Elements: ${elements.elements.length} | Products: ${products.products.length} | Users: ${users.users.length}\n`);
 });

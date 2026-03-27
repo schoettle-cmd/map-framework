@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#F5F1E8"/>
+  <rect x="0" y="0" width="800" height="600" fill="url(#grain)" opacity="0.03"/>
+  <!-- Subtle pattern -->
+  <defs>
+    <pattern id="grain" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="#2F3A2F" opacity="0.3"/>
+    </pattern>
+    <linearGradient id="warmGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F5F1E8"/>
+      <stop offset="100%" stop-color="#EDE8DC"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#warmGrad)"/>
+  <!-- Decorative line -->
+  <line x1="300" y1="230" x2="500" y2="230" stroke="#C46A3C" stroke-width="1.5" opacity="0.4"/>
+  <!-- Chef hat icon -->
+  <g transform="translate(400,290)" opacity="0.18">
+    <path d="M-40,20 C-40,-10 -55,-30 -35,-50 C-20,-65 0,-60 0,-60 C0,-60 20,-65 35,-50 C55,-30 40,-10 40,20 Z" fill="#2F3A2F" stroke="none"/>
+    <rect x="-35" y="20" width="70" height="25" rx="3" fill="#2F3A2F"/>
+    <line x1="-20" y1="25" x2="-20" y2="42" stroke="#F5F1E8" stroke-width="1.5" opacity="0.5"/>
+    <line x1="0" y1="25" x2="0" y2="42" stroke="#F5F1E8" stroke-width="1.5" opacity="0.5"/>
+    <line x1="20" y1="25" x2="20" y2="42" stroke="#F5F1E8" stroke-width="1.5" opacity="0.5"/>
+  </g>
+  <!-- Brand text -->
+  <text x="400" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="14" letter-spacing="4" fill="#2F3A2F" opacity="0.25">CUISINE</text>
+  <!-- Decorative line -->
+  <line x1="300" y1="400" x2="500" y2="400" stroke="#C46A3C" stroke-width="1.5" opacity="0.4"/>
+</svg>

@@ -328,7 +328,7 @@ async function geocodeAddress(address) {
   const url = `https://nominatim.openstreetmap.org/search?` +
     `q=${encodeURIComponent(address)}&format=json&limit=1&countrycodes=us`;
   const res = await fetch(url, {
-    headers: { 'User-Agent': 'Kinseb/1.0 (home-chef-discovery)' },
+    headers: { 'User-Agent': 'Cuisine/1.0 (home-chef-discovery)' },
     signal: AbortSignal.timeout(8000)
   });
   if (!res.ok) return null;

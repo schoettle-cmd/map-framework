@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Kinseb — Discover Chefs</title>
+  <title>Cuisine — Discover Chefs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -456,7 +456,7 @@
 
   <!-- Top Bar -->
   <div class="top-bar">
-    <a href="/" class="brand" id="brand-link">Kinseb</a>
+    <a href="/" class="brand" id="brand-link">Cuisine</a>
     <div class="search-wrap">
       <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       <input type="text" class="search-input" id="search-input" placeholder="Search chefs or cuisines..." autocomplete="off">
@@ -521,7 +521,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
       <div id="auth-step-phone">
-        <h2 class="auth-title">Welcome to Kinseb</h2>
+        <h2 class="auth-title">Welcome to Cuisine</h2>
         <p class="auth-sub">Enter your phone number to sign in or create an account.</p>
         <div id="auth-error" class="auth-error"></div>
         <input type="tel" class="auth-input" id="auth-phone" placeholder="+1 (555) 123-4567" autocomplete="tel">
@@ -537,7 +537,7 @@
         <button class="auth-link" onclick="authReset()">Use a different number</button>
       </div>
       <div id="auth-step-role" style="display:none">
-        <h2 class="auth-title">How will you use Kinseb?</h2>
+        <h2 class="auth-title">How will you use Cuisine?</h2>
         <p class="auth-sub">You can always change this later.</p>
         <div style="display:flex;gap:12px;margin:20px 0;">
           <button class="auth-role-btn" id="role-buyer" onclick="selectRole('buyer')" style="flex:1;padding:24px 14px;border-radius:18px;background:rgba(47,58,47,0.03);border:2px solid var(--light-border);color:var(--ink);cursor:pointer;font-family:var(--sans);transition:all 0.2s;text-align:center;">
@@ -554,9 +554,10 @@
       </div>
       <div id="auth-step-name" style="display:none">
         <h2 class="auth-title">Almost there</h2>
-        <p class="auth-sub">What should we call you?</p>
+        <p class="auth-sub">Your name and email to get started</p>
         <div id="auth-error-name" class="auth-error"></div>
-        <input type="text" class="auth-input" id="auth-name" placeholder="Your name" autocomplete="name">
+        <input type="text" class="auth-input" id="auth-name" placeholder="Your name" autocomplete="name" style="margin-bottom:10px">
+        <input type="email" class="auth-input" id="auth-email" placeholder="Email address" autocomplete="email">
         <button class="auth-btn" onclick="authComplete()">Get started</button>
       </div>
     </div>
@@ -611,9 +612,9 @@ async function init() {
     const r = await fetch(BASE + '/api/config');
     CFG = await r.json();
   } catch (e) {
-    CFG = { name: 'Kinseb', accent: '#C46A3C', defaultLat: 34.07, defaultLng: -118.25, freeViews: 5 };
+    CFG = { name: 'Cuisine', accent: '#C46A3C', defaultLat: 34.07, defaultLng: -118.25, freeViews: 5 };
   }
-  document.title = 'Kinseb — Discover Chefs';
+  document.title = 'Cuisine — Discover Chefs';
   await checkAuth();
   initMap();
 }
@@ -717,7 +718,7 @@ function renderMarkers(animate) {
     else div.style.animation = 'none';
     div.innerHTML = `
       <div class="marker-dot">
-        ${el.imageUrl ? `<img src="${escAttr(el.imageUrl)}" alt="" loading="lazy">` : `<span class="marker-icon">${el.icon || '&#127860;'}</span>`}
+        ${el.imageUrl ? `<img src="${escAttr(el.imageUrl)}" alt="" loading="lazy" onerror="this.onerror=null;this.src=BASE+'/placeholder-chef.svg';">` : `<img src="${BASE}/placeholder-chef.svg" alt="" loading="lazy">`}
       </div>
       <div class="marker-stem"></div>
     `;
@@ -734,8 +735,9 @@ function openElement(el) {
   activeElement = el;
   const heroEl = document.getElementById('sheet-hero');
   const imgEl = document.getElementById('sheet-img');
-  if (el.imageUrl) { imgEl.src = el.imageUrl; heroEl.style.display = 'block'; }
-  else { heroEl.style.display = 'none'; }
+  imgEl.src = el.imageUrl || (BASE + '/placeholder-chef.svg');
+  imgEl.onerror = function() { this.onerror=null; this.src=BASE+'/placeholder-chef.svg'; };
+  heroEl.style.display = 'block';
 
   document.getElementById('sheet-title').textContent = el.title;
   document.getElementById('sheet-subtitle').textContent = el.cuisineType || el.subtitle || 'Home Chef';
@@ -757,7 +759,7 @@ function openElement(el) {
     }
   }).catch(() => {});
 
-  // External link — website or Instagram (shown until chef signs up on Kinseb)
+  // External link — website or Instagram (shown until chef signs up on Cuisine)
   const extUrl = el.externalOrderUrl || '';
   const igHandle = el.instagram || '';
   if (extUrl) {
@@ -886,8 +888,10 @@ function selectRole(role) {
 async function authComplete() {
   const name = document.getElementById('auth-name').value.trim();
   if (!name) return showAuthError('auth-error-name', 'Name is required.');
+  const email = document.getElementById('auth-email').value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showAuthError('auth-error-name', 'Valid email required.');
   try {
-    const r = await fetch(BASE + '/api/auth/complete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: sentPhone, name, role: selectedRole }) });
+    const r = await fetch(BASE + '/api/auth/complete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: sentPhone, name, email, role: selectedRole }) });
     const d = await r.json();
     if (d.ok) { currentUser = d.user; updateAuthUI(); closeAuth(); }
     else { showAuthError('auth-error-name', d.error || 'Failed.'); }
@@ -1013,8 +1017,7 @@ function openProfile(el) {
   if (!el) return;
   closeSheet();
   const heroEl = document.getElementById('profile-hero');
-  if (el.imageUrl) heroEl.innerHTML = `<img src="${escAttr(el.imageUrl)}" alt="">`;
-  else heroEl.innerHTML = `<div class="profile-hero-placeholder">${el.icon || '&#127860;'}</div>`;
+  heroEl.innerHTML = `<img src="${el.imageUrl ? escAttr(el.imageUrl) : BASE+'/placeholder-chef.svg'}" alt="" onerror="this.onerror=null;this.src='${BASE}/placeholder-chef.svg';">`;
 
   fetch(BASE + '/api/elements/' + el.id).then(r => r.json()).then(d => {
     const data = (d.ok && d.element) ? d.element : el;

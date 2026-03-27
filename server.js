@@ -116,7 +116,7 @@ app.get('/order/:id', (req, res) => {
 
   const html = `<!DOCTYPE html><html><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Order Tracking — ${platformSettings.platformName || 'Cuisine'}</title>
+<title>Order Tracking — ${platformSettings.platformName || 'Kitse'}</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 ${baseScript()}<style>
 :root{--cream:#F5F1E8;--ink:#1A1A1A;--terracotta:#C46A3C;--warm-gray:#8A8577;--sans:'Inter',sans-serif;--serif:'Playfair Display',serif;}
@@ -144,7 +144,7 @@ h1{font-family:var(--serif);font-size:28px;margin-bottom:8px;}
 .detail-value{font-weight:600;}
 .delivered-time{text-align:center;color:var(--warm-gray);font-size:13px;margin-top:-20px;margin-bottom:32px;}
 </style></head><body>
-<div class="nav"><a href="/">${platformSettings.platformName || 'Cuisine'}</a></div>
+<div class="nav"><a href="/">${platformSettings.platformName || 'Kitse'}</a></div>
 <div class="container">
 <h1>Order Tracking</h1>
 <div class="order-id">${order.id}</div>
@@ -216,9 +216,9 @@ app.get('/profile/:id', (req, res) => {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(el.title)} | Cuisine</title>
+<title>${esc(el.title)} | Kitse</title>
 <meta name="description" content="${esc(el.description || el.subtitle || '')}">
-<meta property="og:title" content="${esc(el.title)} — Cuisine">
+<meta property="og:title" content="${esc(el.title)} — Kitse">
 <meta property="og:description" content="${esc(el.description || el.subtitle || '')}">
 ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -630,7 +630,7 @@ body {
 </head>
 <body>
 <nav class="nav">
-  <a href="/" class="nav-logo">Cuisine</a>
+  <a href="/" class="nav-logo">Kitse</a>
   <div class="nav-links">
     <a href="/map" class="nav-link">Explore</a>
     <a href="/join" class="nav-link">Become a chef</a>
@@ -707,7 +707,7 @@ body {
 </div>
 
 <footer class="profile-footer">
-  <div class="profile-footer-brand">Cuisine</div>
+  <div class="profile-footer-brand">Kitse</div>
   <div class="profile-footer-tagline">Eat beautifully.</div>
 </footer>
 </body>
@@ -786,7 +786,7 @@ let campaigns = loadData('campaigns', { campaigns: [] });
   }
 })();
 let platformSettings = loadData('platform_settings', {
-  platformName: 'Cuisine',
+  platformName: 'Kitse',
   tagline: 'Eat beautifully.',
   accentColor: '#C46A3C',
   commissionRate: 20,
@@ -799,7 +799,7 @@ let platformSettings = loadData('platform_settings', {
   smtpPort: 587,
   smtpUser: '',
   smtpPass: '',
-  smtpFrom: 'noreply@cuisine.app',
+  smtpFrom: 'noreply@kitse.co',
   adminUsername: 'admin',
   adminPassword: 'admin',
   maxProductPhotos: 4,
@@ -812,7 +812,7 @@ let platformSettings = loadData('platform_settings', {
   igShareDiscount: 10,
   igShareDefaultRate: 20,
   igShareVerifyRequired: true,
-  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @Cuisine! 🍽 Eat beautifully. #Cuisine #HomeChef #EatLocal",
+  igShareMessage: "Just ordered {{productName}} from {{sellerName}} on @Kitse! 🍽 Eat beautifully. #Kitse #HomeChef #EatLocal",
   igShareImageUrl: ""
 });
 
@@ -999,7 +999,7 @@ async function sendEmail(to, subject, html) {
 
 function emailWrap(title, body) {
   const accent = platformSettings.accentColor || '#ea580c';
-  const name = platformSettings.platformName || 'Cuisine';
+  const name = platformSettings.platformName || 'Kitse';
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="margin:0;padding:0;background:#f5f5f4;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
 <div style="max-width:560px;margin:24px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
@@ -1058,7 +1058,7 @@ function sendOrderReceiptToBuyer(order) {
     </div>
     <p style="color:#44403c;">You can track your order status anytime:</p>
     <p style="margin-top:12px;"><a href="${BASE_PATH}/order/${order.id}" style="display:inline-block;padding:12px 28px;background:${platformSettings.accentColor || '#ea580c'};color:#fff;border-radius:100px;font-weight:700;text-decoration:none;">Track Your Order</a></p>
-    <p style="color:#a8a29e;font-size:12px;margin-top:16px;">This receipt was sent by ${platformSettings.platformName || 'Cuisine'}. The seller does not have your contact information.</p>
+    <p style="color:#a8a29e;font-size:12px;margin-top:16px;">This receipt was sent by ${platformSettings.platformName || 'Kitse'}. The seller does not have your contact information.</p>
   `);
   sendEmail(buyer.email, `Order Receipt: ${order.productName}`, html);
 }
@@ -3584,9 +3584,9 @@ function executeTool(name, input) {
   }
 }
 
-const CHAT_SYSTEM_PROMPT = `You are a coding assistant embedded in the Cuisine website. You can read, edit, and create files in this project to modify the website in real time.
+const CHAT_SYSTEM_PROMPT = `You are a coding assistant embedded in the Kitse website. You can read, edit, and create files in this project to modify the website in real time.
 
-The project is a Node.js/Express app with MapLibre GL JS frontend — Cuisine is a curated platform for discovering and ordering meals from home chefs.
+The project is a Node.js/Express app with MapLibre GL JS frontend — Kitse is a curated platform for discovering and ordering meals from home chefs.
 Key files:
 - server.js — Express backend (API routes, auth, data management)
 - public/map.html — Main map page (full SPA with markers, profiles, messaging)
@@ -3966,7 +3966,7 @@ scheduleDailyCrons();
 console.log('[cron] Daily scraping scheduled (MEHKO 3AM, Private Chefs 4AM)');
 
 app.listen(PORT, () => {
-  console.log(`\n  🍽  Cuisine running at http://localhost:${PORT}`);
+  console.log(`\n  🍽  Kitse running at http://localhost:${PORT}`);
   console.log(`  Service: ${config.name}`);
   console.log(`  Elements: ${elements.elements.length} | Products: ${products.products.length} | Users: ${users.users.length}\n`);
 });

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cuisine Admin</title>
+  <title>Kitse Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -493,7 +493,7 @@
 <div class="login-screen" id="loginScreen">
   <div class="login-card">
     <span class="login-icon">&#127838;</span>
-    <div class="login-title">Cuisine Admin</div>
+    <div class="login-title">Kitse Admin</div>
     <div class="login-sub">Platform Command Center</div>
     <input type="text" class="login-input" id="loginUsername" placeholder="Username" autocomplete="username" style="margin-bottom:10px">
     <input type="password" class="login-input" id="loginPassword" placeholder="Password" autocomplete="current-password">
@@ -510,7 +510,7 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo">&#127838; <span>Cuisine</span> Admin</div>
+      <div class="sidebar-logo">&#127838; <span>Kitse</span> Admin</div>
       <button class="sidebar-close" onclick="closeSidebar()">&#10005;</button>
     </div>
     <nav class="sidebar-nav">
@@ -864,7 +864,7 @@
             <div class="settings-section-body">
               <div class="setting-row">
                 <div class="setting-label-group"><div class="setting-label">Platform Name</div><div class="setting-hint">Displayed across the marketplace</div></div>
-                <input type="text" class="setting-input" id="set-platformName" placeholder="Cuisine">
+                <input type="text" class="setting-input" id="set-platformName" placeholder="Kitse">
               </div>
               <div class="setting-row">
                 <div class="setting-label-group"><div class="setting-label">Tagline</div><div class="setting-hint">Shown on the landing page</div></div>
@@ -930,7 +930,7 @@
               <div class="setting-row"><div class="setting-label-group"><div class="setting-label">SMTP Port</div></div><input type="number" class="setting-input" id="set-smtpPort" placeholder="587" step="1"></div>
               <div class="setting-row"><div class="setting-label-group"><div class="setting-label">SMTP User</div></div><input type="text" class="setting-input" id="set-smtpUser" placeholder="user@example.com"></div>
               <div class="setting-row"><div class="setting-label-group"><div class="setting-label">SMTP Password</div></div><div class="password-wrapper"><input type="password" class="setting-input" id="set-smtpPassword" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;"><button class="password-toggle" onclick="togglePwVis('set-smtpPassword', this)">Show</button></div></div>
-              <div class="setting-row"><div class="setting-label-group"><div class="setting-label">From Address</div></div><input type="text" class="setting-input" id="set-fromAddress" placeholder="noreply@cuisine.app"></div>
+              <div class="setting-row"><div class="setting-label-group"><div class="setting-label">From Address</div></div><input type="text" class="setting-input" id="set-fromAddress" placeholder="noreply@kitse.co"></div>
             </div>
           </div>
           <div class="settings-section">
@@ -1034,7 +1034,7 @@
 
 <script>
 /* ======================================================
-   CUISINE ADMIN -- Client-side Logic
+   KITSE ADMIN -- Client-side Logic
    ====================================================== */
 
 const BASE = window.__BASE || '';

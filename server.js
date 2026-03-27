@@ -754,6 +754,37 @@ let ratings = loadData('ratings', { ratings: [] });
 let payouts = loadData('payouts', { payouts: [] });
 let prospects = loadData('prospects', { prospects: [] });
 let campaigns = loadData('campaigns', { campaigns: [] });
+
+// ── Data Migration: add type field, simplify statuses ─────────────────────
+(function migrateProspects() {
+  let changed = false;
+  for (const p of prospects.prospects) {
+    // Add type: "seller" to any prospect missing a type field
+    if (!p.type) {
+      p.type = 'seller';
+      changed = true;
+    }
+    // Change status "approved" → if has convertedUserId AND active element, set "live"; otherwise "prospect"
+    if (p.status === 'approved') {
+      if (p.convertedUserId) {
+        const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === p.id && e.active !== false);
+        p.status = el ? 'live' : 'prospect';
+      } else {
+        p.status = 'prospect';
+      }
+      changed = true;
+    }
+    // Change status "converted" → "live"
+    if (p.status === 'converted') {
+      p.status = 'live';
+      changed = true;
+    }
+  }
+  if (changed) {
+    saveData('prospects', prospects);
+    console.log('✓ Prospects migrated: added type field, simplified statuses');
+  }
+})();
 let platformSettings = loadData('platform_settings', {
   platformName: 'Cuisine',
   tagline: 'Eat beautifully.',
@@ -2205,15 +2236,16 @@ app.post('/api/admin/logout', (req, res) => {
 app.get('/api/admin/dashboard', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
 
-  // Total sellers = prospects that are live (have active element on map)
-  const liveProspectIds = new Set();
+  // Total chefs vs sellers (live only)
+  let totalChefs = 0;
+  let totalSellersCount = 0;
   prospects.prospects.forEach(p => {
-    if (p.convertedUserId) {
-      const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === p.id && e.active !== false);
-      if (el) liveProspectIds.add(p.id);
+    if (p.status === 'live' || (p.convertedUserId && elements.elements.find(e => e.metadata && e.metadata.prospectId === p.id && e.active !== false))) {
+      if (p.type === 'chef') totalChefs++;
+      else totalSellersCount++;
     }
   });
-  const totalSellers = liveProspectIds.size;
+  const totalSellers = totalChefs + totalSellersCount;
 
   // Total buyers = users who placed at least 1 order
   const buyerIds = new Set(orders.orders.map(o => o.buyerId));
@@ -2243,6 +2275,8 @@ app.get('/api/admin/dashboard', (req, res) => {
   res.json({
     ok: true,
     totalSellers,
+    totalChefs,
+    totalSellersOnly: totalSellersCount,
     totalBuyers,
     totalOrders,
     totalRevenue,
@@ -2524,8 +2558,13 @@ app.get('/api/admin/sellers-unified', (req, res) => {
     ordersBySellerId[o.sellerId].push(o);
   });
 
+  // Filter by type if provided
+  const typeFilter = req.query.type; // 'chef' or 'seller'
+
   // Start with all prospects as the base
-  const sellers = prospects.prospects.map(p => {
+  const allSellers = prospects.prospects
+    .filter(p => !typeFilter || (p.type || 'seller') === typeFilter)
+    .map(p => {
     const el = elementByProspectId[p.id];
     const userId = p.convertedUserId;
     const userProducts = userId ? (productsBySellerId[userId] || []) : [];
@@ -2533,13 +2572,17 @@ app.get('/api/admin/sellers-unified', (req, res) => {
     const completedOrders = userOrders.filter(o => ['completed', 'paid', 'confirmed'].includes(o.status));
     const revenue = completedOrders.reduce((sum, o) => sum + (o.amount || 0), 0);
 
-    // Compute unified status
+    // Compute unified status using simplified statuses
     let unifiedStatus = p.status || 'prospect';
-    if (el && el.active !== false && (p.convertedUserId || p.status === 'approved')) {
+    // If they have an active element on the map, they're live
+    if (el && el.active !== false && p.convertedUserId) {
       unifiedStatus = 'live';
-    } else if (p.status === 'approved' && (!el || el.active === false)) {
-      unifiedStatus = 'approved';
+    } else if (el && el.active === false && p.convertedUserId) {
+      unifiedStatus = 'paused';
     }
+    // Normalize any legacy statuses
+    if (unifiedStatus === 'approved') unifiedStatus = 'prospect';
+    if (unifiedStatus === 'converted') unifiedStatus = 'live';
 
     return {
       id: p.id,
@@ -2570,9 +2613,11 @@ app.get('/api/admin/sellers-unified', (req, res) => {
       featured: p.featured,
       scrapedAt: p.scrapedAt,
       createdAt: p.createdAt,
+      contactedAt: p.contactedAt || null,
       convertedAt: p.convertedAt,
       convertedUserId: p.convertedUserId,
-      sellerType: p.sellerType || (el ? el.sellerType : null) || 'seller',
+      type: p.type || 'seller',
+      sellerType: p.type || p.sellerType || 'seller',
       elementId: el ? el.id : null,
       elementActive: el ? (el.active !== false) : false,
       hasElement: !!el
@@ -2580,14 +2625,79 @@ app.get('/api/admin/sellers-unified', (req, res) => {
   });
 
   // Count stats
-  const counts = { all: sellers.length, prospect: 0, approved: 0, contacted: 0, live: 0, rejected: 0 };
-  sellers.forEach(s => {
+  const counts = { all: allSellers.length, prospect: 0, contacted: 0, live: 0, paused: 0, rejected: 0 };
+  allSellers.forEach(s => {
     if (counts[s.status] !== undefined) counts[s.status]++;
   });
 
-  sellers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  allSellers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-  res.json({ ok: true, sellers, counts });
+  res.json({ ok: true, sellers: allSellers, counts });
+});
+
+// GET /api/admin/sellers-unified/:id — single item detail
+app.get('/api/admin/sellers-unified/:id', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+
+  const p = prospects.prospects.find(pr => pr.id === req.params.id);
+  if (!p) return res.status(404).json({ ok: false, error: 'Not found.' });
+
+  const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === p.id);
+  const userId = p.convertedUserId;
+  const userProducts = userId ? products.products.filter(pr => pr.sellerId === userId) : [];
+  const userOrders = userId ? orders.orders.filter(o => o.sellerId === userId) : [];
+  const completedOrders = userOrders.filter(o => ['completed', 'paid', 'confirmed'].includes(o.status));
+  const revenue = completedOrders.reduce((sum, o) => sum + (o.amount || 0), 0);
+
+  let unifiedStatus = p.status || 'prospect';
+  if (el && el.active !== false && p.convertedUserId) unifiedStatus = 'live';
+  else if (el && el.active === false && p.convertedUserId) unifiedStatus = 'paused';
+  if (unifiedStatus === 'approved') unifiedStatus = 'prospect';
+  if (unifiedStatus === 'converted') unifiedStatus = 'live';
+
+  res.json({
+    ok: true,
+    seller: {
+      id: p.id,
+      name: p.name,
+      businessName: p.businessName,
+      address: p.address,
+      neighborhood: p.neighborhood,
+      phone: p.phone,
+      email: p.email,
+      website: p.website,
+      instagram: p.instagram,
+      imageUrl: p.imageUrl || (el ? el.imageUrl : '') || '',
+      products: p.products || [],
+      productCount: userProducts.length || (p.products || []).length,
+      orderCount: userOrders.length,
+      revenue,
+      cuisineType: p.cuisineType || (el ? el.cuisineType : '') || '',
+      tags: p.tags || (el ? el.tags : '') || '',
+      permitType: p.permitType,
+      permitNumber: p.permitNumber,
+      source: p.source,
+      sourceUrl: p.sourceUrl,
+      notes: p.notes,
+      lat: p.lat || (el ? el.lat : null),
+      lng: p.lng || (el ? el.lng : null),
+      status: unifiedStatus,
+      originalStatus: p.status,
+      featured: p.featured,
+      scrapedAt: p.scrapedAt,
+      createdAt: p.createdAt,
+      contactedAt: p.contactedAt || null,
+      convertedAt: p.convertedAt,
+      convertedUserId: p.convertedUserId,
+      type: p.type || 'seller',
+      sellerType: p.type || p.sellerType || 'seller',
+      elementId: el ? el.id : null,
+      elementActive: el ? (el.active !== false) : false,
+      hasElement: !!el,
+      userProducts: userProducts.map(pr => ({ id: pr.id, name: pr.name, price: pr.price, photos: pr.photos, available: pr.available })),
+      recentOrders: userOrders.slice(0, 20).map(o => ({ id: o.id, productName: o.productName, amount: o.amount, status: o.status, createdAt: o.createdAt }))
+    }
+  });
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -2611,7 +2721,7 @@ app.get('/api/admin/prospects', (req, res) => {
 app.post('/api/admin/prospects', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
 
-  const { name, businessName, address, neighborhood, phone, email, website, instagram, products: prodList, permitType, permitNumber, source, sourceUrl, notes } = req.body;
+  const { name, businessName, address, neighborhood, phone, email, website, instagram, products: prodList, permitType, permitNumber, source, sourceUrl, notes, type } = req.body;
   if (!name && !businessName) return res.status(400).json({ ok: false, error: 'Name or business name required.' });
 
   const prospect = {
@@ -2630,6 +2740,7 @@ app.post('/api/admin/prospects', (req, res) => {
     source: String(source || 'manual').slice(0, 100),
     sourceUrl: String(sourceUrl || '').slice(0, 500),
     notes: String(notes || '').slice(0, 2000),
+    type: ['chef', 'seller'].includes(type) ? type : 'seller',
     status: 'prospect',
     featured: false,
     scrapedAt: null,
@@ -2658,6 +2769,9 @@ app.put('/api/admin/prospects/:id', (req, res) => {
     prospect.products = Array.isArray(req.body.products) ? req.body.products.map(p => String(p).slice(0, 200)) : [];
   }
   if (req.body.featured !== undefined) prospect.featured = !!req.body.featured;
+  if (req.body.type !== undefined && ['chef', 'seller'].includes(req.body.type)) {
+    prospect.type = req.body.type;
+  }
 
   saveData('prospects', prospects);
   res.json({ ok: true, prospect });
@@ -2683,12 +2797,25 @@ app.put('/api/admin/prospects/:id/status', (req, res) => {
   if (!prospect) return res.status(404).json({ ok: false, error: 'Prospect not found.' });
 
   const { status } = req.body;
-  const validStatuses = ['prospect', 'approved', 'contacted', 'rejected', 'converted'];
+  const validStatuses = ['prospect', 'contacted', 'live', 'paused', 'rejected'];
   if (!validStatuses.includes(status)) {
     return res.status(400).json({ ok: false, error: 'Invalid status. Must be one of: ' + validStatuses.join(', ') });
   }
 
   prospect.status = status;
+  if (status === 'contacted' && !prospect.contactedAt) {
+    prospect.contactedAt = new Date().toISOString();
+  }
+  // If pausing, deactivate the element
+  if (status === 'paused') {
+    const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === prospect.id);
+    if (el) { el.active = false; saveData('elements', elements); }
+  }
+  // If setting to live, reactivate the element if it exists
+  if (status === 'live') {
+    const el = elements.elements.find(e => e.metadata && e.metadata.prospectId === prospect.id);
+    if (el) { el.active = true; saveData('elements', elements); }
+  }
   saveData('prospects', prospects);
   res.json({ ok: true, prospect });
 });
@@ -2783,7 +2910,7 @@ app.post('/api/admin/prospects/:id/make-live', (req, res) => {
   }
 
   // Update prospect status
-  prospect.status = 'approved';
+  prospect.status = 'live';
   prospect.convertedAt = new Date().toISOString();
   prospect.convertedUserId = userId;
   saveData('prospects', prospects);
@@ -2795,7 +2922,7 @@ app.post('/api/admin/prospects/:id/make-live', (req, res) => {
 app.post('/api/admin/prospects/import', (req, res) => {
   if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
 
-  const { items } = req.body;
+  const { items, type: importType } = req.body;
   if (!Array.isArray(items) || items.length === 0) {
     return res.status(400).json({ ok: false, error: 'items array required.' });
   }
@@ -2818,6 +2945,7 @@ app.post('/api/admin/prospects/import', (req, res) => {
       source: String(item.source || 'import').slice(0, 100),
       sourceUrl: String(item.sourceUrl || '').slice(0, 500),
       notes: String(item.notes || '').slice(0, 2000),
+      type: ['chef', 'seller'].includes(item.type || importType) ? (item.type || importType) : 'seller',
       status: 'prospect',
       featured: false,
       scrapedAt: item.scrapedAt || null,
@@ -2884,7 +3012,7 @@ app.post('/api/admin/prospects/bulk-make-live', (req, res) => {
 
   for (const prospect of targetProspects) {
     // Skip already converted
-    if (prospect.convertedUserId || prospect.status === 'approved') {
+    if (prospect.convertedUserId || prospect.status === 'live') {
       results.push({ id: prospect.id, skipped: true, reason: 'already converted' });
       continue;
     }
@@ -2972,7 +3100,7 @@ app.post('/api/admin/prospects/bulk-make-live', (req, res) => {
     }
 
     // Update prospect status
-    prospect.status = 'approved';
+    prospect.status = 'live';
     prospect.convertedAt = new Date().toISOString();
     prospect.convertedUserId = userId;
 

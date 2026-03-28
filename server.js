@@ -264,6 +264,18 @@ textarea.edit-input { min-height:80px;resize:vertical; }
 .edit-photo-preview { width:64px;height:64px;border-radius:50%;background:var(--olive);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-family:var(--serif);font-weight:700; }
 .edit-photo-preview img { width:100%;height:100%;object-fit:cover; }
 
+.favorites-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px; }
+.fav-card { background:var(--card-bg);border-radius:16px;overflow:hidden;border:1px solid var(--light-border);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;position:relative; }
+.fav-card:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+.fav-card-img { width:100%;aspect-ratio:1;object-fit:cover;background:var(--olive); }
+.fav-card-body { padding:12px; }
+.fav-card-name { font-family:var(--serif);font-size:14px;font-weight:600;margin-bottom:2px; }
+.fav-card-sub { font-size:12px;color:var(--warm-gray); }
+.fav-remove { position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s; }
+.fav-card:hover .fav-remove { opacity:1; }
+.fav-remove svg { width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2; }
+.fav-empty { text-align:center;color:var(--warm-gray);padding:24px;font-size:14px; }
+
 .footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--light-border); margin-top: 60px; }
 .footer-brand { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
 .footer-tagline { color: var(--warm-gray); font-size: 13px; }
@@ -299,6 +311,12 @@ textarea.edit-input { min-height:80px;resize:vertical; }
   <div class="stats-row">
     <div class="stat"><div class="stat-num">${orderCount}</div><div class="stat-label">Orders</div></div>
     <div class="stat"><div class="stat-num">${userRatings.length}</div><div class="stat-label">Reviews</div></div>
+    <div class="stat"><div class="stat-num" id="favCount">${(user.favorites || []).length}</div><div class="stat-label">Favorites</div></div>
+  </div>
+
+  <div class="profile-section" id="favoritesSection">
+    <div class="section-title">Favorite Chefs</div>
+    <div id="favoritesList" class="favorites-grid"></div>
   </div>
 
   <div class="edit-section">
@@ -347,6 +365,42 @@ function previewPhoto(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+// Load favorites
+async function loadFavorites() {
+  try {
+    const res = await fetch(BASE + '/api/favorites', { credentials: 'include' });
+    const d = await res.json();
+    const list = document.getElementById('favoritesList');
+    const section = document.getElementById('favoritesSection');
+    if (!d.ok || !d.favorites || d.favorites.length === 0) {
+      list.innerHTML = '<div class="fav-empty">No favorites yet. Explore the map and tap the heart on chefs you love!</div>';
+      return;
+    }
+    document.getElementById('favCount').textContent = d.favorites.length;
+    list.innerHTML = d.favorites.map(f => {
+      const img = f.imageUrl || (BASE + '/placeholder-chef.svg');
+      return '<div class="fav-card" onclick="window.location.href=BASE+\'/profile/\'+\'' + f.id + '\'">' +
+        '<button class="fav-remove" onclick="event.stopPropagation();removeFav(\'' + f.id + '\',this)" title="Remove favorite"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>' +
+        '<img class="fav-card-img" src="' + img + '" alt="" onerror="this.onerror=null;this.src=BASE+\'/placeholder-chef.svg\';">' +
+        '<div class="fav-card-body"><div class="fav-card-name">' + (f.title || 'Chef') + '</div><div class="fav-card-sub">' + (f.cuisineType || f.subtitle || '') + '</div></div></div>';
+    }).join('');
+  } catch(e) { console.error(e); }
+}
+
+async function removeFav(elId, btn) {
+  try {
+    const res = await fetch(BASE + '/api/favorites/' + elId, { method: 'DELETE', credentials: 'include' });
+    const d = await res.json();
+    if (d.ok) {
+      const card = btn.closest('.fav-card');
+      if (card) { card.style.opacity = '0'; card.style.transform = 'scale(0.8)'; card.style.transition = 'all 0.3s'; setTimeout(() => { card.remove(); loadFavorites(); }, 300); }
+    }
+  } catch(e) { console.error(e); }
+}
+
+// Load on page load
+loadFavorites();
 
 async function saveProfile() {
   const name = document.getElementById('editName').value.trim();
@@ -852,6 +906,14 @@ body {
   .nav-btn-name { font-size: 10px; max-width: 70px; }
   .profile-nav-btn { padding: 5px 8px; }
 }
+
+/* Favorite heart */
+.fav-heart { background:none;border:none;cursor:pointer;padding:4px;transition:transform 0.15s; }
+.fav-heart:hover { transform:scale(1.15); }
+.fav-heart:active { transform:scale(0.9); }
+.heart-path { stroke:var(--warm-gray);fill:none;stroke-width:2;transition:all 0.2s; }
+.fav-heart.active .heart-path { stroke:var(--terracotta);fill:var(--terracotta); }
+
 /* Pre-launch overlay */
 .prelaunch-backdrop { display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px; }
 .prelaunch-backdrop.open { display:flex; }
@@ -927,6 +989,11 @@ body {
     </div>
     <aside class="profile-sidebar">
       <div class="sidebar-card">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+          <button class="fav-heart" id="favBtn" onclick="toggleFav()" title="Add to favorites">
+            <svg viewBox="0 0 24 24" width="26" height="26"><path id="heartPath" class="heart-path" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+        </div>
         ${el.externalOrderUrl
           ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" rel="noopener" class="order-btn">Visit Website</a>`
           : el.instagram
@@ -948,6 +1015,43 @@ body {
     </aside>
   </div>
 </div>
+
+
+<script>
+const BASE_P = window.__BASE || '';
+const EL_ID = '${el.id}';
+let isFav = false;
+
+(async function() {
+  try {
+    const r = await fetch(BASE_P + '/api/auth/me', { credentials: 'include' });
+    const d = await r.json();
+    if (d.ok && d.user && d.user.favorites && d.user.favorites.includes(EL_ID)) {
+      isFav = true;
+      document.getElementById('favBtn').classList.add('active');
+    }
+  } catch(e) {}
+})();
+
+async function toggleFav() {
+  try {
+    const r = await fetch(BASE_P + '/api/auth/me', { credentials: 'include' });
+    const d = await r.json();
+    if (!d.ok || !d.user) { window.location.href = BASE_P + '/map'; return; }
+  } catch(e) { return; }
+  try {
+    const res = await fetch(BASE_P + '/api/favorites/' + EL_ID, {
+      method: isFav ? 'DELETE' : 'POST',
+      credentials: 'include'
+    });
+    const d = await res.json();
+    if (d.ok) {
+      isFav = !isFav;
+      document.getElementById('favBtn').classList.toggle('active', isFav);
+    }
+  } catch(e) { console.error(e); }
+}
+</script>
 
 <footer class="profile-footer">
   <div class="profile-footer-brand">Kitse</div>
@@ -1598,7 +1702,8 @@ app.get('/api/auth/me', (req, res) => {
       deliveryOptions: user.deliveryOptions || null,
       isChef: user.sellerType === 'chef',
       onboardingComplete: !!user.onboardingComplete,
-      profile: user.profile || { displayName: '', bio: '', photos: [], location: null }
+      profile: user.profile || { displayName: '', bio: '', photos: [], location: null },
+      favorites: user.favorites || []
     }
   });
 });
@@ -1615,6 +1720,47 @@ app.post('/api/auth/logout', (req, res) => {
   }
   clearSessionCookie(res);
   res.json({ ok: true });
+});
+
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+//  FAVORITES
+// ═════════════════════════════════════════════════════════════════════════════
+
+// GET /api/favorites — list current user's favorites
+app.get('/api/favorites', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.json({ ok: true, favorites: [] });
+  const favIds = user.favorites || [];
+  const favElements = favIds.map(id => elements.elements.find(e => e.id === id)).filter(Boolean);
+  res.json({ ok: true, favorites: favElements.map(e => ({ id: e.id, title: e.title, imageUrl: e.imageUrl, cuisineType: e.cuisineType || '', subtitle: e.subtitle || '' })) });
+});
+
+// POST /api/favorites/:elementId — add a favorite
+app.post('/api/favorites/:elementId', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+  const elId = req.params.elementId;
+  const el = elements.elements.find(e => e.id === elId);
+  if (!el) return res.status(404).json({ ok: false, error: 'Not found.' });
+  if (!user.favorites) user.favorites = [];
+  if (!user.favorites.includes(elId)) {
+    user.favorites.push(elId);
+    saveData('users', users);
+  }
+  res.json({ ok: true, favorited: true });
+});
+
+// DELETE /api/favorites/:elementId — remove a favorite
+app.delete('/api/favorites/:elementId', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+  const elId = req.params.elementId;
+  if (!user.favorites) user.favorites = [];
+  user.favorites = user.favorites.filter(id => id !== elId);
+  saveData('users', users);
+  res.json({ ok: true, favorited: false });
 });
 
 // ═════════════════════════════════════════════════════════════════════════════

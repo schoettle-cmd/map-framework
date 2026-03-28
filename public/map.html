@@ -448,6 +448,17 @@
       }
       .msg-panel { left: auto; right: 24px; bottom: 24px; width: 400px; border-radius: 24px; border: 1px solid var(--light-border); }
     }
+  
+    /* Favorites heart */
+    .fav-btn { background:none;border:none;cursor:pointer;padding:6px;display:flex;align-items:center;justify-content:center;transition:transform 0.15s; }
+    .fav-btn:hover { transform:scale(1.15); }
+    .fav-btn:active { transform:scale(0.9); }
+    .fav-btn svg { width:22px;height:22px;transition:all 0.2s; }
+    .fav-btn .heart-outline { stroke:#8A8577;fill:none;stroke-width:2; }
+    .fav-btn.active .heart-outline { stroke:#C46A3C;fill:#C46A3C; }
+    .sheet-header-row { display:flex;align-items:flex-start;justify-content:space-between;gap:8px; }
+    .profile-header-row { display:flex;align-items:center;justify-content:space-between;gap:8px; }
+
   </style>
 </head>
 <body>
@@ -593,6 +604,43 @@
   </div>
 
 <script>
+
+// ── Favorites ──
+const HEART_SVG = '<svg viewBox="0 0 24 24"><path class="heart-outline" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+let userFavorites = new Set();
+
+function loadFavorites() {
+  fetch(BASE + '/api/favorites', { credentials: 'include' }).then(r => r.json()).then(d => {
+    if (d.ok) userFavorites = new Set(d.favorites.map(f => f.id));
+  }).catch(() => {});
+}
+
+function isFavorited(elId) { return userFavorites.has(elId); }
+
+async function toggleFavorite(elId, btn) {
+  if (!currentUser) { openPhoneAuth(); return; }
+  const wasFav = isFavorited(elId);
+  try {
+    const res = await fetch(BASE + '/api/favorites/' + elId, {
+      method: wasFav ? 'DELETE' : 'POST',
+      credentials: 'include'
+    });
+    const d = await res.json();
+    if (d.ok) {
+      if (wasFav) userFavorites.delete(elId);
+      else userFavorites.add(elId);
+      // Update all heart buttons for this element
+      document.querySelectorAll('.fav-btn[data-el="' + elId + '"]').forEach(b => {
+        b.classList.toggle('active', !wasFav);
+      });
+    }
+  } catch(e) { console.error('Favorite error:', e); }
+}
+
+function heartBtn(elId) {
+  return '<button class="fav-btn' + (isFavorited(elId) ? ' active' : '') + '" data-el="' + elId + '" onclick="event.stopPropagation();toggleFavorite(\'' + elId + '\',this)">' + HEART_SVG + '</button>';
+}
+
 let CFG = {};
 let currentUser = null;
 let map = null;
@@ -739,7 +787,7 @@ function openElement(el) {
   imgEl.onerror = function() { this.onerror=null; this.src=BASE+'/placeholder-chef.svg'; };
   heroEl.style.display = 'block';
 
-  document.getElementById('sheet-title').textContent = el.title;
+  document.getElementById('sheet-title').innerHTML = '<div class="sheet-header-row"><span>' + escHtml(el.title) + '</span>' + heartBtn(el.id) + '</div>';
   document.getElementById('sheet-subtitle').textContent = el.cuisineType || el.subtitle || 'Home Chef';
   document.getElementById('sheet-desc').textContent = el.description ? el.description.substring(0, 160) + (el.description.length > 160 ? '...' : '') : '';
 
@@ -794,7 +842,7 @@ async function checkAuth() {
   try {
     const r = await fetch(BASE + '/api/auth/me');
     const d = await r.json();
-    if (d.ok && d.user) { currentUser = d.user; updateAuthUI(); }
+    if (d.ok && d.user) { currentUser = d.user; updateAuthUI(); loadFavorites(); }
   } catch (e) {}
 }
 
@@ -870,7 +918,7 @@ async function authVerify() {
     const d = await r.json();
     if (d.ok) {
       if (d.needsName) { document.getElementById('auth-step-otp').style.display = 'none'; document.getElementById('auth-step-role').style.display = 'block'; }
-      else { currentUser = d.user; updateAuthUI(); closeAuth(); }
+      else { currentUser = d.user; updateAuthUI(); loadFavorites(); closeAuth(); }
     } else { showAuthError('auth-error-otp', d.error || 'Invalid code.'); btn.disabled = false; btn.textContent = 'Verify'; }
   } catch (e) { showAuthError('auth-error-otp', 'Network error.'); btn.disabled = false; btn.textContent = 'Verify'; }
 }
@@ -893,7 +941,7 @@ async function authComplete() {
   try {
     const r = await fetch(BASE + '/api/auth/complete', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: sentPhone, name, email, role: selectedRole }) });
     const d = await r.json();
-    if (d.ok) { currentUser = d.user; updateAuthUI(); closeAuth(); }
+    if (d.ok) { currentUser = d.user; updateAuthUI(); loadFavorites(); closeAuth(); }
     else { showAuthError('auth-error-name', d.error || 'Failed.'); }
   } catch (e) { showAuthError('auth-error-name', 'Network error.'); }
 }
@@ -1043,7 +1091,7 @@ function renderProfileBody(el, products) {
   const email = el.email || meta.email || '';
   const orderUrl = el.externalOrderUrl || website;
 
-  let html = `<h2 class="profile-name">${escHtml(el.title)}</h2>`;
+  let html = `<div class="profile-header-row"><h2 class="profile-name">${escHtml(el.title)}</h2>${heartBtn(el.id)}</div>`;
   if (cuisine) html += `<div class="profile-cuisine">${escHtml(cuisine)}</div>`;
   if (address) html += `<div class="profile-address">${escHtml(address)}</div>`;
   if (tags.length) html += `<div class="profile-tags">${tags.map(t => `<span class="profile-tag">${escHtml(t)}</span>`).join('')}</div>`;

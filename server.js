@@ -168,12 +168,234 @@ ${order.deliveredAt ? `<div class="delivered-time">Delivered ${new Date(order.de
   res.send(html);
 });
 
+
+// ── Buyer Profile Renderer ──────────────────────────────────────────────────
+function renderBuyerProfile(req, res, user) {
+  const esc = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const base = getBase(req);
+  const displayName = esc(user.profile?.displayName || user.name || 'Kitse Member');
+  const bio = esc(user.profile?.bio || '');
+  const photo = (user.profile?.photos && user.profile.photos.length > 0) ? user.profile.photos[0] : '';
+  const memberSince = user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) : '';
+  const neighborhood = esc(user.neighborhood || user.profile?.location?.address || '');
+
+  // Get user's order history (count only, no sensitive data)
+  const userOrders = orders.orders.filter(o => o.buyerId === user.id);
+  const orderCount = userOrders.length;
+
+  // Get user's ratings given
+  const userRatings = ratings.ratings.filter(r => r.buyerId === user.id);
+
+  const html = `<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${displayName} — Kitse</title>
+<meta name="description" content="${displayName} on Kitse">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+${baseScriptForReq(req)}<style>
+:root {
+  --cream: #F5F1E8; --ink: #1A1A1A; --olive: #2F3A2F;
+  --terracotta: #C46A3C; --terracotta-light: #D4845A;
+  --warm-gray: #8A8577; --light-border: rgba(47,58,47,0.12);
+  --card-bg: #FDFBF7; --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 28px; border-bottom: 1px solid var(--light-border); }
+.nav-logo { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-link { color: var(--warm-gray); text-decoration: none; font-size: 14px; font-weight: 500; }
+.nav-link:hover { color: var(--ink); }
+.nav-cta { background: var(--terracotta); color: #fff; padding: 10px 20px; border-radius: 100px; text-decoration: none; font-size: 13px; font-weight: 600; }
+
+.profile-container { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+.profile-header { text-align: center; margin-bottom: 40px; }
+.profile-avatar {
+  width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 20px;
+  background: var(--olive); display: flex; align-items: center; justify-content: center;
+  font-size: 48px; color: #fff; font-family: var(--serif); font-weight: 700;
+  overflow: hidden;
+}
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile-name { font-family: var(--serif); font-size: 32px; font-weight: 700; margin-bottom: 6px; }
+.profile-location { color: var(--warm-gray); font-size: 14px; margin-bottom: 4px; }
+.profile-member { color: var(--warm-gray); font-size: 13px; }
+
+.profile-bio { text-align: center; color: var(--ink); font-size: 15px; line-height: 1.7; margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+.stats-row { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; padding: 24px 0; border-top: 1px solid var(--light-border); border-bottom: 1px solid var(--light-border); }
+.stat { text-align: center; }
+.stat-num { font-family: var(--serif); font-size: 28px; font-weight: 700; }
+.stat-label { color: var(--warm-gray); font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+
+.profile-section { margin-bottom: 32px; }
+.section-title { font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+
+.edit-section { text-align: center; margin-top: 32px; }
+.edit-btn {
+  display: inline-block; padding: 14px 32px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--light-border);
+  background: transparent; color: var(--ink); font-family: var(--sans);
+  text-decoration: none; transition: all 0.2s;
+}
+.edit-btn:hover { border-color: var(--ink); }
+.cta-btn {
+  display: inline-block; padding: 14px 32px; border-radius: 100px;
+  background: var(--terracotta); color: #fff; font-size: 14px; font-weight: 600;
+  text-decoration: none; font-family: var(--sans); transition: all 0.2s; margin-left: 12px;
+}
+.cta-btn:hover { background: var(--terracotta-light); transform: translateY(-1px); }
+
+/* Edit profile form */
+.edit-overlay { display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px; }
+.edit-overlay.open { display:flex; }
+.edit-card { background:var(--cream);border-radius:20px;padding:36px 32px;max-width:480px;width:100%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-height:90vh;overflow-y:auto; }
+.edit-close { position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:transparent;font-size:20px;cursor:pointer;color:var(--warm-gray); }
+.edit-close:hover { background:rgba(47,58,47,0.08);color:var(--ink); }
+.edit-title { font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:20px; }
+.edit-label { font-size:13px;font-weight:600;color:var(--warm-gray);margin-bottom:6px;display:block; }
+.edit-input { display:block;width:100%;padding:12px 14px;border:1.5px solid var(--light-border);border-radius:10px;font-size:14px;font-family:var(--sans);background:#fff;margin-bottom:16px;outline:none; }
+.edit-input:focus { border-color:var(--terracotta); }
+textarea.edit-input { min-height:80px;resize:vertical; }
+.edit-save { display:block;width:100%;padding:14px;border-radius:100px;border:none;background:var(--terracotta);color:#fff;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer; }
+.edit-save:hover { background:var(--terracotta-light); }
+.edit-photo-row { display:flex;align-items:center;gap:16px;margin-bottom:16px; }
+.edit-photo-preview { width:64px;height:64px;border-radius:50%;background:var(--olive);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-family:var(--serif);font-weight:700; }
+.edit-photo-preview img { width:100%;height:100%;object-fit:cover; }
+
+.footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--light-border); margin-top: 60px; }
+.footer-brand { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.footer-tagline { color: var(--warm-gray); font-size: 13px; }
+
+@media(max-width:600px) {
+  .profile-name { font-size: 26px; }
+  .stats-row { gap: 24px; }
+  .stat-num { font-size: 22px; }
+  .profile-container { padding: 32px 16px 60px; }
+}
+</style></head><body>
+<nav class="nav">
+  <a href="/" class="nav-logo">Kitse</a>
+  <div class="nav-links">
+    <a href="/map" class="nav-link">Explore</a>
+    <a href="/join" class="nav-link">Become a chef</a>
+    <a href="/map" class="nav-cta">Discover chefs</a>
+  </div>
+</nav>
+
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="profile-avatar" id="avatarDisplay">
+      ${photo ? `<img src="${esc(photo)}" alt="${displayName}">` : displayName.charAt(0).toUpperCase()}
+    </div>
+    <div class="profile-name" id="nameDisplay">${displayName}</div>
+    ${neighborhood ? `<div class="profile-location">${neighborhood}</div>` : ''}
+    ${memberSince ? `<div class="profile-member">Member since ${memberSince}</div>` : ''}
+  </div>
+
+  ${bio ? `<div class="profile-bio" id="bioDisplay">${bio}</div>` : ''}
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">${orderCount}</div><div class="stat-label">Orders</div></div>
+    <div class="stat"><div class="stat-num">${userRatings.length}</div><div class="stat-label">Reviews</div></div>
+  </div>
+
+  <div class="edit-section">
+    <button class="edit-btn" onclick="document.getElementById('edit-overlay').classList.add('open')">Edit Profile</button>
+    <a href="/map" class="cta-btn">Discover Chefs</a>
+  </div>
+</div>
+
+<!-- Edit Profile Overlay -->
+<div id="edit-overlay" class="edit-overlay">
+  <div class="edit-card">
+    <button class="edit-close" onclick="document.getElementById('edit-overlay').classList.remove('open')">&times;</button>
+    <div class="edit-title">Edit Profile</div>
+    <label class="edit-label">Display Name</label>
+    <input type="text" class="edit-input" id="editName" value="${displayName}">
+    <label class="edit-label">Bio</label>
+    <textarea class="edit-input" id="editBio" placeholder="Tell chefs about yourself...">${bio}</textarea>
+    <label class="edit-label">Neighborhood</label>
+    <input type="text" class="edit-input" id="editNeighborhood" value="${neighborhood}" placeholder="e.g. Silver Lake, LA">
+    <label class="edit-label">Profile Photo</label>
+    <div class="edit-photo-row">
+      <div class="edit-photo-preview" id="editPhotoPreview">
+        ${photo ? `<img src="${esc(photo)}" alt="">` : displayName.charAt(0).toUpperCase()}
+      </div>
+      <input type="file" accept="image/*" id="editPhotoInput" onchange="previewPhoto(this)">
+    </div>
+    <button class="edit-save" onclick="saveProfile()">Save Changes</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Kitse</div>
+  <div class="footer-tagline">Eat beautifully.</div>
+</footer>
+
+<script>
+const BASE = window.__BASE || '';
+const USER_ID = '${user.id}';
+
+function previewPhoto(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('editPhotoPreview').innerHTML = '<img src="' + e.target.result + '" alt="">';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+async function saveProfile() {
+  const name = document.getElementById('editName').value.trim();
+  const bio = document.getElementById('editBio').value.trim();
+  const neighborhood = document.getElementById('editNeighborhood').value.trim();
+  const photoInput = document.getElementById('editPhotoInput');
+
+  // Upload photo first if selected
+  if (photoInput.files && photoInput.files[0]) {
+    const fd = new FormData();
+    fd.append('photo', photoInput.files[0]);
+    try {
+      const upRes = await fetch(BASE + '/api/profiles/photos', { method: 'POST', body: fd, credentials: 'include' });
+      const upData = await upRes.json();
+      if (!upData.ok) console.error('Upload failed:', upData.error);
+    } catch(e) { console.error('Upload failed:', e); }
+  }
+
+  try {
+    const res = await fetch(BASE + '/api/profiles', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ displayName: name, bio, neighborhood })
+    });
+    const d = await res.json();
+    if (d.ok) {
+      document.getElementById('edit-overlay').classList.remove('open');
+      location.reload();
+    } else { alert(d.error || 'Failed to save.'); }
+  } catch(e) { alert('Network error.'); }
+}
+</script>
+</body></html>`;
+
+  res.send(html);
+}
+
 app.get('/profile', (req, res) => res.redirect(getBase(req) + '/map'));
 app.get('/profile/:id', (req, res) => {
   const id = req.params.id;
   let el = elements.elements.find(e => e.ownerId === id && e.active !== false);
   if (!el) el = elements.elements.find(e => e.id === id && e.active !== false);
-  if (!el) return res.status(404).send('<h1>Not Found</h1>');
+  if (!el) {
+    // Check if it's a buyer/user profile
+    const buyerUser = users.users.find(u => u.id === id);
+    if (buyerUser) return renderBuyerProfile(req, res, buyerUser);
+    return res.status(404).send('<h1>Not Found</h1>');
+  }
 
   const userId = (el.metadata && el.metadata.userId) || el.ownerId;
   const elProducts = products.products.filter(p => p.sellerId === userId && p.available !== false);
@@ -1439,11 +1661,12 @@ app.put('/api/profiles', (req, res) => {
 
   if (!user.profile) user.profile = { displayName: '', bio: '', photos: [], location: null };
 
-  const { displayName, bio, location, cuisineType } = req.body;
+  const { displayName, bio, location, cuisineType, neighborhood } = req.body;
   if (displayName !== undefined) user.profile.displayName = String(displayName).slice(0, 100);
   if (bio !== undefined) user.profile.bio = String(bio).slice(0, 1000);
   if (location !== undefined) user.profile.location = location;
   if (cuisineType !== undefined) user.profile.cuisineType = String(cuisineType).slice(0, 100);
+  if (neighborhood !== undefined) user.neighborhood = String(neighborhood).slice(0, 100);
 
   // Auto-create/update map element when location is set
   if (user.profile.location && user.profile.location.lat && user.profile.location.lng) {

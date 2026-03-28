@@ -667,6 +667,51 @@ async function init() {
   initMap();
 }
 
+
+// ── Auto-zoom to ensure minimum visible sellers ──
+const MIN_VISIBLE_SELLERS = 5;
+let allSellerCoords = []; // cached [{lng, lat}] of all sellers
+
+async function fetchAllSellerCoords() {
+  try {
+    const r = await fetch(BASE + '/api/elements');
+    const d = await r.json();
+    if (d.ok) allSellerCoords = d.elements.map(e => ({ lng: e.lng, lat: e.lat }));
+  } catch(e) {}
+}
+
+function countSellersInView() {
+  if (!map) return 0;
+  const b = map.getBounds();
+  return allSellerCoords.filter(c =>
+    c.lat >= b.getSouth() && c.lat <= b.getNorth() &&
+    c.lng >= b.getWest() && c.lng <= b.getEast()
+  ).length;
+}
+
+function ensureMinSellers() {
+  if (allSellerCoords.length === 0) return;
+  const visible = countSellersInView();
+  if (visible >= MIN_VISIBLE_SELLERS) return;
+
+  // Sort all sellers by distance from current map center
+  const center = map.getCenter();
+  const sorted = allSellerCoords.slice().sort((a, b) => {
+    const dA = (a.lng - center.lng) ** 2 + (a.lat - center.lat) ** 2;
+    const dB = (b.lng - center.lng) ** 2 + (b.lat - center.lat) ** 2;
+    return dA - dB;
+  });
+
+  // Take the closest N sellers and fit bounds to include them
+  const closest = sorted.slice(0, MIN_VISIBLE_SELLERS);
+  const lngs = closest.map(c => c.lng);
+  const lats = closest.map(c => c.lat);
+  const sw = [Math.min(...lngs), Math.min(...lats)];
+  const ne = [Math.max(...lngs), Math.max(...lats)];
+
+  map.fitBounds([sw, ne], { padding: 60, maxZoom: 14, duration: 800 });
+}
+
 // ── Map ──
 function initMap() {
   map = new maplibregl.Map({
@@ -679,7 +724,8 @@ function initMap() {
 
   map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
 
-  map.on('load', () => {
+  map.on('load', async () => {
+    await fetchAllSellerCoords();
     loadElements();
     locateUser();
   });
@@ -696,21 +742,23 @@ function initMap() {
 
 // ── Geolocation ──
 function locateUser() {
-  if (!navigator.geolocation) return;
+  if (!navigator.geolocation) { ensureMinSellers(); return; }
   const btn = document.getElementById('locate-btn');
   btn.classList.add('locating');
   navigator.geolocation.getCurrentPosition(
     async (pos) => {
       btn.classList.remove('locating');
       const { latitude: lat, longitude: lng } = pos.coords;
-      map.flyTo({ center: [lng, lat], zoom: 15 });
+      map.flyTo({ center: [lng, lat], zoom: 13 });
+      // After fly completes, ensure enough sellers are visible
+      map.once('moveend', () => { setTimeout(() => ensureMinSellers(), 200); });
       try {
         const r = await fetch(BASE + '/api/elements/seed-nearby', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lat, lng }) });
         const d = await r.json();
         if (d.seeded > 0) setTimeout(loadElements, 500);
       } catch (e) {}
     },
-    () => { btn.classList.remove('locating'); },
+    () => { btn.classList.remove('locating'); ensureMinSellers(); },
     { enableHighAccuracy: true, timeout: 10000 }
   );
 }

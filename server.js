@@ -264,17 +264,22 @@ textarea.edit-input { min-height:80px;resize:vertical; }
 .edit-photo-preview { width:64px;height:64px;border-radius:50%;background:var(--olive);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-family:var(--serif);font-weight:700; }
 .edit-photo-preview img { width:100%;height:100%;object-fit:cover; }
 
-.favorites-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px; }
-.fav-card { background:var(--card-bg);border-radius:16px;overflow:hidden;border:1px solid var(--light-border);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;position:relative; }
-.fav-card:hover { transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.08); }
-.fav-card-img { width:100%;aspect-ratio:1;object-fit:cover;background:var(--olive); }
-.fav-card-body { padding:12px; }
-.fav-card-name { font-family:var(--serif);font-size:14px;font-weight:600;margin-bottom:2px; }
-.fav-card-sub { font-size:12px;color:var(--warm-gray); }
-.fav-remove { position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,0.5);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s; }
-.fav-card:hover .fav-remove { opacity:1; }
-.fav-remove svg { width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2; }
-.fav-empty { text-align:center;color:var(--warm-gray);padding:24px;font-size:14px; }
+.favorites-list { display:flex;flex-direction:column;gap:0; }
+.fav-item { display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--light-border);cursor:pointer;transition:background 0.15s;position:relative; }
+.fav-item:first-child { border-top:1px solid var(--light-border); }
+.fav-item:hover { background:rgba(47,58,47,0.03); }
+.fav-item-img { width:56px;height:56px;border-radius:14px;object-fit:cover;background:var(--olive);flex-shrink:0; }
+.fav-item-info { flex:1;min-width:0; }
+.fav-item-name { font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.fav-item-sub { font-size:13px;color:var(--warm-gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.fav-item-arrow { color:var(--warm-gray);flex-shrink:0;transition:transform 0.2s; }
+.fav-item:hover .fav-item-arrow { transform:translateX(3px);color:var(--terracotta); }
+.fav-remove { width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid var(--light-border);cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:all 0.2s;flex-shrink:0; }
+.fav-item:hover .fav-remove { opacity:1; }
+.fav-remove:hover { background:rgba(196,106,60,0.1);border-color:var(--terracotta); }
+.fav-remove svg { width:14px;height:14px;stroke:var(--warm-gray);fill:none;stroke-width:2; }
+.fav-remove:hover svg { stroke:var(--terracotta); }
+.fav-empty { text-align:center;color:var(--warm-gray);padding:32px 16px;font-size:14px;line-height:1.6; }
 
 .footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--light-border); margin-top: 60px; }
 .footer-brand { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
@@ -316,7 +321,7 @@ textarea.edit-input { min-height:80px;resize:vertical; }
 
   <div class="profile-section" id="favoritesSection">
     <div class="section-title">Favorite Chefs</div>
-    <div id="favoritesList" class="favorites-grid"></div>
+    <div id="favoritesList" class="favorites-list"></div>
   </div>
 
   <div class="edit-section">
@@ -380,10 +385,12 @@ async function loadFavorites() {
     document.getElementById('favCount').textContent = d.favorites.length;
     list.innerHTML = d.favorites.map(f => {
       const img = f.imageUrl || (BASE + '/placeholder-chef.svg');
-      return '<div class="fav-card" onclick="window.location.href=BASE+\'/profile/\'+\'' + f.id + '\'">' +
-        '<button class="fav-remove" onclick="event.stopPropagation();removeFav(\'' + f.id + '\',this)" title="Remove favorite"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>' +
-        '<img class="fav-card-img" src="' + img + '" alt="" onerror="this.onerror=null;this.src=BASE+\'/placeholder-chef.svg\';">' +
-        '<div class="fav-card-body"><div class="fav-card-name">' + (f.title || 'Chef') + '</div><div class="fav-card-sub">' + (f.cuisineType || f.subtitle || '') + '</div></div></div>';
+      return '<div class="fav-item" onclick="window.location.href=BASE+\'/profile/\'+\'' + f.id + '\'">' +
+        '<img class="fav-item-img" src="' + img + '" alt="" onerror="this.onerror=null;this.src=BASE+\'/placeholder-chef.svg\';">' +
+        '<div class="fav-item-info"><div class="fav-item-name">' + (f.title || 'Chef') + '</div><div class="fav-item-sub">' + (f.cuisineType || f.subtitle || '') + '</div></div>' +
+        '<button class="fav-remove" onclick="event.stopPropagation();removeFav(\'' + f.id + '\',this)" title="Remove"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg></button>' +
+        '<svg class="fav-item-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>' +
+        '</div>';
     }).join('');
   } catch(e) { console.error(e); }
 }
@@ -393,8 +400,8 @@ async function removeFav(elId, btn) {
     const res = await fetch(BASE + '/api/favorites/' + elId, { method: 'DELETE', credentials: 'include' });
     const d = await res.json();
     if (d.ok) {
-      const card = btn.closest('.fav-card');
-      if (card) { card.style.opacity = '0'; card.style.transform = 'scale(0.8)'; card.style.transition = 'all 0.3s'; setTimeout(() => { card.remove(); loadFavorites(); }, 300); }
+      const item = btn.closest('.fav-item');
+      if (item) { item.style.opacity = '0'; item.style.height = item.offsetHeight + 'px'; item.style.transition = 'all 0.3s'; setTimeout(() => { item.style.height = '0'; item.style.padding = '0'; item.style.margin = '0'; item.style.borderWidth = '0'; }, 10); setTimeout(() => { item.remove(); loadFavorites(); }, 350); }
     }
   } catch(e) { console.error(e); }
 }
@@ -1976,6 +1983,139 @@ app.delete('/api/products/:id', (req, res) => {
 });
 
 // ═════════════════════════════════════════════════════════════════════════════
+//  SELLER SCHEDULING
+// ═════════════════════════════════════════════════════════════════════════════
+
+// Helper: check if a seller is currently accepting orders
+function isSellerAcceptingOrders(seller) {
+  const sched = seller.schedule;
+  if (!sched) return true; // no schedule set = always open
+  if (sched.acceptingOrders === false) return false; // manual override off
+
+  const now = new Date();
+  const todayStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
+
+  // Check blackout dates
+  if (sched.blackoutDates && sched.blackoutDates.length) {
+    if (sched.blackoutDates.includes(todayStr)) return false;
+  }
+
+  // Check weekly hours
+  const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+  const dayName = days[now.getDay()];
+  if (sched.weeklyHours && sched.weeklyHours[dayName]) {
+    const dayConfig = sched.weeklyHours[dayName];
+    if (!dayConfig.open) return false;
+    // If time windows are set, check them
+    if (dayConfig.start && dayConfig.end) {
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const [sh, sm] = dayConfig.start.split(':').map(Number);
+      const [eh, em] = dayConfig.end.split(':').map(Number);
+      const startMin = sh * 60 + sm;
+      const endMin = eh * 60 + em;
+      if (currentMinutes < startMin || currentMinutes > endMin) return false;
+    }
+  }
+
+  return true;
+}
+
+// GET /api/schedule — get current seller's schedule
+app.get('/api/schedule', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const defaultWeekly = {};
+  ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].forEach(d => {
+    defaultWeekly[d] = { open: true, start: '08:00', end: '20:00' };
+  });
+
+  const sched = user.schedule || {
+    acceptingOrders: true,
+    weeklyHours: defaultWeekly,
+    blackoutDates: [],
+    leadTimeDays: 0,
+    notes: ''
+  };
+
+  res.json({ ok: true, schedule: sched });
+});
+
+// PUT /api/schedule — update seller schedule
+app.put('/api/schedule', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const { acceptingOrders, weeklyHours, blackoutDates, leadTimeDays, notes } = req.body;
+
+  if (!user.schedule) {
+    const defaultWeekly = {};
+    ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'].forEach(d => {
+      defaultWeekly[d] = { open: true, start: '08:00', end: '20:00' };
+    });
+    user.schedule = { acceptingOrders: true, weeklyHours: defaultWeekly, blackoutDates: [], leadTimeDays: 0, notes: '' };
+  }
+
+  if (acceptingOrders !== undefined) user.schedule.acceptingOrders = !!acceptingOrders;
+  if (weeklyHours !== undefined) {
+    // Validate and set each day
+    const days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+    days.forEach(d => {
+      if (weeklyHours[d]) {
+        if (!user.schedule.weeklyHours) user.schedule.weeklyHours = {};
+        user.schedule.weeklyHours[d] = {
+          open: !!weeklyHours[d].open,
+          start: String(weeklyHours[d].start || '08:00').slice(0, 5),
+          end: String(weeklyHours[d].end || '20:00').slice(0, 5)
+        };
+      }
+    });
+  }
+  if (blackoutDates !== undefined) {
+    // Array of YYYY-MM-DD strings
+    user.schedule.blackoutDates = (Array.isArray(blackoutDates) ? blackoutDates : [])
+      .filter(d => /^\d{4}-\d{2}-\d{2}$/.test(d))
+      .slice(0, 365);
+  }
+  if (leadTimeDays !== undefined) user.schedule.leadTimeDays = Math.max(0, Math.min(30, parseInt(leadTimeDays) || 0));
+  if (notes !== undefined) user.schedule.notes = String(notes).slice(0, 500);
+
+  saveData('users', users);
+  res.json({ ok: true, schedule: user.schedule });
+});
+
+// POST /api/schedule/blackout — add a blackout date
+app.post('/api/schedule/blackout', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  const { date } = req.body;
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return res.status(400).json({ ok: false, error: 'Invalid date format. Use YYYY-MM-DD.' });
+
+  if (!user.schedule) user.schedule = { acceptingOrders: true, weeklyHours: {}, blackoutDates: [], leadTimeDays: 0, notes: '' };
+  if (!user.schedule.blackoutDates) user.schedule.blackoutDates = [];
+  if (!user.schedule.blackoutDates.includes(date)) {
+    user.schedule.blackoutDates.push(date);
+    user.schedule.blackoutDates.sort();
+  }
+
+  saveData('users', users);
+  res.json({ ok: true, blackoutDates: user.schedule.blackoutDates });
+});
+
+// DELETE /api/schedule/blackout/:date — remove a blackout date
+app.delete('/api/schedule/blackout/:date', (req, res) => {
+  const user = getSession(req);
+  if (!user) return res.status(401).json({ ok: false, error: 'Login required.' });
+
+  if (!user.schedule || !user.schedule.blackoutDates) return res.json({ ok: true, blackoutDates: [] });
+  user.schedule.blackoutDates = user.schedule.blackoutDates.filter(d => d !== req.params.date);
+
+  saveData('users', users);
+  res.json({ ok: true, blackoutDates: user.schedule.blackoutDates });
+});
+
+// ═════════════════════════════════════════════════════════════════════════════
 //  ORDERS
 // ═════════════════════════════════════════════════════════════════════════════
 
@@ -1990,9 +2130,10 @@ app.post('/api/orders', async (req, res) => {
   if (product.sellerId === user.id) return res.status(400).json({ ok: false, error: "Can't order your own product." });
   if (!deliveryAddress) return res.status(400).json({ ok: false, error: 'Delivery address required.' });
 
-  // Check if seller is suspended
+  // Check if seller is suspended or not accepting orders
   const seller = users.users.find(u => u.id === product.sellerId);
   if (seller && seller.status === 'suspended') return res.status(400).json({ ok: false, error: 'This seller is currently unavailable.' });
+  if (seller && !isSellerAcceptingOrders(seller)) return res.status(400).json({ ok: false, error: 'This seller is not currently accepting orders. Please check back later.' });
 
   const platformFee = Math.round(product.price * (platformSettings.commissionRate / 100));
   const sellerPayout = product.price - platformFee;

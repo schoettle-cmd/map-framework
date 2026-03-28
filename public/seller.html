@@ -99,6 +99,37 @@
     .section-panel { display: none; }
     .section-panel.active { display: block; }
 
+    /* ── Schedule Toggle ── */
+    .sched-toggle { position:relative;display:inline-block;width:52px;height:28px;flex-shrink:0; }
+    .sched-toggle input { opacity:0;width:0;height:0; }
+    .sched-toggle-slider { position:absolute;cursor:pointer;inset:0;background:#333;border-radius:28px;transition:0.3s; }
+    .sched-toggle-slider::before { content:'';position:absolute;height:22px;width:22px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:0.3s; }
+    .sched-toggle input:checked + .sched-toggle-slider { background:var(--accent); }
+    .sched-toggle input:checked + .sched-toggle-slider::before { transform:translateX(24px); }
+
+    /* ── Weekly Hours Row ── */
+    .hours-row { display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px; }
+    .hours-day { width:80px;font-size:14px;font-weight:700;text-transform:capitalize; }
+    .hours-toggle { flex-shrink:0; }
+    .hours-times { display:flex;align-items:center;gap:8px;flex:1; }
+    .hours-times input[type=time] { background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:6px 10px;font-size:13px;font-family:inherit; }
+    .hours-times .hours-sep { color:var(--muted);font-size:13px; }
+    .hours-closed { color:var(--muted);font-size:13px;font-style:italic; }
+
+    /* ── Calendar ── */
+    .cal-header { font-size:12px;font-weight:700;color:var(--muted);padding:6px 0; }
+    .cal-day { padding:8px 4px;border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.15s;position:relative; }
+    .cal-day:hover { background:rgba(255,255,255,0.06); }
+    .cal-day.today { font-weight:800;color:var(--accent-light); }
+    .cal-day.blackout { background:var(--accent);color:#fff;font-weight:700;border-radius:8px; }
+    .cal-day.past { opacity:0.3;cursor:default; }
+    .cal-day.empty { cursor:default; }
+
+    /* ── Blackout Tags ── */
+    .blackout-tag { display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:rgba(234,88,12,0.12);border:1px solid rgba(234,88,12,0.25);border-radius:100px;font-size:13px;font-weight:600;color:var(--accent-light); }
+    .blackout-tag-remove { width:18px;height:18px;border-radius:50%;border:none;background:rgba(234,88,12,0.2);color:var(--accent-light);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;line-height:1;padding:0; }
+    .blackout-tag-remove:hover { background:var(--accent);color:#fff; }
+
     /* ── Stat Cards ── */
     .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
     .stat-card {
@@ -547,6 +578,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           Payouts
         </button>
+        <button class="sidebar-link" data-section="schedule" onclick="switchSection('schedule')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Schedule
+        </button>
         <button class="sidebar-link" data-section="ratings" onclick="switchSection('ratings')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           Ratings
@@ -667,6 +702,89 @@
 
             <button class="form-btn primary" onclick="saveProfile()">Save Profile</button>
           </div>
+        </div>
+
+        <!-- ═══════════ SCHEDULE ═══════════ -->
+        <div class="section-panel" id="panel-schedule">
+
+          <!-- Accepting Orders Toggle -->
+          <div class="form-section" style="margin-bottom:24px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:var(--card);border:1px solid var(--border);border-radius:14px">
+              <div>
+                <div style="font-size:16px;font-weight:700;margin-bottom:4px">Accepting Orders</div>
+                <div style="font-size:13px;color:var(--muted)">When off, buyers cannot place new orders</div>
+              </div>
+              <label class="sched-toggle">
+                <input type="checkbox" id="sched-accepting" onchange="saveScheduleField('acceptingOrders', this.checked)">
+                <span class="sched-toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Lead Time -->
+          <div class="form-section" style="margin-bottom:24px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:var(--card);border:1px solid var(--border);border-radius:14px">
+              <div>
+                <div style="font-size:16px;font-weight:700;margin-bottom:4px">Lead Time</div>
+                <div style="font-size:13px;color:var(--muted)">Minimum days notice for orders</div>
+              </div>
+              <select class="form-input" id="sched-lead-time" style="width:auto;min-width:120px" onchange="saveScheduleField('leadTimeDays', parseInt(this.value))">
+                <option value="0">Same day</option>
+                <option value="1">1 day</option>
+                <option value="2">2 days</option>
+                <option value="3">3 days</option>
+                <option value="5">5 days</option>
+                <option value="7">1 week</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Weekly Hours -->
+          <div class="form-section" style="margin-bottom:24px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">Weekly Hours</h3>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Set when you're open to receive orders each day</div>
+            <div id="weekly-hours-grid" style="display:flex;flex-direction:column;gap:8px"></div>
+          </div>
+
+          <!-- Blackout Dates -->
+          <div class="form-section" style="margin-bottom:24px">
+            <h3 style="font-size:18px;font-weight:800;margin-bottom:16px">Blackout Dates</h3>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:16px">Block specific dates when you won't accept orders (vacations, holidays, etc.)</div>
+
+            <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:flex-end">
+              <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">Start Date</label>
+                <input type="date" class="form-input" id="blackout-start" style="width:180px">
+              </div>
+              <div class="form-group" style="margin-bottom:0">
+                <label class="form-label">End Date <span style="color:var(--muted);font-weight:400">(optional, for ranges)</span></label>
+                <input type="date" class="form-input" id="blackout-end" style="width:180px">
+              </div>
+              <button class="form-btn primary" onclick="addBlackoutDates()" style="height:44px;padding:0 20px">Add Blackout</button>
+            </div>
+
+            <!-- Blackout Calendar View -->
+            <div id="blackout-calendar" style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                <button class="topbar-btn secondary" onclick="changeCalMonth(-1)" style="padding:6px 12px">&larr;</button>
+                <div id="cal-month-label" style="font-size:16px;font-weight:700"></div>
+                <button class="topbar-btn secondary" onclick="changeCalMonth(1)" style="padding:6px 12px">&rarr;</button>
+              </div>
+              <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center"></div>
+            </div>
+
+            <!-- Blackout List -->
+            <div id="blackout-list" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+          </div>
+
+          <!-- Schedule Notes -->
+          <div class="form-section">
+            <div class="form-group">
+              <label class="form-label">Schedule Notes <span style="color:var(--muted);font-weight:400">(visible to buyers)</span></label>
+              <textarea class="form-input" id="sched-notes" placeholder="e.g. I bake on Tuesdays and Fridays. Orders placed by Monday will ship that week." rows="3" onchange="saveScheduleField('notes', this.value)"></textarea>
+            </div>
+          </div>
+
         </div>
 
         <!-- ═══════════ PAYOUTS ═══════════ -->
@@ -1013,6 +1131,7 @@ const sectionTitles = {
   products: 'Products',
   orders: 'Orders',
   profile: 'Profile & Location',
+  schedule: 'Schedule & Availability',
   payouts: 'Tax & Payouts',
   ratings: 'Ratings & Reviews'
 };
@@ -1047,6 +1166,7 @@ function switchSection(section) {
   if (section === 'products') loadProducts();
   if (section === 'orders') loadOrders();
   if (section === 'profile') loadProfile();
+  if (section === 'schedule') loadSchedule();
   if (section === 'payouts') loadPayouts();
   if (section === 'ratings') loadRatings();
 }
@@ -1101,6 +1221,239 @@ async function loadRecentOrders() {
   } catch (e) {
     container.innerHTML = '<div class="empty-state"><div class="empty-state-text">Failed to load orders.</div></div>';
   }
+}
+
+// ══════════════════════════════════════════
+//  SCHEDULE & AVAILABILITY
+// ══════════════════════════════════════════
+let scheduleData = null;
+let calMonth = new Date().getMonth();
+let calYear = new Date().getFullYear();
+
+async function loadSchedule() {
+  try {
+    const r = await fetch('/api/schedule');
+    const d = await r.json();
+    if (d.ok) {
+      scheduleData = d.schedule;
+      renderSchedule();
+    }
+  } catch (e) { console.error('Failed to load schedule', e); }
+}
+
+function renderSchedule() {
+  if (!scheduleData) return;
+
+  // Accepting orders toggle
+  document.getElementById('sched-accepting').checked = scheduleData.acceptingOrders !== false;
+
+  // Lead time
+  document.getElementById('sched-lead-time').value = scheduleData.leadTimeDays || 0;
+
+  // Notes
+  document.getElementById('sched-notes').value = scheduleData.notes || '';
+
+  // Weekly hours
+  renderWeeklyHours();
+
+  // Calendar
+  renderCalendar();
+
+  // Blackout tags
+  renderBlackoutTags();
+}
+
+function renderWeeklyHours() {
+  const days = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+  const grid = document.getElementById('weekly-hours-grid');
+  let html = '';
+  days.forEach(day => {
+    const cfg = (scheduleData.weeklyHours && scheduleData.weeklyHours[day]) || { open: true, start: '08:00', end: '20:00' };
+    const isOpen = cfg.open !== false;
+    html += '<div class="hours-row">';
+    html += '<div class="hours-day">' + day + '</div>';
+    html += '<label class="sched-toggle hours-toggle"><input type="checkbox" ' + (isOpen ? 'checked' : '') + ' onchange="toggleDay(\'' + day + '\', this.checked)"><span class="sched-toggle-slider"></span></label>';
+    if (isOpen) {
+      html += '<div class="hours-times">';
+      html += '<input type="time" value="' + (cfg.start || '08:00') + '" onchange="updateDayTime(\'' + day + '\', \'start\', this.value)">';
+      html += '<span class="hours-sep">to</span>';
+      html += '<input type="time" value="' + (cfg.end || '20:00') + '" onchange="updateDayTime(\'' + day + '\', \'end\', this.value)">';
+      html += '</div>';
+    } else {
+      html += '<div class="hours-closed">Closed</div>';
+    }
+    html += '</div>';
+  });
+  grid.innerHTML = html;
+}
+
+async function toggleDay(day, open) {
+  if (!scheduleData.weeklyHours) scheduleData.weeklyHours = {};
+  if (!scheduleData.weeklyHours[day]) scheduleData.weeklyHours[day] = { open: true, start: '08:00', end: '20:00' };
+  scheduleData.weeklyHours[day].open = open;
+  renderWeeklyHours();
+  await saveSchedule({ weeklyHours: scheduleData.weeklyHours });
+}
+
+async function updateDayTime(day, field, value) {
+  if (!scheduleData.weeklyHours || !scheduleData.weeklyHours[day]) return;
+  scheduleData.weeklyHours[day][field] = value;
+  await saveSchedule({ weeklyHours: scheduleData.weeklyHours });
+}
+
+async function saveScheduleField(field, value) {
+  const body = {};
+  body[field] = value;
+  if (scheduleData) scheduleData[field] = value;
+  await saveSchedule(body);
+}
+
+async function saveSchedule(body) {
+  try {
+    await fetch('/api/schedule', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+  } catch (e) { console.error('Save schedule failed', e); }
+}
+
+// ── Calendar ──
+function renderCalendar() {
+  const label = document.getElementById('cal-month-label');
+  const grid = document.getElementById('cal-grid');
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  label.textContent = monthNames[calMonth] + ' ' + calYear;
+
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const blackouts = (scheduleData && scheduleData.blackoutDates) || [];
+
+  let html = '';
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+    html += '<div class="cal-header">' + d + '</div>';
+  });
+
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    html += '<div class="cal-day empty"></div>';
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = calYear + '-' + String(calMonth + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+    const isToday = dateStr === todayStr;
+    const isBlackout = blackouts.includes(dateStr);
+    const isPast = new Date(dateStr) < new Date(todayStr);
+    let cls = 'cal-day';
+    if (isToday) cls += ' today';
+    if (isBlackout) cls += ' blackout';
+    if (isPast) cls += ' past';
+    html += '<div class="' + cls + '" onclick="toggleCalDate(\'' + dateStr + '\',' + isPast + ')">' + d + '</div>';
+  }
+
+  grid.innerHTML = html;
+}
+
+function changeCalMonth(delta) {
+  calMonth += delta;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+async function toggleCalDate(dateStr, isPast) {
+  if (isPast) return;
+  if (!scheduleData) return;
+  if (!scheduleData.blackoutDates) scheduleData.blackoutDates = [];
+
+  if (scheduleData.blackoutDates.includes(dateStr)) {
+    // Remove
+    try {
+      const r = await fetch('/api/schedule/blackout/' + dateStr, { method: 'DELETE' });
+      const d = await r.json();
+      if (d.ok) scheduleData.blackoutDates = d.blackoutDates;
+    } catch (e) {}
+  } else {
+    // Add
+    try {
+      const r = await fetch('/api/schedule/blackout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date: dateStr })
+      });
+      const d = await r.json();
+      if (d.ok) scheduleData.blackoutDates = d.blackoutDates;
+    } catch (e) {}
+  }
+  renderCalendar();
+  renderBlackoutTags();
+}
+
+async function addBlackoutDates() {
+  const startInput = document.getElementById('blackout-start');
+  const endInput = document.getElementById('blackout-end');
+  const start = startInput.value;
+  const end = endInput.value || start;
+  if (!start) return;
+
+  // Generate date range
+  const dates = [];
+  let current = new Date(start + 'T00:00:00');
+  const endDate = new Date(end + 'T00:00:00');
+  while (current <= endDate) {
+    dates.push(current.toISOString().split('T')[0]);
+    current.setDate(current.getDate() + 1);
+  }
+
+  // Add each date
+  for (const date of dates) {
+    try {
+      const r = await fetch('/api/schedule/blackout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ date })
+      });
+      const d = await r.json();
+      if (d.ok) scheduleData.blackoutDates = d.blackoutDates;
+    } catch (e) {}
+  }
+
+  startInput.value = '';
+  endInput.value = '';
+  renderCalendar();
+  renderBlackoutTags();
+}
+
+function renderBlackoutTags() {
+  const list = document.getElementById('blackout-list');
+  const dates = (scheduleData && scheduleData.blackoutDates) || [];
+  const today = new Date().toISOString().split('T')[0];
+
+  // Only show future + today dates
+  const upcoming = dates.filter(d => d >= today).sort();
+
+  if (upcoming.length === 0) {
+    list.innerHTML = '<div style="color:var(--muted);font-size:13px">No upcoming blackout dates</div>';
+    return;
+  }
+
+  list.innerHTML = upcoming.map(d => {
+    const dt = new Date(d + 'T00:00:00');
+    const label = dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return '<div class="blackout-tag">' + label + '<button class="blackout-tag-remove" onclick="removeBlackout(\'' + d + '\')">&times;</button></div>';
+  }).join('');
+}
+
+async function removeBlackout(dateStr) {
+  try {
+    const r = await fetch('/api/schedule/blackout/' + dateStr, { method: 'DELETE' });
+    const d = await r.json();
+    if (d.ok) scheduleData.blackoutDates = d.blackoutDates;
+  } catch (e) {}
+  renderCalendar();
+  renderBlackoutTags();
 }
 
 // ══════════════════════════════════════════

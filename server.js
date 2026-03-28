@@ -2989,14 +2989,16 @@ app.post('/api/admin/login', (req, res) => {
   adminTokens.set(token, expiresMs);
   saveAdminTokens();
   const expires = new Date(expiresMs).toUTCString();
-  res.setHeader('Set-Cookie', `kinseb_admin=${token}; Path=/; Expires=${expires}; HttpOnly; SameSite=Lax`);
+  const secure = req.secure || req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
+  res.setHeader('Set-Cookie', `kinseb_admin=${token}; Path=/; Expires=${expires}; HttpOnly; SameSite=Lax${secure}`);
   res.json({ ok: true });
 });
 
 app.post('/api/admin/logout', (req, res) => {
   const cookie = (req.headers.cookie || '').split(';').find(c => c.trim().startsWith('kinseb_admin='));
   if (cookie) { adminTokens.delete(cookie.split('=')[1].trim()); saveAdminTokens(); }
-  res.setHeader('Set-Cookie', 'kinseb_admin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax');
+  const secure = req.secure || req.headers['x-forwarded-proto'] === 'https' ? '; Secure' : '';
+  res.setHeader('Set-Cookie', `kinseb_admin=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; SameSite=Lax${secure}`);
   res.json({ ok: true });
 });
 

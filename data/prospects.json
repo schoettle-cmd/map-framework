@@ -21,12 +21,13 @@
       "lng": -118.213378363668,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "burgers, cheeseburgers, smash burgers",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_728ac3de83ad868e"
+      "convertedUserId": "user_728ac3de83ad868e",
+      "type": "seller"
     },
     {
       "id": "pros_631bba86e59cd309",
@@ -49,12 +50,13 @@
       "lng": -118.116748872372,
       "cuisineType": "Mexican",
       "tags": "mexican, cafe, sweets",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_3b439cf30939c536"
+      "convertedUserId": "user_3b439cf30939c536",
+      "type": "seller"
     },
     {
       "id": "pros_555751fed65a528b",
@@ -77,12 +79,13 @@
       "lng": -118.539300930429,
       "cuisineType": "Salvadoran/Guatemalan",
       "tags": "guatemalan, comida tipica",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_bef9fe85ab80e8d2"
+      "convertedUserId": "user_bef9fe85ab80e8d2",
+      "type": "seller"
     },
     {
       "id": "pros_1cd2c00c3f110b1c",
@@ -105,12 +108,13 @@
       "lng": -118.030571869099,
       "cuisineType": "Mexican",
       "tags": "mexican, carne asada, guisados",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_0456f9e30f05fc91"
+      "convertedUserId": "user_0456f9e30f05fc91",
+      "type": "seller"
     },
     {
       "id": "pros_38e3c466ad9de44d",
@@ -138,12 +142,13 @@
       "lng": -118.243373249899,
       "cuisineType": "Other",
       "tags": "home kitchen, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:44.992Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_20eed6cddeab91e0"
+      "convertedUserId": "user_20eed6cddeab91e0",
+      "type": "seller"
     },
     {
       "id": "pros_7ffed91a1abc9f02",
@@ -166,12 +171,13 @@
       "lng": -118.208715002373,
       "cuisineType": "Filipino",
       "tags": "filipino, lechon, bbq",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_99dd0291ea746b6d"
+      "convertedUserId": "user_99dd0291ea746b6d",
+      "type": "seller"
     },
     {
       "id": "pros_b8f2d1660a10fc5d",
@@ -194,12 +200,13 @@
       "lng": -118.459717177728,
       "cuisineType": "Latin American",
       "tags": "latin, almuerzo, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_be91a234ea0d3927"
+      "convertedUserId": "user_be91a234ea0d3927",
+      "type": "seller"
     },
     {
       "id": "pros_1537afac1a0587a3",
@@ -222,12 +229,13 @@
       "lng": -118.119272822168,
       "cuisineType": "Breakfast/Brunch",
       "tags": "brunch, coffee, lunch",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_5afda509f2a4d4bb"
+      "convertedUserId": "user_5afda509f2a4d4bb",
+      "type": "seller"
     },
     {
       "id": "pros_50ab82153be4271c",
@@ -250,12 +258,13 @@
       "lng": -118.645059320526,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "grilled cheese, bar food, sandwiches",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_18e36638ff5fcb4d"
+      "convertedUserId": "user_18e36638ff5fcb4d",
+      "type": "seller"
     },
     {
       "id": "pros_87f3000978237842",
@@ -280,7 +289,7 @@
       "lng": -118.617910496729,
       "cuisineType": "Other",
       "tags": "dumplings, fusion, shawarma",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:44.992Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
@@ -288,7 +297,8 @@
       "convertedUserId": "user_22b7326c07fe0bff",
       "orderingLinks": [
         "https://www.hotplate.com/angelcitydumplings"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_cfe0e0e37873c5b5",
@@ -313,12 +323,13 @@
       "lng": -118.419160041435,
       "cuisineType": "BBQ",
       "tags": "bbq, brisket, ribs",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:44.992Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_193eb37c820c5f7e"
+      "convertedUserId": "user_193eb37c820c5f7e",
+      "type": "seller"
     },
     {
       "id": "pros_6d6761942b0b3b9e",
@@ -343,12 +354,13 @@
       "lng": -118.051212013724,
       "cuisineType": "Bakery",
       "tags": "bakery, cookies, mooncakes",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:44.992Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_21a32fcb5cddfa67"
+      "convertedUserId": "user_21a32fcb5cddfa67",
+      "type": "seller"
     },
     {
       "id": "pros_34b835c938db9ed3",
@@ -371,12 +383,13 @@
       "lng": -118.164231012288,
       "cuisineType": "Mexican",
       "tags": "mexican, antojitos, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_fe8339a90797bcc0"
+      "convertedUserId": "user_fe8339a90797bcc0",
+      "type": "seller"
     },
     {
       "id": "pros_aca6e173a60147ea",
@@ -401,7 +414,7 @@
       "lng": -118.420694461482,
       "cuisineType": "Indian/South Asian",
       "tags": "indian, north indian, south indian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:46.438Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
@@ -409,7 +422,8 @@
       "convertedUserId": "user_43df96591e75000a",
       "orderingLinks": [
         "https://arusuvaiindiancuisine.square.site/"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_4d4a616e585e6d56",
@@ -432,12 +446,13 @@
       "lng": -118.43121764934,
       "cuisineType": "BBQ",
       "tags": "asado, bbq, mexican",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.025Z",
       "createdAt": "2026-03-26T05:25:48.025Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_1c5c9a2f4e8f3eb3"
+      "convertedUserId": "user_1c5c9a2f4e8f3eb3",
+      "type": "seller"
     },
     {
       "id": "pros_0436e9d62f510188",
@@ -465,12 +480,13 @@
       "lng": -118.375530621112,
       "cuisineType": "Nigerian/West African",
       "tags": "nigerian, fusion, organic",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:46.438Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_5f8b7c6837c59eb2"
+      "convertedUserId": "user_5f8b7c6837c59eb2",
+      "type": "seller"
     },
     {
       "id": "pros_d8a2c61d9d966b51",
@@ -493,12 +509,13 @@
       "lng": -117.749772247381,
       "cuisineType": "Bakery",
       "tags": "bakery, cakes, gifts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_5156859b49d770df"
+      "convertedUserId": "user_5156859b49d770df",
+      "type": "seller"
     },
     {
       "id": "pros_bee1d03d54192343",
@@ -521,12 +538,13 @@
       "lng": -118.092284828737,
       "cuisineType": "Bakery",
       "tags": "bread, bao, asian bakery",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_65af7df883b15c64"
+      "convertedUserId": "user_65af7df883b15c64",
+      "type": "seller"
     },
     {
       "id": "pros_aff955febd4faecb",
@@ -549,12 +567,13 @@
       "lng": -118.404689008876,
       "cuisineType": "Mexican",
       "tags": "mexican, barbacoa, street food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_6879d9f96999b85e"
+      "convertedUserId": "user_6879d9f96999b85e",
+      "type": "seller"
     },
     {
       "id": "pros_f11dbe1cd69c91bd",
@@ -577,12 +596,13 @@
       "lng": -118.260610262174,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "comfort food, home dining, chef",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_eed85d69cb359757"
+      "convertedUserId": "user_eed85d69cb359757",
+      "type": "seller"
     },
     {
       "id": "pros_fa250f9709cebc16",
@@ -605,12 +625,13 @@
       "lng": -118.288461454294,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "sandwiches, wraps, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_a4fa3147b29d3d40"
+      "convertedUserId": "user_a4fa3147b29d3d40",
+      "type": "seller"
     },
     {
       "id": "pros_3dbc50190b603b15",
@@ -633,12 +654,13 @@
       "lng": -117.897042878358,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "lamb soup, chinese, halal",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_4d8e46941e3e75dc"
+      "convertedUserId": "user_4d8e46941e3e75dc",
+      "type": "seller"
     },
     {
       "id": "pros_ad5f84cc418c3ce3",
@@ -661,12 +683,13 @@
       "lng": -118.24973968596,
       "cuisineType": "Other",
       "tags": "bodega, los angeles, neighborhood",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_357df112ddfb78e7"
+      "convertedUserId": "user_357df112ddfb78e7",
+      "type": "seller"
     },
     {
       "id": "pros_2385f417abccebe1",
@@ -691,12 +714,13 @@
       "lng": -118.351806208148,
       "cuisineType": "Other",
       "tags": "italian, homemade, appetito",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:46.438Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_1b1dd74c2c6b9f09"
+      "convertedUserId": "user_1b1dd74c2c6b9f09",
+      "type": "seller"
     },
     {
       "id": "pros_f1b5de117451f2cd",
@@ -721,12 +745,13 @@
       "lng": -118.325709908713,
       "cuisineType": "Charcuterie/Boards",
       "tags": "charcuterie, grazing tables, events",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:46.438Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_cf04397e97d7642c"
+      "convertedUserId": "user_cf04397e97d7642c",
+      "type": "seller"
     },
     {
       "id": "pros_2ba60153c38e381f",
@@ -749,12 +774,13 @@
       "lng": -117.852026646686,
       "cuisineType": "Other",
       "tags": "snacks, bites, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_81b2c72050b6ebd0"
+      "convertedUserId": "user_81b2c72050b6ebd0",
+      "type": "seller"
     },
     {
       "id": "pros_3768577cde42edbb",
@@ -777,12 +803,13 @@
       "lng": -118.073657767356,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, oaxacan, latina-owned",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_9053c30957856663"
+      "convertedUserId": "user_9053c30957856663",
+      "type": "seller"
     },
     {
       "id": "pros_bce65cc92fe61d80",
@@ -812,12 +839,13 @@
       "lng": -118.536135223608,
       "cuisineType": "Seafood",
       "tags": "cajun, seafood boil, gumbo",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:48.075Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_f8af424ad828edf5"
+      "convertedUserId": "user_f8af424ad828edf5",
+      "type": "seller"
     },
     {
       "id": "pros_721b7ff0f1bf5c5b",
@@ -840,12 +868,13 @@
       "lng": -118.091838914929,
       "cuisineType": "Mexican",
       "tags": "mexican, carnitas, pork",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_b8d7e31e84c405c4"
+      "convertedUserId": "user_b8d7e31e84c405c4",
+      "type": "seller"
     },
     {
       "id": "pros_b8c607afbcfa6346",
@@ -868,12 +897,13 @@
       "lng": -118.290002977076,
       "cuisineType": "Catering/Events",
       "tags": "catering, events, party food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_78c1522cb4ebe3c6"
+      "convertedUserId": "user_78c1522cb4ebe3c6",
+      "type": "seller"
     },
     {
       "id": "pros_d1e18de231601c41",
@@ -896,12 +926,13 @@
       "lng": -118.317173673014,
       "cuisineType": "Other",
       "tags": "pet food, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_e64ef314ceadc57d"
+      "convertedUserId": "user_e64ef314ceadc57d",
+      "type": "seller"
     },
     {
       "id": "pros_77b8de4766d51070",
@@ -924,12 +955,13 @@
       "lng": -118.315106381164,
       "cuisineType": "Charcuterie/Boards",
       "tags": "charcuterie, grazing boards, entertaining",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_0bbc6075d1e36bcc"
+      "convertedUserId": "user_0bbc6075d1e36bcc",
+      "type": "seller"
     },
     {
       "id": "pros_1b43f73fa17e81b4",
@@ -952,12 +984,13 @@
       "lng": -118.354922955093,
       "cuisineType": "Desserts/Sweets",
       "tags": "cheesecake, desserts, bakery",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_13bf58d774a91ba0"
+      "convertedUserId": "user_13bf58d774a91ba0",
+      "type": "seller"
     },
     {
       "id": "pros_8e05f7a565cfe69f",
@@ -980,12 +1013,13 @@
       "lng": -118.540322487739,
       "cuisineType": "Other",
       "tags": "chef, creative, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_36694f5241f55b33"
+      "convertedUserId": "user_36694f5241f55b33",
+      "type": "seller"
     },
     {
       "id": "pros_627f37fd27e526e0",
@@ -1008,12 +1042,13 @@
       "lng": -118.168828216341,
       "cuisineType": "Other",
       "tags": "homemade, chef, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_6661e0b50419026c"
+      "convertedUserId": "user_6661e0b50419026c",
+      "type": "seller"
     },
     {
       "id": "pros_b99b23681309a6ae",
@@ -1036,12 +1071,13 @@
       "lng": -118.517804632949,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "plant-based, vegan, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_46d1c7502cd5e08a"
+      "convertedUserId": "user_46d1c7502cd5e08a",
+      "type": "seller"
     },
     {
       "id": "pros_ce188081eb7d6132",
@@ -1064,12 +1100,13 @@
       "lng": -118.30904548513,
       "cuisineType": "Nigerian/West African",
       "tags": "west african, senegalese, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_0476abeff6f0e590"
+      "convertedUserId": "user_0476abeff6f0e590",
+      "type": "seller"
     },
     {
       "id": "pros_accd46bed1fa31c6",
@@ -1094,13 +1131,14 @@
       "lng": -117.863231244626,
       "cuisineType": "Pizza/Italian",
       "tags": "pizza, chicago-style, deep dish",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:48.075Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
       "convertedUserId": "user_08d7e3b27fc42d61",
-      "hours": "HoursSunday5:00 PM - 9:00 PMMondayClosedTuesdayClosedWednesday5:00 PM - 9:00 PMThursday5:00 PM - 9:00 PMFriday5:00 PM - 9:00 PMSaturday3:00 PM - 9:00 PMGift cardsBuy a gift cardAll services⭐️Limited Time Only"
+      "hours": "HoursSunday5:00 PM - 9:00 PMMondayClosedTuesdayClosedWednesday5:00 PM - 9:00 PMThursday5:00 PM - 9:00 PMFriday5:00 PM - 9:00 PMSaturday3:00 PM - 9:00 PMGift cardsBuy a gift cardAll services⭐️Limited Time Only",
+      "type": "seller"
     },
     {
       "id": "pros_7255e4d714740362",
@@ -1123,12 +1161,13 @@
       "lng": -118.391333362493,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "meats, chicago-style, deli",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:48.075Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_03514759faa18119"
+      "convertedUserId": "user_03514759faa18119",
+      "type": "seller"
     },
     {
       "id": "pros_9e722a8239c29aea",
@@ -1151,12 +1190,13 @@
       "lng": -118.261538395481,
       "cuisineType": "Desserts/Sweets",
       "tags": "desserts, sweets, lab",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_561ef6d8ce4a2832"
+      "convertedUserId": "user_561ef6d8ce4a2832",
+      "type": "seller"
     },
     {
       "id": "pros_16f488c2110dd181",
@@ -1179,12 +1219,13 @@
       "lng": -118.491455499946,
       "cuisineType": "Other",
       "tags": "meal prep, homemade, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_f3123e7e0359af87"
+      "convertedUserId": "user_f3123e7e0359af87",
+      "type": "seller"
     },
     {
       "id": "pros_aeedf7f3b3ce23e8",
@@ -1207,12 +1248,13 @@
       "lng": -118.611736489856,
       "cuisineType": "Other",
       "tags": "homemade, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_656dee05c2d7ae60"
+      "convertedUserId": "user_656dee05c2d7ae60",
+      "type": "seller"
     },
     {
       "id": "pros_02a239240936f582",
@@ -1235,12 +1277,13 @@
       "lng": -118.496686426169,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "comfort food, homemade, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_638c9165f13a5689"
+      "convertedUserId": "user_638c9165f13a5689",
+      "type": "seller"
     },
     {
       "id": "pros_5052f7033cbde588",
@@ -1263,12 +1306,13 @@
       "lng": -118.337416277077,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, toast, breakfast",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_9960c4d724fa3337"
+      "convertedUserId": "user_9960c4d724fa3337",
+      "type": "seller"
     },
     {
       "id": "pros_0b982d8cdd248a8e",
@@ -1291,12 +1335,13 @@
       "lng": -118.204699875374,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, pastries, bakery",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_ce5567c7deec3b46"
+      "convertedUserId": "user_ce5567c7deec3b46",
+      "type": "seller"
     },
     {
       "id": "pros_f22f1fa0130dec97",
@@ -1319,12 +1364,13 @@
       "lng": -118.277517137969,
       "cuisineType": "Other",
       "tags": "homemade, creative, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_a04811a06aa612ec"
+      "convertedUserId": "user_a04811a06aa612ec",
+      "type": "seller"
     },
     {
       "id": "pros_7a08c465e1c596b9",
@@ -1347,12 +1393,13 @@
       "lng": -118.324353709835,
       "cuisineType": "Caribbean",
       "tags": "haitian, creole, caribbean",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_d073747d6842ae5d"
+      "convertedUserId": "user_d073747d6842ae5d",
+      "type": "seller"
     },
     {
       "id": "pros_ae85acc5556d62ff",
@@ -1375,12 +1422,13 @@
       "lng": -118.195870089621,
       "cuisineType": "Latin American",
       "tags": "cuban, mexican, fusion",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_49b6994c9449ddd1"
+      "convertedUserId": "user_49b6994c9449ddd1",
+      "type": "seller"
     },
     {
       "id": "pros_9b0e57ed611c1786",
@@ -1415,13 +1463,14 @@
       "lng": -118.328926642252,
       "cuisineType": "Pizza/Italian",
       "tags": "italian, fine dining, pasta",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:49.840Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
       "convertedUserId": "user_e8d50d2ec8ca99d7",
-      "hours": "hours Wednesday – Saturday: 5:30pm – 9:30pm 6411 Fountain Ave, LW4 Los Angeles, CA 90028 For Media Inquiries: dabarbarap@gmail.com Instagram Private Events GIFT CARD"
+      "hours": "hours Wednesday – Saturday: 5:30pm – 9:30pm 6411 Fountain Ave, LW4 Los Angeles, CA 90028 For Media Inquiries: dabarbarap@gmail.com Instagram Private Events GIFT CARD",
+      "type": "seller"
     },
     {
       "id": "pros_fa23368d5d76ec63",
@@ -1444,12 +1493,13 @@
       "lng": -118.394771338431,
       "cuisineType": "Other",
       "tags": "homemade, eastern european, authentic",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_9532412ec3a1068e"
+      "convertedUserId": "user_9532412ec3a1068e",
+      "type": "seller"
     },
     {
       "id": "pros_00e200e45347bb64",
@@ -1472,12 +1522,13 @@
       "lng": -118.262478912179,
       "cuisineType": "Other",
       "tags": "cafe, comfort food, vibes",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_4d7d3f65e3335160"
+      "convertedUserId": "user_4d7d3f65e3335160",
+      "type": "seller"
     },
     {
       "id": "pros_cfee128f274994d1",
@@ -1500,12 +1551,13 @@
       "lng": -118.294576141987,
       "cuisineType": "Latin American",
       "tags": "latin, homemade, delicacies",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_d343e2dd50944a42"
+      "convertedUserId": "user_d343e2dd50944a42",
+      "type": "seller"
     },
     {
       "id": "pros_cdfbc30aca5887b3",
@@ -1528,12 +1580,13 @@
       "lng": -118.117678537943,
       "cuisineType": "Latin American",
       "tags": "latin, homemade, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_e88e6ba343824792"
+      "convertedUserId": "user_e88e6ba343824792",
+      "type": "seller"
     },
     {
       "id": "pros_df4643e6c0878404",
@@ -1556,13 +1609,14 @@
       "lng": -118.332397833815,
       "cuisineType": "Other",
       "tags": "homemade, meal prep",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:49.841Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
       "convertedUserId": "user_4fb6942faced7ecc",
-      "hours": "Hours: Monday-Sunday 7:00 am - 11:00 pm Open for pick-up, delivery and events on holidays and after hours. Please contact us for availablility. Certified Small Business (SBA): State of California: 2018783; City"
+      "hours": "Hours: Monday-Sunday 7:00 am - 11:00 pm Open for pick-up, delivery and events on holidays and after hours. Please contact us for availablility. Certified Small Business (SBA): State of California: 2018783; City",
+      "type": "seller"
     },
     {
       "id": "pros_f4bc7cae0bdf6537",
@@ -1585,12 +1639,13 @@
       "lng": -118.285995108135,
       "cuisineType": "Desserts/Sweets",
       "tags": "desserts, sweets, italian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_16f924ebb8c2fb57"
+      "convertedUserId": "user_16f924ebb8c2fb57",
+      "type": "seller"
     },
     {
       "id": "pros_25aa5d9f1092fb89",
@@ -1619,12 +1674,13 @@
       "lng": -118.354368656023,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "dairy-free, vegan, plant-based",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:49.841Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_a7a4648db03572f4"
+      "convertedUserId": "user_a7a4648db03572f4",
+      "type": "seller"
     },
     {
       "id": "pros_2374c07c31b67a8f",
@@ -1647,12 +1703,13 @@
       "lng": -118.073613142473,
       "cuisineType": "Desserts/Sweets",
       "tags": "sweets, desserts, gifts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_29b61f7ebe69841b"
+      "convertedUserId": "user_29b61f7ebe69841b",
+      "type": "seller"
     },
     {
       "id": "pros_9a73375a2d79fc30",
@@ -1675,12 +1732,13 @@
       "lng": -118.405317032934,
       "cuisineType": "Indian/South Asian",
       "tags": "british, curry, indian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_456a718e9de53508"
+      "convertedUserId": "user_456a718e9de53508",
+      "type": "seller"
     },
     {
       "id": "pros_46e501bd2967b795",
@@ -1705,12 +1763,13 @@
       "lng": -118.324642027505,
       "cuisineType": "Desserts/Sweets",
       "tags": "kids, edible art, treats",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:49.841Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_4b8c543ec5379359"
+      "convertedUserId": "user_4b8c543ec5379359",
+      "type": "seller"
     },
     {
       "id": "pros_8710c4dcdc043081",
@@ -1733,12 +1792,13 @@
       "lng": -118.284606249109,
       "cuisineType": "Mexican",
       "tags": "mexican, fusion, cafe",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_e67c7b2a8232faf1"
+      "convertedUserId": "user_e67c7b2a8232faf1",
+      "type": "seller"
     },
     {
       "id": "pros_e86b6d6644d87009",
@@ -1761,12 +1821,13 @@
       "lng": -118.217253796914,
       "cuisineType": "Other",
       "tags": "homemade, kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_b400db05bbdfec9d"
+      "convertedUserId": "user_b400db05bbdfec9d",
+      "type": "seller"
     },
     {
       "id": "pros_ac2e98b703f9cb22",
@@ -1789,12 +1850,13 @@
       "lng": -118.560572548649,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "hot dogs, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_a596edf7f6ec8d06"
+      "convertedUserId": "user_a596edf7f6ec8d06",
+      "type": "seller"
     },
     {
       "id": "pros_250eebe73a8b4be0",
@@ -1817,12 +1879,13 @@
       "lng": -118.327978916218,
       "cuisineType": "Nigerian/West African",
       "tags": "african, fusion, spices",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_b93cce605de75a38"
+      "convertedUserId": "user_b93cce605de75a38",
+      "type": "seller"
     },
     {
       "id": "pros_222296edff1773d2",
@@ -1845,12 +1908,13 @@
       "lng": -118.350358422643,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "afghani, kebab, biryani",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_17911a9f5e06aff6"
+      "convertedUserId": "user_17911a9f5e06aff6",
+      "type": "seller"
     },
     {
       "id": "pros_5ca7b48ec8c5c50a",
@@ -1873,12 +1937,13 @@
       "lng": -117.860566535772,
       "cuisineType": "Chinese",
       "tags": "chinese, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_ece9783b79b0caf7"
+      "convertedUserId": "user_ece9783b79b0caf7",
+      "type": "seller"
     },
     {
       "id": "pros_f559e87999a0d582",
@@ -1901,12 +1966,13 @@
       "lng": -118.291973274447,
       "cuisineType": "Other",
       "tags": "local, kitchen, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_9b5fce0841310fa3"
+      "convertedUserId": "user_9b5fce0841310fa3",
+      "type": "seller"
     },
     {
       "id": "pros_bc234e7e81bb48eb",
@@ -1929,12 +1995,13 @@
       "lng": -118.345882482436,
       "cuisineType": "Catering/Events",
       "tags": "chef, private dining, catering",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.007Z",
-      "convertedUserId": "user_7e5ac09ed1299db4"
+      "convertedUserId": "user_7e5ac09ed1299db4",
+      "type": "seller"
     },
     {
       "id": "pros_b30e408cb024aa41",
@@ -1957,12 +2024,13 @@
       "lng": -118.21365699241,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "beverages, fizzy, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_fb178e273bbdfaa0"
+      "convertedUserId": "user_fb178e273bbdfaa0",
+      "type": "seller"
     },
     {
       "id": "pros_23e6cc8115c042f9",
@@ -1985,12 +2053,13 @@
       "lng": -118.196788755714,
       "cuisineType": "Other",
       "tags": "fresh fruit, snacks, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_6249cb4acb16724d"
+      "convertedUserId": "user_6249cb4acb16724d",
+      "type": "seller"
     },
     {
       "id": "pros_07d1bba3a96bd637",
@@ -2013,12 +2082,13 @@
       "lng": -118.089176546861,
       "cuisineType": "Mexican",
       "tags": "tacos, fried, chilaquiles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_7023efb0fa095f13"
+      "convertedUserId": "user_7023efb0fa095f13",
+      "type": "seller"
     },
     {
       "id": "pros_401d4728a0f755db",
@@ -2041,12 +2111,13 @@
       "lng": -118.324584398485,
       "cuisineType": "Other",
       "tags": "snacks, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b64763eff5c84b25"
+      "convertedUserId": "user_b64763eff5c84b25",
+      "type": "seller"
     },
     {
       "id": "pros_7625eb7509f13aa9",
@@ -2069,12 +2140,13 @@
       "lng": -118.653274622378,
       "cuisineType": "BBQ",
       "tags": "bbq, american, smoked meat",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_7e48ffe0b016278b"
+      "convertedUserId": "user_7e48ffe0b016278b",
+      "type": "seller"
     },
     {
       "id": "pros_8e2bca6a6814095d",
@@ -2097,12 +2169,13 @@
       "lng": -118.432243597162,
       "cuisineType": "Latin American",
       "tags": "latin, community, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c0e56904edbb34eb"
+      "convertedUserId": "user_c0e56904edbb34eb",
+      "type": "seller"
     },
     {
       "id": "pros_e3eeab69488c99c9",
@@ -2125,12 +2198,13 @@
       "lng": -118.406839918404,
       "cuisineType": "Mexican",
       "tags": "tamales, mexican, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b797045b0d9087c7"
+      "convertedUserId": "user_b797045b0d9087c7",
+      "type": "seller"
     },
     {
       "id": "pros_2a0254c49327d198",
@@ -2155,12 +2229,13 @@
       "lng": -118.16229726238,
       "cuisineType": "Other",
       "tags": "craft, homemade, artisan",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:52.864Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_03e10abc70c1bb28"
+      "convertedUserId": "user_03e10abc70c1bb28",
+      "type": "seller"
     },
     {
       "id": "pros_7d882468e9df2a96",
@@ -2183,12 +2258,13 @@
       "lng": -118.245336651601,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "garden, fresh, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b3d70c8edf906324"
+      "convertedUserId": "user_b3d70c8edf906324",
+      "type": "seller"
     },
     {
       "id": "pros_c87fcd3cc106721c",
@@ -2211,12 +2287,13 @@
       "lng": -118.190938474287,
       "cuisineType": "Mexican",
       "tags": "mexican, burritos, guisado",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c9f0fb58aaf4c258"
+      "convertedUserId": "user_c9f0fb58aaf4c258",
+      "type": "seller"
     },
     {
       "id": "pros_5cf61223417650d2",
@@ -2239,12 +2316,13 @@
       "lng": -117.850182765735,
       "cuisineType": "Desserts/Sweets",
       "tags": "desserts, sweets, gluten-free",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_2ac068d208e100fa"
+      "convertedUserId": "user_2ac068d208e100fa",
+      "type": "seller"
     },
     {
       "id": "pros_7e71bc1523ec376f",
@@ -2267,12 +2345,13 @@
       "lng": -118.341819504707,
       "cuisineType": "Chinese",
       "tags": "chinese, desserts, sweets",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_eecc9bdbcceb9e06"
+      "convertedUserId": "user_eecc9bdbcceb9e06",
+      "type": "seller"
     },
     {
       "id": "pros_14c3a32080b07323",
@@ -2320,12 +2399,13 @@
       "lng": -118.112278349591,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, beverages",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:52.864Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_d336c2280de661e2"
+      "convertedUserId": "user_d336c2280de661e2",
+      "type": "seller"
     },
     {
       "id": "pros_dc56e4c0a5d4bebe",
@@ -2348,12 +2428,13 @@
       "lng": -118.50070713358,
       "cuisineType": "Other",
       "tags": "gourmet, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_91bb5cc700fd77b1"
+      "convertedUserId": "user_91bb5cc700fd77b1",
+      "type": "seller"
     },
     {
       "id": "pros_d1dcec05044d6df0",
@@ -2376,12 +2457,13 @@
       "lng": -118.101497628412,
       "cuisineType": "Mexican",
       "tags": "gorditas, mexican, traditional",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_ba823cbd757ad6ef"
+      "convertedUserId": "user_ba823cbd757ad6ef",
+      "type": "seller"
     },
     {
       "id": "pros_2405f5a5a4cc1c98",
@@ -2404,12 +2486,13 @@
       "lng": -118.562941218414,
       "cuisineType": "Other",
       "tags": "homemade, kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_1e20c4f27fd9f4aa"
+      "convertedUserId": "user_1e20c4f27fd9f4aa",
+      "type": "seller"
     },
     {
       "id": "pros_dd4e50fb6ec859e8",
@@ -2432,12 +2515,13 @@
       "lng": -118.255959782661,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "kebab, mediterranean, hummus",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_6d38d5a428d66c24"
+      "convertedUserId": "user_6d38d5a428d66c24",
+      "type": "seller"
     },
     {
       "id": "pros_a345d0a437a9aa1d",
@@ -2460,12 +2544,13 @@
       "lng": -117.924445293843,
       "cuisineType": "Mexican",
       "tags": "mexican, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_183bfa0f33a84f80"
+      "convertedUserId": "user_183bfa0f33a84f80",
+      "type": "seller"
     },
     {
       "id": "pros_2e2f0680b2515378",
@@ -2488,12 +2573,13 @@
       "lng": -118.119616496583,
       "cuisineType": "Chinese",
       "tags": "chinese, homemade, home-style",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b287553e248f11b7"
+      "convertedUserId": "user_b287553e248f11b7",
+      "type": "seller"
     },
     {
       "id": "pros_2c986b47934e9539",
@@ -2516,12 +2602,13 @@
       "lng": -118.300610101881,
       "cuisineType": "Bakery",
       "tags": "bread, baked goods",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_2d3ff01b8af0f942"
+      "convertedUserId": "user_2d3ff01b8af0f942",
+      "type": "seller"
     },
     {
       "id": "pros_8f745cc8cb275c00",
@@ -2568,12 +2655,13 @@
       "lng": -118.191164981321,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homestyle, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:52.864Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_9402e637fb7ddb9b"
+      "convertedUserId": "user_9402e637fb7ddb9b",
+      "type": "seller"
     },
     {
       "id": "pros_e23a605d0768ecf8",
@@ -2596,12 +2684,13 @@
       "lng": -118.264927553423,
       "cuisineType": "Chinese",
       "tags": "chinese, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_0bcd8b88266ab29a"
+      "convertedUserId": "user_0bcd8b88266ab29a",
+      "type": "seller"
     },
     {
       "id": "pros_17207cfb0fec5f69",
@@ -2626,12 +2715,13 @@
       "lng": -118.378586787098,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "meal prep, juices, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:52.864Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_14100d129ec927b2"
+      "convertedUserId": "user_14100d129ec927b2",
+      "type": "seller"
     },
     {
       "id": "pros_5e0769aea1f421cf",
@@ -2654,12 +2744,13 @@
       "lng": -118.246508067118,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "juneteenth, soul food, bbq",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_ede57d4761adca30"
+      "convertedUserId": "user_ede57d4761adca30",
+      "type": "seller"
     },
     {
       "id": "pros_18131b189735a9a4",
@@ -2690,12 +2781,13 @@
       "lng": -118.350205283621,
       "cuisineType": "Other",
       "tags": "eclectic, los angeles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:55.988Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_dd218b49c2bd2de3"
+      "convertedUserId": "user_dd218b49c2bd2de3",
+      "type": "seller"
     },
     {
       "id": "pros_c4e2a28ad19f2254",
@@ -2718,12 +2810,13 @@
       "lng": -117.90512965089,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homemade, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_3d375c38f162a9c2"
+      "convertedUserId": "user_3d375c38f162a9c2",
+      "type": "seller"
     },
     {
       "id": "pros_58ca7dd1fd9e9eae",
@@ -2746,12 +2839,13 @@
       "lng": -117.88329785606,
       "cuisineType": "Other",
       "tags": "homestyle, rowland heights",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_04f07cdb31ea3f60"
+      "convertedUserId": "user_04f07cdb31ea3f60",
+      "type": "seller"
     },
     {
       "id": "pros_1ad04e27ab9bad5d",
@@ -2774,12 +2868,13 @@
       "lng": -118.10074299309,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homemade, comfort food, traditional",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_75020ec7b2a5d50f"
+      "convertedUserId": "user_75020ec7b2a5d50f",
+      "type": "seller"
     },
     {
       "id": "pros_09495a282ba3a1be",
@@ -2802,12 +2897,13 @@
       "lng": -117.914464958065,
       "cuisineType": "Japanese/Korean",
       "tags": "homestyle, japanese, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_a948101900544c90"
+      "convertedUserId": "user_a948101900544c90",
+      "type": "seller"
     },
     {
       "id": "pros_2934076ca263068e",
@@ -2830,12 +2926,13 @@
       "lng": -118.044326087791,
       "cuisineType": "Chinese",
       "tags": "handmade, chinese, noodles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_503eabeb902237e2"
+      "convertedUserId": "user_503eabeb902237e2",
+      "type": "seller"
     },
     {
       "id": "pros_67d37bf8f67d29ca",
@@ -2858,12 +2955,13 @@
       "lng": -117.883377579138,
       "cuisineType": "Chinese",
       "tags": "chinese, rice noodles, luosifen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_9c00eb5507658218"
+      "convertedUserId": "user_9c00eb5507658218",
+      "type": "seller"
     },
     {
       "id": "pros_4b55377756e2ed86",
@@ -2886,12 +2984,13 @@
       "lng": -118.130535474211,
       "cuisineType": "Chinese",
       "tags": "chinese, asian, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_5626fde2415396b9"
+      "convertedUserId": "user_5626fde2415396b9",
+      "type": "seller"
     },
     {
       "id": "pros_1012889208f440f4",
@@ -2914,12 +3013,13 @@
       "lng": -118.222907132028,
       "cuisineType": "Catering/Events",
       "tags": "pop-up, dinner events, eclectic",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_7d83c98193210ad9"
+      "convertedUserId": "user_7d83c98193210ad9",
+      "type": "seller"
     },
     {
       "id": "pros_2bdc96f1d24b0a1c",
@@ -2942,12 +3042,13 @@
       "lng": -118.398040490578,
       "cuisineType": "Bakery",
       "tags": "indonesian, pandan, cake",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_3d9121e185b8ea0f"
+      "convertedUserId": "user_3d9121e185b8ea0f",
+      "type": "seller"
     },
     {
       "id": "pros_d9aed385de5d9e27",
@@ -2970,12 +3071,13 @@
       "lng": -118.389879172169,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "home cooking, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e851aa9e14e611c4"
+      "convertedUserId": "user_e851aa9e14e611c4",
+      "type": "seller"
     },
     {
       "id": "pros_4e60e213ecb392c6",
@@ -2998,12 +3100,13 @@
       "lng": -118.672877833004,
       "cuisineType": "Other",
       "tags": "homestyle, hillside",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_5883720967b7ce53"
+      "convertedUserId": "user_5883720967b7ce53",
+      "type": "seller"
     },
     {
       "id": "pros_efe4e959650da25c",
@@ -3026,12 +3129,13 @@
       "lng": -117.999763155015,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "soul food, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_d1bddc50c9182438"
+      "convertedUserId": "user_d1bddc50c9182438",
+      "type": "seller"
     },
     {
       "id": "pros_e609823463623369",
@@ -3054,12 +3158,13 @@
       "lng": -118.325843180675,
       "cuisineType": "Other",
       "tags": "eclectic, los angeles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c448656cc3073ebb"
+      "convertedUserId": "user_c448656cc3073ebb",
+      "type": "seller"
     },
     {
       "id": "pros_6e692d58a6cce5ae",
@@ -3082,12 +3187,13 @@
       "lng": -118.283615416712,
       "cuisineType": "Mexican",
       "tags": "mexican, antojitos, street food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_41b0432abe31aecd"
+      "convertedUserId": "user_41b0432abe31aecd",
+      "type": "seller"
     },
     {
       "id": "pros_5d9ec8fa719f1b90",
@@ -3110,12 +3216,13 @@
       "lng": -118.295700561587,
       "cuisineType": "BBQ",
       "tags": "bbq, smoked meats",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:55.988Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_0cdec7863e323b80"
+      "convertedUserId": "user_0cdec7863e323b80",
+      "type": "seller"
     },
     {
       "id": "pros_7b3e6bb757747aad",
@@ -3140,12 +3247,13 @@
       "lng": -118.545556191361,
       "cuisineType": "BBQ",
       "tags": "brisket, bbq, smoked",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:55.988Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_2eccbd2288852a77"
+      "convertedUserId": "user_2eccbd2288852a77",
+      "type": "seller"
     },
     {
       "id": "pros_f0addf1cdf7ef803",
@@ -3168,12 +3276,13 @@
       "lng": -118.302856700038,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "alkaline, plant-based, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_34f0a6144ab986c9"
+      "convertedUserId": "user_34f0a6144ab986c9",
+      "type": "seller"
     },
     {
       "id": "pros_b3ed226ffded8ce3",
@@ -3196,12 +3305,13 @@
       "lng": -118.503964909824,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "karak, chai, tea",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_1cdefde3b826a69e"
+      "convertedUserId": "user_1cdefde3b826a69e",
+      "type": "seller"
     },
     {
       "id": "pros_e10309bc6319ea96",
@@ -3224,12 +3334,13 @@
       "lng": -118.188025572605,
       "cuisineType": "Catering/Events",
       "tags": "hospitality, catering",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_9bd42bb6cb979ab6"
+      "convertedUserId": "user_9bd42bb6cb979ab6",
+      "type": "seller"
     },
     {
       "id": "pros_146c94a3471ffaa0",
@@ -3252,12 +3363,13 @@
       "lng": -118.331448960231,
       "cuisineType": "Indian/South Asian",
       "tags": "indian, kerala, south indian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_09596ea3e2dfd248"
+      "convertedUserId": "user_09596ea3e2dfd248",
+      "type": "seller"
     },
     {
       "id": "pros_f3f98d30f5d7b442",
@@ -3280,12 +3392,13 @@
       "lng": -118.181548453845,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "fresh fruit, fruit cups, beverages",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_2aaabd3e42c315da"
+      "convertedUserId": "user_2aaabd3e42c315da",
+      "type": "seller"
     },
     {
       "id": "pros_4b5b4c8f985afa89",
@@ -3310,12 +3423,13 @@
       "lng": -118.295479447164,
       "cuisineType": "Indian/South Asian",
       "tags": "indian, jamaican, fusion",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:55.988Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c2d5b4dae02f2c80"
+      "convertedUserId": "user_c2d5b4dae02f2c80",
+      "type": "seller"
     },
     {
       "id": "pros_467268628d3f1994",
@@ -3338,12 +3452,13 @@
       "lng": -118.003422052609,
       "cuisineType": "Bakery",
       "tags": "cakes, bakery, custom",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c00e0a42a914908e"
+      "convertedUserId": "user_c00e0a42a914908e",
+      "type": "seller"
     },
     {
       "id": "pros_741dc62bf09a0e8d",
@@ -3366,12 +3481,13 @@
       "lng": -118.5503071268,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "french, baguette, sandwiches",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_108a07feaee57037"
+      "convertedUserId": "user_108a07feaee57037",
+      "type": "seller"
     },
     {
       "id": "pros_42b8a60a84dcd428",
@@ -3394,12 +3510,13 @@
       "lng": -118.062075887785,
       "cuisineType": "Other",
       "tags": "asian, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_311a9fd8269d8c14"
+      "convertedUserId": "user_311a9fd8269d8c14",
+      "type": "seller"
     },
     {
       "id": "pros_1ac2197e46433d7e",
@@ -3422,12 +3539,13 @@
       "lng": -117.845100528163,
       "cuisineType": "Chinese",
       "tags": "chinese, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_eab7affb0e492a5c"
+      "convertedUserId": "user_eab7affb0e492a5c",
+      "type": "seller"
     },
     {
       "id": "pros_7bcf9f22e73aa71e",
@@ -3468,7 +3586,7 @@
       "lng": -118.343974408441,
       "cuisineType": "Caribbean",
       "tags": "haitian, caribbean, ice cream",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:57.331Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
@@ -3476,7 +3594,8 @@
       "convertedUserId": "user_ecf07c865ac18b17",
       "orderingLinks": [
         "https://www.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_0d9d8cae21f97351",
@@ -3503,12 +3622,13 @@
       "lng": -118.157808419532,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "lamb, grill, mediterranean",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:57.332Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_ced3c3434dbf6beb"
+      "convertedUserId": "user_ced3c3434dbf6beb",
+      "type": "seller"
     },
     {
       "id": "pros_c12f053ce49f0acb",
@@ -3531,12 +3651,13 @@
       "lng": -118.441223684046,
       "cuisineType": "Mexican",
       "tags": "mexican, weekend, authentic",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_d6917048338323c6"
+      "convertedUserId": "user_d6917048338323c6",
+      "type": "seller"
     },
     {
       "id": "pros_1ee809ee6bc9288b",
@@ -3559,12 +3680,13 @@
       "lng": -118.212073528856,
       "cuisineType": "Pizza/Italian",
       "tags": "italian, lasagna, sicilian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e20197aba3be83a4"
+      "convertedUserId": "user_e20197aba3be83a4",
+      "type": "seller"
     },
     {
       "id": "pros_f45a50356b23d450",
@@ -3587,12 +3709,13 @@
       "lng": -118.48515164013,
       "cuisineType": "Desserts/Sweets",
       "tags": "ice cream, pie, desserts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c82fbb2e81ae2cf7"
+      "convertedUserId": "user_c82fbb2e81ae2cf7",
+      "type": "seller"
     },
     {
       "id": "pros_2797ebc068734600",
@@ -3615,12 +3738,13 @@
       "lng": -118.345540026243,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "smash burgers, burgers",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_ee48f560885b787c"
+      "convertedUserId": "user_ee48f560885b787c",
+      "type": "seller"
     },
     {
       "id": "pros_efad5faca80edbd3",
@@ -3645,12 +3769,13 @@
       "lng": -118.585500487025,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "mediterranean, catering, pastry",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:57.332Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_6c13ffca31879bc6"
+      "convertedUserId": "user_6c13ffca31879bc6",
+      "type": "seller"
     },
     {
       "id": "pros_3fa99c5e11db4b74",
@@ -3673,12 +3798,13 @@
       "lng": -118.062708206174,
       "cuisineType": "Chinese",
       "tags": "chinese, liangpi, noodles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_cc1590a1e39eed3a"
+      "convertedUserId": "user_cc1590a1e39eed3a",
+      "type": "seller"
     },
     {
       "id": "pros_3762af4c05e65b9e",
@@ -3701,12 +3827,13 @@
       "lng": -118.325986546475,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "organic, farm, sustainable",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_4e6296240f90e828"
+      "convertedUserId": "user_4e6296240f90e828",
+      "type": "seller"
     },
     {
       "id": "pros_386cc8281b3c1c8b",
@@ -3729,12 +3856,13 @@
       "lng": -118.334649876468,
       "cuisineType": "Latin American",
       "tags": "grill, latin, plates",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:57.332Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_3cb32521e050d3f1"
+      "convertedUserId": "user_3cb32521e050d3f1",
+      "type": "seller"
     },
     {
       "id": "pros_d40ba7e5b8a2ed27",
@@ -3759,12 +3887,13 @@
       "lng": -117.903985326538,
       "cuisineType": "Filipino",
       "tags": "filipino, lumpia, spring rolls",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:58.532Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_89074b3a143c60dc"
+      "convertedUserId": "user_89074b3a143c60dc",
+      "type": "seller"
     },
     {
       "id": "pros_6dc5d2581f464114",
@@ -3787,12 +3916,13 @@
       "lng": -118.128906934397,
       "cuisineType": "Latin American",
       "tags": "peruvian, lomo saltado, fuego",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_23527a55c5aab9d9"
+      "convertedUserId": "user_23527a55c5aab9d9",
+      "type": "seller"
     },
     {
       "id": "pros_2cd524e364d2ca42",
@@ -3815,12 +3945,13 @@
       "lng": -118.107062748305,
       "cuisineType": "Chinese",
       "tags": "chinese, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_36d3f80bb0d657a9"
+      "convertedUserId": "user_36d3f80bb0d657a9",
+      "type": "seller"
     },
     {
       "id": "pros_8e165a7855f85737",
@@ -3843,12 +3974,13 @@
       "lng": -118.388603258052,
       "cuisineType": "Japanese/Korean",
       "tags": "japanese, soba, wagashi",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_d98440341cd3804d"
+      "convertedUserId": "user_d98440341cd3804d",
+      "type": "seller"
     },
     {
       "id": "pros_f3544c5996800038",
@@ -3871,12 +4003,13 @@
       "lng": -118.360753707912,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "burgers, american, gourmet",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_250f02b4cf26b47f"
+      "convertedUserId": "user_250f02b4cf26b47f",
+      "type": "seller"
     },
     {
       "id": "pros_586e29751c5842c4",
@@ -3899,12 +4032,13 @@
       "lng": -118.346126314629,
       "cuisineType": "Other",
       "tags": "homestyle, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_944dcb34a149cfed"
+      "convertedUserId": "user_944dcb34a149cfed",
+      "type": "seller"
     },
     {
       "id": "pros_0ff98066629426fb",
@@ -3940,7 +4074,7 @@
       "lng": -118.325316684994,
       "cuisineType": "Charcuterie/Boards",
       "tags": "charcuterie, boards, grazing",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:58.533Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
@@ -3948,7 +4082,8 @@
       "convertedUserId": "user_4f39c183bc1701fe",
       "orderingLinks": [
         "https://www.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_90630f60d3b5f7e7",
@@ -3973,12 +4108,13 @@
       "lng": -118.060178519527,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "comfort food, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:58.533Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_5599e6975ea78309"
+      "convertedUserId": "user_5599e6975ea78309",
+      "type": "seller"
     },
     {
       "id": "pros_c418afd1424a74f2",
@@ -4001,12 +4137,13 @@
       "lng": -118.310341047204,
       "cuisineType": "Other",
       "tags": "homestyle, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_47462711a004edc5"
+      "convertedUserId": "user_47462711a004edc5",
+      "type": "seller"
     },
     {
       "id": "pros_413e27b489e63ddc",
@@ -4029,12 +4166,13 @@
       "lng": -118.252355884849,
       "cuisineType": "Mexican",
       "tags": "mexican, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e743f027df0c2706"
+      "convertedUserId": "user_e743f027df0c2706",
+      "type": "seller"
     },
     {
       "id": "pros_852247aa6c9c15ef",
@@ -4057,12 +4195,13 @@
       "lng": -118.241828744479,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "comfort food, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_8d9b8b93593745ae"
+      "convertedUserId": "user_8d9b8b93593745ae",
+      "type": "seller"
     },
     {
       "id": "pros_f9b1abb834ec9735",
@@ -4085,12 +4224,13 @@
       "lng": -117.89031906656,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homestyle, comfort food, cooked meats",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_f70dad0e678468c1"
+      "convertedUserId": "user_f70dad0e678468c1",
+      "type": "seller"
     },
     {
       "id": "pros_3a532a3db72b4c4e",
@@ -4113,12 +4253,13 @@
       "lng": -118.231371593502,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "garden, organic, healthy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b8af2106728fae77"
+      "convertedUserId": "user_b8af2106728fae77",
+      "type": "seller"
     },
     {
       "id": "pros_3a768ed546a85ec4",
@@ -4141,12 +4282,13 @@
       "lng": -117.914541120084,
       "cuisineType": "Chinese",
       "tags": "chinese, snacks, street food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c494ca300e33833d"
+      "convertedUserId": "user_c494ca300e33833d",
+      "type": "seller"
     },
     {
       "id": "pros_64eeaffefed97f04",
@@ -4169,12 +4311,13 @@
       "lng": -118.200011254839,
       "cuisineType": "Pizza/Italian",
       "tags": "italian, homemade, mangia",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_4e3c928f13b2ea55"
+      "convertedUserId": "user_4e3c928f13b2ea55",
+      "type": "seller"
     },
     {
       "id": "pros_b4bd1ae0c340fb77",
@@ -4197,12 +4340,13 @@
       "lng": -118.555190471297,
       "cuisineType": "Other",
       "tags": "chicken, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b5fb2e7c0a83bd24"
+      "convertedUserId": "user_b5fb2e7c0a83bd24",
+      "type": "seller"
     },
     {
       "id": "pros_4fe3d32f54fa6696",
@@ -4225,12 +4369,13 @@
       "lng": -118.229838538164,
       "cuisineType": "Other",
       "tags": "armenian, home kitchen, glendale",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e74f046bafee989c"
+      "convertedUserId": "user_e74f046bafee989c",
+      "type": "seller"
     },
     {
       "id": "pros_2d30c2e8c41cab6d",
@@ -4253,12 +4398,13 @@
       "lng": -118.595664599591,
       "cuisineType": "Mexican",
       "tags": "mexican, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_381c1f47d231f232"
+      "convertedUserId": "user_381c1f47d231f232",
+      "type": "seller"
     },
     {
       "id": "pros_c65ad25490210363",
@@ -4281,12 +4427,13 @@
       "lng": -118.597500503169,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "persian, cookery, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_5bc571f8ce6e54ab"
+      "convertedUserId": "user_5bc571f8ce6e54ab",
+      "type": "seller"
     },
     {
       "id": "pros_d6a521842cdc913c",
@@ -4309,12 +4456,13 @@
       "lng": -118.281862338913,
       "cuisineType": "Mexican",
       "tags": "mexican, tacos",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_157c9febdc8c10e8"
+      "convertedUserId": "user_157c9febdc8c10e8",
+      "type": "seller"
     },
     {
       "id": "pros_7c81bd24141d241a",
@@ -4337,12 +4485,13 @@
       "lng": -118.078577222109,
       "cuisineType": "Other",
       "tags": "american, eclectic, restaurant",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_ad1f24adc0726ecc"
+      "convertedUserId": "user_ad1f24adc0726ecc",
+      "type": "seller"
     },
     {
       "id": "pros_a43803c55a3d79ad",
@@ -4391,12 +4540,13 @@
       "lng": -118.445418661188,
       "cuisineType": "Other",
       "tags": "mauritian, street food, multicultural",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:58.533Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_dd0e44b283305fa8"
+      "convertedUserId": "user_dd0e44b283305fa8",
+      "type": "seller"
     },
     {
       "id": "pros_f1324fa1f128d0ef",
@@ -4419,12 +4569,13 @@
       "lng": -118.294296372817,
       "cuisineType": "BBQ",
       "tags": "meat, cured meats, charcuterie",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c1a152192cc3dc2a"
+      "convertedUserId": "user_c1a152192cc3dc2a",
+      "type": "seller"
     },
     {
       "id": "pros_c8c1dcc6b02b9006",
@@ -4447,12 +4598,13 @@
       "lng": -118.379797111128,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "mediterranean, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_b5c6d38de0396369"
+      "convertedUserId": "user_b5c6d38de0396369",
+      "type": "seller"
     },
     {
       "id": "pros_72ca6acd4735386f",
@@ -4483,12 +4635,13 @@
       "lng": -118.349073035545,
       "cuisineType": "Other",
       "tags": "meals, snacks, fruit",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:59.903Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_d47770a585fd31be"
+      "convertedUserId": "user_d47770a585fd31be",
+      "type": "seller"
     },
     {
       "id": "pros_73446c1366cf6be0",
@@ -4511,12 +4664,13 @@
       "lng": -117.943925608455,
       "cuisineType": "Chinese",
       "tags": "chinese, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_488bd61ed0fa5ea0"
+      "convertedUserId": "user_488bd61ed0fa5ea0",
+      "type": "seller"
     },
     {
       "id": "pros_a255e00b87e5dd95",
@@ -4539,12 +4693,13 @@
       "lng": -118.620453594304,
       "cuisineType": "Mexican",
       "tags": "mexican, fusion",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_4a5c291f2b814879"
+      "convertedUserId": "user_4a5c291f2b814879",
+      "type": "seller"
     },
     {
       "id": "pros_b655eae84f8e2206",
@@ -4567,12 +4722,13 @@
       "lng": -118.462812066779,
       "cuisineType": "Japanese/Korean",
       "tags": "korean, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_0a80fe98dea1fdc6"
+      "convertedUserId": "user_0a80fe98dea1fdc6",
+      "type": "seller"
     },
     {
       "id": "pros_21c9f9f186fe5e27",
@@ -4595,12 +4751,13 @@
       "lng": -118.087890283668,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "lemonade, beverages",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_f035cd45131be3a8"
+      "convertedUserId": "user_f035cd45131be3a8",
+      "type": "seller"
     },
     {
       "id": "pros_2a6daaec2fc5d557",
@@ -4625,12 +4782,13 @@
       "lng": -118.236225233843,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "palestinian, halal, vegan",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:59.903Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_1afdb140d1e0208f"
+      "convertedUserId": "user_1afdb140d1e0208f",
+      "type": "seller"
     },
     {
       "id": "pros_179c71ad7d486e6b",
@@ -4653,12 +4811,13 @@
       "lng": -118.356822872075,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "milkshakes, beverages",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_8b9e4811fe66a41c"
+      "convertedUserId": "user_8b9e4811fe66a41c",
+      "type": "seller"
     },
     {
       "id": "pros_3b1b05c4820c2d72",
@@ -4681,12 +4840,13 @@
       "lng": -117.911297776093,
       "cuisineType": "Bakery",
       "tags": "cakes, asian bakery, durian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e8e04f321c8936d2"
+      "convertedUserId": "user_e8e04f321c8936d2",
+      "type": "seller"
     },
     {
       "id": "pros_3b77af8c1898ee07",
@@ -4709,12 +4869,13 @@
       "lng": -118.47993917434,
       "cuisineType": "Latin American",
       "tags": "peruvian, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_33c83f2ec9454c1f"
+      "convertedUserId": "user_33c83f2ec9454c1f",
+      "type": "seller"
     },
     {
       "id": "pros_23eb01a895b74244",
@@ -4737,12 +4898,13 @@
       "lng": -118.057781936185,
       "cuisineType": "Desserts/Sweets",
       "tags": "yogurt, desserts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e0c2d3527f459314"
+      "convertedUserId": "user_e0c2d3527f459314",
+      "type": "seller"
     },
     {
       "id": "pros_9aa70c72ed935137",
@@ -4765,12 +4927,13 @@
       "lng": -118.303148013764,
       "cuisineType": "Japanese/Korean",
       "tags": "korean, rice bowls",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_4100b9b485946ba4"
+      "convertedUserId": "user_4100b9b485946ba4",
+      "type": "seller"
     },
     {
       "id": "pros_849602e2d2c572f7",
@@ -4793,12 +4956,13 @@
       "lng": -118.321320713011,
       "cuisineType": "Filipino",
       "tags": "filipino, caviteño, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_bbccbe0c05c5b3a0"
+      "convertedUserId": "user_bbccbe0c05c5b3a0",
+      "type": "seller"
     },
     {
       "id": "pros_1e1ab63fb7800fc2",
@@ -4821,12 +4985,13 @@
       "lng": -118.432060553348,
       "cuisineType": "Other",
       "tags": "diet, healthy, meal prep",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_786516f910148d78"
+      "convertedUserId": "user_786516f910148d78",
+      "type": "seller"
     },
     {
       "id": "pros_7847532f538262e6",
@@ -4851,12 +5016,13 @@
       "lng": -118.499261611831,
       "cuisineType": "Pizza/Italian",
       "tags": "pizza",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:59.903Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_86dd015d9e8870f6"
+      "convertedUserId": "user_86dd015d9e8870f6",
+      "type": "seller"
     },
     {
       "id": "pros_259cde3bcf3de16a",
@@ -4879,12 +5045,13 @@
       "lng": -118.234893868348,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "syrian, circassian, middle eastern",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_7294785b110c8d20"
+      "convertedUserId": "user_7294785b110c8d20",
+      "type": "seller"
     },
     {
       "id": "pros_5788814bf2a9afd6",
@@ -4907,12 +5074,13 @@
       "lng": -118.348923615729,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, espresso, cold brew",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_4eacaa3bb1165a13"
+      "convertedUserId": "user_4eacaa3bb1165a13",
+      "type": "seller"
     },
     {
       "id": "pros_57740d6b8767a3df",
@@ -4935,12 +5103,13 @@
       "lng": -118.394661193469,
       "cuisineType": "Other",
       "tags": "home cooking, meals",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_5761b881ed919b3f"
+      "convertedUserId": "user_5761b881ed919b3f",
+      "type": "seller"
     },
     {
       "id": "pros_894f2c108ddb6522",
@@ -4963,12 +5132,13 @@
       "lng": -118.261406570635,
       "cuisineType": "Other",
       "tags": "basque, home cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_9ee87d59c2a2427f"
+      "convertedUserId": "user_9ee87d59c2a2427f",
+      "type": "seller"
     },
     {
       "id": "pros_b97f6c6d27f349a7",
@@ -4997,7 +5167,7 @@
       "lng": -118.353442521911,
       "cuisineType": "Other",
       "tags": "home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:32:59.903Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
@@ -5007,7 +5177,8 @@
         "https://nikkimomo.myshopify.com/customer_authentication/redirect?locale=en&region_country=US",
         "https://www.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore",
         "https://nikkimomo.myshopify.com/"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_268cfbbb6a8ae69f",
@@ -5030,12 +5201,13 @@
       "lng": -118.291149061931,
       "cuisineType": "Japanese/Korean",
       "tags": "japanese, korean, gardena",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_a82d7a7dd19b3b8b"
+      "convertedUserId": "user_a82d7a7dd19b3b8b",
+      "type": "seller"
     },
     {
       "id": "pros_f9ada83794ec2ded",
@@ -5058,12 +5230,13 @@
       "lng": -118.156597740529,
       "cuisineType": "Vietnamese",
       "tags": "vietnamese, noodles, rice bowls",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_7280b45d3758bc0c"
+      "convertedUserId": "user_7280b45d3758bc0c",
+      "type": "seller"
     },
     {
       "id": "pros_2992863e69e12530",
@@ -5086,12 +5259,13 @@
       "lng": -118.61748780991,
       "cuisineType": "Mexican",
       "tags": "mexican, tacos, catering",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_388930c6e283ea01"
+      "convertedUserId": "user_388930c6e283ea01",
+      "type": "seller"
     },
     {
       "id": "pros_7fcad022fe88fc01",
@@ -5114,12 +5288,13 @@
       "lng": -118.637095806042,
       "cuisineType": "Pizza/Italian",
       "tags": "italian, pies, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_eb4e3999b5a8452d"
+      "convertedUserId": "user_eb4e3999b5a8452d",
+      "type": "seller"
     },
     {
       "id": "pros_21088c627ae1c666",
@@ -5142,12 +5317,13 @@
       "lng": -117.839388080336,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "healthy, bowls, fresh",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_5c07db2e276fe546"
+      "convertedUserId": "user_5c07db2e276fe546",
+      "type": "seller"
     },
     {
       "id": "pros_90518865d1a989d8",
@@ -5196,12 +5372,13 @@
       "lng": -118.057368240875,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "soup, herbal, wellness",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:01.161Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_aaf2abedf8aa146a"
+      "convertedUserId": "user_aaf2abedf8aa146a",
+      "type": "seller"
     },
     {
       "id": "pros_ea4c1e402efbe20c",
@@ -5224,12 +5401,13 @@
       "lng": -117.895036331511,
       "cuisineType": "Chinese",
       "tags": "chinese, duck, dim sum",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e961517c4916f307"
+      "convertedUserId": "user_e961517c4916f307",
+      "type": "seller"
     },
     {
       "id": "pros_330eec58b7bc9fd0",
@@ -5274,13 +5452,14 @@
       "lng": -117.986599934335,
       "cuisineType": "Mexican",
       "tags": "mexican, tacos, affordable",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:01.161Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
       "convertedUserId": "user_65202466b6c397e4",
-      "hours": "HoursSunday – Thursday: 10AM – 11PM Friday & Saturday: 10AM – 12AM ©2025 OMAR TACOS. All rights reserved"
+      "hours": "HoursSunday – Thursday: 10AM – 11PM Friday & Saturday: 10AM – 12AM ©2025 OMAR TACOS. All rights reserved",
+      "type": "seller"
     },
     {
       "id": "pros_1c141b6f6d64788d",
@@ -5303,12 +5482,13 @@
       "lng": -118.395155021461,
       "cuisineType": "Bakery",
       "tags": "korean, cakes, custom",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c7a14cfa45c1ce50"
+      "convertedUserId": "user_c7a14cfa45c1ce50",
+      "type": "seller"
     },
     {
       "id": "pros_e93024989657ef9b",
@@ -5331,12 +5511,13 @@
       "lng": -118.183430023126,
       "cuisineType": "Other",
       "tags": "homemade, food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_93d31bed21f7b91b"
+      "convertedUserId": "user_93d31bed21f7b91b",
+      "type": "seller"
     },
     {
       "id": "pros_f4f73baf0a87c733",
@@ -5359,12 +5540,13 @@
       "lng": -118.301630799411,
       "cuisineType": "Catering/Events",
       "tags": "catering, delivery, food service",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_adfd17c65af84359"
+      "convertedUserId": "user_adfd17c65af84359",
+      "type": "seller"
     },
     {
       "id": "pros_1361feb0ac3b1178",
@@ -5387,12 +5569,13 @@
       "lng": -118.341562364642,
       "cuisineType": "Bakery",
       "tags": "baked goods, homemade, delights",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_d637c11013914b51"
+      "convertedUserId": "user_d637c11013914b51",
+      "type": "seller"
     },
     {
       "id": "pros_ef292cd308ca3ff5",
@@ -5415,12 +5598,13 @@
       "lng": -118.030569465123,
       "cuisineType": "Pizza/Italian",
       "tags": "pizza, pies, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_7c14a09f35b60ecc"
+      "convertedUserId": "user_7c14a09f35b60ecc",
+      "type": "seller"
     },
     {
       "id": "pros_b5fa3139e6b14641",
@@ -5445,12 +5629,13 @@
       "lng": -118.464701365514,
       "cuisineType": "Other",
       "tags": "congolese, african, spicy",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:01.161Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e399a2d202d042da"
+      "convertedUserId": "user_e399a2d202d042da",
+      "type": "seller"
     },
     {
       "id": "pros_87aa688210a4fbc9",
@@ -5473,12 +5658,13 @@
       "lng": -118.349482823282,
       "cuisineType": "Catering/Events",
       "tags": "catering, filipino, events",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_c5cc50673afd4c00"
+      "convertedUserId": "user_c5cc50673afd4c00",
+      "type": "seller"
     },
     {
       "id": "pros_144b39ddfea158a4",
@@ -5501,12 +5687,13 @@
       "lng": -118.346676937098,
       "cuisineType": "Caribbean",
       "tags": "caribbean, jerk, jamaican",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_e5e3110daa22d24a"
+      "convertedUserId": "user_e5e3110daa22d24a",
+      "type": "seller"
     },
     {
       "id": "pros_f3b872bfa348b0b6",
@@ -5529,12 +5716,13 @@
       "lng": -118.402877871274,
       "cuisineType": "Indian/South Asian",
       "tags": "south asian, homemade, halal",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_91ad9098e6729f1e"
+      "convertedUserId": "user_91ad9098e6729f1e",
+      "type": "seller"
     },
     {
       "id": "pros_c48a2eaa2dd50e61",
@@ -5557,12 +5745,13 @@
       "lng": -118.266170711525,
       "cuisineType": "Other",
       "tags": "food, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_bedfb69bf042e569"
+      "convertedUserId": "user_bedfb69bf042e569",
+      "type": "seller"
     },
     {
       "id": "pros_7d341a03355b2eb6",
@@ -5585,12 +5774,13 @@
       "lng": -117.922766579847,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "comfort food, homestyle, restaurant",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_0de60ca92654071b"
+      "convertedUserId": "user_0de60ca92654071b",
+      "type": "seller"
     },
     {
       "id": "pros_2c0cd7be0263d8c0",
@@ -5613,12 +5803,13 @@
       "lng": -117.95907892007,
       "cuisineType": "Desserts/Sweets",
       "tags": "raspados, mexican ice, fruit",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_9717000c4de29fd6"
+      "convertedUserId": "user_9717000c4de29fd6",
+      "type": "seller"
     },
     {
       "id": "pros_2a6a84f3b9b1c512",
@@ -5641,12 +5832,13 @@
       "lng": -117.760630102899,
       "cuisineType": "Desserts/Sweets",
       "tags": "raspados, natural, fruit",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_173bf95734014350"
+      "convertedUserId": "user_173bf95734014350",
+      "type": "seller"
     },
     {
       "id": "pros_eaaa70be98dca87b",
@@ -5675,12 +5867,13 @@
       "lng": -118.363769337582,
       "cuisineType": "Other",
       "tags": "lounge, bar, drinks",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:03.247Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_3f296a8d19006a51"
+      "convertedUserId": "user_3f296a8d19006a51",
+      "type": "seller"
     },
     {
       "id": "pros_f2023f29984b4d5e",
@@ -5703,12 +5896,13 @@
       "lng": -117.977169127098,
       "cuisineType": "Breakfast/Brunch",
       "tags": "cafe, coffee, brunch",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.008Z",
-      "convertedUserId": "user_de5b1498fd2e4875"
+      "convertedUserId": "user_de5b1498fd2e4875",
+      "type": "seller"
     },
     {
       "id": "pros_a56ebbcfcba3611f",
@@ -5731,12 +5925,13 @@
       "lng": -118.367970749822,
       "cuisineType": "Other",
       "tags": "community, food, los angeles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_770f4989358c993f"
+      "convertedUserId": "user_770f4989358c993f",
+      "type": "seller"
     },
     {
       "id": "pros_c58b303a5202fab8",
@@ -5759,12 +5954,13 @@
       "lng": -118.303239226426,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, beverages",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_1d182c8c1fae7e37"
+      "convertedUserId": "user_1d182c8c1fae7e37",
+      "type": "seller"
     },
     {
       "id": "pros_0160d071e3536779",
@@ -5792,12 +5988,13 @@
       "lng": -118.01879687955,
       "cuisineType": "Bakery",
       "tags": "bakery, rolls, baked goods",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:03.247Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_f1846b529ab6f520"
+      "convertedUserId": "user_f1846b529ab6f520",
+      "type": "seller"
     },
     {
       "id": "pros_7c0251259e556eb2",
@@ -5820,12 +6017,13 @@
       "lng": -117.889532229855,
       "cuisineType": "Other",
       "tags": "deli, homemade, chinese",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_544e9c2cfbe8cd2d"
+      "convertedUserId": "user_544e9c2cfbe8cd2d",
+      "type": "seller"
     },
     {
       "id": "pros_e9d91d32b7749440",
@@ -5852,12 +6050,13 @@
       "lng": -118.207660288317,
       "cuisineType": "Other",
       "tags": "pop-up, food events, los angeles",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:03.247Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_217984d8e5772ee0"
+      "convertedUserId": "user_217984d8e5772ee0",
+      "type": "seller"
     },
     {
       "id": "pros_7a4d616408b00a1f",
@@ -5880,12 +6079,13 @@
       "lng": -118.424510654162,
       "cuisineType": "Latin American",
       "tags": "latin, homestyle, traditional",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_16fbd9f59647e8c9"
+      "convertedUserId": "user_16fbd9f59647e8c9",
+      "type": "seller"
     },
     {
       "id": "pros_f557a77e9db5a089",
@@ -5908,12 +6108,13 @@
       "lng": -118.081928899602,
       "cuisineType": "Mexican",
       "tags": "mexican, homemade, traditional",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e5ab06d1d2ba0731"
+      "convertedUserId": "user_e5ab06d1d2ba0731",
+      "type": "seller"
     },
     {
       "id": "pros_11921db4ff26f89b",
@@ -5936,12 +6137,13 @@
       "lng": -118.469277916907,
       "cuisineType": "Latin American",
       "tags": "peruvian, latin, gourmet",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_1acf6f9dd9bbd056"
+      "convertedUserId": "user_1acf6f9dd9bbd056",
+      "type": "seller"
     },
     {
       "id": "pros_d6c69c9b5a141506",
@@ -5970,12 +6172,13 @@
       "lng": -118.333565048169,
       "cuisineType": "Other",
       "tags": "kenyan, grilled meats, stews",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:03.247Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_08a9d0b4d3f68d7a"
+      "convertedUserId": "user_08a9d0b4d3f68d7a",
+      "type": "seller"
     },
     {
       "id": "pros_31606281a85a5cd4",
@@ -5998,12 +6201,13 @@
       "lng": -118.363780382114,
       "cuisineType": "Breakfast/Brunch",
       "tags": "breakfast burritos, bakery, mexican",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e0b12856167fc5b3"
+      "convertedUserId": "user_e0b12856167fc5b3",
+      "type": "seller"
     },
     {
       "id": "pros_42190383da84d45f",
@@ -6026,12 +6230,13 @@
       "lng": -118.215599623566,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "coffee, pastries, cafe",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_67af7a270268065a"
+      "convertedUserId": "user_67af7a270268065a",
+      "type": "seller"
     },
     {
       "id": "pros_bd36125e793a35b0",
@@ -6054,12 +6259,13 @@
       "lng": -118.342928816549,
       "cuisineType": "Other",
       "tags": "multi-course, plated, fine dining",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_134dacd78e51753b"
+      "convertedUserId": "user_134dacd78e51753b",
+      "type": "seller"
     },
     {
       "id": "pros_a0889a8ad3fd20ae",
@@ -6082,12 +6288,13 @@
       "lng": -118.11884138652,
       "cuisineType": "Other",
       "tags": "homestyle, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_671229abbed20039"
+      "convertedUserId": "user_671229abbed20039",
+      "type": "seller"
     },
     {
       "id": "pros_3cb2388566584808",
@@ -6122,12 +6329,13 @@
       "lng": -118.327742900325,
       "cuisineType": "Other",
       "tags": "sri lankan, kottu, street food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:04.848Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_0b4c7ed048f65831"
+      "convertedUserId": "user_0b4c7ed048f65831",
+      "type": "seller"
     },
     {
       "id": "pros_1445575b72b95103",
@@ -6150,12 +6358,13 @@
       "lng": -118.313958020167,
       "cuisineType": "BBQ",
       "tags": "bbq, smoked meats, barbecue",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_7300d128c841dad2"
+      "convertedUserId": "user_7300d128c841dad2",
+      "type": "seller"
     },
     {
       "id": "pros_46917677d36efecc",
@@ -6178,12 +6387,13 @@
       "lng": -118.429338745063,
       "cuisineType": "BBQ",
       "tags": "bbq, smoked, mediterranean",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_f672f6e5e8470450"
+      "convertedUserId": "user_f672f6e5e8470450",
+      "type": "seller"
     },
     {
       "id": "pros_b2906ba8c7f9d933",
@@ -6206,12 +6416,13 @@
       "lng": -118.332252385024,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "sliders, smoked, burgers",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_c486187a9614690f"
+      "convertedUserId": "user_c486187a9614690f",
+      "type": "seller"
     },
     {
       "id": "pros_b70a17f01859fe78",
@@ -6234,12 +6445,13 @@
       "lng": -118.097290605596,
       "cuisineType": "Pizza/Italian",
       "tags": "pizza, wings, pies",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_0a6e5f192f2b380b"
+      "convertedUserId": "user_0a6e5f192f2b380b",
+      "type": "seller"
     },
     {
       "id": "pros_d1837b89129a582f",
@@ -6262,12 +6474,13 @@
       "lng": -118.082441045016,
       "cuisineType": "Other",
       "tags": "homestyle, pasadena",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_b5769a0ee7e77cfd"
+      "convertedUserId": "user_b5769a0ee7e77cfd",
+      "type": "seller"
     },
     {
       "id": "pros_94702c76bfdbca81",
@@ -6296,12 +6509,13 @@
       "lng": -117.991763260773,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "soul food, southern, comfort",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:04.849Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_b3df4556c1cc763a"
+      "convertedUserId": "user_b3df4556c1cc763a",
+      "type": "seller"
     },
     {
       "id": "pros_4f99cbf7e75ede6c",
@@ -6344,7 +6558,7 @@
       "lng": -118.032855828299,
       "cuisineType": "Other",
       "tags": "meal prep, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:04.849Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
@@ -6352,7 +6566,8 @@
       "convertedUserId": "user_f9aba80b3865f8c9",
       "orderingLinks": [
         "https://www.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_830b13449b9abb28",
@@ -6375,12 +6590,13 @@
       "lng": -118.393766055617,
       "cuisineType": "Japanese/Korean",
       "tags": "korean, noodles, soup",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_349fde34fb1606b0"
+      "convertedUserId": "user_349fde34fb1606b0",
+      "type": "seller"
     },
     {
       "id": "pros_200cfa1ca1d63859",
@@ -6403,12 +6619,13 @@
       "lng": -118.157942239426,
       "cuisineType": "Caribbean",
       "tags": "belizean, jamaican, caribbean",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_9dff6025cf448436"
+      "convertedUserId": "user_9dff6025cf448436",
+      "type": "seller"
     },
     {
       "id": "pros_8b864d4aecee45c0",
@@ -6431,12 +6648,13 @@
       "lng": -118.307356289613,
       "cuisineType": "Japanese/Korean",
       "tags": "korean, chicken, sandwiches",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_b6f525e1cfd46b52"
+      "convertedUserId": "user_b6f525e1cfd46b52",
+      "type": "seller"
     },
     {
       "id": "pros_f098faf56420fed8",
@@ -6459,12 +6677,13 @@
       "lng": -118.323304427574,
       "cuisineType": "Desserts/Sweets",
       "tags": "sweets, sticky, desserts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:04.849Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_71b44c53efb4a24b"
+      "convertedUserId": "user_71b44c53efb4a24b",
+      "type": "seller"
     },
     {
       "id": "pros_4102d0b737e8bcb7",
@@ -6489,7 +6708,7 @@
       "lng": -118.146262781126,
       "cuisineType": "Mexican",
       "tags": "tacos, mexican",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:06.431Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
@@ -6497,7 +6716,8 @@
       "convertedUserId": "user_149bcf2629de72ac",
       "orderingLinks": [
         "https://tacolegendz.square.site"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_b1078d4325f07940",
@@ -6520,13 +6740,14 @@
       "lng": -118.442365684615,
       "cuisineType": "Mexican",
       "tags": "tacos, quesadillas, burritos",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:06.432Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
       "convertedUserId": "user_74eae5e0d076d06f",
-      "hours": "HOURS Sun 9:00 am - 8:30 pmThu 10:30 am - 8:30 pmFri 10:30 am - 8:30 pmSat 9:00 am - 8:30 pm CONTACT US 10252 Stanwin Ave Arleta, CA 91331 (747) 321-5950 SOCIAL MEDIA Copyright Tacos El Arbitro 2026"
+      "hours": "HOURS Sun 9:00 am - 8:30 pmThu 10:30 am - 8:30 pmFri 10:30 am - 8:30 pmSat 9:00 am - 8:30 pm CONTACT US 10252 Stanwin Ave Arleta, CA 91331 (747) 321-5950 SOCIAL MEDIA Copyright Tacos El Arbitro 2026",
+      "type": "seller"
     },
     {
       "id": "pros_47e19e51d1d81e2e",
@@ -6549,12 +6770,13 @@
       "lng": -118.213470402587,
       "cuisineType": "Mexican",
       "tags": "tacos, tijuana-style, mexican",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.026Z",
       "createdAt": "2026-03-26T05:25:48.026Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_8ec1becc76d807c9"
+      "convertedUserId": "user_8ec1becc76d807c9",
+      "type": "seller"
     },
     {
       "id": "pros_5e45fb981849c7c0",
@@ -6577,12 +6799,13 @@
       "lng": -118.193730139691,
       "cuisineType": "Mexican",
       "tags": "tacos, mazatlan, sinaloa",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_9ad781a2fd8865bc"
+      "convertedUserId": "user_9ad781a2fd8865bc",
+      "type": "seller"
     },
     {
       "id": "pros_e638ba9c311afe8f",
@@ -6605,12 +6828,13 @@
       "lng": -118.10241447343,
       "cuisineType": "Vietnamese",
       "tags": "vietnamese, pho, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_5fb7e0bf993b18cb"
+      "convertedUserId": "user_5fb7e0bf993b18cb",
+      "type": "seller"
     },
     {
       "id": "pros_854bcfa8a5954ea8",
@@ -6633,12 +6857,13 @@
       "lng": -118.061634779652,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "smash burgers, grass-fed, burgers",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_9506c7ce84c67421"
+      "convertedUserId": "user_9506c7ce84c67421",
+      "type": "seller"
     },
     {
       "id": "pros_aa50cb94d7b2ecfc",
@@ -6661,12 +6886,13 @@
       "lng": -118.411930359568,
       "cuisineType": "Latin American",
       "tags": "venezuelan, brazilian, south american",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_f26b624349e55c1c"
+      "convertedUserId": "user_f26b624349e55c1c",
+      "type": "seller"
     },
     {
       "id": "pros_366add51275d562c",
@@ -6689,12 +6915,13 @@
       "lng": -118.260045934331,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "persian, kebab, mediterranean",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_34cef6d562f91982"
+      "convertedUserId": "user_34cef6d562f91982",
+      "type": "seller"
     },
     {
       "id": "pros_0e8dfe908a18295f",
@@ -6717,12 +6944,13 @@
       "lng": -118.271456457227,
       "cuisineType": "Other",
       "tags": "thai, asian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_6dbc67b91a0a47cb"
+      "convertedUserId": "user_6dbc67b91a0a47cb",
+      "type": "seller"
     },
     {
       "id": "pros_f47819914cb64d92",
@@ -6745,12 +6973,13 @@
       "lng": -118.408919071346,
       "cuisineType": "Catering/Events",
       "tags": "organic, gourmet, catering",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_294ec3dfda5f77c0"
+      "convertedUserId": "user_294ec3dfda5f77c0",
+      "type": "seller"
     },
     {
       "id": "pros_7b5855988736adce",
@@ -6773,12 +7002,13 @@
       "lng": -118.341236558876,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "kosher, burgers, smash burger",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d3a0f586ac0545b4"
+      "convertedUserId": "user_d3a0f586ac0545b4",
+      "type": "seller"
     },
     {
       "id": "pros_2cf179fb8b075b4e",
@@ -6801,12 +7031,13 @@
       "lng": -118.275659583666,
       "cuisineType": "Beverage/Coffee/Tea",
       "tags": "elixirs, beverages, drinks",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_6c5feb539d37c3b9"
+      "convertedUserId": "user_6c5feb539d37c3b9",
+      "type": "seller"
     },
     {
       "id": "pros_86998b77074acc59",
@@ -6829,12 +7060,13 @@
       "lng": -118.634704519446,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homestyle, comfort food, hearty",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_bd43241d30ce96b0"
+      "convertedUserId": "user_bd43241d30ce96b0",
+      "type": "seller"
     },
     {
       "id": "pros_5c34ad189892516b",
@@ -6857,12 +7089,13 @@
       "lng": -118.441408372116,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "farm-to-table, seasonal, sustainable",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_43d36af3e608e0eb"
+      "convertedUserId": "user_43d36af3e608e0eb",
+      "type": "seller"
     },
     {
       "id": "pros_3e226c55474f7b34",
@@ -6888,13 +7121,14 @@
       "lng": -118.192051113559,
       "cuisineType": "Mediterranean/Middle Eastern",
       "tags": "kebab, mediterranean, grilled meats",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:06.432Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
       "convertedUserId": "user_9dfc249b689bb296",
-      "hours": "Hours Tuesday – Sunday: 11am to 9pm Contact (661) 234-4900 info@thekebabmob.com Follow Facebook-f Instagram X-twitter 2026 © The Kebab Mob– All rights reserved | Designed by: Futuristic Web Studios Close Menu"
+      "hours": "Hours Tuesday – Sunday: 11am to 9pm Contact (661) 234-4900 info@thekebabmob.com Follow Facebook-f Instagram X-twitter 2026 © The Kebab Mob– All rights reserved | Designed by: Futuristic Web Studios Close Menu",
+      "type": "seller"
     },
     {
       "id": "pros_e63bc47982ba5fad",
@@ -6917,12 +7151,13 @@
       "lng": -118.231630578819,
       "cuisineType": "Catering/Events",
       "tags": "mini bites, appetizers, catering",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_eaece702e7f3241b"
+      "convertedUserId": "user_eaece702e7f3241b",
+      "type": "seller"
     },
     {
       "id": "pros_186be952b5c7e3d4",
@@ -6945,12 +7180,13 @@
       "lng": -118.389146520631,
       "cuisineType": "Seafood",
       "tags": "seafood, coastal, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_1543f3e02e06a27b"
+      "convertedUserId": "user_1543f3e02e06a27b",
+      "type": "seller"
     },
     {
       "id": "pros_264ebe5ab672197f",
@@ -6973,12 +7209,13 @@
       "lng": -117.939483953649,
       "cuisineType": "Bakery",
       "tags": "pastry, baked goods, desserts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_f63394071906c232"
+      "convertedUserId": "user_f63394071906c232",
+      "type": "seller"
     },
     {
       "id": "pros_3256f7c81f5cb5d4",
@@ -7001,12 +7238,13 @@
       "lng": -118.253022211456,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homestyle, comfort food, grill",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_21eabf881f62ea9a"
+      "convertedUserId": "user_21eabf881f62ea9a",
+      "type": "seller"
     },
     {
       "id": "pros_47129315124e50a5",
@@ -7029,12 +7267,13 @@
       "lng": -118.312310955192,
       "cuisineType": "BBQ",
       "tags": "bbq, smoked meats, barbecue",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_7b75fd0061d4ca8e"
+      "convertedUserId": "user_7b75fd0061d4ca8e",
+      "type": "seller"
     },
     {
       "id": "pros_7102631cc7323659",
@@ -7057,12 +7296,13 @@
       "lng": -118.139372274114,
       "cuisineType": "Mexican",
       "tags": "mexican, sweets, craft",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_fffe248f2fcf9882"
+      "convertedUserId": "user_fffe248f2fcf9882",
+      "type": "seller"
     },
     {
       "id": "pros_3696b462456680dd",
@@ -7087,12 +7327,13 @@
       "lng": -118.184172652965,
       "cuisineType": "Mexican",
       "tags": "tamales, mexican, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:06.432Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_eb986db3e2d310df"
+      "convertedUserId": "user_eb986db3e2d310df",
+      "type": "seller"
     },
     {
       "id": "pros_88c8d4c16dfffa8f",
@@ -7115,12 +7356,13 @@
       "lng": -118.302503205234,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "comfort food, homestyle, american",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_6356959add91e758"
+      "convertedUserId": "user_6356959add91e758",
+      "type": "seller"
     },
     {
       "id": "pros_2f03669a34a1ec57",
@@ -7143,12 +7385,13 @@
       "lng": -117.954469813295,
       "cuisineType": "Chinese",
       "tags": "chinese, homestyle, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d0c0b4b879911514"
+      "convertedUserId": "user_d0c0b4b879911514",
+      "type": "seller"
     },
     {
       "id": "pros_5588fcce6d3e89e9",
@@ -7171,12 +7414,13 @@
       "lng": -118.022934111743,
       "cuisineType": "Desserts/Sweets",
       "tags": "treats, sweets, mini desserts",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_682a7a536b89a18e"
+      "convertedUserId": "user_682a7a536b89a18e",
+      "type": "seller"
     },
     {
       "id": "pros_dffdbb78d3ceb8a6",
@@ -7201,12 +7445,13 @@
       "lng": -118.302508609899,
       "cuisineType": "Bakery",
       "tags": "bakery, toasted, pastries",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:07.782Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e2ca78e157c5cedc"
+      "convertedUserId": "user_e2ca78e157c5cedc",
+      "type": "seller"
     },
     {
       "id": "pros_3938bcce58842e94",
@@ -7229,12 +7474,13 @@
       "lng": -118.342876581702,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "healthy, plant-based, fresh",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_aa00ce86d69697f3"
+      "convertedUserId": "user_aa00ce86d69697f3",
+      "type": "seller"
     },
     {
       "id": "pros_e7c80a48024e159c",
@@ -7257,12 +7503,13 @@
       "lng": -117.96058763132,
       "cuisineType": "Chinese",
       "tags": "chinese, education, cooking",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2881c1fd57bca11b"
+      "convertedUserId": "user_2881c1fd57bca11b",
+      "type": "seller"
     },
     {
       "id": "pros_e5008b898bdb9355",
@@ -7287,12 +7534,13 @@
       "lng": -118.385247085022,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "vegan, soul food, plant-based",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:07.782Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_7cd327555487811a"
+      "convertedUserId": "user_7cd327555487811a",
+      "type": "seller"
     },
     {
       "id": "pros_6909b82c0b2e650a",
@@ -7317,7 +7565,7 @@
       "lng": -118.065326927731,
       "cuisineType": "Vegan/Vegetarian",
       "tags": "vegan, mexican, plant-based",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:07.782Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
@@ -7325,7 +7573,8 @@
       "convertedUserId": "user_2f0765ae483d410e",
       "orderingLinks": [
         "https://www.hotplate.com/veggieyque/323e5dcc-df5d-4881-8947-39c1238f9c4b"
-      ]
+      ],
+      "type": "seller"
     },
     {
       "id": "pros_09575b9ea87dd405",
@@ -7348,12 +7597,13 @@
       "lng": -118.585113308905,
       "cuisineType": "Pizza/Italian",
       "tags": "pizza, italian",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e7fd5fe52450a269"
+      "convertedUserId": "user_e7fd5fe52450a269",
+      "type": "seller"
     },
     {
       "id": "pros_db1bdf68ed74c444",
@@ -7396,12 +7646,13 @@
       "lng": -118.313729796645,
       "cuisineType": "Latin American",
       "tags": "fusion, latin, cantina",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:07.782Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_ab6cbaec28259a83"
+      "convertedUserId": "user_ab6cbaec28259a83",
+      "type": "seller"
     },
     {
       "id": "pros_cea60926ca155e6c",
@@ -7424,12 +7675,13 @@
       "lng": -118.30285967623,
       "cuisineType": "Other",
       "tags": "homestyle, home kitchen",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_42037c419e7e9fe6"
+      "convertedUserId": "user_42037c419e7e9fe6",
+      "type": "seller"
     },
     {
       "id": "pros_323860f19e727419",
@@ -7452,12 +7704,13 @@
       "lng": -118.658419410085,
       "cuisineType": "Comfort Food/Soul Food",
       "tags": "homestyle, comfort food",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2aa92a5cbe20ee01"
+      "convertedUserId": "user_2aa92a5cbe20ee01",
+      "type": "seller"
     },
     {
       "id": "pros_9ed9369908c0ca80",
@@ -7480,12 +7733,13 @@
       "lng": -117.961865940626,
       "cuisineType": "Chinese",
       "tags": "chinese, asian, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_8c6a8daa399786d3"
+      "convertedUserId": "user_8c6a8daa399786d3",
+      "type": "seller"
     },
     {
       "id": "pros_07716b46e7061fca",
@@ -7510,12 +7764,13 @@
       "lng": -117.998865079123,
       "cuisineType": "Sandwiches/Burgers",
       "tags": "wraps, to-go, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:33:09.133Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_9ce0d26d30647172"
+      "convertedUserId": "user_9ce0d26d30647172",
+      "type": "seller"
     },
     {
       "id": "pros_a7a3d25e8efbce3f",
@@ -7538,12 +7793,13 @@
       "lng": -118.224430879529,
       "cuisineType": "BBQ",
       "tags": "bbq, sausage, grilled",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_67c3e4f0c3bd1e15"
+      "convertedUserId": "user_67c3e4f0c3bd1e15",
+      "type": "seller"
     },
     {
       "id": "pros_d828c6ac47ce6b3e",
@@ -7566,12 +7822,13 @@
       "lng": -118.24187885986,
       "cuisineType": "Latin American",
       "tags": "empanadas, latin, homemade",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2bdd7f5861e15a0b"
+      "convertedUserId": "user_2bdd7f5861e15a0b",
+      "type": "seller"
     },
     {
       "id": "pros_7171cc3131affb6b",
@@ -7594,12 +7851,13 @@
       "lng": -117.787897819084,
       "cuisineType": "Chinese",
       "tags": "chinese, homestyle, family",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_eb4bc9b2f55e2fd6"
+      "convertedUserId": "user_eb4bc9b2f55e2fd6",
+      "type": "seller"
     },
     {
       "id": "pros_5352cc4c735a57e3",
@@ -7622,12 +7880,13 @@
       "lng": -118.097351657218,
       "cuisineType": "Chinese",
       "tags": "chinese, homestyle",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_50a9d0add23349ac"
+      "convertedUserId": "user_50a9d0add23349ac",
+      "type": "seller"
     },
     {
       "id": "pros_e8fddbb5ad904e6c",
@@ -7650,12 +7909,13 @@
       "lng": -117.911370442465,
       "cuisineType": "Chinese",
       "tags": "asian, chinese, soup",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.027Z",
       "createdAt": "2026-03-26T05:25:48.027Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_c5d987ba5ea04e19"
+      "convertedUserId": "user_c5d987ba5ea04e19",
+      "type": "seller"
     },
     {
       "id": "pros_b1ea6dee58e9f998",
@@ -7678,12 +7938,13 @@
       "lng": -118.5369316,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2cbdda9d9077a90d"
+      "convertedUserId": "user_2cbdda9d9077a90d",
+      "type": "seller"
     },
     {
       "id": "pros_a500661fb4030fd1",
@@ -7706,12 +7967,13 @@
       "lng": -118.242766,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_f9705a7dc5ece9cf"
+      "convertedUserId": "user_f9705a7dc5ece9cf",
+      "type": "seller"
     },
     {
       "id": "pros_5342f3ab37388b0a",
@@ -7734,12 +7996,13 @@
       "lng": -118.6228656,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_bfc0a873f0b5a486"
+      "convertedUserId": "user_bfc0a873f0b5a486",
+      "type": "seller"
     },
     {
       "id": "pros_d89178af2e7795f7",
@@ -7762,12 +8025,13 @@
       "lng": -118.427027,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_4c426dbce3c969e1"
+      "convertedUserId": "user_4c426dbce3c969e1",
+      "type": "seller"
     },
     {
       "id": "pros_0aab6d337c60011d",
@@ -7790,12 +8054,13 @@
       "lng": -118.24182859085523,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_487f326efc41b4d6"
+      "convertedUserId": "user_487f326efc41b4d6",
+      "type": "seller"
     },
     {
       "id": "pros_6ca4824e77c10d01",
@@ -7818,12 +8083,13 @@
       "lng": -118.0849169,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d6792865677d0054"
+      "convertedUserId": "user_d6792865677d0054",
+      "type": "seller"
     },
     {
       "id": "pros_180a0e7895f7623d",
@@ -7846,12 +8112,13 @@
       "lng": -118.24194510167138,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_7e1fee4256c3c309"
+      "convertedUserId": "user_7e1fee4256c3c309",
+      "type": "seller"
     },
     {
       "id": "pros_46f65419c01566ed",
@@ -7874,12 +8141,13 @@
       "lng": -118.2288887,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_ce2eeeba8c4a4c70"
+      "convertedUserId": "user_ce2eeeba8c4a4c70",
+      "type": "seller"
     },
     {
       "id": "pros_08a05fbcc16aaf64",
@@ -7902,12 +8170,13 @@
       "lng": -118.24085320346707,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_b1aba10db364edbf"
+      "convertedUserId": "user_b1aba10db364edbf",
+      "type": "seller"
     },
     {
       "id": "pros_337be597f37e274a",
@@ -7930,12 +8199,13 @@
       "lng": -118.2922934,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_ca7952522424f76c"
+      "convertedUserId": "user_ca7952522424f76c",
+      "type": "seller"
     },
     {
       "id": "pros_17f00c0b05abe45b",
@@ -7958,12 +8228,13 @@
       "lng": -118.08332660380228,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_db8157f8e029da8e"
+      "convertedUserId": "user_db8157f8e029da8e",
+      "type": "seller"
     },
     {
       "id": "pros_a5317727b15592b9",
@@ -7986,12 +8257,13 @@
       "lng": -118.1085554,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_fb8a99246d0e2c8f"
+      "convertedUserId": "user_fb8a99246d0e2c8f",
+      "type": "seller"
     },
     {
       "id": "pros_5f3d6d1c589a57d9",
@@ -8014,12 +8286,13 @@
       "lng": -118.5174342,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_94a07f9f7ea995a9"
+      "convertedUserId": "user_94a07f9f7ea995a9",
+      "type": "seller"
     },
     {
       "id": "pros_ec5247957d45e8c2",
@@ -8042,12 +8315,13 @@
       "lng": -118.24173679473081,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_873cafa3a09bd87e"
+      "convertedUserId": "user_873cafa3a09bd87e",
+      "type": "seller"
     },
     {
       "id": "pros_fff290445f020025",
@@ -8070,12 +8344,13 @@
       "lng": -118.200981,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_15941e49531ce536"
+      "convertedUserId": "user_15941e49531ce536",
+      "type": "seller"
     },
     {
       "id": "pros_1cfb16d6bda62113",
@@ -8098,12 +8373,13 @@
       "lng": -118.1835395,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d94ce58ec7f8eebb"
+      "convertedUserId": "user_d94ce58ec7f8eebb",
+      "type": "seller"
     },
     {
       "id": "pros_f1352ebbfb8a53a8",
@@ -8126,12 +8402,13 @@
       "lng": -118.4486675,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_bd1e71bf65b00506"
+      "convertedUserId": "user_bd1e71bf65b00506",
+      "type": "seller"
     },
     {
       "id": "pros_aaa460d3ba57d4c7",
@@ -8154,12 +8431,13 @@
       "lng": -118.374752,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2e8589e66ac852c0"
+      "convertedUserId": "user_2e8589e66ac852c0",
+      "type": "seller"
     },
     {
       "id": "pros_f4249faaa0e87a49",
@@ -8182,12 +8460,13 @@
       "lng": -118.23993839217408,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e2512d83845badab"
+      "convertedUserId": "user_e2512d83845badab",
+      "type": "seller"
     },
     {
       "id": "pros_43f721fc75bf8d32",
@@ -8210,12 +8489,13 @@
       "lng": -117.8659441,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d9971fcd53a2de2a"
+      "convertedUserId": "user_d9971fcd53a2de2a",
+      "type": "seller"
     },
     {
       "id": "pros_65462c1e8d3e7769",
@@ -8238,12 +8518,13 @@
       "lng": -118.2416263163081,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_576475c30c78ef7d"
+      "convertedUserId": "user_576475c30c78ef7d",
+      "type": "seller"
     },
     {
       "id": "pros_7354c6a9abfd7e2a",
@@ -8266,12 +8547,13 @@
       "lng": -118.4453745,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_1a8b72ddd5076de3"
+      "convertedUserId": "user_1a8b72ddd5076de3",
+      "type": "seller"
     },
     {
       "id": "pros_1f3ef79df686449c",
@@ -8294,12 +8576,13 @@
       "lng": -118.3413606,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_3c144de2054e1561"
+      "convertedUserId": "user_3c144de2054e1561",
+      "type": "seller"
     },
     {
       "id": "pros_9cd98ba8b0417e95",
@@ -8322,12 +8605,13 @@
       "lng": -117.8659441,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_b4deae864e4b611e"
+      "convertedUserId": "user_b4deae864e4b611e",
+      "type": "seller"
     },
     {
       "id": "pros_8d230d847bf81dac",
@@ -8350,12 +8634,13 @@
       "lng": -117.905339,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_054a76c3e6739ad2"
+      "convertedUserId": "user_054a76c3e6739ad2",
+      "type": "seller"
     },
     {
       "id": "pros_194f6f08f567fee3",
@@ -8378,12 +8663,13 @@
       "lng": -118.036849,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e111d9275f4c4524"
+      "convertedUserId": "user_e111d9275f4c4524",
+      "type": "seller"
     },
     {
       "id": "pros_b05e79a894639094",
@@ -8406,12 +8692,13 @@
       "lng": -118.2922934,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_0e458a3f330cdd71"
+      "convertedUserId": "user_0e458a3f330cdd71",
+      "type": "seller"
     },
     {
       "id": "pros_d52ce9579a9ccc93",
@@ -8434,12 +8721,13 @@
       "lng": -118.24179306779693,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_6f00781683312e5f"
+      "convertedUserId": "user_6f00781683312e5f",
+      "type": "seller"
     },
     {
       "id": "pros_0a8647c643b594e4",
@@ -8462,12 +8750,13 @@
       "lng": -118.24234283978862,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_a1d3643a1e1dcd67"
+      "convertedUserId": "user_a1d3643a1e1dcd67",
+      "type": "seller"
     },
     {
       "id": "pros_50eee7b6e287c3ee",
@@ -8490,12 +8779,13 @@
       "lng": -118.242766,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_7223871268e0eb9a"
+      "convertedUserId": "user_7223871268e0eb9a",
+      "type": "seller"
     },
     {
       "id": "pros_b60696aa1d31494d",
@@ -8518,12 +8808,13 @@
       "lng": -118.0014517,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_7e6a5a007ae30d01"
+      "convertedUserId": "user_7e6a5a007ae30d01",
+      "type": "seller"
     },
     {
       "id": "pros_6660ca94646e57d7",
@@ -8546,12 +8837,13 @@
       "lng": -117.7517496,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_0135ce53e29772e4"
+      "convertedUserId": "user_0135ce53e29772e4",
+      "type": "seller"
     },
     {
       "id": "pros_b247cdd49971661f",
@@ -8574,12 +8866,13 @@
       "lng": -118.11711,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.029Z",
       "createdAt": "2026-03-26T05:25:48.029Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_6cf2f9379f472a1f"
+      "convertedUserId": "user_6cf2f9379f472a1f",
+      "type": "seller"
     },
     {
       "id": "pros_e2d13f303519678e",
@@ -8602,12 +8895,13 @@
       "lng": -118.3707683,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_9a9ae5901f37b3ef"
+      "convertedUserId": "user_9a9ae5901f37b3ef",
+      "type": "seller"
     },
     {
       "id": "pros_01f606333e4585d5",
@@ -8630,12 +8924,13 @@
       "lng": -118.226624,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_8e8c352d93732206"
+      "convertedUserId": "user_8e8c352d93732206",
+      "type": "seller"
     },
     {
       "id": "pros_13ff0eaa79d696b5",
@@ -8658,12 +8953,13 @@
       "lng": -118.24339197227256,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_43182f7400ee70eb"
+      "convertedUserId": "user_43182f7400ee70eb",
+      "type": "seller"
     },
     {
       "id": "pros_c9fff0eb648ffde5",
@@ -8686,12 +8982,13 @@
       "lng": -118.2478471,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_9c2c362054c5a671"
+      "convertedUserId": "user_9c2c362054c5a671",
+      "type": "seller"
     },
     {
       "id": "pros_80b087900a884647",
@@ -8714,12 +9011,13 @@
       "lng": -118.24373880303656,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2b5ac059f732a708"
+      "convertedUserId": "user_2b5ac059f732a708",
+      "type": "seller"
     },
     {
       "id": "pros_617d16905bd859ed",
@@ -8742,12 +9040,13 @@
       "lng": -118.3845942,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d03fa232210e210b"
+      "convertedUserId": "user_d03fa232210e210b",
+      "type": "seller"
     },
     {
       "id": "pros_479138e1e27f9d6b",
@@ -8770,12 +9069,13 @@
       "lng": -118.08748309188631,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_ef76c37b5db330bd"
+      "convertedUserId": "user_ef76c37b5db330bd",
+      "type": "seller"
     },
     {
       "id": "pros_1c204a4461e3813e",
@@ -8798,12 +9098,13 @@
       "lng": -118.4486675,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_1af79fb7d35c0458"
+      "convertedUserId": "user_1af79fb7d35c0458",
+      "type": "seller"
     },
     {
       "id": "pros_0b248bbae74b2f41",
@@ -8826,12 +9127,13 @@
       "lng": -118.0401497,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_69cb197085ce363c"
+      "convertedUserId": "user_69cb197085ce363c",
+      "type": "seller"
     },
     {
       "id": "pros_8af33f0c6affcea2",
@@ -8854,12 +9156,13 @@
       "lng": -117.865339,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_4c499518729b316e"
+      "convertedUserId": "user_4c499518729b316e",
+      "type": "seller"
     },
     {
       "id": "pros_fde79759c4934414",
@@ -8882,12 +9185,13 @@
       "lng": -118.2449579208718,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_74bb9cddb7b52f8d"
+      "convertedUserId": "user_74bb9cddb7b52f8d",
+      "type": "seller"
     },
     {
       "id": "pros_d0ad93c40b214a58",
@@ -8910,12 +9214,13 @@
       "lng": -118.2453717823265,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_709c1fd3649657ac"
+      "convertedUserId": "user_709c1fd3649657ac",
+      "type": "seller"
     },
     {
       "id": "pros_bd5e1645b9b0235b",
@@ -8938,12 +9243,13 @@
       "lng": -118.307201,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_a4d8f9b15c07adff"
+      "convertedUserId": "user_a4d8f9b15c07adff",
+      "type": "seller"
     },
     {
       "id": "pros_2eeab9aa49fd5c3d",
@@ -8966,12 +9272,13 @@
       "lng": -117.9611761,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_159842d74afca873"
+      "convertedUserId": "user_159842d74afca873",
+      "type": "seller"
     },
     {
       "id": "pros_9a3f04979d4f3d11",
@@ -8994,12 +9301,13 @@
       "lng": -118.374752,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d9fc48c2a0e71df6"
+      "convertedUserId": "user_d9fc48c2a0e71df6",
+      "type": "seller"
     },
     {
       "id": "pros_be12c85ded45739e",
@@ -9022,12 +9330,13 @@
       "lng": -118.24495953823873,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_2002c90b9d63f8ee"
+      "convertedUserId": "user_2002c90b9d63f8ee",
+      "type": "seller"
     },
     {
       "id": "pros_c50581c20d1fc68d",
@@ -9050,12 +9359,13 @@
       "lng": -118.4854081,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_b89242d62575093b"
+      "convertedUserId": "user_b89242d62575093b",
+      "type": "seller"
     },
     {
       "id": "pros_1d257d4225b9c846",
@@ -9078,12 +9388,13 @@
       "lng": -118.24524943599057,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_0fb39ca39a96d71f"
+      "convertedUserId": "user_0fb39ca39a96d71f",
+      "type": "seller"
     },
     {
       "id": "pros_60e24236d9e7eef1",
@@ -9106,12 +9417,13 @@
       "lng": -117.953097,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_43ae2cfca57214f5"
+      "convertedUserId": "user_43ae2cfca57214f5",
+      "type": "seller"
     },
     {
       "id": "pros_f70142125362847f",
@@ -9134,12 +9446,13 @@
       "lng": -118.2441377835849,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_41544cb78554f6fd"
+      "convertedUserId": "user_41544cb78554f6fd",
+      "type": "seller"
     },
     {
       "id": "pros_ac4be24af72d69a5",
@@ -9162,12 +9475,13 @@
       "lng": -118.3413606,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_6c78b5031c5898b9"
+      "convertedUserId": "user_6c78b5031c5898b9",
+      "type": "seller"
     },
     {
       "id": "pros_5372d1d67881d4c2",
@@ -9190,12 +9504,13 @@
       "lng": -118.0401497,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_956fc0585ffd015c"
+      "convertedUserId": "user_956fc0585ffd015c",
+      "type": "seller"
     },
     {
       "id": "pros_de4f0868e09fc4dc",
@@ -9218,12 +9533,13 @@
       "lng": -117.968675,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "prospect",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_63ddb4771dc4674a"
+      "convertedUserId": "user_63ddb4771dc4674a",
+      "type": "seller"
     },
     {
       "id": "pros_936fddbbc28d6933",
@@ -9246,12 +9562,13 @@
       "lng": -118.2435018966633,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_d494b874afdd3989"
+      "convertedUserId": "user_d494b874afdd3989",
+      "type": "seller"
     },
     {
       "id": "pros_37b6c6b1f1e49fef",
@@ -9274,12 +9591,13 @@
       "lng": -118.5538088,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_c08282f6218f1e8c"
+      "convertedUserId": "user_c08282f6218f1e8c",
+      "type": "seller"
     },
     {
       "id": "pros_2a56e9e6dbe2266c",
@@ -9302,12 +9620,13 @@
       "lng": -118.2935879,
       "cuisineType": "",
       "tags": "",
-      "status": "approved",
+      "status": "live",
       "featured": false,
       "scrapedAt": "2026-03-26T05:25:48.030Z",
       "createdAt": "2026-03-26T05:25:48.030Z",
       "convertedAt": "2026-03-27T03:55:39.009Z",
-      "convertedUserId": "user_e518b236fd98f638"
+      "convertedUserId": "user_e518b236fd98f638",
+      "type": "seller"
     }
   ]
 }

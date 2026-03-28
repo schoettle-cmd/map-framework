@@ -60,7 +60,11 @@ const upload = multer({
 
 // ── Base Path (for reverse-proxy sub-path deployments like /cottage/) ───────
 const BASE_PATH = (process.env.BASE_PATH || '').replace(/\/+$/, '');
+const CUSTOM_DOMAINS = ["kitse.co", "www.kitse.co", "kitse.ai", "www.kitse.ai"];
+function getBase(req) { return CUSTOM_DOMAINS.includes((req.get("host") || "").split(":")[0]) ? "" : BASE_PATH; }
+function isCustomDomain(req) { return CUSTOM_DOMAINS.includes((req.get("host") || "").split(":")[0]); }
 
+function baseScriptForReq(req) { return isCustomDomain(req) ? "" : baseScript(); }
 function baseScript() {
   if (!BASE_PATH) return '';
   return `<script>(function(){var B='${BASE_PATH}';window.__BASE=B;window.__href=function(p){return p.startsWith('/')?B+p:p};var _f=window.fetch;window.fetch=function(u){if(typeof u==='string'&&u.startsWith('/')&&!u.startsWith(B+'/'))u=B+u;var a=[u];for(var i=1;i<arguments.length;i++)a.push(arguments[i]);return _f.apply(this,a)};document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a[href]').forEach(function(a){var h=a.getAttribute('href');if(h&&h.startsWith('/')&&!h.startsWith('#')&&!h.startsWith(B+'/'))a.href=B+h})})})();</script>\n`;
@@ -69,7 +73,7 @@ function baseScript() {
 function serveHtml(filePath) {
   return (req, res) => {
     let html = fs.readFileSync(filePath, 'utf-8');
-    if (BASE_PATH) html = html.replace('</head>', baseScript() + '</head>');
+    if (BASE_PATH && !CUSTOM_DOMAINS.includes((req.get("host") || "").split(":")[0])) html = html.replace('</head>', baseScript() + '</head>');
     res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.type('html').send(html);
   };
@@ -118,7 +122,7 @@ app.get('/order/:id', (req, res) => {
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Order Tracking — ${platformSettings.platformName || 'Kitse'}</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-${baseScript()}<style>
+${baseScriptForReq(req)}<style>
 :root{--cream:#F5F1E8;--ink:#1A1A1A;--terracotta:#C46A3C;--warm-gray:#8A8577;--sans:'Inter',sans-serif;--serif:'Playfair Display',serif;}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh;}
@@ -164,7 +168,7 @@ ${order.deliveredAt ? `<div class="delivered-time">Delivered ${new Date(order.de
   res.send(html);
 });
 
-app.get('/profile', (req, res) => res.redirect(BASE_PATH + '/map'));
+app.get('/profile', (req, res) => res.redirect(getBase(req) + '/map'));
 app.get('/profile/:id', (req, res) => {
   const id = req.params.id;
   let el = elements.elements.find(e => e.ownerId === id && e.active !== false);
@@ -188,8 +192,8 @@ app.get('/profile/:id', (req, res) => {
   const currentIdx = sortedChefs.findIndex(e => e.id === el.id);
   const prevChef = currentIdx > 0 ? sortedChefs[currentIdx - 1] : sortedChefs[sortedChefs.length - 1];
   const nextChef = currentIdx < sortedChefs.length - 1 ? sortedChefs[currentIdx + 1] : sortedChefs[0];
-  const prevUrl = `${BASE_PATH}/profile/${(prevChef.metadata && prevChef.metadata.userId) || prevChef.ownerId || prevChef.id}`;
-  const nextUrl = `${BASE_PATH}/profile/${(nextChef.metadata && nextChef.metadata.userId) || nextChef.ownerId || nextChef.id}`;
+  const prevUrl = `${getBase(req)}/profile/${(prevChef.metadata && prevChef.metadata.userId) || prevChef.ownerId || prevChef.id}`;
+  const nextUrl = `${getBase(req)}/profile/${(nextChef.metadata && nextChef.metadata.userId) || nextChef.ownerId || nextChef.id}`;
 
   const menuHtml = elProducts.map(p => `
     <div class="meal-card">
@@ -224,7 +228,7 @@ ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-${baseScript()}<style>
+${baseScriptForReq(req)}<style>
 :root {
   --cream: #F5F1E8;
   --ink: #1A1A1A;
@@ -626,6 +630,23 @@ body {
   .nav-btn-name { font-size: 10px; max-width: 70px; }
   .profile-nav-btn { padding: 5px 8px; }
 }
+/* Pre-launch overlay */
+.prelaunch-backdrop { display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;padding:20px; }
+.prelaunch-backdrop.open { display:flex; }
+.prelaunch-card { background:var(--cream);border-radius:20px;padding:36px 32px;max-width:420px;width:100%;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+.prelaunch-close { position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;border:none;background:transparent;font-size:20px;cursor:pointer;color:var(--warm-gray);display:flex;align-items:center;justify-content:center; }
+.prelaunch-close:hover { background:rgba(47,58,47,0.08);color:var(--ink); }
+.prelaunch-title { font-family:var(--serif);font-size:24px;font-weight:700;margin-bottom:8px; }
+.prelaunch-sub { color:var(--warm-gray);font-size:14px;line-height:1.6;margin-bottom:24px; }
+.prelaunch-input { display:block;width:100%;padding:14px 16px;border:1.5px solid var(--light-border);border-radius:12px;font-size:15px;font-family:var(--sans);background:#fff;margin-bottom:12px;outline:none;transition:border-color 0.2s; }
+.prelaunch-input:focus { border-color:var(--terracotta); }
+.prelaunch-checkbox { display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--ink);margin-bottom:8px;cursor:pointer;line-height:1.4; }
+.prelaunch-checkbox input { margin-top:2px;accent-color:var(--terracotta); }
+.prelaunch-legal { font-size:12px;color:var(--warm-gray);margin:12px 0 20px;line-height:1.5; }
+.prelaunch-legal a { color:var(--terracotta);text-decoration:underline; }
+.prelaunch-btn { display:block;width:100%;padding:16px;border-radius:100px;border:none;background:var(--terracotta);color:#fff;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:all 0.2s; }
+.prelaunch-btn:hover { background:var(--terracotta-light);transform:translateY(-1px); }
+
 </style>
 </head>
 <body>
@@ -640,8 +661,8 @@ body {
 
 <section class="profile-hero">
   ${el.imageUrl
-    ? `<img src="${esc(el.imageUrl)}" alt="${esc(el.title)}" onerror="this.onerror=null;this.src='${BASE_PATH}/placeholder-chef.svg';">`
-    : `<img src="${BASE_PATH}/placeholder-chef.svg" alt="${esc(el.title)}" style="object-fit:cover;width:100%;height:100%">`}
+    ? `<img src="${esc(el.imageUrl)}" alt="${esc(el.title)}" onerror="this.onerror=null;this.src='${getBase(req)}/placeholder-chef.svg';">`
+    : `<img src="${getBase(req)}/placeholder-chef.svg" alt="${esc(el.title)}" style="object-fit:cover;width:100%;height:100%">`}
   <div class="hero-gradient"></div>
   <nav class="profile-nav">
     <a href="${prevUrl}" class="profile-nav-btn">
@@ -688,13 +709,13 @@ body {
           ? `<a href="${esc(el.externalOrderUrl)}" target="_blank" rel="noopener" class="order-btn">Visit Website</a>`
           : el.instagram
             ? `<a href="https://instagram.com/${esc(el.instagram.replace(/^@/, ''))}" target="_blank" rel="noopener" class="order-btn">View on Instagram</a>`
-            : `<a href="${BASE_PATH}/map" class="order-btn">View on Map</a>`}
-        <a href="${BASE_PATH}/map" class="message-btn">Message Chef</a>
+            : `<a href="${getBase(req)}/map" class="order-btn">View on Map</a>`}
+        <button class="message-btn" onclick="document.getElementById('prelaunch-overlay').classList.add('open')">Get Notified When We Launch</button>
         <div class="sidebar-divider"></div>
-        <div class="sidebar-section-title">Availability</div>
+        <div class="sidebar-section-title">Coming Soon</div>
         <div class="availability-info">
-          <strong>Pickup</strong> available<br>
-          Message chef for delivery options and scheduling.
+          Online ordering launching soon.<br>
+          Sign up to be first to order from ${esc(el.title)}.
         </div>
         ${contactLinks.length > 0 ? `
           <div class="sidebar-divider"></div>
@@ -709,6 +730,52 @@ body {
 <footer class="profile-footer">
   <div class="profile-footer-brand">Kitse</div>
   <div class="profile-footer-tagline">Eat beautifully.</div>
+
+<!-- Pre-launch Notification Overlay -->
+<div id="prelaunch-overlay" class="prelaunch-backdrop">
+  <div class="prelaunch-card">
+    <button class="prelaunch-close" onclick="document.getElementById('prelaunch-overlay').classList.remove('open')">&times;</button>
+    <div class="prelaunch-title">Be the first to order</div>
+    <p class="prelaunch-sub">Online ordering is launching soon. Enter your details and we'll notify you the moment it's live.</p>
+    <div id="prelaunch-form">
+      <input type="email" id="prelaunch-email" class="prelaunch-input" placeholder="Email address">
+      <input type="tel" id="prelaunch-phone" class="prelaunch-input" placeholder="Phone number (optional)">
+      <label class="prelaunch-checkbox"><input type="checkbox" id="prelaunch-email-optin"> I agree to receive email updates about Kitse</label>
+      <label class="prelaunch-checkbox"><input type="checkbox" id="prelaunch-sms-optin"> I agree to receive SMS updates about Kitse</label>
+      <p class="prelaunch-legal">By signing up you agree to our <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</p>
+      <button class="prelaunch-btn" onclick="submitPrelaunch()">Notify Me</button>
+    </div>
+    <div id="prelaunch-success" style="display:none;text-align:center;padding:20px 0;">
+      <div style="font-size:32px;margin-bottom:12px;">\u2713</div>
+      <div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:8px;">You're on the list!</div>
+      <p style="color:var(--warm-gray);font-size:14px;">We'll let you know as soon as ordering goes live.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+async function submitPrelaunch() {
+  const email = document.getElementById('prelaunch-email').value.trim();
+  const phone = document.getElementById('prelaunch-phone').value.trim();
+  const emailOptin = document.getElementById('prelaunch-email-optin').checked;
+  const smsOptin = document.getElementById('prelaunch-sms-optin').checked;
+  if (!email) { alert('Please enter your email address.'); return; }
+  if (!emailOptin && !smsOptin) { alert('Please opt in to at least one notification method.'); return; }
+  const BASE = window.__BASE || '';
+  try {
+    const res = await fetch(BASE + '/api/prelaunch-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, phone, emailOptin, smsOptin, chefId: '${el.id}', chefName: '${esc(el.title).replace("'", "\\'")}' })
+    });
+    const d = await res.json();
+    if (d.ok) {
+      document.getElementById('prelaunch-form').style.display = 'none';
+      document.getElementById('prelaunch-success').style.display = 'block';
+    } else { alert(d.error || 'Something went wrong.'); }
+  } catch(e) { alert('Network error. Please try again.'); }
+}
+</script>
 </footer>
 </body>
 </html>`;
@@ -717,6 +784,77 @@ body {
 });
 app.get('/terms', serveHtml(path.join(__dirname, 'public/terms.html')));
 app.get('/privacy', serveHtml(path.join(__dirname, 'public/privacy.html')));
+
+// ── Pre-launch Signups ──────────────────────────────────────────────────────
+const prelaunchPath = path.join(__dirname, 'data', 'prelaunch_signups.json');
+let prelaunchSignups = { signups: [] };
+if (fs.existsSync(prelaunchPath)) {
+  try { prelaunchSignups = JSON.parse(fs.readFileSync(prelaunchPath, 'utf-8')); } catch(e) {}
+}
+function savePrelaunch() { fs.writeFileSync(prelaunchPath, JSON.stringify(prelaunchSignups, null, 2)); }
+
+app.post('/api/prelaunch-signup', (req, res) => {
+  const { email, phone, emailOptin, smsOptin, chefId, chefName } = req.body;
+  if (!email || !email.includes('@')) return res.status(400).json({ ok: false, error: 'Valid email required.' });
+  if (!emailOptin && !smsOptin) return res.status(400).json({ ok: false, error: 'Please opt in to at least one notification method.' });
+
+  // Check for duplicate email
+  const existing = prelaunchSignups.signups.find(s => s.email === email.toLowerCase().trim());
+  if (existing) {
+    // Update with new chef interest
+    if (chefId && !existing.chefInterests.find(c => c.id === chefId)) {
+      existing.chefInterests.push({ id: chefId, name: chefName || '' });
+    }
+    if (phone && !existing.phone) existing.phone = phone.trim();
+    if (emailOptin) existing.emailOptin = true;
+    if (smsOptin) existing.smsOptin = true;
+    existing.updatedAt = new Date().toISOString();
+    savePrelaunch();
+    return res.json({ ok: true, updated: true });
+  }
+
+  prelaunchSignups.signups.push({
+    id: 'pl_' + crypto.randomBytes(8).toString('hex'),
+    email: email.toLowerCase().trim(),
+    phone: phone ? phone.trim() : '',
+    emailOptin: !!emailOptin,
+    smsOptin: !!smsOptin,
+    chefInterests: chefId ? [{ id: chefId, name: chefName || '' }] : [],
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  });
+  savePrelaunch();
+  res.json({ ok: true });
+});
+
+// GET /api/admin/prelaunch — list all pre-launch signups
+app.get('/api/admin/prelaunch', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  res.json({ ok: true, signups: prelaunchSignups.signups, total: prelaunchSignups.signups.length });
+});
+
+// DELETE /api/admin/prelaunch/:id
+app.delete('/api/admin/prelaunch/:id', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  const idx = prelaunchSignups.signups.findIndex(s => s.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ ok: false, error: 'Not found.' });
+  prelaunchSignups.signups.splice(idx, 1);
+  savePrelaunch();
+  res.json({ ok: true });
+});
+
+// GET /api/admin/prelaunch/export — CSV export
+app.get('/api/admin/prelaunch/export', (req, res) => {
+  if (!getAdminSession(req)) return res.status(401).json({ ok: false, error: 'Admin login required.' });
+  let csv = 'Email,Phone,Email Opt-in,SMS Opt-in,Chef Interests,Signed Up\n';
+  prelaunchSignups.signups.forEach(s => {
+    csv += `"${s.email}","${s.phone}",${s.emailOptin},${s.smsOptin},"${s.chefInterests.map(c=>c.name).join('; ')}","${s.createdAt}"\n`;
+  });
+  res.set('Content-Type', 'text/csv');
+  res.set('Content-Disposition', 'attachment; filename="kitse-prelaunch-signups.csv"');
+  res.send(csv);
+});
+
 app.get('/seller', serveHtml(path.join(__dirname, 'public/seller.html')));
 app.get('/join', serveHtml(path.join(__dirname, 'public/join.html')));
 app.get('/admin', serveHtml(path.join(__dirname, 'public/admin.html')));
@@ -3122,9 +3260,22 @@ app.post('/api/admin/prospects/bulk-make-live', (req, res) => {
   const results = [];
 
   for (const prospect of targetProspects) {
-    // Skip already converted
+    // If already converted, reactivate element instead of skipping
     if (prospect.convertedUserId || prospect.status === 'live') {
-      results.push({ id: prospect.id, skipped: true, reason: 'already converted' });
+      const existingEl = elements.elements.find(e => e.metadata && e.metadata.prospectId === prospect.id);
+      if (existingEl && !existingEl.active) {
+        existingEl.active = true;
+        prospect.status = 'live';
+        converted++;
+        results.push({ id: prospect.id, reactivated: true });
+      } else if (prospect.status !== 'live') {
+        prospect.status = 'live';
+        if (existingEl) existingEl.active = true;
+        converted++;
+        results.push({ id: prospect.id, reactivated: true });
+      } else {
+        results.push({ id: prospect.id, skipped: true, reason: 'already live' });
+      }
       continue;
     }
 

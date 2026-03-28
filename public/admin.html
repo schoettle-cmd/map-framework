@@ -535,6 +535,9 @@
       <button class="nav-item" data-section="ratings" onclick="showSection('ratings')">
         <span class="nav-icon">&#11088;</span> Ratings
       </button>
+      <button class="nav-item" data-section="prelaunch" onclick="showSection('prelaunch')">
+        <span class="nav-icon">&#128172;</span> Pre-Launch
+      </button>
       <button class="nav-item" data-section="cronjobs" onclick="showSection('cronjobs')">
         <span class="nav-icon">&#128338;</span> Cron Jobs
       </button>
@@ -997,6 +1000,27 @@
       </div>
 
       <!-- CRON JOBS -->
+      <div class="section" id="sec-prelaunch">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+          <div>
+            <div style="font-size:16px;font-weight:700;">Pre-Launch Customer List</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:2px;">People who signed up to be notified when ordering goes live</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <span id="prelaunchCount" style="font-size:13px;color:var(--dim);padding:8px 12px;background:var(--card);border-radius:8px;">0 signups</span>
+            <a href="" id="prelaunchExportBtn" class="btn btn-accent" style="text-decoration:none;">Export CSV</a>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Email</th><th>Phone</th><th>Email Opt-in</th><th>SMS Opt-in</th><th>Chef Interests</th><th>Signed Up</th><th>Actions</th></tr></thead>
+              <tbody id="prelaunchBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <div class="section" id="sec-cronjobs">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
           <div>
@@ -1144,6 +1168,7 @@ async function checkAuth() {
       loadPayouts();
       loadRatings();
       loadCronJobs();
+      loadPrelaunch();
     } else {
       showLogin();
     }
@@ -1204,6 +1229,7 @@ const sectionTitles = {
   payouts:   ['Payouts', 'Seller Payouts'],
   ratings:   ['Ratings & Reviews', 'Monitor buyer feedback'],
   cronjobs:  ['Scheduled Cron Jobs', 'Automated scraping and data collection'],
+  prelaunch: ['Pre-Launch Signups', 'Customer interest list for ordering launch'],
   'chef-detail': ['Chef Details', 'View and manage chef profile'],
 };
 
@@ -2200,6 +2226,7 @@ async function triggerCronJob(jobId) {
       const data = await res.json();
       showToast('Job completed: ' + (data.newRecords || 0) + ' new records', 'success');
       loadCronJobs();
+      loadPrelaunch();
       loadUnifiedList('chef');
     } else {
       const d = await res.json().catch(() => ({}));
@@ -2210,6 +2237,47 @@ async function triggerCronJob(jobId) {
 
 // -- Init --
 checkAuth();
+
+
+// ── Pre-Launch ──────────────────────────────────────────
+async function loadPrelaunch() {
+  try {
+    const res = await apiFetch('/api/admin/prelaunch');
+    if (!res.ok) return;
+    const data = await res.json();
+    const signups = data.signups || [];
+    document.getElementById('prelaunchCount').textContent = signups.length + ' signup' + (signups.length !== 1 ? 's' : '');
+    document.getElementById('prelaunchExportBtn').href = API + '/api/admin/prelaunch/export';
+    const tbody = document.getElementById('prelaunchBody');
+    if (signups.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:40px;">No signups yet. The pre-launch form appears on chef profile pages.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = signups.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).map(s => {
+      const chefs = (s.chefInterests || []).map(c => c.name).filter(Boolean).join(', ') || '-';
+      const date = new Date(s.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      return '<tr>' +
+        '<td>' + (s.email || '-') + '</td>' +
+        '<td>' + (s.phone || '-') + '</td>' +
+        '<td>' + (s.emailOptin ? '<span style="color:#22c55e">Yes</span>' : '<span style="color:var(--muted)">No</span>') + '</td>' +
+        '<td>' + (s.smsOptin ? '<span style="color:#22c55e">Yes</span>' : '<span style="color:var(--muted)">No</span>') + '</td>' +
+        '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">' + chefs + '</td>' +
+        '<td>' + date + '</td>' +
+        '<td><button class="btn btn-danger" style="padding:4px 10px;font-size:11px;" onclick="deletePrelaunchSignup('' + s.id + '')">Delete</button></td>' +
+        '</tr>';
+    }).join('');
+  } catch(e) { console.error('loadPrelaunch error:', e); }
+}
+
+async function deletePrelaunchSignup(id) {
+  if (!confirm('Delete this signup?')) return;
+  try {
+    const res = await apiFetch('/api/admin/prelaunch/' + id, { method: 'DELETE' });
+    if (res.ok) { showToast('Deleted', 'success'); loadPrelaunch(); }
+    else { showToast('Failed to delete', 'error'); }
+  } catch(e) { showToast('Connection error', 'error'); }
+}
+
 </script>
 </body>
 </html>

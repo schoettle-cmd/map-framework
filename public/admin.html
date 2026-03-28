@@ -2263,7 +2263,7 @@ async function loadPrelaunch() {
         '<td>' + (s.smsOptin ? '<span style="color:#22c55e">Yes</span>' : '<span style="color:var(--muted)">No</span>') + '</td>' +
         '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;">' + chefs + '</td>' +
         '<td>' + date + '</td>' +
-        '<td><button class="btn btn-danger" style="padding:4px 10px;font-size:11px;" onclick="deletePrelaunchSignup('' + s.id + '')">Delete</button></td>' +
+        '<td><button class="btn btn-danger" style="padding:4px 10px;font-size:11px;" onclick="deletePrelaunchSignup(\'' + s.id + '\')">Delete</button></td>' +
         '</tr>';
     }).join('');
   } catch(e) { console.error('loadPrelaunch error:', e); }

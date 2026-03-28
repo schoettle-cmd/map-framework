@@ -7,11 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.1.2/dist/maplibre-gl.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     :root {
       --cream: #F5F1E8;
-      --ink: #1A1A1A;
+      --ink: #2F3A2F;
       --olive: #2F3A2F;
       --terracotta: #C46A3C;
       --terracotta-light: #D4845A;
@@ -45,15 +47,10 @@
       border-bottom: 1px solid var(--light-border);
     }
     .nav-logo {
-      font-family: var(--serif);
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.02em;
       text-decoration: none;
-      transition: color 0.4s;
+      display: flex; align-items: center;
     }
-    .nav.scrolled .nav-logo { color: var(--ink); }
+    .nav-logo img { height: 52px; width: auto; }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-link {
       font-size: 14px;
@@ -105,7 +102,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
-      background: url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1920&q=80') center/cover no-repeat;
+      background: url('hero-chef.png') center/cover no-repeat;
     }
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
@@ -349,17 +346,28 @@
       position: relative;
       border: 1px solid var(--light-border);
       margin-top: 48px;
+      cursor: pointer;
     }
-    .explore-map-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: var(--warm-gray);
+    .explore-map-wrap .map-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 28px;
+      background: linear-gradient(to top, rgba(245,241,232,0.7) 0%, transparent 40%);
+      pointer-events: none;
     }
-    .explore-map-placeholder svg { opacity: 0.4; }
+    .explore-map-wrap .map-overlay-btn {
+      padding: 14px 32px; border-radius: 100px;
+      background: var(--terracotta); color: #fff;
+      font-size: 15px; font-weight: 600; font-family: var(--sans);
+      border: none; pointer-events: auto; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .explore-map-wrap .map-overlay-btn:hover { background: var(--terracotta-light); }
+    .mini-marker {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--terracotta); border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
     .explore-chips {
       display: flex;
       flex-wrap: wrap;
@@ -626,7 +634,7 @@
 
   <!-- Navigation -->
   <nav class="nav" id="main-nav">
-    <a href="/" class="nav-logo">Kitse</a>
+    <a href="/" class="nav-logo"><img src="/logo.png" alt="Kitsé"></a>
     <div class="nav-links">
       <a href="#chefs" class="nav-link">Chefs</a>
       <a href="#explore" class="nav-link">Explore</a>
@@ -644,10 +652,10 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1 class="hero-tagline">Eat beautifully.</h1>
-      <p class="hero-sub">Discover extraordinary meals from home chefs in your neighborhood. Crafted with care, served with story.</p>
+      <h1 class="hero-tagline">Eat Deliciously</h1>
+      <p class="hero-sub">Discover home kitchens<br>Meals made with care</p>
       <div class="hero-actions">
-        <a href="/map" class="btn btn-primary">Discover chefs</a>
+        <a href="/map" class="btn btn-primary">Discover cuisine</a>
         <button class="btn btn-ghost" onclick="openPhoneAuth()">Sign in & up</button>
       </div>
     </div>
@@ -705,12 +713,11 @@
         <a href="/map" class="chip">Soul Food</a>
         <a href="/map" class="chip">Italian</a>
       </div>
-      <div class="explore-map-wrap">
-        <a href="/map" class="explore-map-placeholder" style="text-decoration:none;color:inherit">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"/></svg>
-          <span style="font-size:18px;font-weight:600">Open the map</span>
-          <span style="font-size:14px">Discover chefs in your area</span>
-        </a>
+      <div class="explore-map-wrap" onclick="window.location.href='/map'">
+        <div id="mini-map" style="width:100%;height:100%"></div>
+        <div class="map-overlay">
+          <button class="map-overlay-btn" onclick="window.location.href='/map'">Explore chefs on the map &rarr;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -923,6 +930,32 @@ async function loadSpotlight() {
 window.addEventListener('scroll', () => {
   document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
 });
+
+// ── Mini Map ──
+(function initMiniMap() {
+  const miniMap = new maplibregl.Map({
+    container: 'mini-map',
+    style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json',
+    center: [-118.25, 34.07],
+    zoom: 11,
+    interactive: false,
+    attributionControl: false
+  });
+  miniMap.on('load', async () => {
+    try {
+      const r = await fetch(BASE + '/api/elements?sw_lat=33.7&sw_lng=-118.7&ne_lat=34.4&ne_lng=-117.8');
+      const d = await r.json();
+      if (d.ok && d.elements) {
+        d.elements.forEach(el => {
+          if (!el.lat || !el.lng) return;
+          const dot = document.createElement('div');
+          dot.className = 'mini-marker';
+          new maplibregl.Marker({ element: dot }).setLngLat([el.lng, el.lat]).addTo(miniMap);
+        });
+      }
+    } catch(e) {}
+  });
+})();
 
 // ── Email Capture ──
 function handleEmail(e) {

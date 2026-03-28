@@ -77,10 +77,10 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     .sidebar-logo {
-      font-size: 18px; font-weight: 800; letter-spacing: -0.03em;
       display: flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; color: var(--muted);
     }
-    .sidebar-logo span { color: var(--accent); }
+    .sidebar-logo img { height: 36px; width: auto; }
     .sidebar-close {
       display: none; background: none; border: none;
       color: var(--muted); font-size: 20px; cursor: pointer;
@@ -510,7 +510,7 @@
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-logo">&#127838; <span>Kitse</span> Admin</div>
+      <div class="sidebar-logo"><img src="/logo.png" alt="Kitsé"> Admin</div>
       <button class="sidebar-close" onclick="closeSidebar()">&#10005;</button>
     </div>
     <nav class="sidebar-nav">

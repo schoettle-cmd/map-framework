@@ -123,7 +123,7 @@ app.get('/order/:id', (req, res) => {
 <title>Order Tracking — ${platformSettings.platformName || 'Kitse'}</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 ${baseScriptForReq(req)}<style>
-:root{--cream:#F5F1E8;--ink:#1A1A1A;--terracotta:#C46A3C;--warm-gray:#8A8577;--sans:'Inter',sans-serif;--serif:'Playfair Display',serif;}
+:root{--cream:#F5F1E8;--ink:#2F3A2F;--terracotta:#C46A3C;--warm-gray:#8A8577;--sans:'Inter',sans-serif;--serif:'Playfair Display',serif;}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--sans);background:var(--cream);color:var(--ink);min-height:100vh;}
 .nav{padding:20px 28px;border-bottom:1px solid rgba(47,58,47,0.12);}
@@ -514,7 +514,7 @@ ${el.imageUrl ? `<meta property="og:image" content="${esc(el.imageUrl)}">` : ''}
 ${baseScriptForReq(req)}<style>
 :root {
   --cream: #F5F1E8;
-  --ink: #1A1A1A;
+  --ink: #2F3A2F;
   --olive: #2F3A2F;
   --terracotta: #C46A3C;
   --terracotta-light: #D4845A;
@@ -545,11 +545,10 @@ body {
   border-bottom: 1px solid var(--light-border);
 }
 .nav-logo {
-  font-family: var(--serif);
-  font-size: 22px; font-weight: 700;
-  color: var(--ink); text-decoration: none;
-  letter-spacing: -0.02em;
+  text-decoration: none;
+  display: flex; align-items: center;
 }
+.nav-logo img { height: 48px; width: auto; }
 .nav-links { display: flex; align-items: center; gap: 24px; }
 .nav-link {
   font-size: 14px; font-weight: 500;
@@ -942,7 +941,7 @@ body {
 </head>
 <body>
 <nav class="nav">
-  <a href="/" class="nav-logo">Kitse</a>
+  <a href="/" class="nav-logo"><img src="/logo.png" alt="Kitsé"></a>
   <div class="nav-links">
     <a href="/map" class="nav-link">Explore</a>
     <a href="/join" class="nav-link">Become a chef</a>

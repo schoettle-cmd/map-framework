@@ -10,7 +10,7 @@
   <style>
     :root {
       --cream: #F5F1E8;
-      --ink: #1A1A1A;
+      --ink: #2F3A2F;
       --olive: #2F3A2F;
       --terracotta: #C46A3C;
       --terracotta-light: #D4845A;
@@ -42,11 +42,10 @@
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     }
     .nav-logo {
-      font-family: var(--serif);
-      font-size: 22px; font-weight: 700;
-      color: var(--ink); text-decoration: none;
-      letter-spacing: -0.02em;
+      text-decoration: none;
+      display: flex; align-items: center;
     }
+    .nav-logo img { height: 48px; width: auto; }
     .nav-link {
       font-size: 14px; font-weight: 500;
       color: var(--warm-gray); text-decoration: none;
@@ -610,7 +609,7 @@
 <body>
 
   <nav class="nav">
-    <a href="/" class="nav-logo" id="nav-logo-link">Kitse</a>
+    <a href="/" class="nav-logo" id="nav-logo-link"><img src="/logo.png" alt="Kitsé"></a>
     <a href="/" class="nav-link" id="nav-back-link">&larr; Back to home</a>
   </nav>
 
